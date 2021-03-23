@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30907.101
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MindSphereLibrary", "MindSphereLibrary\MindSphereLibrary.csproj", "{DF8A7240-E13A-4BD2-B5D1-F3AFA157F171}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DF8A7240-E13A-4BD2-B5D1-F3AFA157F171}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF8A7240-E13A-4BD2-B5D1-F3AFA157F171}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF8A7240-E13A-4BD2-B5D1-F3AFA157F171}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF8A7240-E13A-4BD2-B5D1-F3AFA157F171}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D787AD8B-D3CF-49ED-B3B6-9FDF099C9C13}
+	EndGlobalSection
+EndGlobal
