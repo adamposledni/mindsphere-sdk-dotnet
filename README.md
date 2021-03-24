@@ -1,3 +1,3 @@
-###  MindSphere SDK for .NET
+#  MindSphere SDK for .NET
 
 
