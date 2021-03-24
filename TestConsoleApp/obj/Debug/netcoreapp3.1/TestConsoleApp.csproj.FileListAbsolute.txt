@@ -1,0 +1,17 @@
+D:\Programování\mindsphere-sdk-dotnet\TestConsoleApp\bin\Debug\netcoreapp3.1\TestConsoleApp.exe
+D:\Programování\mindsphere-sdk-dotnet\TestConsoleApp\bin\Debug\netcoreapp3.1\TestConsoleApp.deps.json
+D:\Programování\mindsphere-sdk-dotnet\TestConsoleApp\bin\Debug\netcoreapp3.1\TestConsoleApp.runtimeconfig.json
+D:\Programování\mindsphere-sdk-dotnet\TestConsoleApp\bin\Debug\netcoreapp3.1\TestConsoleApp.runtimeconfig.dev.json
+D:\Programování\mindsphere-sdk-dotnet\TestConsoleApp\bin\Debug\netcoreapp3.1\TestConsoleApp.dll
+D:\Programování\mindsphere-sdk-dotnet\TestConsoleApp\bin\Debug\netcoreapp3.1\TestConsoleApp.pdb
+D:\Programování\mindsphere-sdk-dotnet\TestConsoleApp\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+D:\Programování\mindsphere-sdk-dotnet\TestConsoleApp\bin\Debug\netcoreapp3.1\MindSphereLibrary.dll
+D:\Programování\mindsphere-sdk-dotnet\TestConsoleApp\bin\Debug\netcoreapp3.1\MindSphereLibrary.pdb
+D:\Programování\mindsphere-sdk-dotnet\TestConsoleApp\obj\Debug\netcoreapp3.1\TestConsoleApp.csprojAssemblyReference.cache
+D:\Programování\mindsphere-sdk-dotnet\TestConsoleApp\obj\Debug\netcoreapp3.1\TestConsoleApp.AssemblyInfoInputs.cache
+D:\Programování\mindsphere-sdk-dotnet\TestConsoleApp\obj\Debug\netcoreapp3.1\TestConsoleApp.AssemblyInfo.cs
+D:\Programování\mindsphere-sdk-dotnet\TestConsoleApp\obj\Debug\netcoreapp3.1\TestConsoleApp.csproj.CoreCompileInputs.cache
+D:\Programování\mindsphere-sdk-dotnet\TestConsoleApp\obj\Debug\netcoreapp3.1\TestConsoleApp.csproj.CopyComplete
+D:\Programování\mindsphere-sdk-dotnet\TestConsoleApp\obj\Debug\netcoreapp3.1\TestConsoleApp.dll
+D:\Programování\mindsphere-sdk-dotnet\TestConsoleApp\obj\Debug\netcoreapp3.1\TestConsoleApp.pdb
+D:\Programování\mindsphere-sdk-dotnet\TestConsoleApp\obj\Debug\netcoreapp3.1\TestConsoleApp.genruntimeconfig.cache

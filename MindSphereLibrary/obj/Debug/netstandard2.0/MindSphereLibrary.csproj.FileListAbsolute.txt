@@ -1,0 +1,9 @@
+D:\Programování\mindsphere-sdk-dotnet\MindSphereLibrary\bin\Debug\netstandard2.0\MindSphereLibrary.deps.json
+D:\Programování\mindsphere-sdk-dotnet\MindSphereLibrary\bin\Debug\netstandard2.0\MindSphereLibrary.dll
+D:\Programování\mindsphere-sdk-dotnet\MindSphereLibrary\bin\Debug\netstandard2.0\MindSphereLibrary.pdb
+D:\Programování\mindsphere-sdk-dotnet\MindSphereLibrary\obj\Debug\netstandard2.0\MindSphereLibrary.csprojAssemblyReference.cache
+D:\Programování\mindsphere-sdk-dotnet\MindSphereLibrary\obj\Debug\netstandard2.0\MindSphereLibrary.AssemblyInfoInputs.cache
+D:\Programování\mindsphere-sdk-dotnet\MindSphereLibrary\obj\Debug\netstandard2.0\MindSphereLibrary.AssemblyInfo.cs
+D:\Programování\mindsphere-sdk-dotnet\MindSphereLibrary\obj\Debug\netstandard2.0\MindSphereLibrary.csproj.CoreCompileInputs.cache
+D:\Programování\mindsphere-sdk-dotnet\MindSphereLibrary\obj\Debug\netstandard2.0\MindSphereLibrary.dll
+D:\Programování\mindsphere-sdk-dotnet\MindSphereLibrary\obj\Debug\netstandard2.0\MindSphereLibrary.pdb
