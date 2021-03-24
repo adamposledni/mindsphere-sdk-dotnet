@@ -11,7 +11,7 @@ namespace MindSphereLibrary.Common
         public string Region { get; set; } = "eu1";
 
         [JsonIgnore]
-        public string MindSphereDomain { get; set; } = "mindsphere.eu";
+        public string MindSphereDomain { get; set; } = "mindsphere.io";
 
         [JsonProperty("keyStoreClientId")]
         public string KeyStoreClientId { get; set; }
