@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using MindSphereSdk.AssetManagement;
+using MindSphereSdk.IotTimeSeries;
 using MindSphereSdk.Common;
 using System;
 using System.Collections.Generic;
@@ -13,14 +14,16 @@ namespace MindSphereSdk.AspNetCore
 {
     public interface IMindSphereSdkService
     {
-        AssetManagementClient GetAssetClient();
+        AssetManagementClient GetAssetManagementClient();
+        IotTimeSeriesClient GetIotTimeSeriesClient();
     }
 
     public class MindSphereSdkService : IMindSphereSdkService
     {
         private HttpClient _httpClient;
 
-        private AssetManagementClient _assetClient;
+        private AssetManagementClient _assetManagementClient;
+        private IotTimeSeriesClient _iotTimeSeriesClient;
 
         private ICredentials _credentials;
 
@@ -30,14 +33,24 @@ namespace MindSphereSdk.AspNetCore
             _credentials = options.Value.Credentials;
         }
 
-        public AssetManagementClient GetAssetClient()
+        public AssetManagementClient GetAssetManagementClient()
         {
-            if (_assetClient == null)
+            if (_assetManagementClient == null)
             {
-                _assetClient = new AssetManagementClient(_credentials, _httpClient);
+                _assetManagementClient = new AssetManagementClient(_credentials, _httpClient);
             }
 
-            return _assetClient;
+            return _assetManagementClient;
+        }
+
+        public IotTimeSeriesClient GetIotTimeSeriesClient()
+        {
+            if (_iotTimeSeriesClient == null)
+            {
+                _iotTimeSeriesClient = new IotTimeSeriesClient(_credentials, _httpClient);
+            }
+
+            return _iotTimeSeriesClient;
         }
     }
 
@@ -47,7 +60,7 @@ namespace MindSphereSdk.AspNetCore
             Action<MindSphereSdkServiceOptions> setupAction)
         {
             collection.Configure(setupAction);
-            return collection.AddScoped<IMindSphereSdkService, MindSphereSdkService>();
+            return collection.AddSingleton<IMindSphereSdkService, MindSphereSdkService>();
         }
     }
 

@@ -1,6 +1,6 @@
 ﻿using MindSphereSdk.Common;
-using System;
-using System.Collections.Generic;
+using Newtonsoft.Json;
+using System.Diagnostics;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,18 +14,39 @@ namespace MindSphereSdk.IotTimeSeries
     {
         private readonly string _baseUri = "/api/iottimeseries/v3";
 
-        public IotTimeSeriesClient(ICredentials credentials, HttpClient httpClient) : base (credentials, httpClient)
+        public IotTimeSeriesClient(ICredentials credentials, HttpClient httpClient) : base(credentials, httpClient)
         {
 
         }
 
-        public async Task GetTimeSeriesAsync()
+        /// <summary>
+        /// Retrieve time series data
+        /// </summary>
+        /// <returns></returns>
+        public async Task<string> GetTimeSeriesAsync(GetTimeSeriesRequest request)
         {
+            string queryString = "?";
+            string pathString = $"/{request.EntityId}/{request.PropertySetName}";
+            string uri = _baseUri + "/timeseries" + pathString + queryString;
 
+            string response = await HttpActionAsync(HttpMethod.Get, uri);
+            return response;
         }
-        public async Task PutTimeSeriesAsync()
-        {
 
+        /// <summary>
+        /// Create or update time series data
+        /// </summary>
+        /// <returns></returns>
+        public async Task<string> PutTimeSeriesAsync(PutTimeSeriesRequest request)
+        {
+            string uri = _baseUri + "/timeseries";
+
+            string test = JsonConvert.SerializeObject(request);
+
+            StringContent body = new StringContent(JsonConvert.SerializeObject(request), Encoding.UTF8, "application/json");
+
+            string response = await HttpActionAsync(HttpMethod.Put, uri, body);
+            return response;
         }
 
     }
