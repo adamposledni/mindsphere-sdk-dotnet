@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,9 +12,6 @@ namespace TestConsoleApp
     {
         static async Task Main(string[] args)
         {
-
-            HttpClient client = new HttpClient();
-
             AppCredentials appCredentials = new AppCredentials(
                 "vdtcz-comosintegration-1.0.0",
                 "4zK0l9GMhSzc777w9wHa1ASgASOLMmvTin9T4OI9T2k",
@@ -23,12 +21,17 @@ namespace TestConsoleApp
                 "vdtcz"
             );
 
-            AssetClient assetClient = new AssetClient(appCredentials, client);
+            AssetClient assetClient = new AssetClient(appCredentials);
 
-            var test = await assetClient.ListAssetsAsync();
-            Console.WriteLine(test);
-
-
+            List<AssetResponse> test = await assetClient.ListAssetsAsync();
+            foreach (var item in test)
+            {
+                Console.WriteLine(item.AssetId);
+                if (item.Location != null) {
+                    Console.WriteLine(item.Location.Country);
+                }
+            }
+            
             Console.ReadKey();
         }
 
