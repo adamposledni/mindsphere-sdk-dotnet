@@ -1,6 +1,8 @@
 ﻿using MindSphereLibrary.Common;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,21 +11,22 @@ namespace MindSphereLibrary.Asset
 {
     public class AssetClient : SdkClient
     {
-        private string _baseUri = "/api/assetmanagement/v3";
+        private readonly string _baseUri = "/api/assetmanagement/v3";
 
-        public AssetClient(AppCredentials credentials, HttpClient httpClient) : base(credentials, httpClient)
+        public AssetClient(AppCredentials credentials) : base(credentials)
         {
             
         }
 
-        public async Task<string> ListAssetsAsync()
+        public async Task<List<AssetResponse>> ListAssetsAsync()
         {
-
-
             string uri = _baseUri + "/assets";
 
-            string response = await HttpGetRequestAsync(uri);
-            return response;
+            string response = await HttpActionAsync(HttpMethod.Get, uri);
+            var responseWrapper = JsonConvert.DeserializeObject<MindSphereResponseWrapper<EmbeddedAssetResponse>>(response);
+            var assetList = responseWrapper.Embedded.Assets.ToList();
+
+            return assetList;
         }
     }
 }
