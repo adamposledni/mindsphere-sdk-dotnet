@@ -13,15 +13,17 @@ namespace TestConsoleApp
         static async Task Main(string[] args)
         {
             AppCredentials appCredentials = new AppCredentials(
-                "vdtcz-comosintegration-1.0.0",
-                "4zK0l9GMhSzc777w9wHa1ASgASOLMmvTin9T4OI9T2k",
-                "comosintegration",
+                "iiotdgli-testapplication-1.0.0",
+                "Rh59aFXcmaq9tUK2cyESaIG9SpSnRKoV3PBjwONtd8G",
+                "testapplication",
                 "1.0.0",
-                "vdtcz",
-                "vdtcz"
+                "iiotdgli",
+                "iiotdgli"
             );
 
-            AssetClient assetClient = new AssetClient(appCredentials);
+            HttpClient httpClient = new HttpClient();
+
+            AssetClient assetClient = new AssetClient(appCredentials, httpClient);
 
             List<AssetResponse> test = await assetClient.ListAssetsAsync();
             foreach (var item in test)
