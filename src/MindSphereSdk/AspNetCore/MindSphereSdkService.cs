@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
-using MindSphereLibrary.Asset;
-using MindSphereLibrary.Common;
+using MindSphereSdk.Asset;
+using MindSphereSdk.Common;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -9,7 +9,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace MindSphereLibrary.AspNetCore
+namespace MindSphereSdk.AspNetCore
 {
     public interface IMindSphereSdkService
     {

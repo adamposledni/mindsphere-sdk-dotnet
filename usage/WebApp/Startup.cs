@@ -12,10 +12,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-using MindSphereLibrary.Common;
-using MindSphereLibrary.AspNetCore;
+using MindSphereSdk.Common;
+using MindSphereSdk.AspNetCore;
 
-namespace TestWebApp
+namespace WebApp
 {
     public class Startup
     {
@@ -33,7 +33,7 @@ namespace TestWebApp
 
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "TestWebApp", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebApp", Version = "v1" });
             });
 
             services.AddHttpClient();
@@ -57,7 +57,7 @@ namespace TestWebApp
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "TestWebApp v1"));
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "WebApp v1"));
             }
 
             app.UseHttpsRedirection();

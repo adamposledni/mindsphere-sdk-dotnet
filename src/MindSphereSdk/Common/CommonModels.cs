@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace MindSphereLibrary.Common
+namespace MindSphereSdk.Common
 {
     public class MindSphereResponseWrapper<T> where T : IEmbeddedResponse
     {

@@ -4,7 +4,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MindSphereLibrary.Common
+namespace MindSphereSdk.Common
 {
     public interface IMindSphereConnector
     {

@@ -17,7 +17,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "TestWebApp": {
+    "WebApp": {
       "commandName": "Project",
       "dotnetRunMessages": "true",
       "launchBrowser": true,

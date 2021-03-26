@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-using MindSphereLibrary.Asset;
-using MindSphereLibrary.Common;
+using MindSphereSdk.Asset;
+using MindSphereSdk.Common;
 
-namespace TestConsoleApp
+namespace ConsoleApp
 {
     class Program
     {

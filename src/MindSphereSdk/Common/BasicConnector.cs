@@ -1,4 +1,4 @@
-﻿using MindSphereLibrary.Authentication;
+﻿using MindSphereSdk.Authentication;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -6,7 +6,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MindSphereLibrary.Common
+namespace MindSphereSdk.Common
 {
     public class BasicConnector : IMindSphereConnector
     {

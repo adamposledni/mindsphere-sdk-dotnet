@@ -1,13 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using MindSphereLibrary.AspNetCore;
-using MindSphereLibrary.Asset;
+using MindSphereSdk.AspNetCore;
+using MindSphereSdk.Asset;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace TestWebApp.Controllers
+namespace WebApp.Controllers
 {
     [ApiController]
     [Route("api")]

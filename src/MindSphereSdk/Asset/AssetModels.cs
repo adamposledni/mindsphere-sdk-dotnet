@@ -1,10 +1,10 @@
-﻿using MindSphereLibrary.Common;
+﻿using MindSphereSdk.Common;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace MindSphereLibrary.Asset
+namespace MindSphereSdk.Asset
 {
     public class EmbeddedAssetResponse : IEmbeddedResponse
     {
