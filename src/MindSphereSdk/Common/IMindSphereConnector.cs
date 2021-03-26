@@ -8,7 +8,7 @@ namespace MindSphereSdk.Common
 {
     public interface IMindSphereConnector
     {
-        Task<string> HttpActionAsync(HttpMethod method, string specUri, string body);
+        Task<string> HttpActionAsync(HttpMethod method, string specUri, HttpContent body);
 
         Task AcquireTokenAsync();
 

@@ -4,15 +4,18 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace MindSphereSdk.Asset
+namespace MindSphereSdk.AssetManagement
 {
-    public class EmbeddedAssetResponse : IEmbeddedResponse
+    public class EmbeddedAssetListResource : IEmbeddedResource
     {
         [JsonProperty("assets")]
-        public IEnumerable<AssetResponse> Assets { get; set; }
+        public IEnumerable<AssetResource> Assets { get; set; }
     }
     
-    public class AssetResponse
+    /// <summary>
+    /// Asset resource object
+    /// </summary>
+    public class AssetResource
     {
         [JsonProperty("name")]
         public string Name { get; set; }
@@ -31,6 +34,8 @@ namespace MindSphereSdk.Asset
 
         [JsonProperty("aspects")]
         public IEnumerable<Aspect> Aspects { get; set; }
+
+        // TODO: fileAssignments
 
         [JsonProperty("typeId")]
         public string TypeId { get; set; }
@@ -55,7 +60,10 @@ namespace MindSphereSdk.Asset
 
         [JsonProperty("assetId")]
         public string AssetId { get; set; }
+
+        // TODO: deleted
     }
+
 
     public class Aspect
     {
@@ -74,4 +82,31 @@ namespace MindSphereSdk.Asset
         public string ValueString { get; set; }
     }
 
+    /// <summary>
+    /// Request object for listing assets
+    /// </summary>
+    public class ListAssetsRequest
+    {
+        public int? Page { get; set; }
+
+        public int? Size { get; set; }
+        
+        public string Sort { get; set; }
+
+        public string Filter { get; set; }
+
+        //public string IfNoneMatch { get; set; }
+
+        //public bool? IncludeShared { get; set; }
+
+        //public bool? BasicFieldsOnly { get; set; }
+    }
+
+    /// <summary>
+    /// Request object for adding asset
+    /// </summary>
+    public class AddAssetRequest
+    {
+        public AssetResource Body { get; set; }
+    }
 }

@@ -32,7 +32,7 @@ namespace MindSphereSdk.Common
             }
         }
 
-        protected async Task<string> HttpActionAsync(HttpMethod method, string specUri, string body = null)
+        protected async Task<string> HttpActionAsync(HttpMethod method, string specUri, HttpContent body = null)
         {
             string response = await _mindSphereConnector.HttpActionAsync(method, specUri, body);
             return response;

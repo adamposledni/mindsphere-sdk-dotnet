@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-using MindSphereSdk.Asset;
+using MindSphereSdk.AssetManagement;
 using MindSphereSdk.Common;
 
 namespace ConsoleApp
@@ -23,9 +23,9 @@ namespace ConsoleApp
 
             HttpClient httpClient = new HttpClient();
 
-            AssetClient assetClient = new AssetClient(appCredentials, httpClient);
+            AssetManagementClient assetClient = new AssetManagementClient(appCredentials, httpClient);
 
-            List<AssetResponse> test = await assetClient.ListAssetsAsync();
+            List<AssetResource> test = await assetClient.ListAssetsAsync();
             foreach (var item in test)
             {
                 Console.WriteLine(item.AssetId);

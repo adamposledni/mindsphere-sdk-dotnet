@@ -24,7 +24,7 @@ namespace MindSphereSdk.Common
             _httpClient = httpClient;
         }
 
-        public async Task<string> HttpActionAsync(HttpMethod method, string specUri, string body = null)
+        public async Task<string> HttpActionAsync(HttpMethod method, string specUri, HttpContent body = null)
         {
             await RenewTokenAsync();
 
@@ -32,6 +32,7 @@ namespace MindSphereSdk.Common
             request.Method = method;
             request.RequestUri = GetFullUri(specUri);
             request.Headers.Add("Authorization", "Bearer " + _accessToken.Token);
+            request.Content = body;
 
             HttpResponseMessage response = await _httpClient.SendAsync(request);
             response.EnsureSuccessStatusCode();

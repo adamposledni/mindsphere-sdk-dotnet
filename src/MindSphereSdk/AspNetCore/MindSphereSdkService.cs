@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
-using MindSphereSdk.Asset;
+using MindSphereSdk.AssetManagement;
 using MindSphereSdk.Common;
 using System;
 using System.Collections.Generic;
@@ -13,14 +13,14 @@ namespace MindSphereSdk.AspNetCore
 {
     public interface IMindSphereSdkService
     {
-        AssetClient GetAssetClient();
+        AssetManagementClient GetAssetClient();
     }
 
     public class MindSphereSdkService : IMindSphereSdkService
     {
         private HttpClient _httpClient;
 
-        private AssetClient _assetClient;
+        private AssetManagementClient _assetClient;
 
         private ICredentials _credentials;
 
@@ -30,11 +30,11 @@ namespace MindSphereSdk.AspNetCore
             _credentials = options.Value.Credentials;
         }
 
-        public AssetClient GetAssetClient()
+        public AssetManagementClient GetAssetClient()
         {
             if (_assetClient == null)
             {
-                _assetClient = new AssetClient(_credentials, _httpClient);
+                _assetClient = new AssetManagementClient(_credentials, _httpClient);
             }
 
             return _assetClient;

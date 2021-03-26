@@ -5,13 +5,13 @@ using System.Text;
 
 namespace MindSphereSdk.Common
 {
-    public class MindSphereResponseWrapper<T> where T : IEmbeddedResponse
+    public class MindSphereResourceWrapper<T> where T : IEmbeddedResource
     {
         [JsonProperty("_embedded")]
         public T Embedded { get; set; }
     }
 
-    public interface IEmbeddedResponse
+    public interface IEmbeddedResource
     {
 
     }
