@@ -25,7 +25,7 @@ namespace ConsoleApp
 
             AssetClient assetClient = new AssetClient(appCredentials, httpClient);
 
-            List<AssetResponse> test = await assetClient.ListAssetsAsync();
+            List<AssetResponse> test = await assetClient.GetAssetsAsync();
             foreach (var item in test)
             {
                 Console.WriteLine(item.AssetId);

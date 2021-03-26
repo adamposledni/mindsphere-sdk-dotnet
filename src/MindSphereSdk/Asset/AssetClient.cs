@@ -15,10 +15,9 @@ namespace MindSphereSdk.Asset
 
         public AssetClient(ICredentials credentials, HttpClient httpClient) : base(credentials, httpClient)
         {
-
         }
 
-        public async Task<List<AssetResponse>> ListAssetsAsync()
+        public async Task<List<AssetResponse>> GetAssetsAsync()
         {
             string uri = _baseUri + "/assets";
 
@@ -28,5 +27,7 @@ namespace MindSphereSdk.Asset
 
             return assetList;
         }
+
+        public async Task 
     }
 }

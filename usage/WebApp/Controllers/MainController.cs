@@ -24,7 +24,7 @@ namespace WebApp.Controllers
         public async Task<ActionResult<IEnumerable<AssetResponse>>> Get()
         {
             var assetClient = _mindSphereSdkService.GetAssetClient();
-            return StatusCode(200, await assetClient.ListAssetsAsync());
+            return StatusCode(200, await assetClient.GetAssetsAsync());
         }
     }
 }
