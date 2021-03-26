@@ -46,9 +46,6 @@ namespace MindSphereLibrary.AspNetCore
         public static IServiceCollection AddMindSphereSdkService(this IServiceCollection collection,
             Action<MindSphereSdkServiceOptions> setupAction)
         {
-            if (collection == null) throw new ArgumentNullException(nameof(collection));
-            if (setupAction == null) throw new ArgumentNullException(nameof(setupAction));
-
             collection.Configure(setupAction);
             return collection.AddScoped<IMindSphereSdkService, MindSphereSdkService>();
         }
