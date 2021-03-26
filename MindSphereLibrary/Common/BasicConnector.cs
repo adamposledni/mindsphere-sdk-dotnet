@@ -18,10 +18,10 @@ namespace MindSphereLibrary.Common
         private string _region = "eu1";
         private string _domain = "mindsphere.io";
 
-        public BasicConnector(AppCredentials credentials)
+        public BasicConnector(AppCredentials credentials, HttpClient httpClient)
         {           
             _credentials = credentials;
-            _httpClient = new HttpClient();
+            _httpClient = httpClient;
         }
 
         public async Task<string> HttpActionAsync(HttpMethod method, string specUri, string body = null)
@@ -54,20 +54,17 @@ namespace MindSphereLibrary.Common
             _accessToken = JsonConvert.DeserializeObject<AccessToken>(responseBody);
         }
 
-
         public async Task RenewTokenAsync()
         {
             if (!ValidateToken())
             {
                 await AcquireTokenAsync();
             }
-
         }
 
         public bool ValidateToken()
         {
-            return false;
-            
+            return false;            
         }
 
         private Uri GetFullUri(string specUri)

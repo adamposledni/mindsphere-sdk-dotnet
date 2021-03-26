@@ -12,20 +12,19 @@ namespace MindSphereLibrary.Common
     public abstract class SdkClient
     {
         // https://gateway.{region}.{mindsphere-domain}/api/iottsaggregates/v3/aggregates/{assetId}/{aspectName}
-        // https://gateway.eu1.mindsphere.io/api/assetmanagement/v3/assets
 
         private IMindSphereConnector _mindSphereConnector;
 
-        public SdkClient(ICredentials credentials)
+        public SdkClient(ICredentials credentials, HttpClient httpClient)
         {
-            _mindSphereConnector = CreateConnector(credentials);
+            _mindSphereConnector = CreateConnector(credentials, httpClient);
         }
 
-        private IMindSphereConnector CreateConnector(ICredentials credentials)
+        private IMindSphereConnector CreateConnector(ICredentials credentials, HttpClient httpClient)
         {
             if (credentials is AppCredentials)
             {
-                return new BasicConnector((AppCredentials) credentials);
+                return new BasicConnector((AppCredentials) credentials, httpClient);
             }
             else
             {

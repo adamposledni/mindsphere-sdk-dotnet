@@ -13,9 +13,9 @@ namespace MindSphereLibrary.Asset
     {
         private readonly string _baseUri = "/api/assetmanagement/v3";
 
-        public AssetClient(AppCredentials credentials) : base(credentials)
+        public AssetClient(ICredentials credentials, HttpClient httpClient) : base(credentials, httpClient)
         {
-            
+
         }
 
         public async Task<List<AssetResponse>> ListAssetsAsync()
