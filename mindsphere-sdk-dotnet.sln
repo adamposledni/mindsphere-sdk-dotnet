@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MindSphereLibrary", "MindSphereLibrary\MindSphereLibrary.csproj", "{DF8A7240-E13A-4BD2-B5D1-F3AFA157F171}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestConsoleApp", "TestConsoleApp\TestConsoleApp.csproj", "{0BBA396E-0D6A-4868-BA47-CC7542A9BC9D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestConsoleApp", "TestConsoleApp\TestConsoleApp.csproj", "{0BBA396E-0D6A-4868-BA47-CC7542A9BC9D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestWebApp", "TestWebApp\TestWebApp.csproj", "{FA62F225-863C-4649-9FBC-52AA7094E46A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{0BBA396E-0D6A-4868-BA47-CC7542A9BC9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0BBA396E-0D6A-4868-BA47-CC7542A9BC9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0BBA396E-0D6A-4868-BA47-CC7542A9BC9D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA62F225-863C-4649-9FBC-52AA7094E46A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA62F225-863C-4649-9FBC-52AA7094E46A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA62F225-863C-4649-9FBC-52AA7094E46A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA62F225-863C-4649-9FBC-52AA7094E46A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
