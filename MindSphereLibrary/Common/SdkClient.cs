@@ -14,59 +14,29 @@ namespace MindSphereLibrary.Common
         // https://gateway.{region}.{mindsphere-domain}/api/iottsaggregates/v3/aggregates/{assetId}/{aspectName}
         // https://gateway.eu1.mindsphere.io/api/assetmanagement/v3/assets
 
-        private AppCredentials _credentials;
-        private AccessToken _accessToken;
-        private HttpClient httpClient;
+        private IMindSphereConnector _mindSphereConnector;
 
-        public SdkClient(AppCredentials credentials, HttpClient _httpClient)
+        public SdkClient(ICredentials credentials)
         {
-            _credentials = credentials;
-            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
-            httpClient = _httpClient;
+            _mindSphereConnector = CreateConnector(credentials);
         }
 
-        protected async Task<string> HttpGetRequestAsync(string specUri)
+        private IMindSphereConnector CreateConnector(ICredentials credentials)
         {
-            // tmp, it should validate token
-            await AcquireTokenAsync();
-
-            HttpRequestMessage request = new HttpRequestMessage();
-            request.Method = HttpMethod.Get;
-            request.RequestUri = GetFullUri("/api/assetmanagement/v3/assets");
-            request.Headers.Add("Authorization", "Bearer " + _accessToken.Token);
-
-            var response = await httpClient.SendAsync(request);
-            response.EnsureSuccessStatusCode();
-            string responseBody = await response.Content.ReadAsStringAsync();
-
-            return responseBody.Substring(0, 20);
+            if (credentials is AppCredentials)
+            {
+                return new BasicConnector((AppCredentials) credentials);
+            }
+            else
+            {
+                throw new InvalidOperationException("Invalid credentials");
+            }
         }
 
-        private async Task AcquireTokenAsync()
+        protected async Task<string> HttpActionAsync(HttpMethod method, string specUri, string body = null)
         {
-            HttpRequestMessage request = new HttpRequestMessage();
-            request.Method = HttpMethod.Post;
-            request.RequestUri = GetFullUri("/api/technicaltokenmanager/v3/oauth/token");
-            request.Headers.Add("X-SPACE-AUTH-KEY", GetBasicAuth());
-            request.Content = new StringContent(JsonConvert.SerializeObject(_credentials), Encoding.UTF8, "application/json");
-
-            HttpResponseMessage response = await httpClient.SendAsync(request);
-            response.EnsureSuccessStatusCode();
-            string responseBody = await response.Content.ReadAsStringAsync();
-            _accessToken = JsonConvert.DeserializeObject<AccessToken>(responseBody);
-        }
-
-        private Uri GetFullUri(string specUri)
-        {
-            string basePart = $"https://gateway.{_credentials.Region}.{_credentials.MindSphereDomain}";
-            return new Uri(basePart + specUri);
-        }
-
-        private string GetBasicAuth()
-        {
-            string creds = _credentials.KeyStoreClientId + ":" + _credentials.KeyStoreClientSecret;
-            byte[] bytes = Encoding.UTF8.GetBytes(creds);
-            return ("Basic " + Convert.ToBase64String(bytes));
+            string response = await _mindSphereConnector.HttpActionAsync(method, specUri, body);
+            return response;
         }
     }
 }
