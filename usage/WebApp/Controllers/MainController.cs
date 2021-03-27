@@ -6,6 +6,7 @@ using MindSphereSdk.IotTimeSeries;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -15,7 +16,7 @@ namespace WebApp.Controllers
     [Route("api")]
     public class MainController : ControllerBase
     {
-        IMindSphereSdkService _mindSphereSdkService;
+        private IMindSphereSdkService _mindSphereSdkService;
 
         public MainController(IMindSphereSdkService mindSphereSdkService)
         {
@@ -28,9 +29,11 @@ namespace WebApp.Controllers
             var assetClient = _mindSphereSdkService.GetAssetManagementClient();
             var request = new ListAssetsRequest()
             {
-                Size = 1
+                Size = 5
             };
-            return StatusCode(200, await assetClient.ListAssetsAsync(request));
+            List<AssetResource> assets = (await assetClient.ListAssetsAsync(request)).ToList();
+
+            return StatusCode(200, assets);
         }
 
         [HttpGet("add-asset")]
@@ -50,23 +53,6 @@ namespace WebApp.Controllers
         }
 
         [HttpGet("get-timeseries")]
-        public async Task<ActionResult<IEnumerable<object>>> GetTimeSeries()
-        {
-            var iotClient = _mindSphereSdkService.GetIotTimeSeriesClient();
-            var request = new GetTimeSeriesRequest()
-            {
-                EntityId = "ec206f76b04a49a4938c1573b35b6688",
-                PropertySetName = "acceleration",
-                From = DateTime.Now.AddHours(-12.0),
-                To = DateTime.Now
-            };
-            
-            var timeSeries = await iotClient.GetTimeSeriesAsync(request);
-            return StatusCode(200, timeSeries);
-        }
-
-
-        [HttpGet("get-timeseries-generic")]
         public async Task<ActionResult<TestData>> GetTimeSeriesGeneric()
         {
             var iotClient = _mindSphereSdkService.GetIotTimeSeriesClient();
@@ -78,8 +64,8 @@ namespace WebApp.Controllers
                 To = DateTime.Now,
                 Limit = 2
             };
-
-            var timeSeries = await iotClient.GetTimeSeriesAsync<TestData>(request);
+            List<TestData> timeSeries = (await iotClient.GetTimeSeriesAsync<TestData>(request)).ToList();
+            
             return StatusCode(200, timeSeries);
         }
 
