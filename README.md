@@ -19,5 +19,3 @@ My goal is the develop SDK that provides at least same features as MindSphere SD
 Examples of the current state of the project. Some of them might change in the future.
 
 ### 1) Usage with ASP.<i></i></i>NET Core
-
-@mindsphere
