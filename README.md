@@ -22,7 +22,7 @@ Examples of the current state of the project. Some of them might change in the f
 
 ### 1) Usage with ASP.<i></i></i>NET Core
 
-Register service in the *Startup.cs* with credentials settings
+Register service in the *Startup.cs* with credentials settings.
 
 ```csharp
 services.AddHttpClient(); // SDK needs HttpClient in the DI container
@@ -39,7 +39,7 @@ services.AddMindSphereSdkService(options =>
 });
 ```
 
-Specify dependency in e.g. controller
+Specify dependency in e.g. controller.
 
 ```csharp
 private IMindSphereSdkService _mindSphereSdkService;
@@ -50,7 +50,7 @@ public MainController(IMindSphereSdkService mindSphereSdkService)
 }
 ```
 
-Then you can use the SDK (see below)
+Then you can use the SDK (see below).
 
 ### 2) Listing assets
 
