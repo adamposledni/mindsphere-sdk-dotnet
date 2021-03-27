@@ -27,6 +27,12 @@ namespace MindSphereSdk.IotTimeSeries
     {
         public string EntityId { get; set; }
         public string PropertySetName { get; set; }
+        public DateTime? From { get; set; }
+        public DateTime? To { get; set; }
+        public int? Limit { get; set; }
+        public string Select { get; set; }
+        public string Sort { get; set; }
+        public bool? LatestValue { get; set; }
     }
 
     /// <summary>

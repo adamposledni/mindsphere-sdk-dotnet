@@ -15,7 +15,7 @@ namespace ConsoleApp
         {
             AppCredentials appCredentials = new AppCredentials(
                 "iiotdgli-testapplication-1.0.0",
-                "Rh59aFXcmaq9tUK2cyESaIG9SpSnRKoV3PBjwONtd8G",
+                "***",
                 "testapplication",
                 "1.0.0",
                 "iiotdgli",

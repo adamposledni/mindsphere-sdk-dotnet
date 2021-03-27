@@ -56,7 +56,9 @@ namespace WebApp.Controllers
             var request = new GetTimeSeriesRequest()
             {
                 EntityId = "ec206f76b04a49a4938c1573b35b6688",
-                PropertySetName = "acceleration"
+                PropertySetName = "acceleration",
+                From = DateTime.Now.AddHours(-12.0),
+                To = DateTime.Now
             };
             
             var timeSeries = await iotClient.GetTimeSeriesAsync(request);
@@ -71,7 +73,10 @@ namespace WebApp.Controllers
             var request = new GetTimeSeriesRequest()
             {
                 EntityId = "ec206f76b04a49a4938c1573b35b6688",
-                PropertySetName = "acceleration"
+                PropertySetName = "acceleration",
+                From = DateTime.Now.AddDays(-1),
+                To = DateTime.Now,
+                Limit = 2
             };
 
             var timeSeries = await iotClient.GetTimeSeriesAsync<TestData>(request);

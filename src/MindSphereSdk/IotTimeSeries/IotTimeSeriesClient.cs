@@ -1,5 +1,6 @@
 ﻿using MindSphereSdk.Common;
 using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Net.Http;
@@ -26,11 +27,8 @@ namespace MindSphereSdk.IotTimeSeries
         /// <returns></returns>
         public async Task<IEnumerable<object>> GetTimeSeriesAsync(GetTimeSeriesRequest request)
         {
-            string queryString = "?";
-            // prepare path (needed)
-            string pathString = $"/{request.EntityId}/{request.PropertySetName}";
-            string uri = _baseUri + "/timeseries" + pathString + queryString;
-            
+            string uri = GenerateUriForGetTimeSeries(request);
+
             string response = await HttpActionAsync(HttpMethod.Get, uri);
             var timeSeries = JsonConvert.DeserializeObject<IEnumerable<object>>(response);
             return timeSeries;
@@ -44,14 +42,43 @@ namespace MindSphereSdk.IotTimeSeries
         /// <returns></returns>
         public async Task<IEnumerable<T>> GetTimeSeriesAsync<T>(GetTimeSeriesRequest request)
         {
-            string queryString = "?";
-            string pathString = $"/{request.EntityId}/{request.PropertySetName}";
-            string uri = _baseUri + "/timeseries" + pathString + queryString;
+            string uri = GenerateUriForGetTimeSeries(request);
 
             string response = await HttpActionAsync(HttpMethod.Get, uri);
             var timeSeries = JsonConvert.DeserializeObject<IEnumerable<T>>(response);
             return timeSeries;
         }
+
+        /// <summary>
+        /// Helper to generate spec uri for given request
+        /// </summary>
+        private string GenerateUriForGetTimeSeries(GetTimeSeriesRequest request)
+        {
+            // prepare query string
+            string queryString = "?";        
+
+            queryString += request.From != null ? $"from={GenerateDateTimeUtcString(request.From.Value)}& " : "";
+            queryString += request.To != null ? $"to={GenerateDateTimeUtcString(request.To.Value)}&" : "";
+            queryString += request.Limit != null ? $"limit={request.Limit.Value}&" : "";
+            queryString += request.Select != null ? $"select={request.Select}&" : "";
+            queryString += request.Sort != null ? $"sort={request.Sort}&" : "";
+            queryString += request.LatestValue != null ? $"latestValue={request.LatestValue.Value}&" : "";
+
+            string pathString = $"/{request.EntityId}/{request.PropertySetName}";
+            string uri = _baseUri + "/timeseries" + pathString + queryString;
+            Debug.WriteLine(uri);
+            return uri;
+        }
+
+        /// <summary>
+        /// Helper to generate date time UTC string
+        /// </summary>
+        private string GenerateDateTimeUtcString(DateTime date)
+        {
+            string dateString = date.ToUniversalTime().ToString("s") + "Z";
+            return dateString;
+        }
+
 
         /// <summary>
         /// Create or update time series data
