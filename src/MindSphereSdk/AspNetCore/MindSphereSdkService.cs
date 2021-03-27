@@ -18,6 +18,9 @@ namespace MindSphereSdk.AspNetCore
         IotTimeSeriesClient GetIotTimeSeriesClient();
     }
 
+    /// <summary>
+    /// Service for MindSphere SDK
+    /// </summary>
     public class MindSphereSdkService : IMindSphereSdkService
     {
         private HttpClient _httpClient;
@@ -33,6 +36,9 @@ namespace MindSphereSdk.AspNetCore
             _credentials = options.Value.Credentials;
         }
 
+        /// <summary>
+        /// Get Asset Management Client
+        /// </summary>
         public AssetManagementClient GetAssetManagementClient()
         {
             if (_assetManagementClient == null)
@@ -42,7 +48,10 @@ namespace MindSphereSdk.AspNetCore
 
             return _assetManagementClient;
         }
-
+        
+        /// <summary>
+        /// Get IoT Time Series Client
+        /// </summary>
         public IotTimeSeriesClient GetIotTimeSeriesClient()
         {
             if (_iotTimeSeriesClient == null)
@@ -54,8 +63,14 @@ namespace MindSphereSdk.AspNetCore
         }
     }
 
+    /// <summary>
+    /// Service Collection Extension for MindSphere SDK
+    /// </summary>
     public static class MindSphereSdkServiceCollectionExtensions
     {
+        /// <summary>
+        /// Add MindSphere SDK service to the Service Collection
+        /// </summary>
         public static IServiceCollection AddMindSphereSdkService(this IServiceCollection collection,
             Action<MindSphereSdkServiceOptions> setupAction)
         {
@@ -64,6 +79,9 @@ namespace MindSphereSdk.AspNetCore
         }
     }
 
+    /// <summary>
+    /// Options for MindSphere SDK service
+    /// </summary>
     public class MindSphereSdkServiceOptions
     {   
         public ICredentials Credentials { get; set; }

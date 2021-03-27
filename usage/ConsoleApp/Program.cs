@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,7 +26,7 @@ namespace ConsoleApp
 
             AssetManagementClient assetClient = new AssetManagementClient(appCredentials, httpClient);
 
-            List<AssetResource> test = await assetClient.ListAssetsAsync();
+            List<AssetResource> test = (await assetClient.ListAssetsAsync()).ToList();
             foreach (var item in test)
             {
                 Console.WriteLine(item.AssetId);

@@ -5,6 +5,10 @@ using System.Text;
 
 namespace MindSphereSdk.Common
 {
+    /// <summary>
+    /// Wrapper for any MindSphere resource
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public class MindSphereResourceWrapper<T> where T : IEmbeddedResource
     {
         [JsonProperty("_embedded")]
@@ -16,6 +20,9 @@ namespace MindSphereSdk.Common
 
     }
 
+    /// <summary>
+    /// Location object
+    /// </summary>
     public class Location
     {
         [JsonProperty("country")]

@@ -6,6 +6,9 @@ using System.Text;
 
 namespace MindSphereSdk.AssetManagement
 {
+    /// <summary>
+    /// Wrapper object for asset list
+    /// </summary>
     public class EmbeddedAssetListResource : IEmbeddedResource
     {
         [JsonProperty("assets")]
@@ -64,7 +67,9 @@ namespace MindSphereSdk.AssetManagement
         // TODO: deleted
     }
 
-
+    /// <summary>
+    /// Aspect object
+    /// </summary>
     public class Aspect
     {
         [JsonProperty("name")]
@@ -73,6 +78,9 @@ namespace MindSphereSdk.AssetManagement
         public IEnumerable<Variable> Variables { get; set; }
     }
 
+    /// <summary>
+    /// Variable object
+    /// </summary>
     public class Variable
     {
         [JsonProperty("name")]

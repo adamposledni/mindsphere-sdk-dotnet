@@ -9,10 +9,11 @@ using System.Threading.Tasks;
 
 namespace MindSphereSdk.Common
 {
+    /// <summary>
+    /// General SDK client
+    /// </summary>
     public abstract class SdkClient
     {
-        // https://gateway.{region}.{mindsphere-domain}/api/iottsaggregates/v3/aggregates/{assetId}/{aspectName}
-
         private IMindSphereConnector _mindSphereConnector;
 
         public SdkClient(ICredentials credentials, HttpClient httpClient)
@@ -20,6 +21,9 @@ namespace MindSphereSdk.Common
             _mindSphereConnector = CreateConnector(credentials, httpClient);
         }
 
+        /// <summary>
+        /// Create specified MindSphere connector based on provided credentials
+        /// </summary>
         private IMindSphereConnector CreateConnector(ICredentials credentials, HttpClient httpClient)
         {
             if (credentials is AppCredentials)
@@ -32,6 +36,9 @@ namespace MindSphereSdk.Common
             }
         }
 
+        /// <summary>
+        /// Sending HTTP request to the MindSphere API
+        /// </summary>
         protected async Task<string> HttpActionAsync(HttpMethod method, string specUri, HttpContent body = null)
         {
             string response = await _mindSphereConnector.HttpActionAsync(method, specUri, body);

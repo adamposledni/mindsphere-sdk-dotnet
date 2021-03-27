@@ -5,6 +5,9 @@ using System.Text;
 
 namespace MindSphereSdk.Authentication
 {
+    /// <summary>
+    /// Access Token for MindSphere API
+    /// </summary>
     public class AccessToken
     {
         [JsonProperty("access_token")]
@@ -21,9 +24,6 @@ namespace MindSphereSdk.Authentication
 
         [JsonProperty("jti")]
         public string Jti { get; set; }
-
-        //[JsonProperty("timestamp")]
-        //public int Timestamp { get; set; }
 
     }
 }

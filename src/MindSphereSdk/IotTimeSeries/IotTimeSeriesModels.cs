@@ -5,11 +5,9 @@ using System.Text;
 
 namespace MindSphereSdk.IotTimeSeries
 {
-    public interface ITimeSeriesData
-    {
-        DateTime Time { get; set; }
-    }
-
+    /// <summary>
+    /// Time Series object for one asset and one aspect
+    /// </summary>
     public class TimeSeriesObject
     {
         [JsonProperty("entityId")]
@@ -19,15 +17,21 @@ namespace MindSphereSdk.IotTimeSeries
         public string PropertySetName { get; set; }
 
         [JsonProperty("data")]
-        public IEnumerable<ITimeSeriesData> Data { get; set; }
+        public IEnumerable<object> Data { get; set; }
     }
 
+    /// <summary>
+    /// Request object for getting time series
+    /// </summary>
     public class GetTimeSeriesRequest
     {
         public string EntityId { get; set; }
         public string PropertySetName { get; set; }
     }
 
+    /// <summary>
+    /// Request object for putting time series
+    /// </summary>
     public class PutTimeSeriesRequest
     {
         [JsonProperty("timeseries")]

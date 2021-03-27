@@ -5,6 +5,9 @@ using System.Text;
 
 namespace MindSphereSdk.Common
 {
+    /// <summary>
+    /// AppCredentials for MindSphere API
+    /// </summary>
     public class AppCredentials : ICredentials
     {
         [JsonProperty("keyStoreClientId")]
