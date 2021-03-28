@@ -15,7 +15,6 @@ This project was started on my own initiative. I am still a student and I am try
 
 My goal is to develop SDK that provides at least same features as [MindSphere SDK for Node.js](https://developer.mindsphere.io/resources/mindsphere-sdk-node/index.html).
 
----
 ## Examples
 
 Examples of the current state of the project. Some of them might change in the future.
