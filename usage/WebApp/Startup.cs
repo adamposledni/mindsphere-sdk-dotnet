@@ -37,16 +37,10 @@ namespace WebApp
             });
 
             services.AddHttpClient();
+
             services.AddMindSphereSdkService(options =>
             {
-                options.Credentials = new AppCredentials(
-                    "iiotdgli-testapplication-1.0.0",
-                    "***",
-                    "testapplication",
-                    "1.0.0",
-                    "iiotdgli",
-                    "iiotdgli"
-                );
+                options.Credentials = AppCredentials.FromJsonFile(@"..\..\mdspcreds.json");
             });
         }
 

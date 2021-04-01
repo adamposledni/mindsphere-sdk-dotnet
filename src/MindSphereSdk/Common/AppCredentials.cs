@@ -1,6 +1,8 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Text;
 
 namespace MindSphereSdk.Common
@@ -44,6 +46,13 @@ namespace MindSphereSdk.Common
             AppVersion = appVersion;
             HostTenant = hostTenant;
             UserTenant = userTenant;
+        }
+
+        public static AppCredentials FromJsonFile(string path)
+        {
+            string jsonString = File.ReadAllText(path);
+            AppCredentials appCredentials = JsonConvert.DeserializeObject<AppCredentials>(jsonString);
+            return appCredentials;
         }
     }
 }
