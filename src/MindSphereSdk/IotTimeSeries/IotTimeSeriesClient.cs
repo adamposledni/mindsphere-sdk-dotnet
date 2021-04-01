@@ -37,6 +37,18 @@ namespace MindSphereSdk.IotTimeSeries
         }
 
         /// <summary>
+        /// Retrieve time series data
+        /// </summary>
+        public async Task<IEnumerable<dynamic>> GetTimeSeriesAsync(GetTimeSeriesRequest request)
+        {
+            string uri = GenerateUriForGetTimeSeries(request);
+
+            string response = await HttpActionAsync(HttpMethod.Get, uri);
+            var timeSeries = JsonConvert.DeserializeObject<IEnumerable<dynamic>>(response);
+            return timeSeries;
+        }
+
+        /// <summary>
         /// Helper to generate spec uri for given request
         /// </summary>
         private string GenerateUriForGetTimeSeries(GetTimeSeriesRequest request)
@@ -53,7 +65,6 @@ namespace MindSphereSdk.IotTimeSeries
 
             string pathString = $"/{request.EntityId}/{request.PropertySetName}";
             string uri = _baseUri + "/timeseries" + pathString + queryString;
-            Debug.WriteLine(uri);
             return uri;
         }
 

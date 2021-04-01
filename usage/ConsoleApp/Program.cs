@@ -26,7 +26,7 @@ namespace ConsoleApp
 
             AssetManagementClient assetClient = new AssetManagementClient(appCredentials, httpClient);
 
-            List<AssetResource> test = (await assetClient.ListAssetsAsync()).ToList();
+            List<Asset> test = (await assetClient.ListAssetsAsync()).ToList();
             foreach (var item in test)
             {
                 Console.WriteLine(item.AssetId);

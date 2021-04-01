@@ -1,4 +1,4 @@
-![MindSphere image](/docs/mdsp.png)
+![MindSphere image](/other/mdsp.png)
 #  MindSphere SDK for .NET
 
 Open-source .NET SDK for [MindSphere](https://siemens.mindsphere.io/) APIs mainly to support backend development in [ASP.NET Core](https://github.com/dotnet/aspnetcore).
