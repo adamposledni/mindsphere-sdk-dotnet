@@ -17,32 +17,47 @@ namespace WebApp.Controllers
     public class MainController : ControllerBase
     {
         private IMindSphereSdkService _mindSphereSdkService;
+        private ILogger<MainController> _logger;
 
-        public MainController(IMindSphereSdkService mindSphereSdkService)
+        public MainController(IMindSphereSdkService mindSphereSdkService, ILogger<MainController> logger)
         {
             _mindSphereSdkService = mindSphereSdkService;
+            _logger = logger;
         }
 
         [HttpGet("list-assets")]
-        public async Task<ActionResult<IEnumerable<AssetResource>>> ListAssets()
+        public async Task<ActionResult<IEnumerable<Asset>>> ListAssets()
         {
             var assetClient = _mindSphereSdkService.GetAssetManagementClient();
             var request = new ListAssetsRequest()
             {
-                Size = 5
+                Size = 100
             };
-            List<AssetResource> assets = (await assetClient.ListAssetsAsync(request)).ToList();
+            List<Asset> assets = (await assetClient.ListAssetsAsync(request)).ToList();
 
             return StatusCode(200, assets);
         }
 
+        [HttpGet("get-asset")]
+        public async Task<ActionResult<IEnumerable<Asset>>> GetAsset()
+        {
+            var assetClient = _mindSphereSdkService.GetAssetManagementClient();
+            var request = new GetAssetRequest()
+            {
+                Id = "ec206f76b04a49a4938c1573b35b6688"
+            };
+            Asset asset = (await assetClient.GetAssetAsync(request));
+
+            return StatusCode(200, asset);
+        }
+
         [HttpGet("add-asset")]
-        public async Task<ActionResult<AssetResource>> AddAsset()
+        public async Task<ActionResult<Asset>> AddAsset()
         {
             var assetClient = _mindSphereSdkService.GetAssetManagementClient();
             var request = new AddAssetRequest()
             {
-                Body = new AssetResource()
+                Body = new Asset()
                 {
                     Name = "MyNewAsset",
                     TypeId = "iiotdgli.mobilephone",
@@ -53,7 +68,7 @@ namespace WebApp.Controllers
         }
 
         [HttpGet("get-timeseries")]
-        public async Task<ActionResult<TestData>> GetTimeSeriesGeneric()
+        public async Task<ActionResult<TestData>> GetTimeSeries()
         {
             var iotClient = _mindSphereSdkService.GetIotTimeSeriesClient();
             var request = new GetTimeSeriesRequest()

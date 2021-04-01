@@ -9,16 +9,16 @@ namespace MindSphereSdk.AssetManagement
     /// <summary>
     /// Wrapper object for asset list
     /// </summary>
-    public class EmbeddedAssetListResource : IEmbeddedResource
+    public class EmbeddedAssetList : IEmbeddedResource
     {
         [JsonProperty("assets")]
-        public IEnumerable<AssetResource> Assets { get; set; }
+        public IEnumerable<Asset> Assets { get; set; }
     }
     
     /// <summary>
-    /// Asset resource object
+    /// Asset object
     /// </summary>
-    public class AssetResource
+    public class Asset
     {
         [JsonProperty("name")]
         public string Name { get; set; }
@@ -38,7 +38,8 @@ namespace MindSphereSdk.AssetManagement
         [JsonProperty("aspects")]
         public IEnumerable<Aspect> Aspects { get; set; }
 
-        // TODO: fileAssignments
+        [JsonProperty("fileAssignments")]
+        public IEnumerable<FileAssignment> FileAssignments { get; set; }
 
         [JsonProperty("typeId")]
         public string TypeId { get; set; }
@@ -64,7 +65,8 @@ namespace MindSphereSdk.AssetManagement
         [JsonProperty("assetId")]
         public string AssetId { get; set; }
 
-        // TODO: deleted
+        [JsonProperty("deleted")]
+        public DateTime? Deleted { get; set; }
     }
 
     /// <summary>
@@ -91,6 +93,72 @@ namespace MindSphereSdk.AssetManagement
     }
 
     /// <summary>
+    /// Location object
+    /// </summary>
+    public class Location
+    {
+        [JsonProperty("country")]
+        public string Country { get; set; }
+
+        [JsonProperty("region")]
+        public string Region { get; set; }
+
+        [JsonProperty("locality")]
+        public string Locality { get; set; }
+
+        [JsonProperty("streetAddress")]
+        public string StreetAddress { get; set; }
+
+        [JsonProperty("postalCode")]
+        public string PostalCode { get; set; }
+
+        [JsonProperty("longitude")]
+        public double Longitude { get; set; }
+
+        [JsonProperty("latitude")]
+        public double Latitude { get; set; }
+    }
+
+    /// <summary>
+    /// File assignment object
+    /// </summary>
+    public class FileAssignment
+    {
+        [JsonProperty("key")]
+        public string Key { get; set; }
+
+        [JsonProperty("fileId")]
+        public string FileId { get; set; }
+    }
+
+    /// <summary>
+    /// Asset object to update
+    /// </summary>
+    public class AssetUpdate
+    {
+        [JsonProperty("name")]
+        public string Name { get; set; }
+
+        [JsonProperty("externalId")]
+        public string ExternalId { get; set; }
+
+        [JsonProperty("description")]
+        public string Description { get; set; }
+
+        [JsonProperty("location")]
+        public Location Location { get; set; }
+
+        [JsonProperty("variables")]
+        public IEnumerable<Variable> Variables { get; set; }
+
+        [JsonProperty("aspects")]
+        public IEnumerable<Aspect> Aspects { get; set; }
+
+        [JsonProperty("fileAssignments")]
+        public IEnumerable<FileAssignment> FileAssignments { get; set; }
+    }
+
+    /// <summary>
     /// Request object for listing assets
     /// </summary>
     public class ListAssetsRequest
@@ -102,12 +170,6 @@ namespace MindSphereSdk.AssetManagement
         public string Sort { get; set; }
 
         public string Filter { get; set; }
-
-        //public string IfNoneMatch { get; set; }
-
-        //public bool? IncludeShared { get; set; }
-
-        //public bool? BasicFieldsOnly { get; set; }
     }
 
     /// <summary>
@@ -115,6 +177,21 @@ namespace MindSphereSdk.AssetManagement
     /// </summary>
     public class AddAssetRequest
     {
-        public AssetResource Body { get; set; }
+        public Asset Body { get; set; }
+    }
+
+    /// <summary>
+    /// Request object for getting asset
+    /// </summary>
+    public class GetAssetRequest
+    {
+        public string Id { get; set; }
+    }
+
+    public class UpdateAssetRequest
+    {
+        public string Id { get; set; }
+        public string IfMatch { get; set; }
+        public AssetUpdate Body { get; set; }
     }
 }

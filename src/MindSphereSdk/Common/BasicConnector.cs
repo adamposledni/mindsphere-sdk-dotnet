@@ -95,7 +95,7 @@ namespace MindSphereSdk.Common
             }
         }
 
-        // TODO: https://developer.mindsphere.io/concepts/concept-authentication.html#token-validation
+        // TODO: implement token validation (https://developer.mindsphere.io/concepts/concept-authentication.html#token-validation)
         /// <summary>
         /// Validate MindSphere access token 
         /// </summary>
