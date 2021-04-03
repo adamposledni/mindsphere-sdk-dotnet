@@ -67,6 +67,22 @@ namespace WebApp.Controllers
             return StatusCode(200, await assetClient.AddAssetsAsync(request));
         }
 
+        [HttpGet("update-asset")]
+        public async Task<ActionResult<Asset>> UpdateAsset()
+        {
+            var assetClient = _mindSphereSdkService.GetAssetManagementClient();
+            var request = new UpdateAssetRequest()
+            {
+                Body = new AssetUpdate()
+                {
+                    Name = "MyUpdatedAsset"
+                },
+                Id = "8e775e74a9fa4b4f8fcf15e808d7fb10",
+                IfMatch = "2"
+            };
+            return StatusCode(200, await assetClient.UpdateAssetAsync(request));
+        }
+
         [HttpGet("get-timeseries")]
         public async Task<ActionResult<TestData>> GetTimeSeries()
         {

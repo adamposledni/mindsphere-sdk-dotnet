@@ -72,13 +72,22 @@ namespace MindSphereSdk.AssetManagement
         /// <summary>
         /// Update an asset
         /// </summary>
-        // TODO: test
         public async Task<Asset> UpdateAssetAsync(UpdateAssetRequest request)
         {
             string uri = _baseUri + "/assets/" + request.Id;
-            StringContent body = new StringContent(JsonConvert.SerializeObject(request.Body), Encoding.UTF8, "application/json");
+            // prepare HTTP request body
+            string jsonString = JsonConvert.SerializeObject(request.Body, 
+                new JsonSerializerSettings()
+                {
+                    NullValueHandling = NullValueHandling.Ignore
+                });
+            StringContent body = new StringContent(jsonString, Encoding.UTF8, "application/json");
 
-            string response = await HttpActionAsync(HttpMethod.Put, uri, body);
+            // prepare HTTP request headers
+            List<KeyValuePair<string, string>> headers = new List<KeyValuePair<string, string>>();
+            headers.Add(new KeyValuePair<string, string>("If-Match", request.IfMatch));
+
+            string response = await HttpActionAsync(HttpMethod.Put, uri, body, headers);
             var asset = JsonConvert.DeserializeObject<Asset>(response);
             
             return asset;

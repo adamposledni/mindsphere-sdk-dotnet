@@ -67,6 +67,9 @@ namespace MindSphereSdk.AssetManagement
 
         [JsonProperty("deleted")]
         public DateTime? Deleted { get; set; }
+
+        [JsonProperty("etag")]
+        public int Etag { get; set; }
     }
 
     /// <summary>

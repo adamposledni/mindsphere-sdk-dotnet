@@ -39,9 +39,9 @@ namespace MindSphereSdk.Common
         /// <summary>
         /// Sending HTTP request to the MindSphere API
         /// </summary>
-        protected async Task<string> HttpActionAsync(HttpMethod method, string specUri, HttpContent body = null)
+        protected async Task<string> HttpActionAsync(HttpMethod method, string specUri, HttpContent body = null, List<KeyValuePair<string, string>> headers = null)
         {
-            string response = await _mindSphereConnector.HttpActionAsync(method, specUri, body);
+            string response = await _mindSphereConnector.HttpActionAsync(method, specUri, body, headers);
             return response;
         }
     }

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -33,7 +34,7 @@ namespace MindSphereSdk.Common
         /// <summary>
         /// Sending HTTP request to the MindSphere API
         /// </summary>
-        public async Task<string> HttpActionAsync(HttpMethod method, string specUri, HttpContent body = null)
+        public async Task<string> HttpActionAsync(HttpMethod method, string specUri, HttpContent body = null, List<KeyValuePair<string, string>> headers = null)
         {
             // always try to validate / renew token
             await RenewTokenAsync();
@@ -43,6 +44,16 @@ namespace MindSphereSdk.Common
             request.Method = method;
             request.RequestUri = GetFullUri(specUri);
             request.Headers.Add("Authorization", "Bearer " + _accessToken.Token);
+
+            // headers from parametr
+            if (headers != null)
+            {
+                foreach (var header in headers)
+                {
+                    request.Headers.TryAddWithoutValidation(header.Key, header.Value);
+                }
+            }
+
             request.Content = body;
 
             HttpResponseMessage response = await _httpClient.SendAsync(request);
@@ -60,7 +71,7 @@ namespace MindSphereSdk.Common
             HttpRequestMessage request = new HttpRequestMessage();
             request.Method = HttpMethod.Post;
             request.RequestUri = GetFullUri("/api/technicaltokenmanager/v3/oauth/token");
-            // X-SPACE-AUTH-KEY is needed!
+            // X-SPACE-AUTH-KEY is needed
             request.Headers.Add("X-SPACE-AUTH-KEY", GetBasicAuth());
             request.Content = new StringContent(JsonConvert.SerializeObject(_credentials), Encoding.UTF8, "application/json");
 
