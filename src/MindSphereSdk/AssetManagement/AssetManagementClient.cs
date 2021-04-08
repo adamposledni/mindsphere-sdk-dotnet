@@ -92,5 +92,43 @@ namespace MindSphereSdk.AssetManagement
             
             return asset;
         }
+
+        /// <summary>
+        /// Patch an asset
+        /// </summary>
+        public async Task<Asset> PatchAssetAsync(UpdateAssetRequest request)
+        {
+            string uri = _baseUri + "/assets/" + request.Id;
+            // prepare HTTP request body
+            string jsonString = JsonConvert.SerializeObject(request.Body,
+                new JsonSerializerSettings()
+                {
+                    NullValueHandling = NullValueHandling.Ignore
+                });
+            StringContent body = new StringContent(jsonString, Encoding.UTF8, "application/merge-patch+json");
+
+            // prepare HTTP request headers
+            List<KeyValuePair<string, string>> headers = new List<KeyValuePair<string, string>>();
+            headers.Add(new KeyValuePair<string, string>("If-Match", request.IfMatch));
+
+            string response = await HttpActionAsync(new HttpMethod("PATCH"), uri, body, headers);
+            var asset = JsonConvert.DeserializeObject<Asset>(response);
+
+            return asset;
+        }
+
+        /// <summary>
+        /// Delete an asset 
+        /// </summary>
+        public async Task DeleteAsync(DeleteAssetRequest request)
+        {
+            string uri = _baseUri + "/assets/" + request.Id;
+
+            // prepare HTTP request headers
+            List<KeyValuePair<string, string>> headers = new List<KeyValuePair<string, string>>();
+            headers.Add(new KeyValuePair<string, string>("If-Match", request.IfMatch));
+
+            await HttpActionAsync(HttpMethod.Delete, uri, headers: headers);
+        }
     }
 }

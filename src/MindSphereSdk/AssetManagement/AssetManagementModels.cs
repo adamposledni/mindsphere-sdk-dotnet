@@ -191,10 +191,22 @@ namespace MindSphereSdk.AssetManagement
         public string Id { get; set; }
     }
 
+    /// <summary>
+    /// Request object for updating asset
+    /// </summary>
     public class UpdateAssetRequest
     {
         public string Id { get; set; }
         public string IfMatch { get; set; }
         public AssetUpdate Body { get; set; }
+    }
+
+    /// <summary>
+    /// Request object for deleting asset
+    /// </summary>
+    public class DeleteAssetRequest
+    {
+        public string Id { get; set; }
+        public string IfMatch { get; set; }
     }
 }

@@ -80,7 +80,41 @@ namespace WebApp.Controllers
                 Id = "8e775e74a9fa4b4f8fcf15e808d7fb10",
                 IfMatch = "2"
             };
-            return StatusCode(200, await assetClient.UpdateAssetAsync(request));
+
+            Asset response = await assetClient.UpdateAssetAsync(request);
+            return StatusCode(200, response);
+        }
+
+        [HttpGet("patch-asset")]
+        public async Task<ActionResult<Asset>> PatchAsset()
+        {
+            var assetClient = _mindSphereSdkService.GetAssetManagementClient();
+            var request = new UpdateAssetRequest()
+            {
+                Body = new AssetUpdate()
+                {
+                    Name = "MyUpdatedAsset"
+                },
+                Id = "8e775e74a9fa4b4f8fcf15e808d7fb10",
+                IfMatch = "4"
+            };
+
+            Asset response = await assetClient.PatchAssetAsync(request);
+            return StatusCode(200, response);
+        }
+
+        [HttpGet("delete-asset")]
+        public async Task<ActionResult> DeleteAsset()
+        {
+            var assetClient = _mindSphereSdkService.GetAssetManagementClient();
+            var request = new DeleteAssetRequest()
+            {
+                Id = "8e775e74a9fa4b4f8fcf15e808d7fb10",
+                IfMatch = "5"
+            };
+
+            await assetClient.DeleteAsync(request);
+            return StatusCode(204);
         }
 
         [HttpGet("get-timeseries")]
