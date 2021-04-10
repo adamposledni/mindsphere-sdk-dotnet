@@ -12,10 +12,10 @@ My goal is to develop SDK that provides at least same features as [MindSphere SD
 ## What is ready?
 Following features are devloped for now (in some cases few more changes are needed).
 
-** Authentication **
+**Authentication**
 - using application credentials
 
-** Asset managemet **
+**Asset managemet**
 - list all assets
 - read an asset
 - create an asset
@@ -23,7 +23,7 @@ Following features are devloped for now (in some cases few more changes are need
 - patch an asset
 - delete an asset
 
-** IOT time series **
+**IOT time series**
 - read time series data
 - write time series data
 - delete time series data
