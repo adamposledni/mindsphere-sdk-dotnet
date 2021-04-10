@@ -3,17 +3,30 @@
 
 Open-source .NET SDK for [MindSphere](https://siemens.mindsphere.io/) APIs mainly to support backend development in [ASP.NET Core](https://github.com/dotnet/aspnetcore).
 
-❗ **Project is still a work in progress. Following features are done or being developed** ❗
-- authentication using AppCredentials
-- listing assets
-- adding new assets
-- getting time series data
-- putting new time series data
-- extension method for ServiceCollection to register SDK as service
+❗ **Project is still a work in progress.** ❗
 
 This project was started on my own initiative. I am still a student and I am trying my best to develop useful solution for the absence of .NET SDK. Of course, any help is more than welcome.
 
 My goal is to develop SDK that provides at least same features as [MindSphere SDK for Node.js](https://developer.mindsphere.io/resources/mindsphere-sdk-node/index.html).
+
+## What is ready?
+Following features are devloped for now (in some cases few more changes are needed).
+
+** Authentication **
+- using application credentials
+
+** Asset managemet **
+- list all assets
+- read an asset
+- create an asset
+- update an asset
+- patch an asset
+- delete an asset
+
+** IOT time series **
+- read time series data
+- write time series data
+- delete time series data
 
 ## Examples
 
