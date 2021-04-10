@@ -29,7 +29,7 @@ namespace MindSphereSdk.IotTimeSeries
         /// <returns></returns>
         public async Task<IEnumerable<T>> GetTimeSeriesAsync<T>(GetTimeSeriesRequest request)
         {
-            string uri = GenerateUriForGetTimeSeries(request);
+            string uri = GetUriForGetTimeSeries(request);
 
             string response = await HttpActionAsync(HttpMethod.Get, uri);
             var timeSeries = JsonConvert.DeserializeObject<IEnumerable<T>>(response);
@@ -41,7 +41,7 @@ namespace MindSphereSdk.IotTimeSeries
         /// </summary>
         public async Task<IEnumerable<dynamic>> GetTimeSeriesAsync(GetTimeSeriesRequest request)
         {
-            string uri = GenerateUriForGetTimeSeries(request);
+            string uri = GetUriForGetTimeSeries(request);
 
             string response = await HttpActionAsync(HttpMethod.Get, uri);
             var timeSeries = JsonConvert.DeserializeObject<IEnumerable<dynamic>>(response);
@@ -49,15 +49,40 @@ namespace MindSphereSdk.IotTimeSeries
         }
 
         /// <summary>
-        /// Helper to generate spec uri for given request
+        /// Create or update time series data
         /// </summary>
-        private string GenerateUriForGetTimeSeries(GetTimeSeriesRequest request)
+
+        public async Task PutTimeSeriesAsync(PutTimeSeriesRequest request)
+        {
+            string uri = _baseUri + "/timeseries";
+
+            StringContent body = new StringContent(JsonConvert.SerializeObject(request), Encoding.UTF8, "application/json");
+
+            await HttpActionAsync(HttpMethod.Put, uri, body);
+        }
+
+        /// <summary>
+        /// Delete time series data
+        /// </summary>
+        public async Task DeleteTimeSeriesAsync(DeleteTimeSeriesRequest request)
+        {
+            string uri = GetUriForDeleteTimeSeries(request);
+
+            Debug.WriteLine(uri);
+
+            await HttpActionAsync(HttpMethod.Delete, uri);
+        }
+
+        /// <summary>
+        /// Generate specific URI for get request
+        /// </summary>
+        private string GetUriForGetTimeSeries(GetTimeSeriesRequest request)
         {
             // prepare query string
-            string queryString = "?";        
+            string queryString = "?";
 
-            queryString += request.From != null ? $"from={GenerateDateTimeUtcString(request.From.Value)}& " : "";
-            queryString += request.To != null ? $"to={GenerateDateTimeUtcString(request.To.Value)}&" : "";
+            queryString += request.From != null ? $"from={GetDateTimeUtcString(request.From.Value)}& " : "";
+            queryString += request.To != null ? $"to={GetDateTimeUtcString(request.To.Value)}&" : "";
             queryString += request.Limit != null ? $"limit={request.Limit.Value}&" : "";
             queryString += request.Select != null ? $"select={request.Select}&" : "";
             queryString += request.Sort != null ? $"sort={request.Sort}&" : "";
@@ -69,26 +94,28 @@ namespace MindSphereSdk.IotTimeSeries
         }
 
         /// <summary>
-        /// Helper to generate date time UTC string
+        /// Generate specific URI for delete request
         /// </summary>
-        private string GenerateDateTimeUtcString(DateTime date)
+        private string GetUriForDeleteTimeSeries(DeleteTimeSeriesRequest request)
+        {
+            // prepare query string
+            string queryString = "?";
+
+            queryString += request.From != null ? $"from={GetDateTimeUtcString(request.From.Value)}&" : "";
+            queryString += request.To != null ? $"to={GetDateTimeUtcString(request.To.Value)}&" : "";
+
+            string pathString = $"/{request.EntityId}/{request.PropertySetName}";
+            string uri = _baseUri + "/timeseries" + pathString + queryString;
+            return uri;
+        }
+
+        /// <summary>
+        /// Generate date time UTC string
+        /// </summary>
+        private string GetDateTimeUtcString(DateTime date)
         {
             string dateString = date.ToUniversalTime().ToString("s") + "Z";
             return dateString;
-        }
-
-
-        /// <summary>
-        /// Create or update time series data
-        /// </summary>
-        /// <returns></returns>
-        public async Task PutTimeSeriesAsync(PutTimeSeriesRequest request)
-        {
-            string uri = _baseUri + "/timeseries";
-
-            StringContent body = new StringContent(JsonConvert.SerializeObject(request), Encoding.UTF8, "application/json");
-
-            await HttpActionAsync(HttpMethod.Put, uri, body);
         }
 
     }

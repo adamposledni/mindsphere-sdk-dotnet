@@ -127,7 +127,7 @@ namespace WebApp.Controllers
                 PropertySetName = "acceleration",
                 From = DateTime.Now.AddDays(-1),
                 To = DateTime.Now,
-                Limit = 2
+                Limit = 10
             };
             List<TestData> timeSeries = (await iotClient.GetTimeSeriesAsync<TestData>(request)).ToList();
             
@@ -138,11 +138,12 @@ namespace WebApp.Controllers
         public async Task<ActionResult> PutTimeSeries()
         {
             var iotClient = _mindSphereSdkService.GetIotTimeSeriesClient();
+            DateTime nowUtc = DateTime.Now.ToUniversalTime();
 
             List<object> timeSeriesData = new List<object>();
-            timeSeriesData.Add(new TestData(DateTime.Now, 0.5, 0.7, 0.3));
-            timeSeriesData.Add(new TestData(DateTime.Now.AddMinutes(1), 0.8, 1.2, 0.7));
-            timeSeriesData.Add(new TestData(DateTime.Now.AddMinutes(2), 1.6, 0.2, 0.5));
+            timeSeriesData.Add(new TestData(nowUtc, 0.5, 0.7, 0.3));
+            timeSeriesData.Add(new TestData(nowUtc.AddMinutes(1), 0.8, 1.2, 0.7));
+            timeSeriesData.Add(new TestData(nowUtc.AddMinutes(2), 1.6, 0.2, 0.5));
             //timeSeriesData.Add(new { _time = DateTime.Now, x = 0.5, y = 0.7, z = 0.3 });
             //timeSeriesData.Add(new { _time = DateTime.Now.AddMinutes(1), x = 0.8, y = 1.2, z = 0.7 });
             //timeSeriesData.Add(new { _time = DateTime.Now.AddMinutes(2), x = 1.6, y = 0.2, z = 0.5 });
@@ -162,6 +163,22 @@ namespace WebApp.Controllers
             await iotClient.PutTimeSeriesAsync(request);
 
             return StatusCode(201);
+        }
+
+        [HttpGet("delete-timeseries")]
+        public async Task<ActionResult> DeleteTimeSeries()
+        {
+            var iotClient = _mindSphereSdkService.GetIotTimeSeriesClient();
+            var request = new DeleteTimeSeriesRequest()
+            {
+                EntityId = "ec206f76b04a49a4938c1573b35b6688",
+                PropertySetName = "acceleration",
+                From = new DateTime(2021, 3, 30, 0, 0, 0),
+                To = new DateTime(2021, 4, 2, 0, 0, 0)
+            };
+            await iotClient.DeleteTimeSeriesAsync(request);
+
+            return StatusCode(204);
         }
     }
 

@@ -44,4 +44,15 @@ namespace MindSphereSdk.IotTimeSeries
         public IEnumerable<TimeSeriesObject> TimeSeries { get; set; }
     }
 
+    /// <summary>
+    /// Request object for deleting time series
+    /// </summary>
+    public class DeleteTimeSeriesRequest
+    {
+        public string EntityId { get; set; }
+        public string PropertySetName { get; set; }
+        public DateTime? From { get; set; }
+        public DateTime? To { get; set; }
+    }
+
 }
