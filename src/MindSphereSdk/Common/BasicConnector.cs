@@ -1,4 +1,5 @@
 ﻿using MindSphereSdk.Authentication;
+using MindSphereSdk.Exceptions;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -58,13 +59,9 @@ namespace MindSphereSdk.Common
             request.Content = body;
 
             HttpResponseMessage response = await _httpClient.SendAsync(request);
-            if (!response.IsSuccessStatusCode)
-            {
-                Debug.WriteLine("------- ERROR -------");
-                Debug.WriteLine(response.StatusCode.ToString());
-                Debug.WriteLine(await response.Content.ReadAsStringAsync());
-            }
-            response.EnsureSuccessStatusCode();                      
+
+            await MindSphereApiExceptionHandler.HandleUnsuccessfulResponseAsync(response);
+
             string responseBody = await response.Content.ReadAsStringAsync();
             return responseBody;
         }
