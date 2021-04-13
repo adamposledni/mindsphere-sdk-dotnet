@@ -30,9 +30,9 @@ namespace MindSphereSdk.AspNetCore
 
         private ICredentials _credentials;
 
-        public MindSphereSdkService(HttpClient httpClient, IOptions<MindSphereSdkServiceOptions> options)
+        public MindSphereSdkService(IHttpClientFactory clientFactory, IOptions<MindSphereSdkServiceOptions> options)
         {
-            _httpClient = httpClient;
+            _httpClient = clientFactory.CreateClient();
             _credentials = options.Value.Credentials;
         }
 

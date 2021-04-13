@@ -28,7 +28,11 @@ namespace MindSphereSdk.Common
         {
             if (credentials is AppCredentials)
             {
-                return new BasicConnector((AppCredentials) credentials, httpClient);
+                return new AppMindSphereConnector((AppCredentials) credentials, httpClient);
+            }
+            else if (credentials is TenantCredentials)
+            {
+                return new TenantMindSphereConnector((TenantCredentials)credentials, httpClient);
             }
             else
             {

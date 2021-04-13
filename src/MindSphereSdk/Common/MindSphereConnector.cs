@@ -3,33 +3,28 @@ using MindSphereSdk.Exceptions;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Net.Http;
-using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace MindSphereSdk.Common
 {
     /// <summary>
-    /// Connector to the MindSphere API using AppCredentials
+    /// Connector to the MindSphere API
     /// </summary>
-    public class BasicConnector : IMindSphereConnector
+    public abstract class MindSphereConnector : IMindSphereConnector
     {
-        private HttpClient _httpClient;
-        
-        private AccessToken _accessToken;
+        protected HttpClient _httpClient;
 
-        private AppCredentials _credentials;
+        protected AccessToken _accessToken;
 
         private string _region = "eu1";
         private string _domain = "mindsphere.io";
 
-        public BasicConnector(AppCredentials credentials, HttpClient httpClient)
-        {           
-            _credentials = credentials;
+        public MindSphereConnector(HttpClient httpClient)
+        {
             _httpClient = httpClient;
         }
 
@@ -67,23 +62,9 @@ namespace MindSphereSdk.Common
         }
 
         /// <summary>
-        /// Acquire MindSphere access token with AppCredentials
+        /// Acquire MindSphere access token
         /// </summary>
-        public async Task AcquireTokenAsync()
-        {
-            // prepare HTTP request
-            HttpRequestMessage request = new HttpRequestMessage();
-            request.Method = HttpMethod.Post;
-            request.RequestUri = GetFullUri("/api/technicaltokenmanager/v3/oauth/token");
-            // X-SPACE-AUTH-KEY is needed
-            request.Headers.Add("X-SPACE-AUTH-KEY", GetBasicAuth());
-            request.Content = new StringContent(JsonConvert.SerializeObject(_credentials), Encoding.UTF8, "application/json");
-
-            HttpResponseMessage response = await _httpClient.SendAsync(request);
-            response.EnsureSuccessStatusCode();
-            string responseBody = await response.Content.ReadAsStringAsync();
-            _accessToken = JsonConvert.DeserializeObject<AccessToken>(responseBody);
-        }
+        public abstract Task AcquireTokenAsync();
 
         /// <summary>
         /// Renew MindSphere access token
@@ -132,26 +113,16 @@ namespace MindSphereSdk.Common
             // if iat is in the future (with minutes skew)
             if (DateTime.Now.AddMinutes(minutesSkew) <= iat) return false;
 
-            return true;            
+            return true;
         }
 
         /// <summary>
         /// Generate full URI
         /// </summary>
-        private Uri GetFullUri(string specUri)
+        protected Uri GetFullUri(string specUri)
         {
             string basePart = $"https://gateway.{_region}.{_domain}";
             return new Uri(basePart + specUri);
-        }
-
-        /// <summary>
-        /// Generate BasicAuth string (Basic abc123...)
-        /// </summary>
-        private string GetBasicAuth()
-        {
-            string creds = _credentials.KeyStoreClientId + ":" + _credentials.KeyStoreClientSecret;
-            byte[] bytes = Encoding.UTF8.GetBytes(creds);
-            return ("Basic " + Convert.ToBase64String(bytes));
         }
     }
 }

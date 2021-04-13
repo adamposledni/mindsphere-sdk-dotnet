@@ -38,7 +38,6 @@ namespace MindSphereSdk.Common
             string hostTenant, 
             string userTenant
             )
-            :base()
         {
             KeyStoreClientId = keyStoreClientId;
             KeyStoreClientSecret = keyStoreClientSecret;
