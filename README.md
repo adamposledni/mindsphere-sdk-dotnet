@@ -10,7 +10,7 @@ This project was started on my own initiative. I am still a student and I am try
 My goal is to develop SDK that provides at least same features as [MindSphere SDK for Node.js](https://developer.mindsphere.io/resources/mindsphere-sdk-node/index.html).
 
 ## What is ready?
-Following features are devloped for now (in some cases few more changes are needed).
+Following features are implemented for now (in some cases few more changes are needed).
 
 **Authentication**
 - using application credentials
