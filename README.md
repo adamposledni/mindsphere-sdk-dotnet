@@ -22,6 +22,10 @@ Following features are implemented for now (in some cases few more changes are n
 - update an asset
 - patch an asset
 - delete an asset
+- move an asset
+- read the root asset of the user
+- save asset file assignment
+- delete asset file assignment
 
 **IOT time series**
 - read time series data

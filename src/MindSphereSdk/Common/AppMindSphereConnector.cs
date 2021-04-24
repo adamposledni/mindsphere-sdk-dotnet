@@ -40,7 +40,10 @@ namespace MindSphereSdk.Common
             request.Content = new StringContent(JsonConvert.SerializeObject(_credentials), Encoding.UTF8, "application/json");
 
             HttpResponseMessage response = await _httpClient.SendAsync(request);
-            response.EnsureSuccessStatusCode();
+            
+            // handle error response
+            await MindSphereApiExceptionHandler.HandleUnsuccessfulResponseAsync(response);
+
             string responseBody = await response.Content.ReadAsStringAsync();
             _accessToken = JsonConvert.DeserializeObject<AccessToken>(responseBody);
         }

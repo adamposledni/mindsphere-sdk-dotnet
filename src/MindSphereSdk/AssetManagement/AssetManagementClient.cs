@@ -48,6 +48,8 @@ namespace MindSphereSdk.AssetManagement
         public async Task<Asset> AddAssetsAsync(AddAssetRequest request)
         {
             string uri = _baseUri + "/assets";
+
+            // prepare HTTP request body
             StringContent body = new StringContent(JsonConvert.SerializeObject(request.Body), Encoding.UTF8, "application/json");
 
             string response = await HttpActionAsync(HttpMethod.Post, uri, body);
@@ -75,6 +77,7 @@ namespace MindSphereSdk.AssetManagement
         public async Task<Asset> UpdateAssetAsync(UpdateAssetRequest request)
         {
             string uri = _baseUri + "/assets/" + request.Id;
+
             // prepare HTTP request body
             string jsonString = JsonConvert.SerializeObject(request.Body, 
                 new JsonSerializerSettings()
@@ -99,6 +102,7 @@ namespace MindSphereSdk.AssetManagement
         public async Task<Asset> PatchAssetAsync(UpdateAssetRequest request)
         {
             string uri = _baseUri + "/assets/" + request.Id;
+
             // prepare HTTP request body
             string jsonString = JsonConvert.SerializeObject(request.Body,
                 new JsonSerializerSettings()
@@ -120,7 +124,7 @@ namespace MindSphereSdk.AssetManagement
         /// <summary>
         /// Delete an asset 
         /// </summary>
-        public async Task DeleteAsync(DeleteAssetRequest request)
+        public async Task DeleteAssetAsync(DeleteAssetRequest request)
         {
             string uri = _baseUri + "/assets/" + request.Id;
 
@@ -129,6 +133,76 @@ namespace MindSphereSdk.AssetManagement
             headers.Add(new KeyValuePair<string, string>("If-Match", request.IfMatch));
 
             await HttpActionAsync(HttpMethod.Delete, uri, headers: headers);
+        }
+
+        /// <summary>
+        /// Move an asset 
+        /// </summary>
+        public async Task<Asset> MoveAssetAsync(MoveAssetRequest request)
+        {
+            string uri = _baseUri + "/assets/" + request.Id + "/move";
+
+            // prepare HTTP request body
+            StringContent body = new StringContent(JsonConvert.SerializeObject(request.MoveParameters), Encoding.UTF8, "application/json");
+
+            // prepare HTTP request headers
+            List<KeyValuePair<string, string>> headers = new List<KeyValuePair<string, string>>();
+            headers.Add(new KeyValuePair<string, string>("If-Match", request.IfMatch));
+
+            string response = await HttpActionAsync(HttpMethod.Post, uri, body, headers);
+            var asset = JsonConvert.DeserializeObject<Asset>(response);
+            return asset;
+        }
+
+        /// <summary>
+        /// Read the root asset of the user 
+        /// </summary>
+        public async Task<Asset> GetRootAssetAsync()
+        {
+            string uri = _baseUri + "/assets/root";
+
+            string response = await HttpActionAsync(HttpMethod.Get, uri);
+            var asset = JsonConvert.DeserializeObject<Asset>(response);
+
+            return asset;
+        }
+
+        /// <summary>
+        /// Save a file assignment to an asset
+        /// </summary>
+        public async Task<Asset> SaveAssetFileAssignmentAsync(SaveAssetFileAssignmentRequest request)
+        {
+            string uri = _baseUri + "/assets/" + request.Id + "/fileAssignments/" + request.Key;
+
+            // prepare HTTP request headers
+            List<KeyValuePair<string, string>> headers = new List<KeyValuePair<string, string>>();
+            headers.Add(new KeyValuePair<string, string>("If-Match", request.IfMatch));
+
+            // prepare HTTP request body
+            object fileIdObject = new { fileId = request.FileId };
+            StringContent body = new StringContent(JsonConvert.SerializeObject(fileIdObject), Encoding.UTF8, "application/json");
+
+            string response = await HttpActionAsync(HttpMethod.Put, uri, body, headers);
+            var asset = JsonConvert.DeserializeObject<Asset>(response);
+
+            return asset;
+        }
+
+        /// <summary>
+        /// Delete a file assignment from an asset
+        /// </summary>
+        public async Task<Asset> DeleteAssetFileAssignmentAsync(DeleteAssetFileAssignmentRequest request)
+        {
+            string uri = _baseUri + "/assets/" + request.Id + "/fileAssignments/" + request.Key;
+
+            // prepare HTTP request headers
+            List<KeyValuePair<string, string>> headers = new List<KeyValuePair<string, string>>();
+            headers.Add(new KeyValuePair<string, string>("If-Match", request.IfMatch));
+
+            string response = await HttpActionAsync(HttpMethod.Delete, uri, headers: headers);
+            var asset = JsonConvert.DeserializeObject<Asset>(response);
+
+            return asset;
         }
     }
 }

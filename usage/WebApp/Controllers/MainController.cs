@@ -44,9 +44,9 @@ namespace WebApp.Controllers
             var assetClient = _mindSphereSdkService.GetAssetManagementClient();
             var request = new GetAssetRequest()
             {
-                Id = "ec206f76b04a49a4938c1573b35b6688"
+                Id = "73b2a7cdf27241e5b3f29b07266ff602"
             };
-            Asset asset = (await assetClient.GetAssetAsync(request));
+            Asset asset = await assetClient.GetAssetAsync(request);
 
             return StatusCode(200, asset);
         }
@@ -113,8 +113,63 @@ namespace WebApp.Controllers
                 IfMatch = "5"
             };
 
-            await assetClient.DeleteAsync(request);
+            await assetClient.DeleteAssetAsync(request);
             return StatusCode(204);
+        }
+
+        [HttpGet("move-asset")]
+        public async Task<ActionResult<Asset>> MoveAsset()
+        {
+            var assetClient = _mindSphereSdkService.GetAssetManagementClient();
+            var request = new MoveAssetRequest()
+            {
+                Id = "73b2a7cdf27241e5b3f29b07266ff602",
+                IfMatch = "1",
+                MoveParameters = new AssetMove() { NewParentId = "2d206ad87e9848948a1b5986ec29d028" }
+            };
+
+            var response = await assetClient.MoveAssetAsync(request);
+            return StatusCode(200, response);
+        }
+
+        [HttpGet("get-root-asset")]
+        public async Task<ActionResult<IEnumerable<Asset>>> GetRootAsset()
+        {
+            var assetClient = _mindSphereSdkService.GetAssetManagementClient();
+            Asset asset = await assetClient.GetRootAssetAsync();
+
+            return StatusCode(200, asset);
+        }
+
+        [HttpGet("save-asset-file-assignment")]
+        public async Task<ActionResult<IEnumerable<Asset>>> SaveAssetFileAssignment()
+        {
+            var assetClient = _mindSphereSdkService.GetAssetManagementClient();
+            var request = new SaveAssetFileAssignmentRequest()
+            {
+                Id = "73b2a7cdf27241e5b3f29b07266ff602",
+                Key = "testFile",
+                FileId = "fe81d2c22a9448eea41d0f460e5a5731",
+                IfMatch = "3"
+            };
+
+            Asset asset = await assetClient.SaveAssetFileAssignmentAsync(request);
+            return StatusCode(200, asset);
+        }
+
+        [HttpGet("delete-asset-file-assignment")]
+        public async Task<ActionResult<IEnumerable<Asset>>> DeleteAssetFileAssignment()
+        {
+            var assetClient = _mindSphereSdkService.GetAssetManagementClient();
+            var request = new DeleteAssetFileAssignmentRequest()
+            {
+                Id = "73b2a7cdf27241e5b3f29b07266ff602",
+                Key = "testFile",
+                IfMatch = "4"
+            };
+
+            Asset asset = await assetClient.DeleteAssetFileAssignmentAsync(request);
+            return StatusCode(200, asset);
         }
 
         [HttpGet("get-timeseries")]

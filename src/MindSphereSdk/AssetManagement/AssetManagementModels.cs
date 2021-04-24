@@ -162,6 +162,15 @@ namespace MindSphereSdk.AssetManagement
     }
 
     /// <summary>
+    /// Asset object to move
+    /// </summary>
+    public class AssetMove
+    {
+        [JsonProperty("newParentId")]
+        public string NewParentId { get; set; }
+    }
+
+    /// <summary>
     /// Request object for listing assets
     /// </summary>
     public class ListAssetsRequest
@@ -207,6 +216,37 @@ namespace MindSphereSdk.AssetManagement
     public class DeleteAssetRequest
     {
         public string Id { get; set; }
+        public string IfMatch { get; set; }
+    }
+
+    /// <summary>
+    /// Request object for moving asset
+    /// </summary>
+    public class MoveAssetRequest
+    {
+        public string Id { get; set; }
+        public string IfMatch { get; set; }
+        public AssetMove MoveParameters { get; set; }
+    }
+
+    /// <summary>
+    /// Request object for saving asset's file assignment
+    /// </summary>
+    public class SaveAssetFileAssignmentRequest
+    {
+        public string Id { get; set; }
+        public string Key { get; set; }
+        public string IfMatch { get; set; }
+        public string FileId { get; set; }
+    }
+
+    /// <summary>
+    /// Request object for deleting asset's file assignment
+    /// </summary>
+    public class DeleteAssetFileAssignmentRequest
+    {
+        public string Id { get; set; }
+        public string Key { get; set; }
         public string IfMatch { get; set; }
     }
 }
