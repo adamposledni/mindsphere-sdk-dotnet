@@ -25,7 +25,10 @@ Following features are implemented for now (in some cases few more changes are n
 - move an asset
 - read the root asset of the user
 - save asset file assignment
-- delete asset file assignmen
+- delete asset file assignment
+- list all aspect types
+- read an aspect type
+- delete an aspect type
 
 **IOT time series**
 - read time series data
