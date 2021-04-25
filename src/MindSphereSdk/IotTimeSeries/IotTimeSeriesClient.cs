@@ -1,4 +1,5 @@
-﻿using MindSphereSdk.Common;
+﻿using MindSphereSdk.Core.Common;
+using MindSphereSdk.Core.Helpers;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -7,7 +8,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MindSphereSdk.IotTimeSeries
+namespace MindSphereSdk.Core.IotTimeSeries
 {
     /// <summary>
     /// Create, read, update, and delete time series data
@@ -81,8 +82,8 @@ namespace MindSphereSdk.IotTimeSeries
             // prepare query string
             string queryString = "?";
 
-            queryString += request.From != null ? $"from={GetDateTimeUtcString(request.From.Value)}& " : "";
-            queryString += request.To != null ? $"to={GetDateTimeUtcString(request.To.Value)}&" : "";
+            queryString += request.From != null ? $"from={Helper.GetDateTimeUtcString(request.From.Value)}& " : "";
+            queryString += request.To != null ? $"to={Helper.GetDateTimeUtcString(request.To.Value)}&" : "";
             queryString += request.Limit != null ? $"limit={request.Limit.Value}&" : "";
             queryString += request.Select != null ? $"select={request.Select}&" : "";
             queryString += request.Sort != null ? $"sort={request.Sort}&" : "";
@@ -101,22 +102,12 @@ namespace MindSphereSdk.IotTimeSeries
             // prepare query string
             string queryString = "?";
 
-            queryString += request.From != null ? $"from={GetDateTimeUtcString(request.From.Value)}&" : "";
-            queryString += request.To != null ? $"to={GetDateTimeUtcString(request.To.Value)}&" : "";
+            queryString += request.From != null ? $"from={Helper.GetDateTimeUtcString(request.From.Value)}&" : "";
+            queryString += request.To != null ? $"to={Helper.GetDateTimeUtcString(request.To.Value)}&" : "";
 
             string pathString = $"/{request.EntityId}/{request.PropertySetName}";
             string uri = _baseUri + "/timeseries" + pathString + queryString;
             return uri;
         }
-
-        /// <summary>
-        /// Generate date time UTC string
-        /// </summary>
-        private string GetDateTimeUtcString(DateTime date)
-        {
-            string dateString = date.ToUniversalTime().ToString("s") + "Z";
-            return dateString;
-        }
-
     }
 }

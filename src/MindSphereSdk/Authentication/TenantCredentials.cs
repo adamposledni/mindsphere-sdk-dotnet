@@ -1,10 +1,10 @@
-﻿using MindSphereSdk.Common;
+﻿using MindSphereSdk.Core.Common;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace MindSphereSdk.Authentication
+namespace MindSphereSdk.Core.Authentication
 {
     /// <summary>
     /// AppCredentials for MindSphere API

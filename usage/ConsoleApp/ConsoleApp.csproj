@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\MindSphereSdk\MindSphereSdk.csproj" />
+    <ProjectReference Include="..\..\src\MindSphereSdk\MindSphereSdk.Core.csproj" />
   </ItemGroup>
 
 </Project>

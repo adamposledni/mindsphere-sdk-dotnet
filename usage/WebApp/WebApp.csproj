@@ -11,7 +11,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\MindSphereSdk\MindSphereSdk.csproj" />
+    <ProjectReference Include="..\..\src\MindSphereSdk.AspNetCore\MindSphereSdk.AspNetCore.csproj" />
+    <ProjectReference Include="..\..\src\MindSphereSdk\MindSphereSdk.Core.csproj" />
   </ItemGroup>
 
 </Project>

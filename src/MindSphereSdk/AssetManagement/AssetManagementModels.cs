@@ -1,10 +1,10 @@
-﻿using MindSphereSdk.Common;
+﻿using MindSphereSdk.Core.Common;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace MindSphereSdk.AssetManagement
+namespace MindSphereSdk.Core.AssetManagement
 {
     #region Assets
 
@@ -164,6 +164,45 @@ namespace MindSphereSdk.AssetManagement
     }
 
     /// <summary>
+    /// Asset object to add
+    /// </summary>
+    public class AssetAdd
+    {
+        [JsonProperty("name")]
+        public string Name { get; set; }
+
+        [JsonProperty("externalId")]
+        public string ExternalId { get; set; }
+
+        [JsonProperty("description")]
+        public string Description { get; set; }
+
+        [JsonProperty("location")]
+        public Location Location { get; set; }
+
+        [JsonProperty("variables")]
+        public IEnumerable<Variable> Variables { get; set; }
+
+        [JsonProperty("aspects")]
+        public IEnumerable<Aspect> Aspects { get; set; }
+
+        [JsonProperty("fileAssignments")]
+        public IEnumerable<FileAssignment> FileAssignments { get; set; }
+
+        [JsonProperty("typeId")]
+        public string TypeId { get; set; }
+
+        [JsonProperty("parentId")]
+        public string ParentId { get; set; }
+
+        [JsonProperty("timezone")]
+        public string Timezone { get; set; }
+
+        [JsonProperty("twinType")]
+        public string TwinType { get; set; }
+    }
+
+    /// <summary>
     /// Asset object to move
     /// </summary>
     public class AssetMove
@@ -191,7 +230,7 @@ namespace MindSphereSdk.AssetManagement
     /// </summary>
     public class AddAssetRequest
     {
-        public Asset Body { get; set; }
+        public AssetAdd Body { get; set; }
     }
 
     /// <summary>
@@ -283,7 +322,7 @@ namespace MindSphereSdk.AssetManagement
         public string Description { get; set; }
 
         [JsonProperty("variables")]
-        public AspectTypeVariable[] Variables { get; set; }
+        public IEnumerable<AspectTypeVariable> Variables { get; set; }
 
         [JsonProperty("id")]
         public string Id { get; set; }
@@ -322,6 +361,27 @@ namespace MindSphereSdk.AssetManagement
         public bool QualityCode { get; set; }
     }
 
+    /// <summary>
+    /// Aspect type (create or update)
+    /// </summary>
+    public class AspectTypeUpdate
+    {
+        [JsonProperty("name")]
+        public string Name { get; set; }
+
+        [JsonProperty("category")]
+        public string Category { get; set; }
+
+        [JsonProperty("scope")]
+        public string Scope { get; set; }
+
+        [JsonProperty("description")]
+        public string Description { get; set; }
+
+        [JsonProperty("variables")]
+        public IEnumerable<AspectTypeVariable> Variables { get; set; }
+    }
+
 
     /// <summary>
     /// Request object for listing aspect types
@@ -352,6 +412,27 @@ namespace MindSphereSdk.AssetManagement
     {
         public string Id { get; set; }
         public string IfMatch { get; set; }
+    }
+
+    /// <summary>
+    /// Request object for putting aspect type
+    /// </summary>
+    public class PutAspectTypeRequest
+    {
+        public string Id { get; set; }
+        public string IfNoneMatch { get; set; }
+        public string IfMatch { get; set; }
+        public AspectTypeUpdate AspectType { get; set; }
+    }
+
+    /// <summary>
+    /// Request object for patching aspect type
+    /// </summary>
+    public class PatchAspectTypeRequest
+    {
+        public string Id { get; set; }
+        public string IfMatch { get; set; }
+        public AspectTypeUpdate AspectType { get; set; }
     }
 
     #endregion

@@ -12,7 +12,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-using MindSphereSdk.Common;
+using MindSphereSdk.Core.Common;
 using MindSphereSdk.AspNetCore;
 
 namespace WebApp

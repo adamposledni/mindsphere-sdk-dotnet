@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace MindSphereSdk.IotTimeSeries
+namespace MindSphereSdk.Core.IotTimeSeries
 {
     /// <summary>
     /// Time Series object for one asset and one aspect

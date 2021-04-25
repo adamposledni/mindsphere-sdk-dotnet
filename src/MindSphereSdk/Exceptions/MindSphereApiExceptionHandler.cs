@@ -4,7 +4,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MindSphereSdk.Exceptions
+namespace MindSphereSdk.Core.Exceptions
 {
     public class MindSphereApiExceptionHandler
     {

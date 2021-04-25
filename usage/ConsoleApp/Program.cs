@@ -4,8 +4,8 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-using MindSphereSdk.AssetManagement;
-using MindSphereSdk.Common;
+using MindSphereSdk.Core.AssetManagement;
+using MindSphereSdk.Core.Common;
 
 namespace ConsoleApp
 {

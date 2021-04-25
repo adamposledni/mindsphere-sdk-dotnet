@@ -5,7 +5,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Text;
 
-namespace MindSphereSdk.Common
+namespace MindSphereSdk.Core.Common
 {
     /// <summary>
     /// AppCredentials for MindSphere API

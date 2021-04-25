@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using MindSphereSdk.Core.Exceptions;
 
 namespace WebApp.Controllers
 {
@@ -25,7 +26,7 @@ namespace WebApp.Controllers
                 string message;    
 
                 // BL exception
-                if (exception is MindSphereSdk.Exceptions.MindSphereApiException)
+                if (exception is MindSphereApiException)
                 {
                     Response.StatusCode = 400;
                     message = exception.Message;

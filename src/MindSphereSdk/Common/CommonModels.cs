@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace MindSphereSdk.Common
+namespace MindSphereSdk.Core.Common
 {
     /// <summary>
     /// Wrapper for any MindSphere resource

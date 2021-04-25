@@ -3,11 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MindSphereSdk", "src\MindSphereSdk\MindSphereSdk.csproj", "{DF8A7240-E13A-4BD2-B5D1-F3AFA157F171}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MindSphereSdk.Core", "src\MindSphereSdk\MindSphereSdk.Core.csproj", "{DF8A7240-E13A-4BD2-B5D1-F3AFA157F171}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleApp", "usage\ConsoleApp\ConsoleApp.csproj", "{0BBA396E-0D6A-4868-BA47-CC7542A9BC9D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApp", "usage\WebApp\WebApp.csproj", "{FA62F225-863C-4649-9FBC-52AA7094E46A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApp", "usage\WebApp\WebApp.csproj", "{FA62F225-863C-4649-9FBC-52AA7094E46A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MindSphereSdk.AspNetCore", "src\MindSphereSdk.AspNetCore\MindSphereSdk.AspNetCore.csproj", "{733E760B-92B0-4FB8-BD10-51E10C25039C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{FA62F225-863C-4649-9FBC-52AA7094E46A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FA62F225-863C-4649-9FBC-52AA7094E46A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FA62F225-863C-4649-9FBC-52AA7094E46A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{733E760B-92B0-4FB8-BD10-51E10C25039C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{733E760B-92B0-4FB8-BD10-51E10C25039C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{733E760B-92B0-4FB8-BD10-51E10C25039C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{733E760B-92B0-4FB8-BD10-51E10C25039C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

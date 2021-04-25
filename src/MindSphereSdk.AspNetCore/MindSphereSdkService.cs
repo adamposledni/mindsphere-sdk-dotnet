@@ -1,14 +1,11 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
-using MindSphereSdk.AssetManagement;
-using MindSphereSdk.IotTimeSeries;
-using MindSphereSdk.Common;
+using MindSphereSdk.Core.AssetManagement;
+using MindSphereSdk.Core.Common;
+using MindSphereSdk.Core.IotTimeSeries;
+using MindSphereSdk.Core.IotTsAggregates;
 using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
 using System.Net.Http;
-using System.Threading.Tasks;
 
 namespace MindSphereSdk.AspNetCore
 {
@@ -16,6 +13,7 @@ namespace MindSphereSdk.AspNetCore
     {
         AssetManagementClient GetAssetManagementClient();
         IotTimeSeriesClient GetIotTimeSeriesClient();
+        IotTsAggregatesClient GetIotTsAggregateClient();
     }
 
     /// <summary>
@@ -27,6 +25,7 @@ namespace MindSphereSdk.AspNetCore
 
         private AssetManagementClient _assetManagementClient;
         private IotTimeSeriesClient _iotTimeSeriesClient;
+        private IotTsAggregatesClient _iotTsAggregateClient;
 
         private ICredentials _credentials;
 
@@ -61,6 +60,19 @@ namespace MindSphereSdk.AspNetCore
 
             return _iotTimeSeriesClient;
         }
+
+        /// <summary>
+        /// Get IoT Time Series Aggregate Client
+        /// </summary>
+        public IotTsAggregatesClient GetIotTsAggregateClient()
+        {
+            if (_iotTsAggregateClient == null)
+            {
+                _iotTsAggregateClient = new IotTsAggregatesClient(_credentials, _httpClient);
+            }
+
+            return _iotTsAggregateClient;
+        }
     }
 
     /// <summary>
@@ -86,5 +98,4 @@ namespace MindSphereSdk.AspNetCore
     {   
         public ICredentials Credentials { get; set; }
     }
-
 }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace MindSphereSdk.Common
+namespace MindSphereSdk.Core.Common
 {
     public interface ICredentials
     {
