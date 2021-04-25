@@ -1,8 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using MindSphereSdk.AspNetCore;
-using MindSphereSdk.AssetManagement;
-using MindSphereSdk.IotTimeSeries;
+using MindSphereSdk.Core.AssetManagement;
+using MindSphereSdk.Core.IotTimeSeries;
+using MindSphereSdk.Core.IotTsAggregates;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -57,7 +58,7 @@ namespace WebApp.Controllers
             var assetClient = _mindSphereSdkService.GetAssetManagementClient();
             var request = new AddAssetRequest()
             {
-                Body = new Asset()
+                Body = new AssetAdd()
                 {
                     Name = "MyNewAsset",
                     TypeId = "iiotdgli.mobilephone",
@@ -173,7 +174,7 @@ namespace WebApp.Controllers
         }
 
         [HttpGet("get-timeseries")]
-        public async Task<ActionResult<TestData>> GetTimeSeries()
+        public async Task<ActionResult<IEnumerable<TestTimeSeriesData>>> GetTimeSeries()
         {
             var iotClient = _mindSphereSdkService.GetIotTimeSeriesClient();
             var request = new GetTimeSeriesRequest()
@@ -184,7 +185,7 @@ namespace WebApp.Controllers
                 To = DateTime.Now,
                 Limit = 10
             };
-            List<TestData> timeSeries = (await iotClient.GetTimeSeriesAsync<TestData>(request)).ToList();
+            List<TestTimeSeriesData> timeSeries = (await iotClient.GetTimeSeriesAsync<TestTimeSeriesData>(request)).ToList();
             
             return StatusCode(200, timeSeries);
         }
@@ -196,9 +197,9 @@ namespace WebApp.Controllers
             DateTime nowUtc = DateTime.Now.ToUniversalTime();
 
             List<object> timeSeriesData = new List<object>();
-            timeSeriesData.Add(new TestData(nowUtc, 0.5, 0.7, 0.3));
-            timeSeriesData.Add(new TestData(nowUtc.AddMinutes(1), 0.8, 1.2, 0.7));
-            timeSeriesData.Add(new TestData(nowUtc.AddMinutes(2), 1.6, 0.2, 0.5));
+            timeSeriesData.Add(new TestTimeSeriesData(nowUtc, 0.5, 0.7, 0.3));
+            timeSeriesData.Add(new TestTimeSeriesData(nowUtc.AddMinutes(1), 0.8, 1.2, 0.7));
+            timeSeriesData.Add(new TestTimeSeriesData(nowUtc.AddMinutes(2), 1.6, 0.2, 0.5));
             //timeSeriesData.Add(new { _time = DateTime.Now, x = 0.5, y = 0.7, z = 0.3 });
             //timeSeriesData.Add(new { _time = DateTime.Now.AddMinutes(1), x = 0.8, y = 1.2, z = 0.7 });
             //timeSeriesData.Add(new { _time = DateTime.Now.AddMinutes(2), x = 1.6, y = 0.2, z = 0.5 });
@@ -234,6 +235,24 @@ namespace WebApp.Controllers
             await iotClient.DeleteTimeSeriesAsync(request);
 
             return StatusCode(204);
+        }
+
+        [HttpGet("get-aggregate-timeseries")]
+        public async Task<ActionResult<IEnumerable<TestAggregateTsData>>> GetAggregateTimeSeries()
+        {
+            var iotAggregClient = _mindSphereSdkService.GetIotTsAggregateClient();
+            var request = new GetAggregateTimeSeriesRequest()
+            {
+                AssetId = "ec206f76b04a49a4938c1573b35b6688",
+                AspectName = "acceleration",
+                From = new DateTime(2021, 4, 25, 0, 0, 0),
+                To = new DateTime(2021, 4, 26, 0, 0, 0),
+                IntervalUnit = "minute",
+                IntervalValue = 2
+            };
+
+            var tsAggregate = await iotAggregClient.GetAggregateTimeSeriesAsync<TestAggregateTsData>(request);
+            return StatusCode(200, tsAggregate);
         }
 
         [HttpGet("list-aspect-types")]
@@ -275,9 +294,94 @@ namespace WebApp.Controllers
 
             return StatusCode(204);
         }
+
+        [HttpGet("add-aspect-types")]
+        public async Task<ActionResult<AspectType>> AddAspectType()
+        {
+            var assetClient = _mindSphereSdkService.GetAssetManagementClient();
+
+            var newAspectType = new AspectTypeUpdate()
+            {
+                Name = "My_new_asset",
+                Category = "static",
+                Description = "Test",
+                Scope = "private",
+                Variables = new AspectTypeVariable[] {
+                    new AspectTypeVariable() 
+                    {
+                        Name = "velocity",
+                        Unit = "m/s",
+                        DataType = "DOUBLE"
+                    },
+                }
+            };
+
+            var request = new PutAspectTypeRequest()
+            {
+                Id = "iiotdgli.My_new_asset",
+                IfNoneMatch = "*",
+                AspectType = newAspectType
+            };
+            var aspectType = await assetClient.PutAspectTypeAsync(request);
+
+            return StatusCode(200, aspectType);
+        }
+
+        [HttpGet("update-aspect-types")]
+        public async Task<ActionResult<AspectType>> UpdateAspectType()
+        {
+            var assetClient = _mindSphereSdkService.GetAssetManagementClient();
+
+            var updatedAspectType = new AspectTypeUpdate()
+            {
+                Name = "My_new_asset",
+                Category = "static",
+                Description = "Updated test",
+                Scope = "private",
+                Variables = new AspectTypeVariable[] {
+                    new AspectTypeVariable()
+                    {
+                        Name = "velocity",
+                        Unit = "m/s",
+                        DataType = "DOUBLE"
+                    },
+                }
+            };
+
+            var request = new PutAspectTypeRequest()
+            {
+                Id = "iiotdgli.My_new_asset",
+                IfMatch = "0",
+                AspectType = updatedAspectType
+            };
+            var aspectType = await assetClient.PutAspectTypeAsync(request);
+
+            return StatusCode(200, aspectType);
+        }
+
+        [HttpGet("patch-aspect-types")]
+        public async Task<ActionResult<AspectType>> PatchAspectType()
+        {
+            var assetClient = _mindSphereSdkService.GetAssetManagementClient();
+
+            var updatedAspectType = new AspectTypeUpdate()
+            {
+                Description = "Patched test"
+            };
+
+            var request = new PatchAspectTypeRequest()
+            {
+                Id = "iiotdgli.My_new_asset",
+                IfMatch = "1",
+                AspectType = updatedAspectType
+            };
+            var aspectType = await assetClient.PatchAspectTypeAsync(request);
+
+            return StatusCode(200, aspectType);
+        }
     }
 
-    public class TestData
+    public class TestTimeSeriesData
     {
         [JsonProperty("_time")]
         public DateTime Time { get; set; }
@@ -291,12 +395,24 @@ namespace WebApp.Controllers
         [JsonProperty("z")]
         public double Z { get; set; }
 
-        public TestData(DateTime time, double x, double y, double z)
+        public TestTimeSeriesData(DateTime time, double x, double y, double z)
         {
             Time = time;
             X = x;
             Y = y;
             Z = z;
         }
+    }
+
+    public class TestAggregateTsData : AggregateSet
+    {
+        [JsonProperty("x")]
+        public AggregateVariable X { get; set; }
+
+        [JsonProperty("y")]
+        public AggregateVariable Y { get; set; }
+
+        [JsonProperty("z")]
+        public AggregateVariable Z { get; set; }
     }
 }
