@@ -10,6 +10,7 @@ This project was started on my own initiative. I am still a student and I am try
 My goal is to develop SDK similar to [MindSphere SDK for Node.js](https://developer.mindsphere.io/resources/mindsphere-sdk-node/index.html).
 
 ## What is ready?
+
 Following features are implemented for now (in some cases few more changes are needed).
 
 **Authentication**
@@ -29,11 +30,16 @@ Following features are implemented for now (in some cases few more changes are n
 - list all aspect types
 - read an aspect type
 - delete an aspect type
+- put an aspect type
+- patch and aspect type
 
 **IOT time series**
 - read time series data
 - write time series data
 - delete time series data
+
+**IOT time series aggregates**
+- read aggregate time series data
 
 ## Examples
 
