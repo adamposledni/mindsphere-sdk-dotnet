@@ -41,11 +41,16 @@ Following features are implemented for now (in some cases few more changes are n
 **IOT time series aggregates**
 - read aggregate time series data
 
+**Others**
+- usage with ASP.<i></i>NET Core
+- load application credentials from a file
+
 ## Examples
 
 Examples of the current state of the project. Some of them might change in the future.
 
-### 1) Usage with ASP.<i></i></i>NET Core
+
+### Usage with ASP.<i></i>NET Core
 
 Register service in the *Startup.cs* with credentials settings.
 
@@ -64,7 +69,7 @@ services.AddMindSphereSdkService(options =>
 });
 ```
 
-Specify dependency in e.g. controller.
+Specify dependency in e.g. controller. 
 
 ```csharp
 private IMindSphereSdkService _mindSphereSdkService;
@@ -75,11 +80,7 @@ public MainController(IMindSphereSdkService mindSphereSdkService)
 }
 ```
 
-Then you can use the SDK (see below).
-
-### 2) Listing assets
-
-First, the asset management client instance is required. Then you can specify the request object and call corresponding method.
+### Listing assets
 
 ```csharp
 var assetClient = _mindSphereSdkService.GetAssetManagementClient();
@@ -87,13 +88,13 @@ var request = new ListAssetsRequest()
 {
     Size = 5
 };
-List<AssetResource> assets = (await assetClient.ListAssetsAsync(request)).ToList();
+List<Asset> assets = (await assetClient.ListAssetsAsync(request)).ToList();
 ```
 
 After calling the *ListAssetsAsync* method enumeration of following objects is returned.
 
 ```csharp
-public class AssetResource
+public class Asset
 {
     public string Name { get; set; }
     public string ExternalId { get; set; }
@@ -105,28 +106,12 @@ public class AssetResource
 }
 ```
 
-### 3) Adding assets
+### Getting time series data
+
+To get time series data it is necessary to have corresponding class prepared. It is possible to use Newtonsoft *JsonProperty* atributes. Or just to name your properties in the corresponding way so they could be deserialized. 
 
 ```csharp
-var assetClient = _mindSphereSdkService.GetAssetManagementClient();
-var request = new AddAssetRequest()
-{
-    Body = new AssetResource()
-    {
-        Name = "NewAssetName",
-        TypeId = "AssetType",
-        ParentId = "ParentId",
-    }
-};
-AssetResource createdAsset = await assetClient.AddAssetsAsync(request);
-```
-
-### 4) Getting time series data
-
-To get time series data it is necessary to have corresponding type (class) prepared. It is possible to use Newtonsoft *JsonProperty* atributes. Or just to name your properties in the corresponding way so they could be deserialized. 
-
-```csharp
-public class AccelerationData {
+public class TestTimeSeriesData {
         [JsonProperty("_time")]
         public DateTime Time { get; set; }
 
@@ -153,22 +138,28 @@ var request = new GetTimeSeriesRequest()
     To = DateTime.Now,
     Limit = 2
 };
-List<AccelerationData> timeSeries = (await iotClient.GetTimeSeriesAsync<AccelerationData>(request)).ToList();
+List<TestTimeSeriesData> timeSeries = (await iotClient.GetTimeSeriesAsync<TestTimeSeriesData>(request)).ToList();
 ```
 
+### Putting new time series data
 
-### 5) Putting new time series data
+To put new time series data into the MindSphere you can use predefined class or anonymous type.
 
-To put new time series data into the MindSphere you can use predefined datatype (class) or anonymous type.
-
-If you use your own class you need to name the properties in the corresponding way or to add Newtonsoft *JsonProperty* atributes.
+If you use your own class you need to name the properties in the corresponding way or to add Newtonsoft *JsonProperty* atributes. Otherwise the deserialization would fail.
 
 ```csharp
 var iotClient = _mindSphereSdkService.GetIotTimeSeriesClient();
 
+// with anonymous type
 List<object> timeSeriesData = new List<object>();
 timeSeriesData.Add(new { _time = DateTime.Now, x = 0.5, y = 0.7, z = 0.3 });
 timeSeriesData.Add(new { _time = DateTime.Now.AddMinutes(1), x = 0.8, y = 1.2, z = 0.7 });
+
+// with class
+List<TestTimeSeriesData> timeSeriesData = new List<TestTimeSeriesData>();
+timeSeriesData.Add(new TestTimeSeriesData(nowUtc, 0.5, 0.7, 0.3));
+timeSeriesData.Add(new TestTimeSeriesData(nowUtc.AddMinutes(1), 0.8, 1.2, 0.7));
+timeSeriesData.Add(new TestTimeSeriesData(nowUtc.AddMinutes(2), 1.6, 0.2, 0.5));
 
 List<TimeSeriesObject> timeSeriesObjects = new List<TimeSeriesObject>();
 timeSeriesObjects.Add(new TimeSeriesObject()
@@ -183,4 +174,37 @@ PutTimeSeriesRequest request = new PutTimeSeriesRequest()
     TimeSeries = timeSeriesObjects
 };
 await iotClient.PutTimeSeriesAsync(request);
+```
+
+### Getting time series aggregates
+
+*GetAggregateTimeSeriesAsync* is also generic method. It is necessary to set the generic type to class derived from *AggregateSet*. Specify expected MindSphere variables using properties of type *AggregateVariable* with corresponding names (or JsonProperty).
+
+```csharp
+public class TestAggregateTsData : AggregateSet
+{
+    [JsonProperty("x")]
+    public AggregateVariable X { get; set; }
+
+    [JsonProperty("y")]
+    public AggregateVariable Y { get; set; }
+
+    [JsonProperty("z")]
+    public AggregateVariable Z { get; set; }
+}
+```
+
+```csharp
+var iotAggregClient = _mindSphereSdkService.GetIotTsAggregateClient();
+var request = new GetAggregateTimeSeriesRequest()
+{
+    AssetId = "ec206f76b04a49a4938c1573b35b6688",
+    AspectName = "acceleration",
+    From = new DateTime(2021, 4, 25, 0, 0, 0),
+    To = new DateTime(2021, 4, 26, 0, 0, 0),
+    IntervalUnit = "minute",
+    IntervalValue = 2
+};
+
+var tsAggregate = await iotAggregClient.GetAggregateTimeSeriesAsync<TestAggregateTsData>(request);
 ```
