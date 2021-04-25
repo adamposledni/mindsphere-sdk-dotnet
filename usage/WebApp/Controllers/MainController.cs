@@ -268,7 +268,7 @@ namespace WebApp.Controllers
             var assetClient = _mindSphereSdkService.GetAssetManagementClient();
             var request = new DeleteAspectTypeRequest()
             {
-                Id = "",
+                Id = "iiotdgli.My_new_asset",
                 IfMatch = "0"
             };
             await assetClient.DeleteAspectTypeAsync(request);
