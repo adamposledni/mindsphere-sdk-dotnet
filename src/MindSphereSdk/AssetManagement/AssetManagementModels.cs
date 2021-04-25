@@ -6,6 +6,8 @@ using System.Text;
 
 namespace MindSphereSdk.AssetManagement
 {
+    #region Assets
+
     /// <summary>
     /// Wrapper object for asset list
     /// </summary>
@@ -249,4 +251,108 @@ namespace MindSphereSdk.AssetManagement
         public string Key { get; set; }
         public string IfMatch { get; set; }
     }
+
+    #endregion
+
+    #region Aspect types
+
+    /// <summary>
+    /// Wrapper object for aspect type list
+    /// </summary>
+    public class EmbeddedAspectTypeList : IEmbeddedResource
+    {
+        [JsonProperty("aspectTypes")]
+        public IEnumerable<AspectType> AspectTypes { get; set; }
+    }
+
+    /// <summary>
+    /// Aspect type
+    /// </summary>
+    public class AspectType
+    {
+        [JsonProperty("name")]
+        public string Name { get; set; }
+
+        [JsonProperty("category")]
+        public string Category { get; set; }
+
+        [JsonProperty("scope")]
+        public string Scope { get; set; }
+
+        [JsonProperty("description")]
+        public string Description { get; set; }
+
+        [JsonProperty("variables")]
+        public AspectTypeVariable[] Variables { get; set; }
+
+        [JsonProperty("id")]
+        public string Id { get; set; }
+
+        [JsonProperty("tenantId")]
+        public string TenantId { get; set; }
+
+        [JsonProperty("etag")]
+        public long Etag { get; set; }
+    }
+
+    /// <summary>
+    /// Aspect type variable
+    /// </summary>
+    public class AspectTypeVariable
+    {
+        [JsonProperty("name")]
+        public string Name { get; set; }
+
+        [JsonProperty("unit")]
+        public string Unit { get; set; }
+
+        [JsonProperty("length")]
+        public int? Length { get; set; }
+
+        [JsonProperty("defaultValue")]
+        public string DefaultValue { get; set; }
+
+        [JsonProperty("dataType")]
+        public string DataType { get; set; }
+
+        [JsonProperty("searchable")]
+        public bool Searchable { get; set; }
+
+        [JsonProperty("qualityCode")]
+        public bool QualityCode { get; set; }
+    }
+
+
+    /// <summary>
+    /// Request object for listing aspect types
+    /// </summary>
+    public class ListAspectTypesRequest
+    {
+        public int? Page { get; set; }
+
+        public int? Size { get; set; }
+
+        public string Sort { get; set; }
+
+        public string Filter { get; set; }
+    }
+
+    /// <summary>
+    /// Request object for getting aspect type
+    /// </summary>
+    public class GetAspectTypeRequest
+    {
+        public string Id { get; set; }
+    }
+
+    /// <summary>
+    /// Request object for deleting aspect type
+    /// </summary>
+    public class DeleteAspectTypeRequest
+    {
+        public string Id { get; set; }
+        public string IfMatch { get; set; }
+    }
+
+    #endregion
 }

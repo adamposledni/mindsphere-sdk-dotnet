@@ -21,6 +21,8 @@ namespace MindSphereSdk.AssetManagement
 
         }
 
+        #region Assets
+
         /// <summary>
         /// List all available assets
         /// </summary>
@@ -204,5 +206,60 @@ namespace MindSphereSdk.AssetManagement
 
             return asset;
         }
+
+
+        #endregion
+
+        #region Aspect types
+
+        /// <summary>
+        /// List all aspect types
+        /// </summary>
+        public async Task<IEnumerable<AspectType>> ListAspectTypesAsync(ListAspectTypesRequest request)
+        {
+            // prepare query string
+            string queryString = "?";
+            queryString += request.Size != null ? $"size={request.Size}&" : "";
+            queryString += request.Page != null ? $"page={request.Page}&" : "";
+            queryString += request.Sort != null ? $"sort={request.Sort}&" : "";
+            queryString += request.Filter != null ? $"filter={request.Filter}&" : "";
+
+            string uri = _baseUri + "/aspecttypes" + queryString;
+
+            string response = await HttpActionAsync(HttpMethod.Get, uri);
+            var aspectTypeListWrapper = JsonConvert.DeserializeObject<MindSphereResourceWrapper<EmbeddedAspectTypeList>>(response);
+            var aspectTypeList = aspectTypeListWrapper.Embedded.AspectTypes;
+
+            return aspectTypeList;
+        }
+
+        /// <summary>
+        /// Read an aspect types 
+        /// </summary>
+        public async Task<AspectType> GetAspectTypeAsync(GetAspectTypeRequest request)
+        {
+            string uri = _baseUri + "/aspecttypes/" + request.Id;
+
+            string response = await HttpActionAsync(HttpMethod.Get, uri);
+            var aspectType = JsonConvert.DeserializeObject<AspectType>(response);
+
+            return aspectType;
+        }
+
+        /// <summary>
+        /// Delete an aspect type 
+        /// </summary>
+        public async Task DeleteAspectTypeAsync(DeleteAspectTypeRequest request)
+        {
+            string uri = _baseUri + "/aspecttypes/" + request.Id;
+
+            // prepare HTTP request headers
+            List<KeyValuePair<string, string>> headers = new List<KeyValuePair<string, string>>();
+            headers.Add(new KeyValuePair<string, string>("If-Match", request.IfMatch));
+
+            await HttpActionAsync(HttpMethod.Delete, uri, headers: headers);
+        }
+
+        #endregion
     }
 }

@@ -235,6 +235,46 @@ namespace WebApp.Controllers
 
             return StatusCode(204);
         }
+
+        [HttpGet("list-aspect-types")]
+        public async Task<ActionResult<IEnumerable<AspectType>>> ListAspectTypes()
+        {
+            var assetClient = _mindSphereSdkService.GetAssetManagementClient();
+            var request = new ListAspectTypesRequest()
+            {
+                Size = 100
+            };
+            List<AspectType> aspectTypes = (await assetClient.ListAspectTypesAsync(request)).ToList();
+
+            return StatusCode(200, aspectTypes);
+        }
+
+        [HttpGet("get-aspect-types")]
+        public async Task<ActionResult<AspectType>> GetAspectType()
+        {
+            var assetClient = _mindSphereSdkService.GetAssetManagementClient();
+            var request = new GetAspectTypeRequest()
+            {
+                Id = "iiotdgli.acceleration"
+            };
+            AspectType aspectTypes = await assetClient.GetAspectTypeAsync(request);
+
+            return StatusCode(200, aspectTypes);
+        }
+
+        [HttpGet("delete-aspect-types")]
+        public async Task<ActionResult> DeleteAspectType()
+        {
+            var assetClient = _mindSphereSdkService.GetAssetManagementClient();
+            var request = new DeleteAspectTypeRequest()
+            {
+                Id = "",
+                IfMatch = "0"
+            };
+            await assetClient.DeleteAspectTypeAsync(request);
+
+            return StatusCode(204);
+        }
     }
 
     public class TestData
