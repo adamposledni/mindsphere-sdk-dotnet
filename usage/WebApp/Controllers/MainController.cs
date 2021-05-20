@@ -26,6 +26,8 @@ namespace WebApp.Controllers
             _logger = logger;
         }
 
+        #region Asset
+
         [HttpGet("list-assets")]
         public async Task<ActionResult<IEnumerable<Asset>>> ListAssets()
         {
@@ -173,6 +175,10 @@ namespace WebApp.Controllers
             return StatusCode(200, asset);
         }
 
+        #endregion
+
+        #region Time Series
+
         [HttpGet("get-timeseries")]
         public async Task<ActionResult<IEnumerable<TestTimeSeriesData>>> GetTimeSeries()
         {
@@ -196,7 +202,7 @@ namespace WebApp.Controllers
             var iotClient = _mindSphereSdkService.GetIotTimeSeriesClient();
             DateTime nowUtc = DateTime.Now.ToUniversalTime();
 
-            List<object> timeSeriesData = new List<object>();
+            List<TestTimeSeriesData> timeSeriesData = new List<TestTimeSeriesData>();
             timeSeriesData.Add(new TestTimeSeriesData(nowUtc, 0.5, 0.7, 0.3));
             timeSeriesData.Add(new TestTimeSeriesData(nowUtc.AddMinutes(1), 0.8, 1.2, 0.7));
             timeSeriesData.Add(new TestTimeSeriesData(nowUtc.AddMinutes(2), 1.6, 0.2, 0.5));
@@ -237,6 +243,10 @@ namespace WebApp.Controllers
             return StatusCode(204);
         }
 
+        #endregion
+
+        #region Aggregate Time Series
+
         [HttpGet("get-aggregate-timeseries")]
         public async Task<ActionResult<IEnumerable<TestAggregateTsData>>> GetAggregateTimeSeries()
         {
@@ -254,6 +264,10 @@ namespace WebApp.Controllers
             var tsAggregate = await iotAggregClient.GetAggregateTimeSeriesAsync<TestAggregateTsData>(request);
             return StatusCode(200, tsAggregate);
         }
+
+        #endregion
+
+        #region Aspect Type
 
         [HttpGet("list-aspect-types")]
         public async Task<ActionResult<IEnumerable<AspectType>>> ListAspectTypes()
@@ -306,8 +320,8 @@ namespace WebApp.Controllers
                 Category = "static",
                 Description = "Test",
                 Scope = "private",
-                Variables = new AspectTypeVariable[] {
-                    new AspectTypeVariable() 
+                Variables = new TypeVariables[] {
+                    new TypeVariables() 
                     {
                         Name = "velocity",
                         Unit = "m/s",
@@ -338,8 +352,8 @@ namespace WebApp.Controllers
                 Category = "static",
                 Description = "Updated test",
                 Scope = "private",
-                Variables = new AspectTypeVariable[] {
-                    new AspectTypeVariable()
+                Variables = new TypeVariables[] {
+                    new TypeVariables()
                     {
                         Name = "velocity",
                         Unit = "m/s",
@@ -379,6 +393,38 @@ namespace WebApp.Controllers
 
             return StatusCode(200, aspectType);
         }
+
+        #endregion
+
+        #region Asset Type
+
+        [HttpGet("list-asset-types")]
+        public async Task<ActionResult<IEnumerable<AssetType>>> ListAssetTypes()
+        {
+            var assetClient = _mindSphereSdkService.GetAssetManagementClient();
+            var request = new ListAssetTypesRequest()
+            {
+                Size = 100
+            };
+            List<AssetType> aspectTypes = (await assetClient.ListAssetTypesAsync(request)).ToList();
+
+            return StatusCode(200, aspectTypes);
+        }
+
+        [HttpGet("get-asset-types")]
+        public async Task<ActionResult<AssetType>> GetAssetType()
+        {
+            var assetClient = _mindSphereSdkService.GetAssetManagementClient();
+            var request = new GetAssetTypeRequest()
+            {
+                Id = "core.basicagent"
+            };
+            AssetType aspectTypes = await assetClient.GetAssetTypeAsync(request);
+
+            return StatusCode(200, aspectTypes);
+        }
+
+        #endregion
     }
 
     public class TestTimeSeriesData

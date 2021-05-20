@@ -6,19 +6,41 @@ using System.Text;
 
 namespace MindSphereSdk.Core.AssetManagement
 {
-    #region Assets
+    #region Embedded
 
     /// <summary>
-    /// Wrapper object for asset list
+    /// Wrapper for asset list
     /// </summary>
     public class EmbeddedAssetList : IEmbeddedResource
     {
         [JsonProperty("assets")]
         public IEnumerable<Asset> Assets { get; set; }
     }
-    
+
     /// <summary>
-    /// Asset object
+    /// Wrapper for aspect type list
+    /// </summary>
+    public class EmbeddedAspectTypeList : IEmbeddedResource
+    {
+        [JsonProperty("aspectTypes")]
+        public IEnumerable<AspectType> AspectTypes { get; set; }
+    }
+
+    /// <summary>
+    /// Wrapper for asset type list
+    /// </summary>
+    public class EmbeddedAssetTypeList : IEmbeddedResource
+    {
+        [JsonProperty("assetTypes")]
+        public IEnumerable<AssetType> AssetTypes { get; set; }
+    }
+
+    #endregion
+
+    #region Asset
+
+    /// <summary>
+    /// Asset
     /// </summary>
     public class Asset
     {
@@ -75,69 +97,7 @@ namespace MindSphereSdk.Core.AssetManagement
     }
 
     /// <summary>
-    /// Aspect object
-    /// </summary>
-    public class Aspect
-    {
-        [JsonProperty("name")]
-        public string Name { get; set; }
-
-        public IEnumerable<Variable> Variables { get; set; }
-    }
-
-    /// <summary>
-    /// Variable object
-    /// </summary>
-    public class Variable
-    {
-        [JsonProperty("name")]
-        public string Name { get; set; }
-
-        [JsonProperty("value")]
-        public string ValueString { get; set; }
-    }
-
-    /// <summary>
-    /// Location object
-    /// </summary>
-    public class Location
-    {
-        [JsonProperty("country")]
-        public string Country { get; set; }
-
-        [JsonProperty("region")]
-        public string Region { get; set; }
-
-        [JsonProperty("locality")]
-        public string Locality { get; set; }
-
-        [JsonProperty("streetAddress")]
-        public string StreetAddress { get; set; }
-
-        [JsonProperty("postalCode")]
-        public string PostalCode { get; set; }
-
-        [JsonProperty("longitude")]
-        public double Longitude { get; set; }
-
-        [JsonProperty("latitude")]
-        public double Latitude { get; set; }
-    }
-
-    /// <summary>
-    /// File assignment object
-    /// </summary>
-    public class FileAssignment
-    {
-        [JsonProperty("key")]
-        public string Key { get; set; }
-
-        [JsonProperty("fileId")]
-        public string FileId { get; set; }
-    }
-
-    /// <summary>
-    /// Asset object to update
+    /// Asset to update
     /// </summary>
     public class AssetUpdate
     {
@@ -164,7 +124,7 @@ namespace MindSphereSdk.Core.AssetManagement
     }
 
     /// <summary>
-    /// Asset object to add
+    /// Asset to add
     /// </summary>
     public class AssetAdd
     {
@@ -203,7 +163,7 @@ namespace MindSphereSdk.Core.AssetManagement
     }
 
     /// <summary>
-    /// Asset object to move
+    /// Asset to move
     /// </summary>
     public class AssetMove
     {
@@ -211,98 +171,86 @@ namespace MindSphereSdk.Core.AssetManagement
         public string NewParentId { get; set; }
     }
 
+    #endregion
+
+    #region Aspect
+
     /// <summary>
-    /// Request object for listing assets
+    /// Aspect
     /// </summary>
-    public class ListAssetsRequest
+    public class Aspect
     {
-        public int? Page { get; set; }
+        [JsonProperty("name")]
+        public string Name { get; set; }
 
-        public int? Size { get; set; }
-        
-        public string Sort { get; set; }
-
-        public string Filter { get; set; }
+        public IEnumerable<Variable> Variables { get; set; }
     }
 
     /// <summary>
-    /// Request object for adding asset
+    /// Aspect detail
     /// </summary>
-    public class AddAssetRequest
+    public class AspectDetail
     {
-        public AssetAdd Body { get; set; }
+        [JsonProperty("name")]
+        public string Name { get; set; }
+
+        [JsonProperty("aspectId")]
+        public string AspectId { get; set; }
+
+        [JsonProperty("aspectType")]
+        public AspectType AspectType { get; set; }
     }
 
-    /// <summary>
-    /// Request object for getting asset
-    /// </summary>
-    public class GetAssetRequest
-    {
-        public string Id { get; set; }
-    }
+    #endregion
+
+    #region Location
 
     /// <summary>
-    /// Request object for updating asset
+    /// Location
     /// </summary>
-    public class UpdateAssetRequest
+    public class Location
     {
-        public string Id { get; set; }
-        public string IfMatch { get; set; }
-        public AssetUpdate Body { get; set; }
+        [JsonProperty("country")]
+        public string Country { get; set; }
+
+        [JsonProperty("region")]
+        public string Region { get; set; }
+
+        [JsonProperty("locality")]
+        public string Locality { get; set; }
+
+        [JsonProperty("streetAddress")]
+        public string StreetAddress { get; set; }
+
+        [JsonProperty("postalCode")]
+        public string PostalCode { get; set; }
+
+        [JsonProperty("longitude")]
+        public double Longitude { get; set; }
+
+        [JsonProperty("latitude")]
+        public double Latitude { get; set; }
     }
 
-    /// <summary>
-    /// Request object for deleting asset
-    /// </summary>
-    public class DeleteAssetRequest
-    {
-        public string Id { get; set; }
-        public string IfMatch { get; set; }
-    }
+    #endregion
+
+    #region File assignment
 
     /// <summary>
-    /// Request object for moving asset
+    /// File assignment
     /// </summary>
-    public class MoveAssetRequest
+    public class FileAssignment
     {
-        public string Id { get; set; }
-        public string IfMatch { get; set; }
-        public AssetMove MoveParameters { get; set; }
-    }
-
-    /// <summary>
-    /// Request object for saving asset's file assignment
-    /// </summary>
-    public class SaveAssetFileAssignmentRequest
-    {
-        public string Id { get; set; }
+        [JsonProperty("key")]
         public string Key { get; set; }
-        public string IfMatch { get; set; }
+
+        [JsonProperty("fileId")]
         public string FileId { get; set; }
-    }
-
-    /// <summary>
-    /// Request object for deleting asset's file assignment
-    /// </summary>
-    public class DeleteAssetFileAssignmentRequest
-    {
-        public string Id { get; set; }
-        public string Key { get; set; }
-        public string IfMatch { get; set; }
     }
 
     #endregion
 
     #region Aspect types
-
-    /// <summary>
-    /// Wrapper object for aspect type list
-    /// </summary>
-    public class EmbeddedAspectTypeList : IEmbeddedResource
-    {
-        [JsonProperty("aspectTypes")]
-        public IEnumerable<AspectType> AspectTypes { get; set; }
-    }
 
     /// <summary>
     /// Aspect type
@@ -322,7 +270,7 @@ namespace MindSphereSdk.Core.AssetManagement
         public string Description { get; set; }
 
         [JsonProperty("variables")]
-        public IEnumerable<AspectTypeVariable> Variables { get; set; }
+        public IEnumerable<TypeVariables> Variables { get; set; }
 
         [JsonProperty("id")]
         public string Id { get; set; }
@@ -335,9 +283,77 @@ namespace MindSphereSdk.Core.AssetManagement
     }
 
     /// <summary>
-    /// Aspect type variable
+    /// Aspect type (create or update)
     /// </summary>
-    public class AspectTypeVariable
+    public class AspectTypeUpdate
+    {
+        [JsonProperty("name")]
+        public string Name { get; set; }
+
+        [JsonProperty("category")]
+        public string Category { get; set; }
+
+        [JsonProperty("scope")]
+        public string Scope { get; set; }
+
+        [JsonProperty("description")]
+        public string Description { get; set; }
+
+        [JsonProperty("variables")]
+        public IEnumerable<TypeVariables> Variables { get; set; }
+    }
+
+    #endregion
+
+    #region Asset types
+
+    /// <summary>
+    /// Asset type
+    /// </summary>
+    public class AssetType
+    {
+        [JsonProperty("name")]
+        public string Name { get; set; }
+
+        [JsonProperty("description")]
+        public string Description { get; set; }
+
+        [JsonProperty("parentTypeId")]
+        public string ParentTypeId { get; set; }
+
+        [JsonProperty("instantiable")]
+        public bool Instantiable { get; set; }
+
+        [JsonProperty("scope")]
+        public string Scope { get; set; }
+
+        [JsonProperty("id")]
+        public string Id { get; set; }
+
+        [JsonProperty("tenantId")]
+        public string TenantId { get; set; }
+
+        [JsonProperty("etag")]
+        public long Etag { get; set; }
+
+        [JsonProperty("aspects")]
+        public List<AspectDetail> Aspects { get; set; }
+
+        [JsonProperty("variables")]
+        public List<TypeVariables> Variables { get; set; }
+
+        [JsonProperty("fileAssignments")]
+        public List<FileAssignment> FileAssignments { get; set; }
+    }
+
+    #endregion
+
+    #region Variables
+
+    /// <summary>
+    /// Variable for asset/aspect type
+    /// </summary>
+    public class TypeVariables
     {
         [JsonProperty("name")]
         public string Name { get; set; }
@@ -362,29 +378,103 @@ namespace MindSphereSdk.Core.AssetManagement
     }
 
     /// <summary>
-    /// Aspect type (create or update)
+    /// Variable
     /// </summary>
-    public class AspectTypeUpdate
+    public class Variable
     {
         [JsonProperty("name")]
         public string Name { get; set; }
 
-        [JsonProperty("category")]
-        public string Category { get; set; }
-
-        [JsonProperty("scope")]
-        public string Scope { get; set; }
-
-        [JsonProperty("description")]
-        public string Description { get; set; }
-
-        [JsonProperty("variables")]
-        public IEnumerable<AspectTypeVariable> Variables { get; set; }
+        [JsonProperty("value")]
+        public string ValueString { get; set; }
     }
 
+    #endregion
+
+    #region Request
 
     /// <summary>
-    /// Request object for listing aspect types
+    /// Request for listing assets
+    /// </summary>
+    public class ListAssetsRequest
+    {
+        public int? Page { get; set; }
+
+        public int? Size { get; set; }
+
+        public string Sort { get; set; }
+
+        public string Filter { get; set; }
+    }
+
+    /// <summary>
+    /// Request for adding asset
+    /// </summary>
+    public class AddAssetRequest
+    {
+        public AssetAdd Body { get; set; }
+    }
+
+    /// <summary>
+    /// Request for getting asset
+    /// </summary>
+    public class GetAssetRequest
+    {
+        public string Id { get; set; }
+    }
+
+    /// <summary>
+    /// Request for updating asset
+    /// </summary>
+    public class UpdateAssetRequest
+    {
+        public string Id { get; set; }
+        public string IfMatch { get; set; }
+        public AssetUpdate Body { get; set; }
+    }
+
+    /// <summary>
+    /// Request for deleting asset
+    /// </summary>
+    public class DeleteAssetRequest
+    {
+        public string Id { get; set; }
+        public string IfMatch { get; set; }
+    }
+
+    /// <summary>
+    /// Request for moving asset
+    /// </summary>
+    public class MoveAssetRequest
+    {
+        public string Id { get; set; }
+        public string IfMatch { get; set; }
+        public AssetMove MoveParameters { get; set; }
+    }
+
+    /// <summary>
+    /// Request for saving asset's file assignment
+    /// </summary>
+    public class SaveAssetFileAssignmentRequest
+    {
+        public string Id { get; set; }
+        public string Key { get; set; }
+        public string IfMatch { get; set; }
+        public string FileId { get; set; }
+    }
+
+    /// <summary>
+    /// Request for deleting asset's file assignment
+    /// </summary>
+    public class DeleteAssetFileAssignmentRequest
+    {
+        public string Id { get; set; }
+        public string Key { get; set; }
+        public string IfMatch { get; set; }
+    }
+
+    /// <summary>
+    /// Request for listing aspect types
     /// </summary>
     public class ListAspectTypesRequest
     {
@@ -398,7 +488,7 @@ namespace MindSphereSdk.Core.AssetManagement
     }
 
     /// <summary>
-    /// Request object for getting aspect type
+    /// Request for getting aspect type
     /// </summary>
     public class GetAspectTypeRequest
     {
@@ -406,7 +496,7 @@ namespace MindSphereSdk.Core.AssetManagement
     }
 
     /// <summary>
-    /// Request object for deleting aspect type
+    /// Request for deleting aspect type
     /// </summary>
     public class DeleteAspectTypeRequest
     {
@@ -415,7 +505,7 @@ namespace MindSphereSdk.Core.AssetManagement
     }
 
     /// <summary>
-    /// Request object for putting aspect type
+    /// Request for putting aspect type
     /// </summary>
     public class PutAspectTypeRequest
     {
@@ -426,13 +516,35 @@ namespace MindSphereSdk.Core.AssetManagement
     }
 
     /// <summary>
-    /// Request object for patching aspect type
+    /// Request for patching aspect type
     /// </summary>
     public class PatchAspectTypeRequest
     {
         public string Id { get; set; }
         public string IfMatch { get; set; }
         public AspectTypeUpdate AspectType { get; set; }
+    }
+
+    /// <summary>
+    /// Request for listing aspect types
+    /// </summary>
+    public class ListAssetTypesRequest
+    {
+        public int? Page { get; set; }
+
+        public int? Size { get; set; }
+
+        public string Sort { get; set; }
+
+        public string Filter { get; set; }
+    }
+
+    /// <summary>
+    /// Request for getting asset type
+    /// </summary>
+    public class GetAssetTypeRequest
+    {
+        public string Id { get; set; }
     }
 
     #endregion

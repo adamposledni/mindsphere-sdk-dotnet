@@ -21,7 +21,7 @@ namespace MindSphereSdk.Core.AssetManagement
 
         }
 
-        #region Assets
+        #region Asset
 
         /// <summary>
         /// List all available assets
@@ -209,7 +209,7 @@ namespace MindSphereSdk.Core.AssetManagement
 
         #endregion
 
-        #region Aspect types
+        #region Aspect type
 
         /// <summary>
         /// List all aspect types
@@ -233,7 +233,7 @@ namespace MindSphereSdk.Core.AssetManagement
         }
 
         /// <summary>
-        /// Read an aspect types 
+        /// Read an aspect type 
         /// </summary>
         public async Task<AspectType> GetAspectTypeAsync(GetAspectTypeRequest request)
         {
@@ -302,6 +302,44 @@ namespace MindSphereSdk.Core.AssetManagement
 
             string response = await HttpActionAsync(new HttpMethod("PATCH"), uri, body, headers);
             var aspectType = JsonConvert.DeserializeObject<AspectType>(response);
+
+            return aspectType;
+        }
+
+        #endregion
+
+        #region Asset type
+
+        /// <summary>
+        /// List all asset types
+        /// </summary>
+        public async Task<IEnumerable<AssetType>> ListAssetTypesAsync(ListAssetTypesRequest request)
+        {
+            // prepare query string
+            string queryString = "?";
+            queryString += request.Size != null ? $"size={request.Size}&" : "";
+            queryString += request.Page != null ? $"page={request.Page}&" : "";
+            queryString += request.Sort != null ? $"sort={request.Sort}&" : "";
+            queryString += request.Filter != null ? $"filter={request.Filter}&" : "";
+
+            string uri = _baseUri + "/assettypes" + queryString;
+
+            string response = await HttpActionAsync(HttpMethod.Get, uri);
+            var aspectTypeListWrapper = JsonConvert.DeserializeObject<MindSphereResourceWrapper<EmbeddedAssetTypeList>>(response);
+            var aspectTypeList = aspectTypeListWrapper.Embedded.AssetTypes;
+
+            return aspectTypeList;
+        }
+
+        /// <summary>
+        /// Read an asset type 
+        /// </summary>
+        public async Task<AssetType> GetAssetTypeAsync(GetAssetTypeRequest request)
+        {
+            string uri = _baseUri + "/assettypes/" + request.Id;
+
+            string response = await HttpActionAsync(HttpMethod.Get, uri);
+            var aspectType = JsonConvert.DeserializeObject<AssetType>(response);
 
             return aspectType;
         }
