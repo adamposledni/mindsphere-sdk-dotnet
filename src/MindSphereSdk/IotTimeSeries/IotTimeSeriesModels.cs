@@ -6,7 +6,7 @@ using System.Text;
 namespace MindSphereSdk.Core.IotTimeSeries
 {
     /// <summary>
-    /// Time Series object for one asset and one aspect
+    /// Time Series for one asset and one aspect
     /// </summary>
     public class TimeSeriesObject
     {
@@ -21,7 +21,7 @@ namespace MindSphereSdk.Core.IotTimeSeries
     }
 
     /// <summary>
-    /// Request object for getting time series
+    /// Request for getting time series
     /// </summary>
     public class GetTimeSeriesRequest
     {
@@ -36,7 +36,7 @@ namespace MindSphereSdk.Core.IotTimeSeries
     }
 
     /// <summary>
-    /// Request object for putting time series
+    /// Request for putting time series
     /// </summary>
     public class PutTimeSeriesRequest
     {
@@ -45,7 +45,7 @@ namespace MindSphereSdk.Core.IotTimeSeries
     }
 
     /// <summary>
-    /// Request object for deleting time series
+    /// Request for deleting time series
     /// </summary>
     public class DeleteTimeSeriesRequest
     {

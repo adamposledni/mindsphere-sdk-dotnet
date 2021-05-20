@@ -6,7 +6,7 @@ using System.Text;
 namespace MindSphereSdk.Core.IotTsAggregates
 {
     /// <summary>
-    /// Request object for getting aggregate time series
+    /// Request for getting aggregate time series
     /// </summary>
     public class GetAggregateTimeSeriesRequest
     {
@@ -42,7 +42,7 @@ namespace MindSphereSdk.Core.IotTsAggregates
     }
 
     /// <summary>
-    /// Aggregate  time series variable
+    /// Aggregate time series variable
     /// </summary>
     public class AggregateVariable
     {
