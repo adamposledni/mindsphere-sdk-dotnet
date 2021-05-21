@@ -6,7 +6,7 @@ using System.Text;
 namespace MindSphereSdk.Core.Common
 {
     /// <summary>
-    /// Wrapper for any MindSphere resource
+    /// Wrapper for MindSphere resource
     /// </summary>
     public class MindSphereResourceWrapper<T> where T : IEmbeddedResource
     {
@@ -16,6 +16,5 @@ namespace MindSphereSdk.Core.Common
 
     public interface IEmbeddedResource
     {
-
     }
 }

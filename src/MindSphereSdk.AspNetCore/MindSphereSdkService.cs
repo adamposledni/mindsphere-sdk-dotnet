@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Options;
 using MindSphereSdk.Core.AssetManagement;
 using MindSphereSdk.Core.Common;
+using MindSphereSdk.Core.EventManagement;
 using MindSphereSdk.Core.IotTimeSeries;
 using MindSphereSdk.Core.IotTsAggregates;
 using System;
@@ -14,6 +15,8 @@ namespace MindSphereSdk.AspNetCore
         AssetManagementClient GetAssetManagementClient();
         IotTimeSeriesClient GetIotTimeSeriesClient();
         IotTsAggregatesClient GetIotTsAggregateClient();
+        EventManagementClient GetEventManagementClient();
+
     }
 
     /// <summary>
@@ -26,6 +29,7 @@ namespace MindSphereSdk.AspNetCore
         private AssetManagementClient _assetManagementClient;
         private IotTimeSeriesClient _iotTimeSeriesClient;
         private IotTsAggregatesClient _iotTsAggregateClient;
+        private EventManagementClient _eventManagementClient;
 
         private ICredentials _credentials;
 
@@ -72,6 +76,19 @@ namespace MindSphereSdk.AspNetCore
             }
 
             return _iotTsAggregateClient;
+        }
+
+        /// <summary>
+        /// Get Event Management Client
+        /// </summary>
+        public EventManagementClient GetEventManagementClient()
+        {
+            if (_eventManagementClient == null)
+            {
+                _eventManagementClient = new EventManagementClient(_credentials, _httpClient);
+            }
+
+            return _eventManagementClient;
         }
     }
 

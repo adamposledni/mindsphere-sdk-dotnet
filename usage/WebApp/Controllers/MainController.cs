@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Logging;
 using MindSphereSdk.AspNetCore;
 using MindSphereSdk.Core.AssetManagement;
+using MindSphereSdk.Core.EventManagement;
 using MindSphereSdk.Core.IotTimeSeries;
 using MindSphereSdk.Core.IotTsAggregates;
 using Newtonsoft.Json;
@@ -67,7 +68,7 @@ namespace WebApp.Controllers
                     ParentId = "ec206f76b04a49a4938c1573b35b6688",
                 }
             };
-            return StatusCode(200, await assetClient.AddAssetsAsync(request));
+            return StatusCode(200, await assetClient.AddAssetAsync(request));
         }
 
         [HttpGet("update-asset")]
@@ -210,8 +211,8 @@ namespace WebApp.Controllers
             //timeSeriesData.Add(new { _time = DateTime.Now.AddMinutes(1), x = 0.8, y = 1.2, z = 0.7 });
             //timeSeriesData.Add(new { _time = DateTime.Now.AddMinutes(2), x = 1.6, y = 0.2, z = 0.5 });
 
-            List<TimeSeriesObject> timeSeriesObjects = new List<TimeSeriesObject>();
-            timeSeriesObjects.Add(new TimeSeriesObject()
+            List<TimeSeries> timeSeriesObjects = new List<TimeSeries>();
+            timeSeriesObjects.Add(new TimeSeries()
             {
                 EntityId = "ec206f76b04a49a4938c1573b35b6688",
                 PropertySetName = "acceleration",
@@ -425,6 +426,28 @@ namespace WebApp.Controllers
         }
 
         #endregion
+
+        #region Event
+
+        [HttpGet("add-event")]
+        public async Task<ActionResult<Event>> AddEvent()
+        {
+            var eventClient = _mindSphereSdkService.GetEventManagementClient();
+            var request = new AddEventRequest()
+            {
+                Body = new MyEventAdd()
+                {
+                    EntityId = "ec206f76b04a49a4938c1573b35b6688",
+                    Timestamp = DateTime.Now.ToUniversalTime(),
+                    Description = "Error happened in the test",
+                    Severity = 5
+
+                }
+            };
+            return StatusCode(200, await eventClient.AddEventAsync<MyEvent>(request));
+        }
+
+        #endregion
     }
 
     public class TestTimeSeriesData
@@ -460,5 +483,23 @@ namespace WebApp.Controllers
 
         [JsonProperty("z")]
         public AggregateVariable Z { get; set; }
+    }
+
+    public class MyEventAdd : EventAdd
+    {
+        [JsonProperty("description")]
+        public string Description { get; set; }
+
+        [JsonProperty("severity")]
+        public int Severity { get; set; }   
+    }
+
+    public class MyEvent : Event
+    {
+        [JsonProperty("description")]
+        public string Description { get; set; }
+
+        [JsonProperty("severity")]
+        public int Severity { get; set; }
     }
 }
