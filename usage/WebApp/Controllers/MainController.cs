@@ -519,6 +519,37 @@ namespace WebApp.Controllers
             return StatusCode(204);
         }
 
+        [HttpGet("save-asset-type-file-assignment")]
+        public async Task<ActionResult<IEnumerable<AssetType>>> SaveAssetTypeFileAssignment()
+        {
+            var assetClient = _mindSphereSdkService.GetAssetManagementClient();
+            var request = new SaveAssetTypeFileAssignmentRequest()
+            {
+                Id = "iiotdgli.My_new_asset_type",
+                Key = "testFile",
+                FileId = "fe81d2c22a9448eea41d0f460e5a5731",
+                IfMatch = "0"
+            };
+
+            AssetType assetType = await assetClient.SaveAssetTypeFileAssignmentAsync(request);
+            return StatusCode(200, assetType);
+        }
+
+        [HttpGet("delete-asset-type-file-assignment")]
+        public async Task<ActionResult<IEnumerable<AssetType>>> DeleteAssetTypeFileAssignment()
+        {
+            var assetClient = _mindSphereSdkService.GetAssetManagementClient();
+            var request = new DeleteAssetTypeFileAssignmentRequest()
+            {
+                Id = "iiotdgli.My_new_asset_type",
+                Key = "testFile",
+                IfMatch = "1"
+            };
+
+            AssetType assetType = await assetClient.DeleteAssetTypeFileAssignmentAsync(request);
+            return StatusCode(200, assetType);
+        }
+
         #endregion
 
         #region Event

@@ -620,5 +620,25 @@ namespace MindSphereSdk.Core.AssetManagement
         public string IfMatch { get; set; }
     }
 
+    /// <summary>
+    /// Request for saving asset type file assignment
+    /// </summary>
+    public class SaveAssetTypeFileAssignmentRequest
+    {
+        public string Id { get; set; }
+        public string Key { get; set; }
+        public string IfMatch { get; set; }
+        public string FileId { get; set; }
+    }
+
+    /// <summary>
+    /// Request for deleting asset type file assignment
+    /// </summary>
+    public class DeleteAssetTypeFileAssignmentRequest
+    {
+        public string Id { get; set; }
+        public string Key { get; set; }
+        public string IfMatch { get; set; }
+    }
     #endregion
 }

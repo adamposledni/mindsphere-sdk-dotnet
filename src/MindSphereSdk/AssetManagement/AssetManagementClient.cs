@@ -409,6 +409,44 @@ namespace MindSphereSdk.Core.AssetManagement
             await HttpActionAsync(HttpMethod.Delete, uri, headers: headers);
         }
 
+        /// <summary>
+        /// Save a file assignment to an asset
+        /// </summary>
+        public async Task<AssetType> SaveAssetTypeFileAssignmentAsync(SaveAssetTypeFileAssignmentRequest request)
+        {
+            string uri = _baseUri + "/assettypes/" + request.Id + "/fileAssignments/" + request.Key;
+
+            // prepare HTTP request headers
+            List<KeyValuePair<string, string>> headers = new List<KeyValuePair<string, string>>();
+            headers.Add(new KeyValuePair<string, string>("If-Match", request.IfMatch));
+
+            // prepare HTTP request body
+            object fileIdObject = new { fileId = request.FileId };
+            StringContent body = new StringContent(JsonConvert.SerializeObject(fileIdObject), Encoding.UTF8, "application/json");
+
+            string response = await HttpActionAsync(HttpMethod.Put, uri, body, headers);
+            var assetType = JsonConvert.DeserializeObject<AssetType>(response);
+
+            return assetType;
+        }
+
+        /// <summary>
+        /// Delete a file assignment from an asset type
+        /// </summary>
+        public async Task<AssetType> DeleteAssetTypeFileAssignmentAsync(DeleteAssetTypeFileAssignmentRequest request)
+        {
+            string uri = _baseUri + "/assettypes/" + request.Id + "/fileAssignments/" + request.Key;
+
+            // prepare HTTP request headers
+            List<KeyValuePair<string, string>> headers = new List<KeyValuePair<string, string>>();
+            headers.Add(new KeyValuePair<string, string>("If-Match", request.IfMatch));
+
+            string response = await HttpActionAsync(HttpMethod.Delete, uri, headers: headers);
+            var assetType = JsonConvert.DeserializeObject<AssetType>(response);
+
+            return assetType;
+        }
+
         #endregion
     }
 }
