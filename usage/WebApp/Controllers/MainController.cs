@@ -321,8 +321,8 @@ namespace WebApp.Controllers
                 Category = "static",
                 Description = "Test",
                 Scope = "private",
-                Variables = new TypeVariables[] {
-                    new TypeVariables() 
+                Variables = new VariableDetail[] {
+                    new VariableDetail() 
                     {
                         Name = "velocity",
                         Unit = "m/s",
@@ -335,7 +335,7 @@ namespace WebApp.Controllers
             {
                 Id = "iiotdgli.My_new_asset",
                 IfNoneMatch = "*",
-                AspectType = newAspectType
+                Body = newAspectType
             };
             var aspectType = await assetClient.PutAspectTypeAsync(request);
 
@@ -349,12 +349,12 @@ namespace WebApp.Controllers
 
             var updatedAspectType = new AspectTypeUpdate()
             {
-                Name = "My_new_asset",
+                Name = "My_new_aspect_type",
                 Category = "static",
                 Description = "Updated test",
                 Scope = "private",
-                Variables = new TypeVariables[] {
-                    new TypeVariables()
+                Variables = new VariableDetail[] {
+                    new VariableDetail()
                     {
                         Name = "velocity",
                         Unit = "m/s",
@@ -365,9 +365,9 @@ namespace WebApp.Controllers
 
             var request = new PutAspectTypeRequest()
             {
-                Id = "iiotdgli.My_new_asset",
+                Id = "iiotdgli.My_new_aspect_type",
                 IfMatch = "0",
-                AspectType = updatedAspectType
+                Body = updatedAspectType
             };
             var aspectType = await assetClient.PutAspectTypeAsync(request);
 
@@ -386,9 +386,9 @@ namespace WebApp.Controllers
 
             var request = new PatchAspectTypeRequest()
             {
-                Id = "iiotdgli.My_new_asset",
+                Id = "iiotdgli.My_new_aspect_type",
                 IfMatch = "1",
-                AspectType = updatedAspectType
+                Body = updatedAspectType
             };
             var aspectType = await assetClient.PatchAspectTypeAsync(request);
 
@@ -412,7 +412,7 @@ namespace WebApp.Controllers
             return StatusCode(200, aspectTypes);
         }
 
-        [HttpGet("get-asset-types")]
+        [HttpGet("get-asset-type")]
         public async Task<ActionResult<AssetType>> GetAssetType()
         {
             var assetClient = _mindSphereSdkService.GetAssetManagementClient();
@@ -420,9 +420,103 @@ namespace WebApp.Controllers
             {
                 Id = "core.basicagent"
             };
-            AssetType aspectTypes = await assetClient.GetAssetTypeAsync(request);
+            AssetType assetType = await assetClient.GetAssetTypeAsync(request);
 
-            return StatusCode(200, aspectTypes);
+            return StatusCode(200, assetType);
+        }
+
+        [HttpGet("add-asset-type")]
+        public async Task<ActionResult<AssetType>> AddAssetType()
+        {
+            var assetClient = _mindSphereSdkService.GetAssetManagementClient();
+
+            var aspects = new List<AspectPut>();
+            aspects.Add(new AspectPut() { Name = "acceleration", AspectTypeId = "iiotdgli.acceleration" });
+
+            var newAssetType = new AssetTypeUpdate()
+            {
+                Name = "My_new_asset_type",
+                Description = "New asset type",
+                ParentTypeId = "core.basicasset",
+                Instantiable = true,
+                Scope = "private",
+                Aspects = aspects
+            };
+
+            var request = new PutAssetTypeRequest()
+            {
+                Id = "iiotdgli.My_new_asset_type",
+                IfNoneMatch = "*",
+                Body = newAssetType
+            };
+            var assetType = await assetClient.PutAssetTypeAsync(request);
+
+            return StatusCode(200, assetType);
+        }
+
+        [HttpGet("update-asset-type")]
+        public async Task<ActionResult<AssetType>> UpdateAssetType()
+        {
+            var assetClient = _mindSphereSdkService.GetAssetManagementClient();
+
+            var aspects = new List<AspectPut>();
+            aspects.Add(new AspectPut() { Name = "acceleration", AspectTypeId = "iiotdgli.acceleration" });
+
+            var newAssetType = new AssetTypeUpdate()
+            {
+                Name = "My_new_asset_type",
+                Description = "Updated asset type",
+                ParentTypeId = "core.basicasset",
+                Instantiable = true,
+                Scope = "private",
+                Aspects = aspects
+            };
+
+            var request = new PutAssetTypeRequest()
+            {
+                Id = "iiotdgli.My_new_asset_type",
+                IfMatch = "0",
+                Body = newAssetType
+            };
+            var assetType = await assetClient.PutAssetTypeAsync(request);
+
+            return StatusCode(200, assetType);
+        }
+
+        [HttpGet("patch-asset-type")]
+        public async Task<ActionResult<AssetType>> PatchAssetType()
+        {
+            var assetClient = _mindSphereSdkService.GetAssetManagementClient();
+
+            var updatedAssetType = new AssetTypeUpdate()
+            {
+                Description = "Patched asset type"
+            };
+
+            var request = new PatchAssetTypeRequest()
+            {
+                Id = "iiotdgli.My_new_asset_type",
+                IfMatch = "1",
+                Body = updatedAssetType
+            };
+            var assetType = await assetClient.PatchAssetTypeAsync(request);
+
+            return StatusCode(200, assetType);
+        }
+
+        [HttpGet("delete-asset-type")]
+        public async Task<ActionResult<AssetType>> DeleteAssetType()
+        {
+            var assetClient = _mindSphereSdkService.GetAssetManagementClient();
+
+            var request = new DeleteAssetTypeRequest()
+            {
+                Id = "iiotdgli.My_new_asset_type",
+                IfMatch = "2"
+            };
+            await assetClient.DeleteAssetTypeAsync(request);
+
+            return StatusCode(204);
         }
 
         #endregion

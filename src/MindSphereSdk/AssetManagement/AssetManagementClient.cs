@@ -267,7 +267,7 @@ namespace MindSphereSdk.Core.AssetManagement
             string uri = _baseUri + "/aspecttypes/" + request.Id;
 
             // prepare HTTP request body
-            string jsonString = JsonConvert.SerializeObject(request.AspectType);
+            string jsonString = JsonConvert.SerializeObject(request.Body);
             StringContent body = new StringContent(jsonString, Encoding.UTF8, "application/json");
 
             // prepare HTTP request headers
@@ -289,7 +289,7 @@ namespace MindSphereSdk.Core.AssetManagement
             string uri = _baseUri + "/aspecttypes/" + request.Id;
 
             // prepare HTTP request body
-            string jsonString = JsonConvert.SerializeObject(request.AspectType,
+            string jsonString = JsonConvert.SerializeObject(request.Body,
                 new JsonSerializerSettings()
                 {
                     NullValueHandling = NullValueHandling.Ignore
@@ -325,10 +325,10 @@ namespace MindSphereSdk.Core.AssetManagement
             string uri = _baseUri + "/assettypes" + queryString;
 
             string response = await HttpActionAsync(HttpMethod.Get, uri);
-            var aspectTypeListWrapper = JsonConvert.DeserializeObject<MindSphereResourceWrapper<EmbeddedAssetTypeList>>(response);
-            var aspectTypeList = aspectTypeListWrapper.Embedded.AssetTypes;
+            var assetTypeListWrapper = JsonConvert.DeserializeObject<MindSphereResourceWrapper<EmbeddedAssetTypeList>>(response);
+            var assetTypeList = assetTypeListWrapper.Embedded.AssetTypes;
 
-            return aspectTypeList;
+            return assetTypeList;
         }
 
         /// <summary>
@@ -339,9 +339,74 @@ namespace MindSphereSdk.Core.AssetManagement
             string uri = _baseUri + "/assettypes/" + request.Id;
 
             string response = await HttpActionAsync(HttpMethod.Get, uri);
-            var aspectType = JsonConvert.DeserializeObject<AssetType>(response);
+            var assetType = JsonConvert.DeserializeObject<AssetType>(response);
 
-            return aspectType;
+            return assetType;
+        }
+
+        /// <summary>
+        /// Create or update an asset type
+        /// </summary>
+        public async Task<AssetType> PutAssetTypeAsync(PutAssetTypeRequest request)
+        {
+            string uri = _baseUri + "/assettypes/" + request.Id;
+
+            // prepare HTTP request body
+            string jsonString = JsonConvert.SerializeObject(request.Body,
+                new JsonSerializerSettings()
+                {
+                    NullValueHandling = NullValueHandling.Ignore
+                });
+            StringContent body = new StringContent(jsonString, Encoding.UTF8, "application/json");
+
+            // prepare HTTP request headers
+            List<KeyValuePair<string, string>> headers = new List<KeyValuePair<string, string>>();
+            headers.Add(new KeyValuePair<string, string>("If-None-Match", request.IfNoneMatch));
+            headers.Add(new KeyValuePair<string, string>("If-Match", request.IfMatch));
+
+            string response = await HttpActionAsync(HttpMethod.Put, uri, body, headers);
+            var assetType = JsonConvert.DeserializeObject<AssetType>(response);
+
+            return assetType;
+        }
+
+        /// <summary>
+        /// Patch an asset type
+        /// </summary>
+        public async Task<AssetType> PatchAssetTypeAsync(PatchAssetTypeRequest request)
+        {
+            string uri = _baseUri + "/assettypes/" + request.Id;
+
+            // prepare HTTP request body
+            string jsonString = JsonConvert.SerializeObject(request.Body,
+                new JsonSerializerSettings()
+                {
+                    NullValueHandling = NullValueHandling.Ignore
+                });
+            StringContent body = new StringContent(jsonString, Encoding.UTF8, "application/merge-patch+json");
+
+            // prepare HTTP request headers
+            List<KeyValuePair<string, string>> headers = new List<KeyValuePair<string, string>>();
+            headers.Add(new KeyValuePair<string, string>("If-Match", request.IfMatch));
+
+            string response = await HttpActionAsync(new HttpMethod("PATCH"), uri, body, headers);
+            var assetType = JsonConvert.DeserializeObject<AssetType>(response);
+
+            return assetType;
+        }
+
+        /// <summary>
+        /// Delete an asset type 
+        /// </summary>
+        public async Task DeleteAssetTypeAsync(DeleteAssetTypeRequest request)
+        {
+            string uri = _baseUri + "/assettypes/" + request.Id;
+
+            // prepare HTTP request headers
+            List<KeyValuePair<string, string>> headers = new List<KeyValuePair<string, string>>();
+            headers.Add(new KeyValuePair<string, string>("If-Match", request.IfMatch));
+
+            await HttpActionAsync(HttpMethod.Delete, uri, headers: headers);
         }
 
         #endregion

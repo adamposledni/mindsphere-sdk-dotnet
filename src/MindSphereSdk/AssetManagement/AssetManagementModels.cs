@@ -183,7 +183,20 @@ namespace MindSphereSdk.Core.AssetManagement
         [JsonProperty("name")]
         public string Name { get; set; }
 
+        [JsonProperty("variables")]
         public IEnumerable<Variable> Variables { get; set; }
+    }
+
+    /// <summary>
+    /// Aspect for putting
+    /// </summary>
+    public class AspectPut
+    {
+        [JsonProperty("name")]
+        public string Name { get; set; }
+
+        [JsonProperty("aspectTypeId")]
+        public string AspectTypeId { get; set; }
     }
 
     /// <summary>
@@ -270,7 +283,7 @@ namespace MindSphereSdk.Core.AssetManagement
         public string Description { get; set; }
 
         [JsonProperty("variables")]
-        public IEnumerable<TypeVariables> Variables { get; set; }
+        public IEnumerable<VariableDetail> Variables { get; set; }
 
         [JsonProperty("id")]
         public string Id { get; set; }
@@ -300,7 +313,7 @@ namespace MindSphereSdk.Core.AssetManagement
         public string Description { get; set; }
 
         [JsonProperty("variables")]
-        public IEnumerable<TypeVariables> Variables { get; set; }
+        public IEnumerable<VariableDetail> Variables { get; set; }
     }
 
     #endregion
@@ -340,7 +353,37 @@ namespace MindSphereSdk.Core.AssetManagement
         public List<AspectDetail> Aspects { get; set; }
 
         [JsonProperty("variables")]
-        public List<TypeVariables> Variables { get; set; }
+        public List<VariableDetail> Variables { get; set; }
+
+        [JsonProperty("fileAssignments")]
+        public List<FileAssignment> FileAssignments { get; set; }
+    }
+
+    /// <summary>
+    /// Asset type (create or update)
+    /// </summary>
+    public class AssetTypeUpdate
+    {
+        [JsonProperty("name")]
+        public string Name { get; set; }
+
+        [JsonProperty("description")]
+        public string Description { get; set; }
+
+        [JsonProperty("parentTypeId")]
+        public string ParentTypeId { get; set; }
+
+        [JsonProperty("instantiable")]
+        public bool? Instantiable { get; set; }
+
+        [JsonProperty("scope")]
+        public string Scope { get; set; }
+
+        [JsonProperty("aspects")]
+        public List<AspectPut> Aspects { get; set; }
+
+        [JsonProperty("variables")]
+        public List<VariableDetail> Variables { get; set; }
 
         [JsonProperty("fileAssignments")]
         public List<FileAssignment> FileAssignments { get; set; }
@@ -353,7 +396,7 @@ namespace MindSphereSdk.Core.AssetManagement
     /// <summary>
     /// Variable for asset/aspect type
     /// </summary>
-    public class TypeVariables
+    public class VariableDetail
     {
         [JsonProperty("name")]
         public string Name { get; set; }
@@ -512,7 +555,7 @@ namespace MindSphereSdk.Core.AssetManagement
         public string Id { get; set; }
         public string IfNoneMatch { get; set; }
         public string IfMatch { get; set; }
-        public AspectTypeUpdate AspectType { get; set; }
+        public AspectTypeUpdate Body { get; set; }
     }
 
     /// <summary>
@@ -522,7 +565,7 @@ namespace MindSphereSdk.Core.AssetManagement
     {
         public string Id { get; set; }
         public string IfMatch { get; set; }
-        public AspectTypeUpdate AspectType { get; set; }
+        public AspectTypeUpdate Body { get; set; }
     }
 
     /// <summary>
@@ -545,6 +588,36 @@ namespace MindSphereSdk.Core.AssetManagement
     public class GetAssetTypeRequest
     {
         public string Id { get; set; }
+    }
+
+    /// <summary>
+    /// Request for putting asset type
+    /// </summary>
+    public class PutAssetTypeRequest
+    {
+        public string Id { get; set; }
+        public string IfNoneMatch { get; set; }
+        public string IfMatch { get; set; }
+        public AssetTypeUpdate Body { get; set; }
+    }
+
+    /// <summary>
+    /// Request for patching asset type
+    /// </summary>
+    public class PatchAssetTypeRequest
+    {
+        public string Id { get; set; }
+        public string IfMatch { get; set; }
+        public AssetTypeUpdate Body { get; set; }
+    }
+
+    /// <summary>
+    /// Request for deleting asset type
+    /// </summary>
+    public class DeleteAssetTypeRequest
+    {
+        public string Id { get; set; }
+        public string IfMatch { get; set; }
     }
 
     #endregion
