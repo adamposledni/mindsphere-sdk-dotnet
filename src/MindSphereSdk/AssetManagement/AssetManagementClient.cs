@@ -47,7 +47,7 @@ namespace MindSphereSdk.Core.AssetManagement
         /// <summary>
         /// Create an asset
         /// </summary>
-        public async Task<Asset> AddAssetsAsync(AddAssetRequest request)
+        public async Task<Asset> AddAssetAsync(AddAssetRequest request)
         {
             string uri = _baseUri + "/assets";
 

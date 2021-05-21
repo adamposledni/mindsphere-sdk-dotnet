@@ -8,7 +8,7 @@ namespace MindSphereSdk.Core.IotTimeSeries
     /// <summary>
     /// Time Series for one asset and one aspect
     /// </summary>
-    public class TimeSeriesObject
+    public class TimeSeries
     {
         [JsonProperty("entityId")]
         public string EntityId { get; set; }
@@ -19,6 +19,8 @@ namespace MindSphereSdk.Core.IotTimeSeries
         [JsonProperty("data")]
         public IEnumerable<object> Data { get; set; }
     }
+
+    #region Request
 
     /// <summary>
     /// Request for getting time series
@@ -41,7 +43,7 @@ namespace MindSphereSdk.Core.IotTimeSeries
     public class PutTimeSeriesRequest
     {
         [JsonProperty("timeseries")]
-        public IEnumerable<TimeSeriesObject> TimeSeries { get; set; }
+        public IEnumerable<TimeSeries> TimeSeries { get; set; }
     }
 
     /// <summary>
@@ -55,4 +57,5 @@ namespace MindSphereSdk.Core.IotTimeSeries
         public DateTime? To { get; set; }
     }
 
+    #endregion
 }
