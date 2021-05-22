@@ -207,6 +207,90 @@ namespace MindSphereSdk.Core.AssetManagement
             return asset;
         }
 
+        /// <summary>
+        /// Get all variables of an asset 
+        /// </summary>
+        public async Task<IEnumerable<VariableDetail>> ListAssetVariablesAsync(ListAssetVariablesRequest request)
+        {
+            // prepare query string
+            string queryString = "?";
+            queryString += request.Size != null ? $"size={request.Size}&" : "";
+            queryString += request.Page != null ? $"page={request.Page}&" : "";
+            queryString += request.Sort != null ? $"sort={request.Sort}&" : "";
+            queryString += request.Filter != null ? $"filter={request.Filter}&" : "";
+
+            string uri = _baseUri + "/assets/" + request.Id + "/variables" + queryString;
+
+            string response = await HttpActionAsync(HttpMethod.Get, uri);
+            var variableListWrapper = JsonConvert.DeserializeObject<MindSphereResourceWrapper<EmbeddedVariableList>>(response);
+            var variableList = variableListWrapper.Embedded.Variables;
+
+            return variableList;
+        }
+
+        /// <summary>
+        /// Get all aspects of an asset 
+        /// </summary>
+        public async Task<IEnumerable<AspectFullDetail>> ListAssetAspectsAsync(ListAssetAspectsRequest request)
+        {
+            // prepare query string
+            string queryString = "?";
+            queryString += request.Size != null ? $"size={request.Size}&" : "";
+            queryString += request.Page != null ? $"page={request.Page}&" : "";
+            queryString += request.Sort != null ? $"sort={request.Sort}&" : "";
+            queryString += request.Filter != null ? $"filter={request.Filter}&" : "";
+
+            string uri = _baseUri + "/assets/" + request.Id + "/aspects" + queryString;
+
+            string response = await HttpActionAsync(HttpMethod.Get, uri);
+            var aspectListWrapper = JsonConvert.DeserializeObject<MindSphereResourceWrapper<EmbeddedAspectList>>(response);
+            var aspectList = aspectListWrapper.Embedded.Aspects;
+
+            return aspectList;
+        }
+
+        /// <summary>
+        /// Create or Update location assigned to given asset
+        /// </summary>
+        public async Task<Asset> PutAssetLocationAsync(PutAssetLocationRequest request)
+        {
+            string uri = _baseUri + "/assets/" + request.Id + "/location";
+
+            // prepare HTTP request body
+            string jsonString = JsonConvert.SerializeObject(request.Body,
+                new JsonSerializerSettings()
+                {
+                    NullValueHandling = NullValueHandling.Ignore
+                });
+            StringContent body = new StringContent(jsonString, Encoding.UTF8, "application/json");
+
+            // prepare HTTP request headers
+            List<KeyValuePair<string, string>> headers = new List<KeyValuePair<string, string>>();
+            headers.Add(new KeyValuePair<string, string>("If-Match", request.IfMatch));
+
+            string response = await HttpActionAsync(HttpMethod.Put, uri, body, headers);
+            var asset = JsonConvert.DeserializeObject<Asset>(response);
+
+            return asset;
+        }
+
+        /// <summary>
+        /// Delete location assigned to given asset
+        /// </summary>
+        public async Task<Asset> DeleteAssetLocationAsync(DeleteAssetLocationRequest request)
+        {
+            string uri = _baseUri + "/assets/" + request.Id + "/location";
+
+            // prepare HTTP request headers
+            List<KeyValuePair<string, string>> headers = new List<KeyValuePair<string, string>>();
+            headers.Add(new KeyValuePair<string, string>("If-Match", request.IfMatch));
+
+            string response = await HttpActionAsync(HttpMethod.Delete, uri, headers: headers);
+            var asset = JsonConvert.DeserializeObject<Asset>(response);
+
+            return asset;
+        }
+
         #endregion
 
         #region Aspect type

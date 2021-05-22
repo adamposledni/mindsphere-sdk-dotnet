@@ -176,6 +176,67 @@ namespace WebApp.Controllers
             return StatusCode(200, asset);
         }
 
+        [HttpGet("list-asset-variables")]
+        public async Task<ActionResult<IEnumerable<VariableDetail>>> ListAssetVariables()
+        {
+            var assetClient = _mindSphereSdkService.GetAssetManagementClient();
+            var request = new ListAssetVariablesRequest()
+            {
+                Id = "8e16eb2d33774c22b94d9fa4792753b9"
+            };
+            var variables = (await assetClient.ListAssetVariablesAsync(request)).ToList();
+
+            return StatusCode(200, variables);
+        }
+
+        [HttpGet("list-asset-apects")]
+        public async Task<ActionResult<IEnumerable<AspectFullDetail>>> ListAssetAspects()
+        {
+            var assetClient = _mindSphereSdkService.GetAssetManagementClient();
+            var request = new ListAssetAspectsRequest()
+            {
+                Id = "8e16eb2d33774c22b94d9fa4792753b9"
+            };
+            var aspects = (await assetClient.ListAssetAspectsAsync(request)).ToList();
+
+            return StatusCode(200, aspects);
+        }
+
+        [HttpGet("put-asset-location")]
+        public async Task<ActionResult<Asset>> PutAssetLocation()
+        {
+            var assetClient = _mindSphereSdkService.GetAssetManagementClient();
+            var request = new PutAssetLocationRequest()
+            {
+                Body = new Location()
+                {
+                    Country = "Czech Republic",
+                    StreetAddress = "Makova",
+                    Region = "Ustecky kraj",
+                    PostalCode = "400 11"
+                },
+                Id = "8e16eb2d33774c22b94d9fa4792753b9",
+                IfMatch = "1"
+            };
+
+            Asset response = await assetClient.PutAssetLocationAsync(request);
+            return StatusCode(200, response);
+        }
+
+        [HttpGet("delete-asset-location")]
+        public async Task<ActionResult<Asset>> DeleteAssetLocation()
+        {
+            var assetClient = _mindSphereSdkService.GetAssetManagementClient();
+            var request = new DeleteAssetLocationRequest()
+            {
+                Id = "8e16eb2d33774c22b94d9fa4792753b9",
+                IfMatch = "2"
+            };
+
+            Asset response = await assetClient.DeleteAssetLocationAsync(request);
+            return StatusCode(200, response);
+        }
+
         #endregion
 
         #region Time Series

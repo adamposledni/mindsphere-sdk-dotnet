@@ -35,6 +35,24 @@ namespace MindSphereSdk.Core.AssetManagement
         public IEnumerable<AssetType> AssetTypes { get; set; }
     }
 
+    /// <summary>
+    /// Wrapper for variable list
+    /// </summary>
+    public class EmbeddedVariableList : IEmbeddedResource
+    {
+        [JsonProperty("variables")]
+        public IEnumerable<VariableDetail> Variables { get; set; }
+    }
+
+    /// <summary>
+    /// Wrapper for aspect list
+    /// </summary>
+    public class EmbeddedAspectList : IEmbeddedResource
+    {
+        [JsonProperty("aspects")]
+        public IEnumerable<AspectFullDetail> Aspects { get; set; }
+    }
+
     #endregion
 
     #region Asset
@@ -212,6 +230,33 @@ namespace MindSphereSdk.Core.AssetManagement
 
         [JsonProperty("aspectType")]
         public AspectType AspectType { get; set; }
+    }
+
+    /// <summary>
+    /// Aspect full detail
+    /// </summary>
+    public class AspectFullDetail
+    {
+        [JsonProperty("aspectTypeId")]
+        public string AspectTypeId { get; set; }
+
+        [JsonProperty("holderAssetId")]
+        public string HolderAssetId { get; set; }
+
+        [JsonProperty("name")]
+        public string Name { get; set; }
+
+        [JsonProperty("aspectId")]
+        public string AspectId { get; set; }
+
+        [JsonProperty("category")]
+        public string Category { get; set; }
+
+        [JsonProperty("description")]
+        public string Description { get; set; }
+
+        [JsonProperty("variables")]
+        public IEnumerable<VariableDetail> Variables { get; set; }
     }
 
     #endregion
@@ -638,6 +683,49 @@ namespace MindSphereSdk.Core.AssetManagement
     {
         public string Id { get; set; }
         public string Key { get; set; }
+        public string IfMatch { get; set; }
+    }
+
+    /// <summary>
+    /// Request for listing all asset's variables
+    /// </summary>
+    public class ListAssetVariablesRequest
+    {
+        public string Id { get; set; }
+        public int? Page { get; set; }
+        public int? Size { get; set; }
+        public string Sort { get; set; }
+        public string Filter { get; set; }
+    }
+
+    /// <summary>
+    /// Request for listing all asset's aspects
+    /// </summary>
+    public class ListAssetAspectsRequest
+    {
+        public string Id { get; set; }
+        public int? Page { get; set; }
+        public int? Size { get; set; }
+        public string Sort { get; set; }
+        public string Filter { get; set; }
+    }
+
+    /// <summary>
+    /// Request for putting asset's location
+    /// </summary>
+    public class PutAssetLocationRequest
+    {
+        public string Id { get; set; }
+        public string IfMatch { get; set; }
+        public Location Body { get; set; }
+    }
+
+    /// <summary>
+    /// Request for deleting asset's location
+    /// </summary>
+    public class DeleteAssetLocationRequest
+    {
+        public string Id { get; set; }
         public string IfMatch { get; set; }
     }
     #endregion
