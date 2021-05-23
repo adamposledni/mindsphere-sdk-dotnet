@@ -2,10 +2,24 @@
 
   <PropertyGroup>
   <TargetFramework>netstandard2.0</TargetFramework>
+  <Authors>Adam Hrouda</Authors>
+  <Description>Extension of .NET SDK for MindSphere APIs to integrate with ASP.NET Core</Description>
+  <Copyright>© Adam Hrouda 2021</Copyright>
+  <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
+  <RepositoryUrl>https://github.com/hroudaadam/mindsphere-sdk-dotnet</RepositoryUrl>
+  <PackageTags>dotnet, sdk, siemens, mindsphere, mindsphere-api</PackageTags>
+  <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MindSphereSdk.Core\MindSphereSdk.Core.csproj" />
+    <None Include="..\..\LICENSE.md">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MindSphereSdk.Core" Version="1.0.0" />
   </ItemGroup>
 
 </Project>
