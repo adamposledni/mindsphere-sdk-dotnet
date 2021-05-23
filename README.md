@@ -7,7 +7,20 @@ Open-source .NET SDK for [MindSphere](https://siemens.mindsphere.io/) APIs mainl
 *This project was started on my own initiative. I am still a student and I am trying my best to develop useful solution for the absence of .NET SDK. Of course, any help is more than welcome. My goal is to develop SDK similar to [MindSphere SDK for Node.js](https://developer.mindsphere.io/resources/mindsphere-sdk-node/index.html).*
 
 ## Installation
-❗ TBD ❗
+
+The SDK is hosted as a package on the [nuget.org](https://www.nuget.org/).
+
+[**Core project**](https://www.nuget.org/packages/MindSphereSdk.Core/)
+
+```
+dotnet add package MindSphereSdk.Core --version 1.0.0
+```
+
+[**Extension project**](https://www.nuget.org/packages/MindSphereSdk.AspNetCore/)
+
+```
+dotnet add package MindSphereSdk.AspNetCore --version 1.0.0
+```
 
 ## Examples
 
