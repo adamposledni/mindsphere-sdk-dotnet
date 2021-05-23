@@ -3,82 +3,105 @@
 
 Open-source .NET SDK for [MindSphere](https://siemens.mindsphere.io/) APIs mainly to support backend development in [ASP.NET Core](https://github.com/dotnet/aspnetcore).
 
-❗ **Project is still a work in progress.** ❗
 
-This project was started on my own initiative. I am still a student and I am trying my best to develop useful solution for the absence of .NET SDK. Of course, any help is more than welcome.
+*This project was started on my own initiative. I am still a student and I am trying my best to develop useful solution for the absence of .NET SDK. Of course, any help is more than welcome. My goal is to develop SDK similar to [MindSphere SDK for Node.js](https://developer.mindsphere.io/resources/mindsphere-sdk-node/index.html).*
 
-My goal is to develop SDK similar to [MindSphere SDK for Node.js](https://developer.mindsphere.io/resources/mindsphere-sdk-node/index.html).
+---
 
-## What is ready?
+## Installation
+❗ TBD ❗
 
-Following features are implemented for now (in some cases few more changes are needed).
+---
 
-**Authentication**
-- using application credentials
-
-**Asset managemet**
-- list all assets
-- read an asset
-- create an asset
-- update an asset
-- patch an asset
-- delete an asset
-- move an asset
-- read the root asset of the user
-- save asset file assignment
-- delete asset file assignment
-- list all aspect types
-- read an aspect type
-- delete an aspect type
-- put an aspect type
-- patch and aspect type
-
-**IOT time series**
-- read time series data
-- write time series data
-- delete time series data
-
-**IOT time series aggregates**
-- read aggregate time series data
-
-**Others**
-- usage with ASP.<i></i>NET Core
-- load application credentials from a file
 
 ## Examples
 
-Examples of the current state of the project. Some of them might change in the future.
+Provided code examples will guide you through this SDK.
 
+- *Application credentials*
+- *Application credentials from JSON*
+- *Create a client*
+- *ServiceCollection usage*
+- *Asset operations (list, get, create, delete, update)*
 
-### Usage with ASP.<i></i>NET Core
+---
 
-Register service in the *Startup.cs* with credentials settings.
+### Application credentials
 
 ```csharp
-services.AddHttpClient(); // SDK needs HttpClient in the DI container
+AppCredentials credentials = new AppCredentials(
+    "<client-id>",
+    "<client-secret>",
+    "<app-name>",
+    "<app-version>",
+    "<host-tenant>",
+    "<user-tenant>"
+);
+```
+
+---
+
+### Application credentials from JSON
+
+```csharp
+AppCredentials appCredentials = AppCredentials.FromJsonFile("<file-path>");
+```
+
+The JSON file has to fit to the given structure.
+
+```json
+{
+    "keyStoreClientId": "<client-id>",
+    "keyStoreClientSecret": "<client-secret>",
+    "appName": "<app-name>",
+    "appVersion": "<app-version>",
+    "hostTenant": "<host-tenant>",
+    "userTenant": "<user-tenant>"
+}
+```
+
+---
+
+### Create a client
+
+The client constructor must be provided with HttpClient. 
+
+```csharp
+HttpClient httpClient = new HttpClient();
+AssetManagementClient client = new AssetManagementClient(appCredentials, httpClient);
+```
+
+When you create multiple MindSphere clients you should reuse your HttpClient. [Here are more information regarding this matter.](https://docs.microsoft.com/en-us/dotnet/api/system.net.http.httpclient?view=net-5.0#remarks)
+
+---
+
+### ServiceCollection usage
+
+If you have installed ASP.NET Core extension, then you can simply register MindSphere service in the service container. However you it is not necessary to use this feature.
+
+This service needs to have HttpClient service in the container as well.
+
+```csharp
+// Startup.cs file
+services.AddHttpClient();
 services.AddMindSphereSdkService(options =>
 {
-    options.Credentials = new AppCredentials(
-        "<client-id>",
-        "<client-secret>",
-        "<app-name>",
-        "<app-version",
-        "<host-tenant>",
-        "<user-tenant>"
-    );
+    options.Credentials = new AppCredentials(...);
 });
 ```
 
-Specify dependency in e.g. controller. 
+After that you can use this service in e.g. controller. 
 
 ```csharp
-private IMindSphereSdkService _mindSphereSdkService;
+private AssetManagementClient _client;
 
 public MainController(IMindSphereSdkService mindSphereSdkService)
 {
-    _mindSphereSdkService = mindSphereSdkService;
+    _client = mindSphereSdkService.GetAssetManagementClient();
 }
 ```
+
+---
 
 ### Listing assets
 
@@ -105,6 +128,8 @@ public class Asset
     // and more ...
 }
 ```
+
+---
 
 ### Getting time series data
 
@@ -141,6 +166,8 @@ var request = new GetTimeSeriesRequest()
 List<TestTimeSeriesData> timeSeries = (await iotClient.GetTimeSeriesAsync<TestTimeSeriesData>(request)).ToList();
 ```
 
+---
+
 ### Putting new time series data
 
 To put new time series data into the MindSphere you can use predefined class or anonymous type.
@@ -175,6 +202,8 @@ PutTimeSeriesRequest request = new PutTimeSeriesRequest()
 };
 await iotClient.PutTimeSeriesAsync(request);
 ```
+
+---
 
 ### Getting time series aggregates
 
