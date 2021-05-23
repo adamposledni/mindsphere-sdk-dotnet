@@ -104,7 +104,9 @@ namespace MindSphereSdk.AspNetCore
             Action<MindSphereSdkServiceOptions> setupAction)
         {
             collection.Configure(setupAction);
-            return collection.AddSingleton<IMindSphereSdkService, MindSphereSdkService>();
+            collection.AddSingleton<IMindSphereSdkService, MindSphereSdkService>();
+
+            return collection;
         }
     }
 

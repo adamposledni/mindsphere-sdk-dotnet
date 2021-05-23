@@ -13,26 +13,19 @@ namespace ConsoleApp
     {
         static async Task Main(string[] args)
         {
-            AppCredentials appCredentials = new AppCredentials(
-                "iiotdgli-testapplication-1.0.0",
-                "***",
-                "testapplication",
-                "1.0.0",
-                "iiotdgli",
-                "iiotdgli"
-            );
-
+            AppCredentials appCredentials = AppCredentials.FromJsonFile(@"..\..\..\..\..\mdspcreds.json");
             HttpClient httpClient = new HttpClient();
 
             AssetManagementClient assetClient = new AssetManagementClient(appCredentials, httpClient);
 
-            List<Asset> test = (await assetClient.ListAssetsAsync()).ToList();
+            ListAssetsRequest request = new ListAssetsRequest()
+            {
+                Size = 200
+            };
+            List<Asset> test = (await assetClient.ListAssetsAsync(request)).ToList();
             foreach (var item in test)
             {
                 Console.WriteLine(item.AssetId);
-                if (item.Location != null) {
-                    Console.WriteLine(item.Location.Country);
-                }
             }
             
             Console.ReadKey();

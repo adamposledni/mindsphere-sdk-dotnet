@@ -28,7 +28,7 @@ namespace MindSphereSdk.Core.AssetManagement
         /// <summary>
         /// List all available assets
         /// </summary>
-        public async Task<IEnumerable<Asset>> ListAssetsAsync(ListAssetsRequest request = null)
+        public async Task<IEnumerable<Asset>> ListAssetsAsync(ListAssetsRequest request)
         {
             // prepare query string
             string queryString = "?";
