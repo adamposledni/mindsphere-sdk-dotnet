@@ -6,6 +6,8 @@ using System.Text;
 using System.Threading.Tasks;
 using MindSphereSdk.Core.AssetManagement;
 using MindSphereSdk.Core.Common;
+using MindSphereSdk.Core.IotTimeSeries;
+using MindSphereSdk.Core.IotTsAggregates;
 
 namespace ConsoleApp
 {
@@ -17,6 +19,7 @@ namespace ConsoleApp
             HttpClient httpClient = new HttpClient();
 
             AssetManagementClient assetClient = new AssetManagementClient(appCredentials, httpClient);
+            
 
             ListAssetsRequest request = new ListAssetsRequest()
             {

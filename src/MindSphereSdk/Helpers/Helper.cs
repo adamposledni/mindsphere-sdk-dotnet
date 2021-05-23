@@ -15,7 +15,10 @@ namespace MindSphereSdk.Core.Helpers
             string dateString = date.ToUniversalTime().ToString("s") + "Z";
             return dateString;
         }
+    }
 
+    public static class MultipartFormDataContentExtension
+    {
         /// <summary>
         /// Extension method for MultipartFormDataContent to add only not-null values
         /// </summary>
@@ -27,6 +30,4 @@ namespace MindSphereSdk.Core.Helpers
             }
         }
     }
-
-
 }

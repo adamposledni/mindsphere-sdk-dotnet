@@ -131,7 +131,7 @@ namespace WebApp.Controllers
             {
                 Id = "73b2a7cdf27241e5b3f29b07266ff602",
                 IfMatch = "1",
-                MoveParameters = new AssetMove() { NewParentId = "2d206ad87e9848948a1b5986ec29d028" }
+                NewParentId = "2d206ad87e9848948a1b5986ec29d028"
             };
 
             var response = await assetClient.MoveAssetAsync(request);
@@ -285,9 +285,9 @@ namespace WebApp.Controllers
             {
                 Id = "d50316fdc608471c97cbe9a92a7ac4fc"
             };
-            var file = await assetClient.DownloadFileAsync(request);
+            string fileContent = await assetClient.DownloadFileAsync(request);
 
-            return StatusCode(200, file);
+            return StatusCode(200, fileContent);
         }
 
         [HttpGet("delete-file")]

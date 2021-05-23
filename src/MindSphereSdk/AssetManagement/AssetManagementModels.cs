@@ -591,7 +591,7 @@ namespace MindSphereSdk.Core.AssetManagement
     {
         public string Id { get; set; }
         public string IfMatch { get; set; }
-        public AssetMove MoveParameters { get; set; }
+        public string NewParentId { get; set; }
     }
 
     /// <summary>

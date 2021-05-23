@@ -147,7 +147,7 @@ namespace MindSphereSdk.Core.AssetManagement
             string uri = _baseUri + "/assets/" + request.Id + "/move";
 
             // prepare HTTP request body
-            StringContent body = new StringContent(JsonConvert.SerializeObject(request.MoveParameters), Encoding.UTF8, "application/json");
+            StringContent body = new StringContent(JsonConvert.SerializeObject(new { newParentId = request.NewParentId }), Encoding.UTF8, "application/json");
 
             // prepare HTTP request headers
             List<KeyValuePair<string, string>> headers = new List<KeyValuePair<string, string>>();
