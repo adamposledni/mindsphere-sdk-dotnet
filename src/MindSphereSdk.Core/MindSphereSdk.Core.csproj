@@ -12,6 +12,8 @@
     <RepositoryUrl>https://github.com/hroudaadam/mindsphere-sdk-dotnet</RepositoryUrl>
     <PackageTags>dotnet, sdk, siemens, mindsphere, mindsphere-api</PackageTags>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Copyright>© Adam Hrouda 2021</Copyright>
+    <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
@@ -25,6 +27,13 @@
     <PackageReference Include="Microsoft.Extensions.Options" Version="5.0.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.9.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\LICENSE.md">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>
