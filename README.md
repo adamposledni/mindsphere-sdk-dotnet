@@ -16,6 +16,12 @@ The SDK is hosted as a package on the [nuget.org](https://www.nuget.org/).
 dotnet add package MindSphereSdk.Core --version 1.0.0
 ```
 
+[**Extension project**](https://www.nuget.org/packages/MindSphereSdk.AspNetCore/)
+
+```
+dotnet add package MindSphereSdk.AspNetCore --version 1.0.0
+```
+
 ## Examples
 
 Provided code examples will guide you through this SDK.
