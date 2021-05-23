@@ -9,8 +9,10 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using File = MindSphereSdk.Core.AssetManagement.File;
 
 namespace WebApp.Controllers
 {
@@ -176,6 +178,10 @@ namespace WebApp.Controllers
             return StatusCode(200, asset);
         }
 
+        #endregion
+
+        #region Structure
+
         [HttpGet("list-asset-variables")]
         public async Task<ActionResult<IEnumerable<VariableDetail>>> ListAssetVariables()
         {
@@ -201,6 +207,10 @@ namespace WebApp.Controllers
 
             return StatusCode(200, aspects);
         }
+
+        #endregion
+
+        #region Location
 
         [HttpGet("put-asset-location")]
         public async Task<ActionResult<Asset>> PutAssetLocation()
@@ -235,6 +245,99 @@ namespace WebApp.Controllers
 
             Asset response = await assetClient.DeleteAssetLocationAsync(request);
             return StatusCode(200, response);
+        }
+
+        #endregion
+
+        #region Files
+
+        [HttpGet("list-files")]
+        public async Task<ActionResult<IEnumerable<File>>> ListFiles()
+        {
+            var assetClient = _mindSphereSdkService.GetAssetManagementClient();
+            var request = new ListFilesRequest()
+            {
+                Size = 100
+            };
+            var files = (await assetClient.ListFilesAsync(request)).ToList();
+
+            return StatusCode(200, files);
+        }
+
+        [HttpGet("get-file")]
+        public async Task<ActionResult<File>> GetFile()
+        {
+            var assetClient = _mindSphereSdkService.GetAssetManagementClient();
+            var request = new GetFileRequest()
+            {
+                Id = "fe81d2c22a9448eea41d0f460e5a5731"
+            };
+            var file = await assetClient.GetFileAsync(request);
+
+            return StatusCode(200, file);
+        }
+
+        [HttpGet("download-file")]
+        public async Task<ActionResult<string>> DownloadFile()
+        {
+            var assetClient = _mindSphereSdkService.GetAssetManagementClient();
+            var request = new DownloadFileRequest()
+            {
+                Id = "d50316fdc608471c97cbe9a92a7ac4fc"
+            };
+            var file = await assetClient.DownloadFileAsync(request);
+
+            return StatusCode(200, file);
+        }
+
+        [HttpGet("delete-file")]
+        public async Task<ActionResult> DeleteFile()
+        {
+            var assetClient = _mindSphereSdkService.GetAssetManagementClient();
+            var request = new DeleteFileRequest()
+            {
+                Id = "fe81d2c22a9448eea41d0f460e5a5731",
+                IfMatch = "0"
+            };
+            await assetClient.DeleteFileAsync(request);
+
+            return StatusCode(204);
+        }
+
+        [HttpGet("upload-file")]
+        public async Task<ActionResult<File>> UploadFile()
+        {
+            var assetClient = _mindSphereSdkService.GetAssetManagementClient();
+            var fs = new FileStream("test.txt", FileMode.Open);
+
+            var request = new UploadFileRequest()
+            {
+                File = fs,
+                Name = "test.txt"
+            };
+            var file = await assetClient.UploadFileAsync(request);
+
+            return StatusCode(200, file);
+        }
+
+        [HttpGet("update-file")]
+        public async Task<ActionResult<File>> UpdateFile()
+        {
+            var assetClient = _mindSphereSdkService.GetAssetManagementClient();
+            var fs = new FileStream("updated-test.txt", FileMode.Open);
+
+            var request = new UpdateFileRequest()
+            {
+                Id = "d50316fdc608471c97cbe9a92a7ac4fc",
+                File = fs,
+                Name = "updated-test.txt",
+                Description = "updated file",
+                Scope = "private",
+                IfMatch = "0"
+            };
+            var file = await assetClient.UpdateFileAsync(request);
+
+            return StatusCode(200, file);
         }
 
         #endregion

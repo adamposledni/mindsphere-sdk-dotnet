@@ -1,4 +1,5 @@
 ﻿using MindSphereSdk.Core.Common;
+using MindSphereSdk.Core.Exceptions;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -6,6 +7,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using MindSphereSdk.Core.Helpers;
 
 namespace MindSphereSdk.Core.AssetManagement
 {
@@ -207,6 +209,10 @@ namespace MindSphereSdk.Core.AssetManagement
             return asset;
         }
 
+        #endregion
+
+        #region Structure
+
         /// <summary>
         /// Get all variables of an asset 
         /// </summary>
@@ -249,6 +255,10 @@ namespace MindSphereSdk.Core.AssetManagement
             return aspectList;
         }
 
+        #endregion
+
+        #region Location
+
         /// <summary>
         /// Create or Update location assigned to given asset
         /// </summary>
@@ -289,6 +299,118 @@ namespace MindSphereSdk.Core.AssetManagement
             var asset = JsonConvert.DeserializeObject<Asset>(response);
 
             return asset;
+        }
+
+        #endregion
+
+        #region Files
+
+        /// <summary>
+        /// Get metadata of uploaded files.
+        /// </summary>
+        public async Task<IEnumerable<File>> ListFilesAsync(ListFilesRequest request)
+        {
+            // prepare query string
+            string queryString = "?";
+            queryString += request.Size != null ? $"size={request.Size}&" : "";
+            queryString += request.Page != null ? $"page={request.Page}&" : "";
+            queryString += request.Sort != null ? $"sort={request.Sort}&" : "";
+            queryString += request.Filter != null ? $"filter={request.Filter}&" : "";
+
+            string uri = _baseUri + "/files/" + queryString;
+
+            string response = await HttpActionAsync(HttpMethod.Get, uri);
+            var fileListWrapper = JsonConvert.DeserializeObject<MindSphereResourceWrapper<EmbeddedFileList>>(response);
+
+            if (fileListWrapper.Embedded != null && fileListWrapper.Embedded.Files != null)
+            {
+                return fileListWrapper.Embedded.Files;
+            }
+
+            return new List<File>();
+        }
+
+        /// <summary>
+        /// Returns a file's metadata by its id
+        /// </summary>
+        public async Task<File> GetFileAsync(GetFileRequest request)
+        {
+            string uri = _baseUri + "/files/" + request.Id;
+
+            string response = await HttpActionAsync(HttpMethod.Get, uri);
+            var file = JsonConvert.DeserializeObject<File>(response);
+
+            return file;
+        }
+
+        /// <summary>
+        /// Returns a file by its id
+        /// </summary>
+        public async Task<string> DownloadFileAsync(DownloadFileRequest request)
+        {
+            string uri = _baseUri + "/files/" + request.Id + "/file";
+
+            string response = await HttpActionAsync(HttpMethod.Get, uri);
+
+            return response;
+        }
+
+        /// <summary>
+        /// Delete a file
+        /// </summary>
+        public async Task DeleteFileAsync(DeleteFileRequest request)
+        {
+            string uri = _baseUri + "/files/" + request.Id;
+
+            // prepare HTTP request headers
+            List<KeyValuePair<string, string>> headers = new List<KeyValuePair<string, string>>();
+            headers.Add(new KeyValuePair<string, string>("If-Match", request.IfMatch));
+
+            await HttpActionAsync(HttpMethod.Delete, uri, headers: headers);
+        }
+
+        /// <summary>
+        /// Upload file to be used in Asset Management
+        /// </summary>
+        public async Task<File> UploadFileAsync(UploadFileRequest request)
+        {
+            string uri = _baseUri + "/files/";
+
+            // prepare HTTP request body
+            MultipartFormDataContent body = new MultipartFormDataContent();
+            body.Add(new StreamContent(request.File), "file", request.File.Name);
+            body.AddStringContentIfNotNull(request.Name, "name");
+            body.AddStringContentIfNotNull(request.Scope, "scope");
+            body.AddStringContentIfNotNull(request.Description, "description");
+
+            string response = await HttpActionAsync(HttpMethod.Post, uri, body);
+            var file = JsonConvert.DeserializeObject<File>(response);
+
+            return file;
+        }
+
+        /// <summary>
+        /// Update a file
+        /// </summary>
+        public async Task<File> UpdateFileAsync(UpdateFileRequest request)
+        {
+            string uri = _baseUri + "/files/" + request.Id;
+
+            // prepare HTTP request body
+            MultipartFormDataContent body = new MultipartFormDataContent();
+            body.Add(new StreamContent(request.File), "file", request.File.Name);
+            body.AddStringContentIfNotNull(request.Name, "name");
+            body.AddStringContentIfNotNull(request.Scope, "scope");
+            body.AddStringContentIfNotNull(request.Description, "description");
+
+            // prepare HTTP request headers
+            List<KeyValuePair<string, string>> headers = new List<KeyValuePair<string, string>>();
+            headers.Add(new KeyValuePair<string, string>("If-Match", request.IfMatch));
+
+            string response = await HttpActionAsync(HttpMethod.Put, uri, body, headers);
+            var file = JsonConvert.DeserializeObject<File>(response);
+
+            return file;
         }
 
         #endregion

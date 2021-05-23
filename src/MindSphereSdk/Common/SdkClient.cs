@@ -30,10 +30,10 @@ namespace MindSphereSdk.Core.Common
             {
                 return new AppMindSphereConnector((AppCredentials) credentials, httpClient);
             }
-            else if (credentials is TenantCredentials)
-            {
-                return new TenantMindSphereConnector((TenantCredentials)credentials, httpClient);
-            }
+            //else if (credentials is TenantCredentials)
+            //{
+            //    return new TenantMindSphereConnector((TenantCredentials)credentials, httpClient);
+            //}
             else
             {
                 throw new InvalidOperationException("Invalid credentials");

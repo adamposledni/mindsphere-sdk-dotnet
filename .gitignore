@@ -6,3 +6,6 @@ mdspcreds.json
 **/obj/
 
 **/*.user
+
+usage/WebApp/test.txt
+usage/WebApp/updated-test.txt

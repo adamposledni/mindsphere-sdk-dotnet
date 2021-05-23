@@ -2,6 +2,8 @@
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Net.Http;
 using System.Text;
 
 namespace MindSphereSdk.Core.AssetManagement
@@ -51,6 +53,15 @@ namespace MindSphereSdk.Core.AssetManagement
     {
         [JsonProperty("aspects")]
         public IEnumerable<AspectFullDetail> Aspects { get; set; }
+    }
+
+    /// <summary>
+    /// Wrapper for file list
+    /// </summary>
+    public class EmbeddedFileList : IEmbeddedResource
+    {
+        [JsonProperty("files")]
+        public IEnumerable<File> Files { get; set; }
     }
 
     #endregion
@@ -479,6 +490,49 @@ namespace MindSphereSdk.Core.AssetManagement
 
     #endregion
 
+    #region Files
+
+    /// <summary>
+    /// File metadata
+    /// </summary>
+    public class File
+    {
+        [JsonProperty("id")]
+        public string Id { get; set; }
+
+        [JsonProperty("name")]
+        public string Name { get; set; }
+
+        [JsonProperty("originalFileName")]
+        public string OriginalFileName { get; set; }
+
+        [JsonProperty("description")]
+        public string Description { get; set; }
+
+        [JsonProperty("tenantId")]
+        public string TenantId { get; set; }
+
+        [JsonProperty("subTenant")]
+        public string SubTenant { get; set; }
+
+        [JsonProperty("uploaded")]
+        public DateTime Uploaded { get; set; }
+
+        [JsonProperty("lastModified")]
+        public DateTime LastModified { get; set; }
+
+        [JsonProperty("isAssigned")]
+        public bool IsAssigned { get; set; }
+
+        [JsonProperty("scope")]
+        public string Scope { get; set; }
+
+        [JsonProperty("etag")]
+        public int Etag { get; set; }
+    }
+
+    #endregion
+
     #region Request
 
     /// <summary>
@@ -728,5 +782,67 @@ namespace MindSphereSdk.Core.AssetManagement
         public string Id { get; set; }
         public string IfMatch { get; set; }
     }
+
+    /// <summary>
+    /// Request for listing files
+    /// </summary>
+    public class ListFilesRequest
+    {
+        public int? Page { get; set; }
+        public int? Size { get; set; }
+        public string Sort { get; set; }
+        public string Filter { get; set; }
+    }
+
+    /// <summary>
+    /// Request for getting file metadata
+    /// </summary>
+    public class GetFileRequest
+    {
+        public string Id { get; set; }
+    }
+
+    /// <summary>
+    /// Request for downloading file
+    /// </summary>
+    public class DownloadFileRequest
+    {
+        public string Id { get; set; }
+    }
+
+    /// <summary>
+    /// Request for deleting file
+    /// </summary>
+    public class DeleteFileRequest
+    {
+        public string Id { get; set; }
+
+        public string IfMatch { get; set; }
+    }
+
+    /// <summary>
+    /// Request for uploading file
+    /// </summary>
+    public class UploadFileRequest
+    {
+        public FileStream File { get; set; }
+        public string Name { get; set; }
+        public string Scope { get; set; }
+        public string Description { get; set; }
+    }
+
+    /// <summary>
+    /// Request for updating file
+    /// </summary>
+    public class UpdateFileRequest
+    {
+        public string Id { get; set; }
+        public FileStream File { get; set; }
+        public string Name { get; set; }
+        public string Scope { get; set; }
+        public string Description { get; set; }
+        public string IfMatch { get; set; }
+    }
+
     #endregion
 }
