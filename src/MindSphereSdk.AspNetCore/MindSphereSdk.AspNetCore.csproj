@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MindSphereSdk\MindSphereSdk.Core.csproj" />
+    <ProjectReference Include="..\MindSphereSdk.Core\MindSphereSdk.Core.csproj" />
   </ItemGroup>
 
 </Project>

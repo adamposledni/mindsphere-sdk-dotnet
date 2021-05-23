@@ -12,7 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\MindSphereSdk.AspNetCore\MindSphereSdk.AspNetCore.csproj" />
-    <ProjectReference Include="..\..\src\MindSphereSdk\MindSphereSdk.Core.csproj" />
+    <ProjectReference Include="..\..\src\MindSphereSdk.Core\MindSphereSdk.Core.csproj" />
   </ItemGroup>
 
 </Project>
