@@ -6,13 +6,8 @@ Open-source .NET SDK for [MindSphere](https://siemens.mindsphere.io/) APIs mainl
 
 *This project was started on my own initiative. I am still a student and I am trying my best to develop useful solution for the absence of .NET SDK. Of course, any help is more than welcome. My goal is to develop SDK similar to [MindSphere SDK for Node.js](https://developer.mindsphere.io/resources/mindsphere-sdk-node/index.html).*
 
----
-
 ## Installation
 ❗ TBD ❗
-
----
-
 
 ## Examples
 
@@ -27,8 +22,6 @@ Provided code examples will guide you through this SDK.
 - [Getting time series data](#Getting-time-series-data)
 - [Putting new time series data](#Putting-new-time-series-data)
 - [Getting time series aggregates](#Getting-time-series-aggregates)
-
----
 
 ### Application credentials
 
@@ -61,9 +54,7 @@ The JSON file has to fit to the given structure.
     "userTenant": "<user-tenant>"
 }
 ```
-
----
-
+ 
 ### Create a client
 
 The client constructor must be provided with HttpClient. 
@@ -74,8 +65,6 @@ var client = new AssetManagementClient(appCredentials, httpClient);
 ```
 
 When you create multiple MindSphere clients you should reuse your HttpClient. [Here are more information regarding this matter.](https://docs.microsoft.com/en-us/dotnet/api/system.net.http.httpclient?view=net-5.0#remarks)
-
----
 
 ### ServiceCollection usage
 
@@ -103,8 +92,6 @@ public MainController(IMindSphereSdkService mindSphereSdkService)
 }
 ```
 
----
-
 ### Listing assets
 
 ```csharp
@@ -117,8 +104,6 @@ var request = new ListAssetsRequest()
 List<Asset> assets = (await client.ListAssetsAsync(request)).ToList();
 ```
 
----
-
 ### Download file
 
 ```csharp
@@ -130,8 +115,6 @@ var request = new DownloadFileRequest()
 };
 string fileContent = await client.DownloadFileAsync(request);
 ```
-
----
 
 ### Upload file
 
@@ -146,8 +129,6 @@ var request = new UploadFileRequest()
 };
 var file = await assetClient.UploadFileAsync(request);
 ```
-
----
 
 ### Getting time series data
 
@@ -184,8 +165,6 @@ var request = new GetTimeSeriesRequest()
 var timeSeries = (await client.GetTimeSeriesAsync<TimeSeriesData>(request)).ToList();
 ```
 
----
-
 ### Putting new time series data
 
 To put new time series data into the MindSphere you can use predefined class or anonymous type.
@@ -221,8 +200,6 @@ PutTimeSeriesRequest request = new PutTimeSeriesRequest()
 await client.PutTimeSeriesAsync(request);
 ```
 
----
-
 ### Getting time series aggregates
 
 *GetAggregateTimeSeriesAsync* is also generic method. It is necessary to set the generic type to class derived from *AggregateSet*. Specify expected MindSphere variables using properties of type *AggregateVariable* with corresponding names (or JsonProperty).
@@ -256,5 +233,3 @@ var request = new GetAggregateTimeSeriesRequest()
 
 var tsAggregate = await client.GetAggregateTimeSeriesAsync<AggregateTsData>(request);
 ```
-
----
