@@ -148,7 +148,8 @@ var file = await assetClient.UploadFileAsync(request);
 To get time series data it is necessary to have corresponding class prepared. It is possible to use Newtonsoft *JsonProperty* atributes. Or just to name your properties in the corresponding way so they could be deserialized. 
 
 ```csharp
-public class TimeSeriesData {
+public class TimeSeriesData 
+{
         [JsonProperty("_time")]
         public DateTime Time { get; set; }
 
