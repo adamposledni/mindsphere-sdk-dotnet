@@ -81,7 +81,7 @@ When you create multiple MindSphere clients you should reuse your HttpClient. [H
 
 ### ServiceCollection usage
 
-If you have installed ASP.NET Core extension, then you can simply register MindSphere service in the service container. However you it is not necessary to use this feature.
+If you have installed ASP.NET Core extension, then you can simply register MindSphere service in the service container. However it is not necessary to use this feature.
 
 This service needs to have HttpClient service in the container as well.
 
