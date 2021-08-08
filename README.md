@@ -13,13 +13,13 @@ The SDK is hosted as a package on the [nuget.org](https://www.nuget.org/).
 [**Core project**](https://www.nuget.org/packages/MindSphereSdk.Core/)
 
 ```
-dotnet add package MindSphereSdk.Core --version 1.0.0
+dotnet add package MindSphereSdk.Core --version 1.0.1
 ```
 
 [**Extension project**](https://www.nuget.org/packages/MindSphereSdk.AspNetCore/)
 
 ```
-dotnet add package MindSphereSdk.AspNetCore --version 1.0.0
+dotnet add package MindSphereSdk.AspNetCore --version 1.0.1
 ```
 
 ## Examples
