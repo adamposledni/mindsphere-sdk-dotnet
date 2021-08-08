@@ -14,7 +14,7 @@ namespace MindSphereSdk.Core.Common
     /// <summary>
     /// Connector to the MindSphere API
     /// </summary>
-    public abstract class MindSphereConnector : IMindSphereConnector
+    public abstract class MindSphereConnector
     {
         protected HttpClient _httpClient;
 

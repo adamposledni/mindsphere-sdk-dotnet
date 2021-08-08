@@ -14,7 +14,7 @@ namespace MindSphereSdk.Core.Common
     /// </summary>
     public abstract class SdkClient
     {
-        private IMindSphereConnector _mindSphereConnector;
+        private MindSphereConnector _mindSphereConnector;
 
         public SdkClient(ICredentials credentials, HttpClient httpClient)
         {
@@ -24,7 +24,7 @@ namespace MindSphereSdk.Core.Common
         /// <summary>
         /// Create specified MindSphere connector based on provided credentials
         /// </summary>
-        private IMindSphereConnector CreateConnector(ICredentials credentials, HttpClient httpClient)
+        private MindSphereConnector CreateConnector(ICredentials credentials, HttpClient httpClient)
         {
             if (credentials is AppCredentials)
             {
