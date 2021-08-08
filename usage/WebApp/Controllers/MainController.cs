@@ -20,13 +20,11 @@ namespace WebApp.Controllers
     [Route("api")]
     public class MainController : ControllerBase
     {
-        private IMindSphereSdkService _mindSphereSdkService;
-        private ILogger<MainController> _logger;
+        private readonly IMindSphereSdkService _mindSphereSdkService;
 
-        public MainController(IMindSphereSdkService mindSphereSdkService, ILogger<MainController> logger)
+        public MainController(IMindSphereSdkService mindSphereSdkService)
         {
             _mindSphereSdkService = mindSphereSdkService;
-            _logger = logger;
         }
 
         #region Asset
@@ -367,23 +365,27 @@ namespace WebApp.Controllers
             var iotClient = _mindSphereSdkService.GetIotTimeSeriesClient();
             DateTime nowUtc = DateTime.Now.ToUniversalTime();
 
-            List<TestTimeSeriesData> timeSeriesData = new List<TestTimeSeriesData>();
-            timeSeriesData.Add(new TestTimeSeriesData(nowUtc, 0.5, 0.7, 0.3));
-            timeSeriesData.Add(new TestTimeSeriesData(nowUtc.AddMinutes(1), 0.8, 1.2, 0.7));
-            timeSeriesData.Add(new TestTimeSeriesData(nowUtc.AddMinutes(2), 1.6, 0.2, 0.5));
+            List<TestTimeSeriesData> timeSeriesData = new()
+            {
+                new TestTimeSeriesData(nowUtc, 0.5, 0.7, 0.3),
+                new TestTimeSeriesData(nowUtc.AddMinutes(1), 0.8, 1.2, 0.7),
+                new TestTimeSeriesData(nowUtc.AddMinutes(2), 1.6, 0.2, 0.5)
+            };
             //timeSeriesData.Add(new { _time = DateTime.Now, x = 0.5, y = 0.7, z = 0.3 });
             //timeSeriesData.Add(new { _time = DateTime.Now.AddMinutes(1), x = 0.8, y = 1.2, z = 0.7 });
             //timeSeriesData.Add(new { _time = DateTime.Now.AddMinutes(2), x = 1.6, y = 0.2, z = 0.5 });
 
-            List<TimeSeries> timeSeriesObjects = new List<TimeSeries>();
-            timeSeriesObjects.Add(new TimeSeries()
+            List<TimeSeries> timeSeriesObjects = new()
             {
-                EntityId = "ec206f76b04a49a4938c1573b35b6688",
-                PropertySetName = "acceleration",
-                Data = timeSeriesData
-            });
+                new TimeSeries()
+                {
+                    EntityId = "ec206f76b04a49a4938c1573b35b6688",
+                    PropertySetName = "acceleration",
+                    Data = timeSeriesData
+                }
+            };
 
-            PutTimeSeriesRequest request = new PutTimeSeriesRequest()
+            PutTimeSeriesRequest request = new()
             {
                 TimeSeries = timeSeriesObjects
             };
@@ -594,8 +596,10 @@ namespace WebApp.Controllers
         {
             var assetClient = _mindSphereSdkService.GetAssetManagementClient();
 
-            var aspects = new List<AspectPut>();
-            aspects.Add(new AspectPut() { Name = "acceleration", AspectTypeId = "iiotdgli.acceleration" });
+            var aspects = new List<AspectPut>
+            {
+                new AspectPut() { Name = "acceleration", AspectTypeId = "iiotdgli.acceleration" }
+            };
 
             var newAssetType = new AssetTypeUpdate()
             {
@@ -623,8 +627,10 @@ namespace WebApp.Controllers
         {
             var assetClient = _mindSphereSdkService.GetAssetManagementClient();
 
-            var aspects = new List<AspectPut>();
-            aspects.Add(new AspectPut() { Name = "acceleration", AspectTypeId = "iiotdgli.acceleration" });
+            var aspects = new List<AspectPut>
+            {
+                new AspectPut() { Name = "acceleration", AspectTypeId = "iiotdgli.acceleration" }
+            };
 
             var newAssetType = new AssetTypeUpdate()
             {

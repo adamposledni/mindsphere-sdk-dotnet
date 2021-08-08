@@ -18,12 +18,12 @@ namespace MindSphereSdk.Core.Common
     /// </summary>
     public class AppMindSphereConnector : MindSphereConnector
     {
-        private AppCredentials _credentials;
+        private readonly AppCredentials _credentials;
 
         public AppMindSphereConnector(AppCredentials credentials, HttpClient httpClient)
             : base(httpClient)
         {
-            _credentials = credentials;
+            _credentials = credentials ?? throw new ArgumentNullException(nameof(credentials)); ;
         }
 
         /// <summary>
@@ -32,9 +32,11 @@ namespace MindSphereSdk.Core.Common
         public override async Task AcquireTokenAsync()
         {
             // prepare HTTP request
-            HttpRequestMessage request = new HttpRequestMessage();
-            request.Method = HttpMethod.Post;
-            request.RequestUri = GetFullUri("/api/technicaltokenmanager/v3/oauth/token");
+            HttpRequestMessage request = new HttpRequestMessage
+            {
+                Method = HttpMethod.Post,
+                RequestUri = GetFullUri("/api/technicaltokenmanager/v3/oauth/token")
+            };
             // X-SPACE-AUTH-KEY is needed
             request.Headers.Add("X-SPACE-AUTH-KEY", GetBasicAuth());
             request.Content = new StringContent(JsonConvert.SerializeObject(_credentials), Encoding.UTF8, "application/json");

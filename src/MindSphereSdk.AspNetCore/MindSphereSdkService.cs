@@ -24,14 +24,14 @@ namespace MindSphereSdk.AspNetCore
     /// </summary>
     public class MindSphereSdkService : IMindSphereSdkService
     {
-        private HttpClient _httpClient;
+        private readonly HttpClient _httpClient;
 
         private AssetManagementClient _assetManagementClient;
         private IotTimeSeriesClient _iotTimeSeriesClient;
         private IotTsAggregatesClient _iotTsAggregateClient;
         private EventManagementClient _eventManagementClient;
 
-        private ICredentials _credentials;
+        private readonly ICredentials _credentials;
 
         public MindSphereSdkService(IHttpClientFactory clientFactory, IOptions<MindSphereSdkServiceOptions> options)
         {

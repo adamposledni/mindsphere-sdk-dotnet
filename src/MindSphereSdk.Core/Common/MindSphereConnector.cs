@@ -16,16 +16,15 @@ namespace MindSphereSdk.Core.Common
     /// </summary>
     public abstract class MindSphereConnector
     {
-        protected HttpClient _httpClient;
-
         protected AccessToken _accessToken;
+        protected readonly HttpClient _httpClient;
 
-        private string _region = "eu1";
-        private string _domain = "mindsphere.io";
+        private readonly string _region = "eu1";
+        private readonly string _domain = "mindsphere.io";
 
         public MindSphereConnector(HttpClient httpClient)
         {
-            _httpClient = httpClient;
+            _httpClient = httpClient ?? throw new ArgumentNullException(nameof(httpClient));
         }
 
         /// <summary>
@@ -37,9 +36,11 @@ namespace MindSphereSdk.Core.Common
             await RenewTokenAsync();
 
             // prepare HTTP request
-            HttpRequestMessage request = new HttpRequestMessage();
-            request.Method = method;
-            request.RequestUri = GetFullUri(specUri);
+            HttpRequestMessage request = new HttpRequestMessage
+            {
+                Method = method,
+                RequestUri = GetFullUri(specUri)
+            };
             request.Headers.Add("Authorization", "Bearer " + _accessToken.Token);
 
             // headers from parametr

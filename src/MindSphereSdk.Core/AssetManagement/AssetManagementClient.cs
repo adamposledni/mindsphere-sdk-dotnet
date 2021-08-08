@@ -91,8 +91,10 @@ namespace MindSphereSdk.Core.AssetManagement
             StringContent body = new StringContent(jsonString, Encoding.UTF8, "application/json");
 
             // prepare HTTP request headers
-            List<KeyValuePair<string, string>> headers = new List<KeyValuePair<string, string>>();
-            headers.Add(new KeyValuePair<string, string>("If-Match", request.IfMatch));
+            List<KeyValuePair<string, string>> headers = new List<KeyValuePair<string, string>>
+            {
+                new KeyValuePair<string, string>("If-Match", request.IfMatch)
+            };
 
             string response = await HttpActionAsync(HttpMethod.Put, uri, body, headers);
             var asset = JsonConvert.DeserializeObject<Asset>(response);
@@ -116,8 +118,10 @@ namespace MindSphereSdk.Core.AssetManagement
             StringContent body = new StringContent(jsonString, Encoding.UTF8, "application/merge-patch+json");
 
             // prepare HTTP request headers
-            List<KeyValuePair<string, string>> headers = new List<KeyValuePair<string, string>>();
-            headers.Add(new KeyValuePair<string, string>("If-Match", request.IfMatch));
+            List<KeyValuePair<string, string>> headers = new List<KeyValuePair<string, string>>
+            {
+                new KeyValuePair<string, string>("If-Match", request.IfMatch)
+            };
 
             string response = await HttpActionAsync(new HttpMethod("PATCH"), uri, body, headers);
             var asset = JsonConvert.DeserializeObject<Asset>(response);
@@ -133,8 +137,10 @@ namespace MindSphereSdk.Core.AssetManagement
             string uri = _baseUri + "/assets/" + request.Id;
 
             // prepare HTTP request headers
-            List<KeyValuePair<string, string>> headers = new List<KeyValuePair<string, string>>();
-            headers.Add(new KeyValuePair<string, string>("If-Match", request.IfMatch));
+            List<KeyValuePair<string, string>> headers = new List<KeyValuePair<string, string>>
+            {
+                new KeyValuePair<string, string>("If-Match", request.IfMatch)
+            };
 
             await HttpActionAsync(HttpMethod.Delete, uri, headers: headers);
         }
@@ -150,8 +156,10 @@ namespace MindSphereSdk.Core.AssetManagement
             StringContent body = new StringContent(JsonConvert.SerializeObject(new { newParentId = request.NewParentId }), Encoding.UTF8, "application/json");
 
             // prepare HTTP request headers
-            List<KeyValuePair<string, string>> headers = new List<KeyValuePair<string, string>>();
-            headers.Add(new KeyValuePair<string, string>("If-Match", request.IfMatch));
+            List<KeyValuePair<string, string>> headers = new List<KeyValuePair<string, string>>
+            {
+                new KeyValuePair<string, string>("If-Match", request.IfMatch)
+            };
 
             string response = await HttpActionAsync(HttpMethod.Post, uri, body, headers);
             var asset = JsonConvert.DeserializeObject<Asset>(response);
@@ -179,8 +187,10 @@ namespace MindSphereSdk.Core.AssetManagement
             string uri = _baseUri + "/assets/" + request.Id + "/fileAssignments/" + request.Key;
 
             // prepare HTTP request headers
-            List<KeyValuePair<string, string>> headers = new List<KeyValuePair<string, string>>();
-            headers.Add(new KeyValuePair<string, string>("If-Match", request.IfMatch));
+            List<KeyValuePair<string, string>> headers = new List<KeyValuePair<string, string>>
+            {
+                new KeyValuePair<string, string>("If-Match", request.IfMatch)
+            };
 
             // prepare HTTP request body
             object fileIdObject = new { fileId = request.FileId };
@@ -200,8 +210,10 @@ namespace MindSphereSdk.Core.AssetManagement
             string uri = _baseUri + "/assets/" + request.Id + "/fileAssignments/" + request.Key;
 
             // prepare HTTP request headers
-            List<KeyValuePair<string, string>> headers = new List<KeyValuePair<string, string>>();
-            headers.Add(new KeyValuePair<string, string>("If-Match", request.IfMatch));
+            List<KeyValuePair<string, string>> headers = new List<KeyValuePair<string, string>>
+            {
+                new KeyValuePair<string, string>("If-Match", request.IfMatch)
+            };
 
             string response = await HttpActionAsync(HttpMethod.Delete, uri, headers: headers);
             var asset = JsonConvert.DeserializeObject<Asset>(response);
@@ -275,8 +287,10 @@ namespace MindSphereSdk.Core.AssetManagement
             StringContent body = new StringContent(jsonString, Encoding.UTF8, "application/json");
 
             // prepare HTTP request headers
-            List<KeyValuePair<string, string>> headers = new List<KeyValuePair<string, string>>();
-            headers.Add(new KeyValuePair<string, string>("If-Match", request.IfMatch));
+            List<KeyValuePair<string, string>> headers = new List<KeyValuePair<string, string>>
+            {
+                new KeyValuePair<string, string>("If-Match", request.IfMatch)
+            };
 
             string response = await HttpActionAsync(HttpMethod.Put, uri, body, headers);
             var asset = JsonConvert.DeserializeObject<Asset>(response);
@@ -292,8 +306,10 @@ namespace MindSphereSdk.Core.AssetManagement
             string uri = _baseUri + "/assets/" + request.Id + "/location";
 
             // prepare HTTP request headers
-            List<KeyValuePair<string, string>> headers = new List<KeyValuePair<string, string>>();
-            headers.Add(new KeyValuePair<string, string>("If-Match", request.IfMatch));
+            List<KeyValuePair<string, string>> headers = new List<KeyValuePair<string, string>>
+            {
+                new KeyValuePair<string, string>("If-Match", request.IfMatch)
+            };
 
             string response = await HttpActionAsync(HttpMethod.Delete, uri, headers: headers);
             var asset = JsonConvert.DeserializeObject<Asset>(response);
@@ -363,8 +379,10 @@ namespace MindSphereSdk.Core.AssetManagement
             string uri = _baseUri + "/files/" + request.Id;
 
             // prepare HTTP request headers
-            List<KeyValuePair<string, string>> headers = new List<KeyValuePair<string, string>>();
-            headers.Add(new KeyValuePair<string, string>("If-Match", request.IfMatch));
+            List<KeyValuePair<string, string>> headers = new List<KeyValuePair<string, string>>
+            {
+                new KeyValuePair<string, string>("If-Match", request.IfMatch)
+            };
 
             await HttpActionAsync(HttpMethod.Delete, uri, headers: headers);
         }
@@ -377,8 +395,10 @@ namespace MindSphereSdk.Core.AssetManagement
             string uri = _baseUri + "/files/";
 
             // prepare HTTP request body
-            MultipartFormDataContent body = new MultipartFormDataContent();
-            body.Add(new StreamContent(request.File), "file", request.File.Name);
+            MultipartFormDataContent body = new MultipartFormDataContent
+            {
+                { new StreamContent(request.File), "file", request.File.Name }
+            };
             body.AddStringContentIfNotNull(request.Name, "name");
             body.AddStringContentIfNotNull(request.Scope, "scope");
             body.AddStringContentIfNotNull(request.Description, "description");
@@ -397,15 +417,19 @@ namespace MindSphereSdk.Core.AssetManagement
             string uri = _baseUri + "/files/" + request.Id;
 
             // prepare HTTP request body
-            MultipartFormDataContent body = new MultipartFormDataContent();
-            body.Add(new StreamContent(request.File), "file", request.File.Name);
+            MultipartFormDataContent body = new MultipartFormDataContent
+            {
+                { new StreamContent(request.File), "file", request.File.Name }
+            };
             body.AddStringContentIfNotNull(request.Name, "name");
             body.AddStringContentIfNotNull(request.Scope, "scope");
             body.AddStringContentIfNotNull(request.Description, "description");
 
             // prepare HTTP request headers
-            List<KeyValuePair<string, string>> headers = new List<KeyValuePair<string, string>>();
-            headers.Add(new KeyValuePair<string, string>("If-Match", request.IfMatch));
+            List<KeyValuePair<string, string>> headers = new List<KeyValuePair<string, string>>
+            {
+                new KeyValuePair<string, string>("If-Match", request.IfMatch)
+            };
 
             string response = await HttpActionAsync(HttpMethod.Put, uri, body, headers);
             var file = JsonConvert.DeserializeObject<File>(response);
@@ -459,8 +483,10 @@ namespace MindSphereSdk.Core.AssetManagement
             string uri = _baseUri + "/aspecttypes/" + request.Id;
 
             // prepare HTTP request headers
-            List<KeyValuePair<string, string>> headers = new List<KeyValuePair<string, string>>();
-            headers.Add(new KeyValuePair<string, string>("If-Match", request.IfMatch));
+            List<KeyValuePair<string, string>> headers = new List<KeyValuePair<string, string>>
+            {
+                new KeyValuePair<string, string>("If-Match", request.IfMatch)
+            };
 
             await HttpActionAsync(HttpMethod.Delete, uri, headers: headers);
         }
@@ -477,9 +503,11 @@ namespace MindSphereSdk.Core.AssetManagement
             StringContent body = new StringContent(jsonString, Encoding.UTF8, "application/json");
 
             // prepare HTTP request headers
-            List<KeyValuePair<string, string>> headers = new List<KeyValuePair<string, string>>();
-            headers.Add(new KeyValuePair<string, string>("If-None-Match", request.IfNoneMatch));
-            headers.Add(new KeyValuePair<string, string>("If-Match", request.IfMatch));
+            List<KeyValuePair<string, string>> headers = new List<KeyValuePair<string, string>>
+            {
+                new KeyValuePair<string, string>("If-None-Match", request.IfNoneMatch),
+                new KeyValuePair<string, string>("If-Match", request.IfMatch)
+            };
 
             string response = await HttpActionAsync(HttpMethod.Put, uri, body, headers);
             var aspectType = JsonConvert.DeserializeObject<AspectType>(response);
@@ -503,8 +531,10 @@ namespace MindSphereSdk.Core.AssetManagement
             StringContent body = new StringContent(jsonString, Encoding.UTF8, "application/merge-patch+json");
 
             // prepare HTTP request headers
-            List<KeyValuePair<string, string>> headers = new List<KeyValuePair<string, string>>();
-            headers.Add(new KeyValuePair<string, string>("If-Match", request.IfMatch));
+            List<KeyValuePair<string, string>> headers = new List<KeyValuePair<string, string>>
+            {
+                new KeyValuePair<string, string>("If-Match", request.IfMatch)
+            };
 
             string response = await HttpActionAsync(new HttpMethod("PATCH"), uri, body, headers);
             var aspectType = JsonConvert.DeserializeObject<AspectType>(response);
@@ -566,9 +596,11 @@ namespace MindSphereSdk.Core.AssetManagement
             StringContent body = new StringContent(jsonString, Encoding.UTF8, "application/json");
 
             // prepare HTTP request headers
-            List<KeyValuePair<string, string>> headers = new List<KeyValuePair<string, string>>();
-            headers.Add(new KeyValuePair<string, string>("If-None-Match", request.IfNoneMatch));
-            headers.Add(new KeyValuePair<string, string>("If-Match", request.IfMatch));
+            List<KeyValuePair<string, string>> headers = new List<KeyValuePair<string, string>>
+            {
+                new KeyValuePair<string, string>("If-None-Match", request.IfNoneMatch),
+                new KeyValuePair<string, string>("If-Match", request.IfMatch)
+            };
 
             string response = await HttpActionAsync(HttpMethod.Put, uri, body, headers);
             var assetType = JsonConvert.DeserializeObject<AssetType>(response);
@@ -592,8 +624,10 @@ namespace MindSphereSdk.Core.AssetManagement
             StringContent body = new StringContent(jsonString, Encoding.UTF8, "application/merge-patch+json");
 
             // prepare HTTP request headers
-            List<KeyValuePair<string, string>> headers = new List<KeyValuePair<string, string>>();
-            headers.Add(new KeyValuePair<string, string>("If-Match", request.IfMatch));
+            List<KeyValuePair<string, string>> headers = new List<KeyValuePair<string, string>>
+            {
+                new KeyValuePair<string, string>("If-Match", request.IfMatch)
+            };
 
             string response = await HttpActionAsync(new HttpMethod("PATCH"), uri, body, headers);
             var assetType = JsonConvert.DeserializeObject<AssetType>(response);
@@ -609,8 +643,10 @@ namespace MindSphereSdk.Core.AssetManagement
             string uri = _baseUri + "/assettypes/" + request.Id;
 
             // prepare HTTP request headers
-            List<KeyValuePair<string, string>> headers = new List<KeyValuePair<string, string>>();
-            headers.Add(new KeyValuePair<string, string>("If-Match", request.IfMatch));
+            List<KeyValuePair<string, string>> headers = new List<KeyValuePair<string, string>>
+            {
+                new KeyValuePair<string, string>("If-Match", request.IfMatch)
+            };
 
             await HttpActionAsync(HttpMethod.Delete, uri, headers: headers);
         }
@@ -623,8 +659,10 @@ namespace MindSphereSdk.Core.AssetManagement
             string uri = _baseUri + "/assettypes/" + request.Id + "/fileAssignments/" + request.Key;
 
             // prepare HTTP request headers
-            List<KeyValuePair<string, string>> headers = new List<KeyValuePair<string, string>>();
-            headers.Add(new KeyValuePair<string, string>("If-Match", request.IfMatch));
+            List<KeyValuePair<string, string>> headers = new List<KeyValuePair<string, string>>
+            {
+                new KeyValuePair<string, string>("If-Match", request.IfMatch)
+            };
 
             // prepare HTTP request body
             object fileIdObject = new { fileId = request.FileId };
@@ -644,8 +682,10 @@ namespace MindSphereSdk.Core.AssetManagement
             string uri = _baseUri + "/assettypes/" + request.Id + "/fileAssignments/" + request.Key;
 
             // prepare HTTP request headers
-            List<KeyValuePair<string, string>> headers = new List<KeyValuePair<string, string>>();
-            headers.Add(new KeyValuePair<string, string>("If-Match", request.IfMatch));
+            List<KeyValuePair<string, string>> headers = new List<KeyValuePair<string, string>>
+            {
+                new KeyValuePair<string, string>("If-Match", request.IfMatch)
+            };
 
             string response = await HttpActionAsync(HttpMethod.Delete, uri, headers: headers);
             var assetType = JsonConvert.DeserializeObject<AssetType>(response);
