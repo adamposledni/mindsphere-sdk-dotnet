@@ -19,7 +19,7 @@ dotnet add package MindSphereSdk.Core --version 1.0.1
 [**Extension project**](https://www.nuget.org/packages/MindSphereSdk.AspNetCore/)
 
 ```
-dotnet add package MindSphereSdk.AspNetCore --version 1.0.1
+dotnet add package MindSphereSdk.AspNetCore --version 1.0.0
 ```
 
 ## Examples
