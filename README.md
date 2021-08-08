@@ -81,7 +81,7 @@ When you create multiple MindSphere clients you should reuse your HttpClient. [H
 
 ### ServiceCollection usage
 
-If you have installed ASP.NET Core extension, then you can simply register MindSphere service in the service container. However you it is not necessary to use this feature.
+If you have installed ASP.NET Core extension, then you can simply register MindSphere service in the service container. However it is not necessary to use this feature.
 
 This service needs to have HttpClient service in the container as well.
 
@@ -148,7 +148,8 @@ var file = await assetClient.UploadFileAsync(request);
 To get time series data it is necessary to have corresponding class prepared. It is possible to use Newtonsoft *JsonProperty* atributes. Or just to name your properties in the corresponding way so they could be deserialized. 
 
 ```csharp
-public class TimeSeriesData {
+public class TimeSeriesData 
+{
         [JsonProperty("_time")]
         public DateTime Time { get; set; }
 
