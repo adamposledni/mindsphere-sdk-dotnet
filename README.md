@@ -70,20 +70,22 @@ The JSON file has to fit to the given structure.
  
 ### Create a client
 
-The client constructor must be provided with HttpClient. 
+The client constructor must be provided with **HttpClient**. 
 
 ```csharp
 HttpClient httpClient = new HttpClient();
 var client = new AssetManagementClient(appCredentials, httpClient);
 ```
 
-When you create multiple MindSphere clients you should reuse your HttpClient. [Here are more information regarding this matter.](https://docs.microsoft.com/en-us/dotnet/api/system.net.http.httpclient?view=net-5.0#remarks)
+❗ When you create multiple MindSphere clients you should reuse your **HttpClient**. [Here are more information regarding this matter.](https://docs.microsoft.com/en-us/dotnet/api/system.net.http.httpclient?view=net-5.0#remarks)
 
 ### ServiceCollection usage
 
+*This part is relevant only when using dependecy injection.*
+
 If you have installed ASP.NET Core extension, then you can simply register MindSphere service in the service container. However it is not necessary to use this feature.
 
-This service needs to have HttpClient service in the container as well.
+❗ This service needs to have **HttpClient** service in the container as well.
 
 ```csharp
 // Startup.cs file
@@ -145,7 +147,7 @@ var file = await assetClient.UploadFileAsync(request);
 
 ### Getting time series data
 
-To get time series data it is necessary to have corresponding class prepared. It is possible to use Newtonsoft *JsonProperty* atributes. Or just to name your properties in the corresponding way so they could be deserialized. 
+To get time series data it is necessary to have corresponding class prepared. It is possible to use Newtonsoft **JsonProperty** atributes. Or just to name your properties in the corresponding way so they could be deserialized. 
 
 ```csharp
 public class TimeSeriesData 
@@ -164,7 +166,7 @@ public class TimeSeriesData
 }
 ```
 
-After that you can pass it to generic method *GetTimeSeriesAsync*.
+After that you can pass it to generic method **GetTimeSeriesAsync**.
 
 ```csharp
 var client = new IotTimeSeriesClient(credentials, httpClient);
@@ -183,7 +185,7 @@ var timeSeries = (await client.GetTimeSeriesAsync<TimeSeriesData>(request)).ToLi
 
 To put new time series data into the MindSphere you can use predefined class or anonymous type.
 
-If you use your own class you need to name the properties in the corresponding way or to add Newtonsoft *JsonProperty* atributes. Otherwise the deserialization would fail.
+If you use your own class you need to name the properties in the corresponding way or to add Newtonsoft **JsonProperty** atributes. Otherwise the deserialization would fail.
 
 ```csharp
 var client = new IotTimeSeriesClient(credentials, httpClient);
@@ -216,7 +218,7 @@ await client.PutTimeSeriesAsync(request);
 
 ### Getting time series aggregates
 
-*GetAggregateTimeSeriesAsync* is also generic method. It is necessary to set the generic type to class derived from *AggregateSet*. Specify expected MindSphere variables using properties of type *AggregateVariable* with corresponding names (or JsonProperty).
+**GetAggregateTimeSeriesAsync** is generic method. It is necessary to set the generic type to a class derived from **AggregateSet**. Specify expected MindSphere variables using properties of type **AggregateVariable** with corresponding names (or **JsonProperty**).
 
 ```csharp
 public class AggregateTsData : AggregateSet
