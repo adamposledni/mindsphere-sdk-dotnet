@@ -35,7 +35,8 @@ namespace WebApp.Controllers
             var assetClient = _mindSphereSdkService.GetAssetManagementClient();
             var request = new ListAssetsRequest()
             {
-                Size = 100
+                Size = 1,
+                Page = 2
             };
             List<Asset> assets = (await assetClient.ListAssetsAsync(request)).ToList();
 

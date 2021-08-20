@@ -6,7 +6,17 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="MindSphereSdk.Core" Version="1.0.0" />
+    <None Remove="mdspcreds.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="mdspcreds.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\MindSphereSdk.Core\MindSphereSdk.Core.csproj" />
   </ItemGroup>
 
 </Project>

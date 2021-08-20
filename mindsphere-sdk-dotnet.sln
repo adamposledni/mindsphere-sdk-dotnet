@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApp", "usage\WebApp\WebA
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MindSphereSdk.AspNetCore", "src\MindSphereSdk.AspNetCore\MindSphereSdk.AspNetCore.csproj", "{733E760B-92B0-4FB8-BD10-51E10C25039C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MindSphereSdk.Core.Test", "test\MindSphereSdk.Core.Test\MindSphereSdk.Core.Test.csproj", "{10861600-4D9B-483A-92DA-E2B62D9CA331}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MindSphereSdk.Core.Test", "test\MindSphereSdk.Core.Test\MindSphereSdk.Core.Test.csproj", "{10861600-4D9B-483A-92DA-E2B62D9CA331}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

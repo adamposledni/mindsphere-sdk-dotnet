@@ -13,20 +13,42 @@ namespace ConsoleApp
     {
         static async Task Main(string[] args)
         {
-            AppCredentials appCredentials = AppCredentials.FromJsonFile(@"..\..\..\..\..\mdspcreds.json");
+            AppCredentials appCredentials;
+
+            try
+            {
+                appCredentials = AppCredentials.FromJsonFile("mdspcreds.json");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                Console.ReadKey();
+                return;
+            }
+
             HttpClient httpClient = new HttpClient();
-
             AssetManagementClient assetClient = new AssetManagementClient(appCredentials, httpClient);
-
 
             ListAssetsRequest request = new ListAssetsRequest()
             {
                 Size = 200
             };
-            List<Asset> test = (await assetClient.ListAssetsAsync(request)).ToList();
-            foreach (var item in test)
+
+            List<Asset> assets;
+            try
             {
-                Console.WriteLine(item.AssetId);
+                assets = (await assetClient.ListAssetsAsync(request)).ToList();
+            }   
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                Console.ReadKey();
+                return;
+            }
+
+            foreach (var asset in assets)
+            {
+                Console.WriteLine(asset.AssetId);
             }
 
             Console.ReadKey();

@@ -40,7 +40,7 @@ namespace WebApp
 
             services.AddMindSphereSdkService(options =>
             {
-                options.Credentials = AppCredentials.FromJsonFile(@"..\..\mdspcreds.json");
+                options.Credentials = AppCredentials.FromJsonFile(@"mdspcreds.json");
             });
         }
 
