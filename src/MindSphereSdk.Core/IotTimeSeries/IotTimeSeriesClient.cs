@@ -68,9 +68,6 @@ namespace MindSphereSdk.Core.IotTimeSeries
         public async Task DeleteTimeSeriesAsync(DeleteTimeSeriesRequest request)
         {
             string uri = GetUriForDeleteTimeSeries(request);
-
-            Debug.WriteLine(uri);
-
             await HttpActionAsync(HttpMethod.Delete, uri);
         }
 
@@ -80,17 +77,16 @@ namespace MindSphereSdk.Core.IotTimeSeries
         private string GetUriForGetTimeSeries(GetTimeSeriesRequest request)
         {
             // prepare query string
-            string queryString = "?";
-
-            queryString += request.From != null ? $"from={Helper.GetDateTimeUtcString(request.From.Value)}& " : "";
-            queryString += request.To != null ? $"to={Helper.GetDateTimeUtcString(request.To.Value)}&" : "";
-            queryString += request.Limit != null ? $"limit={request.Limit.Value}&" : "";
-            queryString += request.Select != null ? $"select={request.Select}&" : "";
-            queryString += request.Sort != null ? $"sort={request.Sort}&" : "";
-            queryString += request.LatestValue != null ? $"latestValue={request.LatestValue.Value}&" : "";
+            QueryStringBuilder queryBuilder = new QueryStringBuilder();
+            queryBuilder.AddQuery("from", request.From);
+            queryBuilder.AddQuery("to", request.To);
+            queryBuilder.AddQuery("limit", request.Limit);
+            queryBuilder.AddQuery("select", request.Select);
+            queryBuilder.AddQuery("sort", request.Sort);
+            queryBuilder.AddQuery("latestValue", request.LatestValue);
 
             string pathString = $"/{request.EntityId}/{request.PropertySetName}";
-            string uri = _baseUri + "/timeseries" + pathString + queryString;
+            string uri = _baseUri + "/timeseries" + pathString + queryBuilder.ToString();
             return uri;
         }
 
@@ -100,13 +96,13 @@ namespace MindSphereSdk.Core.IotTimeSeries
         private string GetUriForDeleteTimeSeries(DeleteTimeSeriesRequest request)
         {
             // prepare query string
-            string queryString = "?";
-
-            queryString += request.From != null ? $"from={Helper.GetDateTimeUtcString(request.From.Value)}&" : "";
-            queryString += request.To != null ? $"to={Helper.GetDateTimeUtcString(request.To.Value)}&" : "";
+            // prepare query string
+            QueryStringBuilder queryBuilder = new QueryStringBuilder();
+            queryBuilder.AddQuery("from", request.From);
+            queryBuilder.AddQuery("to", request.To);
 
             string pathString = $"/{request.EntityId}/{request.PropertySetName}";
-            string uri = _baseUri + "/timeseries" + pathString + queryString;
+            string uri = _baseUri + "/timeseries" + pathString + queryBuilder.ToString();
             return uri;
         }
     }

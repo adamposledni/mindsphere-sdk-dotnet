@@ -39,18 +39,17 @@ namespace MindSphereSdk.Core.IotTsAggregates
         private string GetUri(GetAggregateTimeSeriesRequest request)
         {
             // prepare query string
-            string queryString = "?";
+            QueryStringBuilder queryBuilder = new QueryStringBuilder();
+            queryBuilder.AddQuery("from", request.From);
+            queryBuilder.AddQuery("to", request.To);
+            queryBuilder.AddQuery("select", request.Select);
+            queryBuilder.AddQuery("assetId", request.AssetId);
+            queryBuilder.AddQuery("aspectName", request.AspectName);
+            queryBuilder.AddQuery("intervalValue", request.IntervalValue);
+            queryBuilder.AddQuery("intervalUnit", request.IntervalUnit);
+            queryBuilder.AddQuery("count", request.Count);
 
-            queryString += request.AssetId != null ? $"assetId={request.AssetId}&" : "";
-            queryString += request.AspectName != null ? $"aspectName={request.AspectName}&" : "";
-            queryString += request.From != null ? $"from={Helper.GetDateTimeUtcString(request.From.Value)}& " : "";
-            queryString += request.To != null ? $"to={Helper.GetDateTimeUtcString(request.To.Value)}&" : "";
-            queryString += request.IntervalValue != null ? $"intervalValue={request.IntervalValue}&" : "";
-            queryString += request.IntervalUnit != null ? $"intervalUnit={request.IntervalUnit}&" : "";
-            queryString += request.Select != null ? $"select={request.Select}&" : "";
-            queryString += request.Count != null ? $"count={request.Count}&" : "";
-
-            string uri = _baseUri + "/aggregates" + queryString;
+            string uri = _baseUri + "/aggregates" + queryBuilder.ToString();
             return uri;
         }
     }

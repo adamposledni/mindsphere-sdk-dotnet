@@ -31,13 +31,13 @@ namespace MindSphereSdk.Core.AssetManagement
         public async Task<IEnumerable<Asset>> ListAssetsAsync(ListAssetsRequest request)
         {
             // prepare query string
-            string queryString = "?";
-            queryString += request.Size != null ? $"size={request.Size}&" : "";
-            queryString += request.Page != null ? $"page={request.Page}&" : "";
-            queryString += request.Sort != null ? $"sort={request.Sort}&" : "";
-            queryString += request.Filter != null ? $"filter={request.Filter}&" : "";
+            QueryStringBuilder queryBuilder = new QueryStringBuilder();
+            queryBuilder.AddQuery("size", request.Size);
+            queryBuilder.AddQuery("page", request.Page);
+            queryBuilder.AddQuery("sort", request.Sort);
+            queryBuilder.AddQuery("filter", request.Filter);
 
-            string uri = _baseUri + "/assets" + queryString;
+            string uri = _baseUri + "/assets" + queryBuilder.ToString();
 
             string response = await HttpActionAsync(HttpMethod.Get, uri);
             var assetListWrapper = JsonConvert.DeserializeObject<MindSphereResourceWrapper<EmbeddedAssetList>>(response);
@@ -231,13 +231,13 @@ namespace MindSphereSdk.Core.AssetManagement
         public async Task<IEnumerable<VariableDetail>> ListAssetVariablesAsync(ListAssetVariablesRequest request)
         {
             // prepare query string
-            string queryString = "?";
-            queryString += request.Size != null ? $"size={request.Size}&" : "";
-            queryString += request.Page != null ? $"page={request.Page}&" : "";
-            queryString += request.Sort != null ? $"sort={request.Sort}&" : "";
-            queryString += request.Filter != null ? $"filter={request.Filter}&" : "";
+            QueryStringBuilder queryBuilder = new QueryStringBuilder();
+            queryBuilder.AddQuery("size", request.Size);
+            queryBuilder.AddQuery("page", request.Page);
+            queryBuilder.AddQuery("sort", request.Sort);
+            queryBuilder.AddQuery("filter", request.Filter);
 
-            string uri = _baseUri + "/assets/" + request.Id + "/variables" + queryString;
+            string uri = _baseUri + "/assets/" + request.Id + "/variables" + queryBuilder.ToString();
 
             string response = await HttpActionAsync(HttpMethod.Get, uri);
             var variableListWrapper = JsonConvert.DeserializeObject<MindSphereResourceWrapper<EmbeddedVariableList>>(response);
@@ -252,13 +252,13 @@ namespace MindSphereSdk.Core.AssetManagement
         public async Task<IEnumerable<AspectFullDetail>> ListAssetAspectsAsync(ListAssetAspectsRequest request)
         {
             // prepare query string
-            string queryString = "?";
-            queryString += request.Size != null ? $"size={request.Size}&" : "";
-            queryString += request.Page != null ? $"page={request.Page}&" : "";
-            queryString += request.Sort != null ? $"sort={request.Sort}&" : "";
-            queryString += request.Filter != null ? $"filter={request.Filter}&" : "";
+            QueryStringBuilder queryBuilder = new QueryStringBuilder();
+            queryBuilder.AddQuery("size", request.Size);
+            queryBuilder.AddQuery("page", request.Page);
+            queryBuilder.AddQuery("sort", request.Sort);
+            queryBuilder.AddQuery("filter", request.Filter);
 
-            string uri = _baseUri + "/assets/" + request.Id + "/aspects" + queryString;
+            string uri = _baseUri + "/assets/" + request.Id + "/aspects" + queryBuilder.ToString();
 
             string response = await HttpActionAsync(HttpMethod.Get, uri);
             var aspectListWrapper = JsonConvert.DeserializeObject<MindSphereResourceWrapper<EmbeddedAspectList>>(response);
@@ -327,13 +327,13 @@ namespace MindSphereSdk.Core.AssetManagement
         public async Task<IEnumerable<File>> ListFilesAsync(ListFilesRequest request)
         {
             // prepare query string
-            string queryString = "?";
-            queryString += request.Size != null ? $"size={request.Size}&" : "";
-            queryString += request.Page != null ? $"page={request.Page}&" : "";
-            queryString += request.Sort != null ? $"sort={request.Sort}&" : "";
-            queryString += request.Filter != null ? $"filter={request.Filter}&" : "";
+            QueryStringBuilder queryBuilder = new QueryStringBuilder();
+            queryBuilder.AddQuery("size", request.Size);
+            queryBuilder.AddQuery("page", request.Page);
+            queryBuilder.AddQuery("sort", request.Sort);
+            queryBuilder.AddQuery("filter", request.Filter);
 
-            string uri = _baseUri + "/files/" + queryString;
+            string uri = _baseUri + "/files/" + queryBuilder.ToString();
 
             string response = await HttpActionAsync(HttpMethod.Get, uri);
             var fileListWrapper = JsonConvert.DeserializeObject<MindSphereResourceWrapper<EmbeddedFileList>>(response);
@@ -447,13 +447,13 @@ namespace MindSphereSdk.Core.AssetManagement
         public async Task<IEnumerable<AspectType>> ListAspectTypesAsync(ListAspectTypesRequest request)
         {
             // prepare query string
-            string queryString = "?";
-            queryString += request.Size != null ? $"size={request.Size}&" : "";
-            queryString += request.Page != null ? $"page={request.Page}&" : "";
-            queryString += request.Sort != null ? $"sort={request.Sort}&" : "";
-            queryString += request.Filter != null ? $"filter={request.Filter}&" : "";
+            QueryStringBuilder queryBuilder = new QueryStringBuilder();
+            queryBuilder.AddQuery("size", request.Size);
+            queryBuilder.AddQuery("page", request.Page);
+            queryBuilder.AddQuery("sort", request.Sort);
+            queryBuilder.AddQuery("filter", request.Filter);
 
-            string uri = _baseUri + "/aspecttypes" + queryString;
+            string uri = _baseUri + "/aspecttypes" + queryBuilder.ToString();
 
             string response = await HttpActionAsync(HttpMethod.Get, uri);
             var aspectTypeListWrapper = JsonConvert.DeserializeObject<MindSphereResourceWrapper<EmbeddedAspectTypeList>>(response);
@@ -552,13 +552,13 @@ namespace MindSphereSdk.Core.AssetManagement
         public async Task<IEnumerable<AssetType>> ListAssetTypesAsync(ListAssetTypesRequest request)
         {
             // prepare query string
-            string queryString = "?";
-            queryString += request.Size != null ? $"size={request.Size}&" : "";
-            queryString += request.Page != null ? $"page={request.Page}&" : "";
-            queryString += request.Sort != null ? $"sort={request.Sort}&" : "";
-            queryString += request.Filter != null ? $"filter={request.Filter}&" : "";
+            QueryStringBuilder queryBuilder = new QueryStringBuilder();
+            queryBuilder.AddQuery("size", request.Size);
+            queryBuilder.AddQuery("page", request.Page);
+            queryBuilder.AddQuery("sort", request.Sort);
+            queryBuilder.AddQuery("filter", request.Filter);
 
-            string uri = _baseUri + "/assettypes" + queryString;
+            string uri = _baseUri + "/assettypes" + queryBuilder.ToString();
 
             string response = await HttpActionAsync(HttpMethod.Get, uri);
             var assetTypeListWrapper = JsonConvert.DeserializeObject<MindSphereResourceWrapper<EmbeddedAssetTypeList>>(response);
