@@ -47,6 +47,9 @@ namespace MindSphereSdk.Core.Common
             UserTenant = userTenant;
         }
 
+        /// <summary>
+        /// Load AppCredentials from the JSON file
+        /// </summary>
         public static AppCredentials FromJsonFile(string path)
         {
             string jsonString = File.ReadAllText(path);
