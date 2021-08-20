@@ -1,0 +1,667 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MindSphereSdk.Core</name>
+    </assembly>
+    <members>
+        <member name="T:MindSphereSdk.Core.AssetManagement.AssetManagementClient">
+            <summary>
+            Configuring, reading and managing assets, asset types and aspect types
+            </summary>
+        </member>
+        <member name="M:MindSphereSdk.Core.AssetManagement.AssetManagementClient.ListAssetsAsync(MindSphereSdk.Core.AssetManagement.ListAssetsRequest)">
+            <summary>
+            List all available assets
+            </summary>
+        </member>
+        <member name="M:MindSphereSdk.Core.AssetManagement.AssetManagementClient.AddAssetAsync(MindSphereSdk.Core.AssetManagement.AddAssetRequest)">
+            <summary>
+            Create an asset
+            </summary>
+        </member>
+        <member name="M:MindSphereSdk.Core.AssetManagement.AssetManagementClient.GetAssetAsync(MindSphereSdk.Core.AssetManagement.GetAssetRequest)">
+            <summary>
+            Read a single asset 
+            </summary>
+        </member>
+        <member name="M:MindSphereSdk.Core.AssetManagement.AssetManagementClient.UpdateAssetAsync(MindSphereSdk.Core.AssetManagement.UpdateAssetRequest)">
+            <summary>
+            Update an asset
+            </summary>
+        </member>
+        <member name="M:MindSphereSdk.Core.AssetManagement.AssetManagementClient.PatchAssetAsync(MindSphereSdk.Core.AssetManagement.UpdateAssetRequest)">
+            <summary>
+            Patch an asset
+            </summary>
+        </member>
+        <member name="M:MindSphereSdk.Core.AssetManagement.AssetManagementClient.DeleteAssetAsync(MindSphereSdk.Core.AssetManagement.DeleteAssetRequest)">
+            <summary>
+            Delete an asset 
+            </summary>
+        </member>
+        <member name="M:MindSphereSdk.Core.AssetManagement.AssetManagementClient.MoveAssetAsync(MindSphereSdk.Core.AssetManagement.MoveAssetRequest)">
+            <summary>
+            Move an asset 
+            </summary>
+        </member>
+        <member name="M:MindSphereSdk.Core.AssetManagement.AssetManagementClient.GetRootAssetAsync">
+            <summary>
+            Read the root asset of the user 
+            </summary>
+        </member>
+        <member name="M:MindSphereSdk.Core.AssetManagement.AssetManagementClient.SaveAssetFileAssignmentAsync(MindSphereSdk.Core.AssetManagement.SaveAssetFileAssignmentRequest)">
+            <summary>
+            Save a file assignment to an asset
+            </summary>
+        </member>
+        <member name="M:MindSphereSdk.Core.AssetManagement.AssetManagementClient.DeleteAssetFileAssignmentAsync(MindSphereSdk.Core.AssetManagement.DeleteAssetFileAssignmentRequest)">
+            <summary>
+            Delete a file assignment from an asset
+            </summary>
+        </member>
+        <member name="M:MindSphereSdk.Core.AssetManagement.AssetManagementClient.ListAssetVariablesAsync(MindSphereSdk.Core.AssetManagement.ListAssetVariablesRequest)">
+            <summary>
+            Get all variables of an asset 
+            </summary>
+        </member>
+        <member name="M:MindSphereSdk.Core.AssetManagement.AssetManagementClient.ListAssetAspectsAsync(MindSphereSdk.Core.AssetManagement.ListAssetAspectsRequest)">
+            <summary>
+            Get all aspects of an asset 
+            </summary>
+        </member>
+        <member name="M:MindSphereSdk.Core.AssetManagement.AssetManagementClient.PutAssetLocationAsync(MindSphereSdk.Core.AssetManagement.PutAssetLocationRequest)">
+            <summary>
+            Create or Update location assigned to given asset
+            </summary>
+        </member>
+        <member name="M:MindSphereSdk.Core.AssetManagement.AssetManagementClient.DeleteAssetLocationAsync(MindSphereSdk.Core.AssetManagement.DeleteAssetLocationRequest)">
+            <summary>
+            Delete location assigned to given asset
+            </summary>
+        </member>
+        <member name="M:MindSphereSdk.Core.AssetManagement.AssetManagementClient.ListFilesAsync(MindSphereSdk.Core.AssetManagement.ListFilesRequest)">
+            <summary>
+            Get metadata of uploaded files.
+            </summary>
+        </member>
+        <member name="M:MindSphereSdk.Core.AssetManagement.AssetManagementClient.GetFileAsync(MindSphereSdk.Core.AssetManagement.GetFileRequest)">
+            <summary>
+            Returns a file's metadata by its id
+            </summary>
+        </member>
+        <member name="M:MindSphereSdk.Core.AssetManagement.AssetManagementClient.DownloadFileAsync(MindSphereSdk.Core.AssetManagement.DownloadFileRequest)">
+            <summary>
+            Returns a file by its id
+            </summary>
+        </member>
+        <member name="M:MindSphereSdk.Core.AssetManagement.AssetManagementClient.DeleteFileAsync(MindSphereSdk.Core.AssetManagement.DeleteFileRequest)">
+            <summary>
+            Delete a file
+            </summary>
+        </member>
+        <member name="M:MindSphereSdk.Core.AssetManagement.AssetManagementClient.UploadFileAsync(MindSphereSdk.Core.AssetManagement.UploadFileRequest)">
+            <summary>
+            Upload file to be used in Asset Management
+            </summary>
+        </member>
+        <member name="M:MindSphereSdk.Core.AssetManagement.AssetManagementClient.UpdateFileAsync(MindSphereSdk.Core.AssetManagement.UpdateFileRequest)">
+            <summary>
+            Update a file
+            </summary>
+        </member>
+        <member name="M:MindSphereSdk.Core.AssetManagement.AssetManagementClient.ListAspectTypesAsync(MindSphereSdk.Core.AssetManagement.ListAspectTypesRequest)">
+            <summary>
+            List all aspect types
+            </summary>
+        </member>
+        <member name="M:MindSphereSdk.Core.AssetManagement.AssetManagementClient.GetAspectTypeAsync(MindSphereSdk.Core.AssetManagement.GetAspectTypeRequest)">
+            <summary>
+            Read an aspect type 
+            </summary>
+        </member>
+        <member name="M:MindSphereSdk.Core.AssetManagement.AssetManagementClient.DeleteAspectTypeAsync(MindSphereSdk.Core.AssetManagement.DeleteAspectTypeRequest)">
+            <summary>
+            Delete an aspect type 
+            </summary>
+        </member>
+        <member name="M:MindSphereSdk.Core.AssetManagement.AssetManagementClient.PutAspectTypeAsync(MindSphereSdk.Core.AssetManagement.PutAspectTypeRequest)">
+            <summary>
+            Create or update an aspect type
+            </summary>
+        </member>
+        <member name="M:MindSphereSdk.Core.AssetManagement.AssetManagementClient.PatchAspectTypeAsync(MindSphereSdk.Core.AssetManagement.PatchAspectTypeRequest)">
+            <summary>
+            Patch an aspect type
+            </summary>
+        </member>
+        <member name="M:MindSphereSdk.Core.AssetManagement.AssetManagementClient.ListAssetTypesAsync(MindSphereSdk.Core.AssetManagement.ListAssetTypesRequest)">
+            <summary>
+            List all asset types
+            </summary>
+        </member>
+        <member name="M:MindSphereSdk.Core.AssetManagement.AssetManagementClient.GetAssetTypeAsync(MindSphereSdk.Core.AssetManagement.GetAssetTypeRequest)">
+            <summary>
+            Read an asset type 
+            </summary>
+        </member>
+        <member name="M:MindSphereSdk.Core.AssetManagement.AssetManagementClient.PutAssetTypeAsync(MindSphereSdk.Core.AssetManagement.PutAssetTypeRequest)">
+            <summary>
+            Create or update an asset type
+            </summary>
+        </member>
+        <member name="M:MindSphereSdk.Core.AssetManagement.AssetManagementClient.PatchAssetTypeAsync(MindSphereSdk.Core.AssetManagement.PatchAssetTypeRequest)">
+            <summary>
+            Patch an asset type
+            </summary>
+        </member>
+        <member name="M:MindSphereSdk.Core.AssetManagement.AssetManagementClient.DeleteAssetTypeAsync(MindSphereSdk.Core.AssetManagement.DeleteAssetTypeRequest)">
+            <summary>
+            Delete an asset type 
+            </summary>
+        </member>
+        <member name="M:MindSphereSdk.Core.AssetManagement.AssetManagementClient.SaveAssetTypeFileAssignmentAsync(MindSphereSdk.Core.AssetManagement.SaveAssetTypeFileAssignmentRequest)">
+            <summary>
+            Save a file assignment to an asset
+            </summary>
+        </member>
+        <member name="M:MindSphereSdk.Core.AssetManagement.AssetManagementClient.DeleteAssetTypeFileAssignmentAsync(MindSphereSdk.Core.AssetManagement.DeleteAssetTypeFileAssignmentRequest)">
+            <summary>
+            Delete a file assignment from an asset type
+            </summary>
+        </member>
+        <member name="T:MindSphereSdk.Core.AssetManagement.EmbeddedAssetList">
+            <summary>
+            Wrapper for asset list
+            </summary>
+        </member>
+        <member name="T:MindSphereSdk.Core.AssetManagement.EmbeddedAspectTypeList">
+            <summary>
+            Wrapper for aspect type list
+            </summary>
+        </member>
+        <member name="T:MindSphereSdk.Core.AssetManagement.EmbeddedAssetTypeList">
+            <summary>
+            Wrapper for asset type list
+            </summary>
+        </member>
+        <member name="T:MindSphereSdk.Core.AssetManagement.EmbeddedVariableList">
+            <summary>
+            Wrapper for variable list
+            </summary>
+        </member>
+        <member name="T:MindSphereSdk.Core.AssetManagement.EmbeddedAspectList">
+            <summary>
+            Wrapper for aspect list
+            </summary>
+        </member>
+        <member name="T:MindSphereSdk.Core.AssetManagement.EmbeddedFileList">
+            <summary>
+            Wrapper for file list
+            </summary>
+        </member>
+        <member name="T:MindSphereSdk.Core.AssetManagement.Asset">
+            <summary>
+            Asset
+            </summary>
+        </member>
+        <member name="T:MindSphereSdk.Core.AssetManagement.AssetUpdate">
+            <summary>
+            Asset to update
+            </summary>
+        </member>
+        <member name="T:MindSphereSdk.Core.AssetManagement.AssetAdd">
+            <summary>
+            Asset to add
+            </summary>
+        </member>
+        <member name="T:MindSphereSdk.Core.AssetManagement.AssetMove">
+            <summary>
+            Asset to move
+            </summary>
+        </member>
+        <member name="T:MindSphereSdk.Core.AssetManagement.Aspect">
+            <summary>
+            Aspect
+            </summary>
+        </member>
+        <member name="T:MindSphereSdk.Core.AssetManagement.AspectPut">
+            <summary>
+            Aspect for putting
+            </summary>
+        </member>
+        <member name="T:MindSphereSdk.Core.AssetManagement.AspectDetail">
+            <summary>
+            Aspect detail
+            </summary>
+        </member>
+        <member name="T:MindSphereSdk.Core.AssetManagement.AspectFullDetail">
+            <summary>
+            Aspect full detail
+            </summary>
+        </member>
+        <member name="T:MindSphereSdk.Core.AssetManagement.Location">
+            <summary>
+            Location
+            </summary>
+        </member>
+        <member name="T:MindSphereSdk.Core.AssetManagement.FileAssignment">
+            <summary>
+            File assignment
+            </summary>
+        </member>
+        <member name="T:MindSphereSdk.Core.AssetManagement.AspectType">
+            <summary>
+            Aspect type
+            </summary>
+        </member>
+        <member name="T:MindSphereSdk.Core.AssetManagement.AspectTypeUpdate">
+            <summary>
+            Aspect type (create or update)
+            </summary>
+        </member>
+        <member name="T:MindSphereSdk.Core.AssetManagement.AssetType">
+            <summary>
+            Asset type
+            </summary>
+        </member>
+        <member name="T:MindSphereSdk.Core.AssetManagement.AssetTypeUpdate">
+            <summary>
+            Asset type (create or update)
+            </summary>
+        </member>
+        <member name="T:MindSphereSdk.Core.AssetManagement.VariableDetail">
+            <summary>
+            Variable for asset/aspect type
+            </summary>
+        </member>
+        <member name="T:MindSphereSdk.Core.AssetManagement.Variable">
+            <summary>
+            Variable
+            </summary>
+        </member>
+        <member name="T:MindSphereSdk.Core.AssetManagement.File">
+            <summary>
+            File metadata
+            </summary>
+        </member>
+        <member name="T:MindSphereSdk.Core.AssetManagement.ListAssetsRequest">
+            <summary>
+            Request for listing assets
+            </summary>
+        </member>
+        <member name="T:MindSphereSdk.Core.AssetManagement.AddAssetRequest">
+            <summary>
+            Request for adding asset
+            </summary>
+        </member>
+        <member name="T:MindSphereSdk.Core.AssetManagement.GetAssetRequest">
+            <summary>
+            Request for getting asset
+            </summary>
+        </member>
+        <member name="T:MindSphereSdk.Core.AssetManagement.UpdateAssetRequest">
+            <summary>
+            Request for updating asset
+            </summary>
+        </member>
+        <member name="T:MindSphereSdk.Core.AssetManagement.DeleteAssetRequest">
+            <summary>
+            Request for deleting asset
+            </summary>
+        </member>
+        <member name="T:MindSphereSdk.Core.AssetManagement.MoveAssetRequest">
+            <summary>
+            Request for moving asset
+            </summary>
+        </member>
+        <member name="T:MindSphereSdk.Core.AssetManagement.SaveAssetFileAssignmentRequest">
+            <summary>
+            Request for saving asset's file assignment
+            </summary>
+        </member>
+        <member name="T:MindSphereSdk.Core.AssetManagement.DeleteAssetFileAssignmentRequest">
+            <summary>
+            Request for deleting asset's file assignment
+            </summary>
+        </member>
+        <member name="T:MindSphereSdk.Core.AssetManagement.ListAspectTypesRequest">
+            <summary>
+            Request for listing aspect types
+            </summary>
+        </member>
+        <member name="T:MindSphereSdk.Core.AssetManagement.GetAspectTypeRequest">
+            <summary>
+            Request for getting aspect type
+            </summary>
+        </member>
+        <member name="T:MindSphereSdk.Core.AssetManagement.DeleteAspectTypeRequest">
+            <summary>
+            Request for deleting aspect type
+            </summary>
+        </member>
+        <member name="T:MindSphereSdk.Core.AssetManagement.PutAspectTypeRequest">
+            <summary>
+            Request for putting aspect type
+            </summary>
+        </member>
+        <member name="T:MindSphereSdk.Core.AssetManagement.PatchAspectTypeRequest">
+            <summary>
+            Request for patching aspect type
+            </summary>
+        </member>
+        <member name="T:MindSphereSdk.Core.AssetManagement.ListAssetTypesRequest">
+            <summary>
+            Request for listing aspect types
+            </summary>
+        </member>
+        <member name="T:MindSphereSdk.Core.AssetManagement.GetAssetTypeRequest">
+            <summary>
+            Request for getting asset type
+            </summary>
+        </member>
+        <member name="T:MindSphereSdk.Core.AssetManagement.PutAssetTypeRequest">
+            <summary>
+            Request for putting asset type
+            </summary>
+        </member>
+        <member name="T:MindSphereSdk.Core.AssetManagement.PatchAssetTypeRequest">
+            <summary>
+            Request for patching asset type
+            </summary>
+        </member>
+        <member name="T:MindSphereSdk.Core.AssetManagement.DeleteAssetTypeRequest">
+            <summary>
+            Request for deleting asset type
+            </summary>
+        </member>
+        <member name="T:MindSphereSdk.Core.AssetManagement.SaveAssetTypeFileAssignmentRequest">
+            <summary>
+            Request for saving asset type file assignment
+            </summary>
+        </member>
+        <member name="T:MindSphereSdk.Core.AssetManagement.DeleteAssetTypeFileAssignmentRequest">
+            <summary>
+            Request for deleting asset type file assignment
+            </summary>
+        </member>
+        <member name="T:MindSphereSdk.Core.AssetManagement.ListAssetVariablesRequest">
+            <summary>
+            Request for listing all asset's variables
+            </summary>
+        </member>
+        <member name="T:MindSphereSdk.Core.AssetManagement.ListAssetAspectsRequest">
+            <summary>
+            Request for listing all asset's aspects
+            </summary>
+        </member>
+        <member name="T:MindSphereSdk.Core.AssetManagement.PutAssetLocationRequest">
+            <summary>
+            Request for putting asset's location
+            </summary>
+        </member>
+        <member name="T:MindSphereSdk.Core.AssetManagement.DeleteAssetLocationRequest">
+            <summary>
+            Request for deleting asset's location
+            </summary>
+        </member>
+        <member name="T:MindSphereSdk.Core.AssetManagement.ListFilesRequest">
+            <summary>
+            Request for listing files
+            </summary>
+        </member>
+        <member name="T:MindSphereSdk.Core.AssetManagement.GetFileRequest">
+            <summary>
+            Request for getting file metadata
+            </summary>
+        </member>
+        <member name="T:MindSphereSdk.Core.AssetManagement.DownloadFileRequest">
+            <summary>
+            Request for downloading file
+            </summary>
+        </member>
+        <member name="T:MindSphereSdk.Core.AssetManagement.DeleteFileRequest">
+            <summary>
+            Request for deleting file
+            </summary>
+        </member>
+        <member name="T:MindSphereSdk.Core.AssetManagement.UploadFileRequest">
+            <summary>
+            Request for uploading file
+            </summary>
+        </member>
+        <member name="T:MindSphereSdk.Core.AssetManagement.UpdateFileRequest">
+            <summary>
+            Request for updating file
+            </summary>
+        </member>
+        <member name="T:MindSphereSdk.Core.Authentication.AccessToken">
+            <summary>
+            Access Token for MindSphere API
+            </summary>
+        </member>
+        <member name="T:MindSphereSdk.Core.Authentication.TenantCredentials">
+            <summary>
+            AppCredentials for MindSphere API
+            </summary>
+        </member>
+        <member name="T:MindSphereSdk.Core.Common.AppCredentials">
+            <summary>
+            AppCredentials for MindSphere API
+            </summary>
+        </member>
+        <member name="M:MindSphereSdk.Core.Common.AppCredentials.FromJsonFile(System.String)">
+            <summary>
+            Load AppCredentials from the JSON file
+            </summary>
+        </member>
+        <member name="T:MindSphereSdk.Core.Common.AppMindSphereConnector">
+            <summary>
+            Connector to the MindSphere API using app credentials
+            </summary>
+        </member>
+        <member name="M:MindSphereSdk.Core.Common.AppMindSphereConnector.AcquireTokenAsync">
+            <summary>
+            Acquire MindSphere access token with app credentials
+            </summary>
+        </member>
+        <member name="M:MindSphereSdk.Core.Common.AppMindSphereConnector.GetBasicAuth">
+            <summary>
+            Generate BasicAuth string (Basic abc123...)
+            </summary>
+        </member>
+        <member name="T:MindSphereSdk.Core.Common.MindSphereResourceWrapper`1">
+            <summary>
+            Wrapper for MindSphere resource
+            </summary>
+        </member>
+        <member name="T:MindSphereSdk.Core.Common.MindSphereConnector">
+            <summary>
+            Connector to the MindSphere API
+            </summary>
+        </member>
+        <member name="M:MindSphereSdk.Core.Common.MindSphereConnector.HttpActionAsync(System.Net.Http.HttpMethod,System.String,System.Net.Http.HttpContent,System.Collections.Generic.List{System.Collections.Generic.KeyValuePair{System.String,System.String}})">
+            <summary>
+            Sending HTTP request to the MindSphere API
+            </summary>
+        </member>
+        <member name="M:MindSphereSdk.Core.Common.MindSphereConnector.AcquireTokenAsync">
+            <summary>
+            Acquire MindSphere access token
+            </summary>
+        </member>
+        <member name="M:MindSphereSdk.Core.Common.MindSphereConnector.RenewTokenAsync">
+            <summary>
+            Renew MindSphere access token
+            </summary>
+        </member>
+        <member name="M:MindSphereSdk.Core.Common.MindSphereConnector.ValidateToken">
+            <summary>
+            Validate MindSphere access token 
+            </summary>
+        </member>
+        <member name="M:MindSphereSdk.Core.Common.MindSphereConnector.GetFullUri(System.String)">
+            <summary>
+            Generate full URI
+            </summary>
+        </member>
+        <member name="T:MindSphereSdk.Core.Common.SdkClient">
+            <summary>
+            General SDK client
+            </summary>
+        </member>
+        <member name="M:MindSphereSdk.Core.Common.SdkClient.CreateConnector(MindSphereSdk.Core.Common.ICredentials,System.Net.Http.HttpClient)">
+            <summary>
+            Create specified MindSphere connector based on provided credentials
+            </summary>
+        </member>
+        <member name="M:MindSphereSdk.Core.Common.SdkClient.HttpActionAsync(System.Net.Http.HttpMethod,System.String,System.Net.Http.HttpContent,System.Collections.Generic.List{System.Collections.Generic.KeyValuePair{System.String,System.String}})">
+            <summary>
+            Sending HTTP request to the MindSphere API
+            </summary>
+        </member>
+        <member name="T:MindSphereSdk.Core.EventManagement.EventManagementClient">
+            <summary>
+            Create, read, update and delete Events and Event Types
+            </summary>
+        </member>
+        <member name="M:MindSphereSdk.Core.EventManagement.EventManagementClient.AddEventAsync``1(MindSphereSdk.Core.EventManagement.AddEventRequest)">
+            <summary>
+            Create new event
+            </summary>
+        </member>
+        <member name="T:MindSphereSdk.Core.EventManagement.AddEventRequest">
+            <summary>
+            Request for adding event
+            </summary>
+        </member>
+        <member name="T:MindSphereSdk.Core.EventManagement.Event">
+            <summary>
+            Event
+            </summary>
+        </member>
+        <member name="T:MindSphereSdk.Core.EventManagement.EventAdd">
+            <summary>
+            Event to add
+            </summary>
+        </member>
+        <member name="M:MindSphereSdk.Core.Helpers.Helper.GetDateTimeUtcString(System.DateTime)">
+            <summary>
+            Generate date time UTC string
+            </summary>
+        </member>
+        <member name="M:MindSphereSdk.Core.Helpers.MultipartFormDataContentExtension.AddStringContentIfNotNull(System.Net.Http.MultipartFormDataContent,System.String,System.String)">
+            <summary>
+            Extension method for MultipartFormDataContent to add only not-null values
+            </summary>
+        </member>
+        <member name="T:MindSphereSdk.Core.Helpers.QueryStringBuilder">
+            <summary>
+            URI query builder
+            </summary>
+        </member>
+        <member name="M:MindSphereSdk.Core.Helpers.QueryStringBuilder.AddQuery(System.String,System.String)">
+            <summary>
+            Add new part to the URI query sting
+            </summary>
+        </member>
+        <member name="M:MindSphereSdk.Core.Helpers.QueryStringBuilder.ToString">
+            <summary>
+            Build the URI query string
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:MindSphereSdk.Core.IotTimeSeries.IotTimeSeriesClient">
+            <summary>
+            Create, read, update, and delete time series data
+            </summary>
+        </member>
+        <member name="M:MindSphereSdk.Core.IotTimeSeries.IotTimeSeriesClient.GetTimeSeriesAsync``1(MindSphereSdk.Core.IotTimeSeries.GetTimeSeriesRequest)">
+            <summary>
+            Retrieve time series data (generic function)
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MindSphereSdk.Core.IotTimeSeries.IotTimeSeriesClient.GetTimeSeriesAsync(MindSphereSdk.Core.IotTimeSeries.GetTimeSeriesRequest)">
+            <summary>
+            Retrieve time series data
+            </summary>
+        </member>
+        <member name="M:MindSphereSdk.Core.IotTimeSeries.IotTimeSeriesClient.PutTimeSeriesAsync(MindSphereSdk.Core.IotTimeSeries.PutTimeSeriesRequest)">
+            <summary>
+            Create or update time series data
+            </summary>
+        </member>
+        <member name="M:MindSphereSdk.Core.IotTimeSeries.IotTimeSeriesClient.DeleteTimeSeriesAsync(MindSphereSdk.Core.IotTimeSeries.DeleteTimeSeriesRequest)">
+            <summary>
+            Delete time series data
+            </summary>
+        </member>
+        <member name="M:MindSphereSdk.Core.IotTimeSeries.IotTimeSeriesClient.GetUriForGetTimeSeries(MindSphereSdk.Core.IotTimeSeries.GetTimeSeriesRequest)">
+            <summary>
+            Generate specific URI for get request
+            </summary>
+        </member>
+        <member name="M:MindSphereSdk.Core.IotTimeSeries.IotTimeSeriesClient.GetUriForDeleteTimeSeries(MindSphereSdk.Core.IotTimeSeries.DeleteTimeSeriesRequest)">
+            <summary>
+            Generate specific URI for delete request
+            </summary>
+        </member>
+        <member name="T:MindSphereSdk.Core.IotTimeSeries.TimeSeries">
+            <summary>
+            Time Series for one asset and one aspect
+            </summary>
+        </member>
+        <member name="T:MindSphereSdk.Core.IotTimeSeries.GetTimeSeriesRequest">
+            <summary>
+            Request for getting time series
+            </summary>
+        </member>
+        <member name="T:MindSphereSdk.Core.IotTimeSeries.PutTimeSeriesRequest">
+            <summary>
+            Request for putting time series
+            </summary>
+        </member>
+        <member name="T:MindSphereSdk.Core.IotTimeSeries.DeleteTimeSeriesRequest">
+            <summary>
+            Request for deleting time series
+            </summary>
+        </member>
+        <member name="T:MindSphereSdk.Core.IotTsAggregates.IotTsAggregatesClient">
+            <summary>
+            Querying aggregated time series data for performance assets based on pre-calculated aggregate values
+            </summary>
+        </member>
+        <member name="M:MindSphereSdk.Core.IotTsAggregates.IotTsAggregatesClient.GetAggregateTimeSeriesAsync``1(MindSphereSdk.Core.IotTsAggregates.GetAggregateTimeSeriesRequest)">
+            <summary>
+            Get aggregated time series data for one aspect of an asset
+            </summary>
+        </member>
+        <member name="M:MindSphereSdk.Core.IotTsAggregates.IotTsAggregatesClient.GetUri(MindSphereSdk.Core.IotTsAggregates.GetAggregateTimeSeriesRequest)">
+            <summary>
+            Generate URI for time series aggregation request
+            </summary>
+        </member>
+        <member name="T:MindSphereSdk.Core.IotTsAggregates.GetAggregateTimeSeriesRequest">
+            <summary>
+            Request for getting aggregate time series
+            </summary>
+        </member>
+        <member name="T:MindSphereSdk.Core.IotTsAggregates.AggregateWrapper`1">
+            <summary>
+            Aggregate time series data wrapper
+            </summary>
+        </member>
+        <member name="T:MindSphereSdk.Core.IotTsAggregates.AggregateSet">
+            <summary>
+            Aggregate time series set
+            </summary>
+        </member>
+        <member name="T:MindSphereSdk.Core.IotTsAggregates.AggregateVariable">
+            <summary>
+            Aggregate time series variable
+            </summary>
+        </member>
+    </members>
+</doc>
