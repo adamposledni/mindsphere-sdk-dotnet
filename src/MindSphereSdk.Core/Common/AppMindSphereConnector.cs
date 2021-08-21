@@ -29,7 +29,7 @@ namespace MindSphereSdk.Core.Common
         /// <summary>
         /// Acquire MindSphere access token with app credentials
         /// </summary>
-        public override async Task AcquireTokenAsync()
+        protected override async Task AcquireTokenAsync()
         {
             // prepare HTTP request
             HttpRequestMessage request = new HttpRequestMessage

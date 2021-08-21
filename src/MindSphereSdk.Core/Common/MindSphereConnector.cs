@@ -22,7 +22,7 @@ namespace MindSphereSdk.Core.Common
 
         public MindSphereConnector(ClientConfiguration configuration, HttpClient httpClient)
         {
-            _configuration = configuration;
+            _configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
             _httpClient = httpClient ?? throw new ArgumentNullException(nameof(httpClient));
         }
 
@@ -64,12 +64,12 @@ namespace MindSphereSdk.Core.Common
         /// <summary>
         /// Acquire MindSphere access token
         /// </summary>
-        public abstract Task AcquireTokenAsync();
+        protected abstract Task AcquireTokenAsync();
 
         /// <summary>
         /// Renew MindSphere access token
         /// </summary>
-        public async Task RenewTokenAsync()
+        protected async Task RenewTokenAsync()
         {
             if (_accessToken != null)
             {
