@@ -25,9 +25,6 @@ namespace MindSphereSdk.Core.IotTimeSeries
         /// <summary>
         /// Retrieve time series data (generic function)
         /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="request"></param>
-        /// <returns></returns>
         public async Task<IEnumerable<T>> GetTimeSeriesAsync<T>(GetTimeSeriesRequest request)
         {
             string uri = GetUriForGetTimeSeries(request);

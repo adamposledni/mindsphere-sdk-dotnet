@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace MindSphereSdk.Core.Common
 {
-    // TBD
+    // TODO: tenant connector
 
     ///// <summary>
     ///// Connector to the MindSphere API using tenant credentials

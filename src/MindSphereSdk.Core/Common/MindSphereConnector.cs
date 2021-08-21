@@ -14,6 +14,7 @@ namespace MindSphereSdk.Core.Common
     /// <summary>
     /// Connector to the MindSphere API
     /// </summary>
+    // TODO: change architecture to be as follow: user creates one creds object, that is passed to each sdkClient, creds object holds one common access token
     public abstract class MindSphereConnector
     {
         protected AccessToken _accessToken;

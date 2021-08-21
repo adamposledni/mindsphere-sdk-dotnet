@@ -30,6 +30,7 @@ namespace MindSphereSdk.Core.Common
         [JsonProperty("userTenant")]
         public string UserTenant { get; set; }
 
+        // TODO: Validate data
         public AppCredentials(
             string keyStoreClientId, 
             string keyStoreClientSecret, 
