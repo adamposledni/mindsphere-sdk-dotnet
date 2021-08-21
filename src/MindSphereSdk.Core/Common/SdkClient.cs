@@ -40,7 +40,7 @@ namespace MindSphereSdk.Core.Common
             //}
             else
             {
-                throw new InvalidOperationException("Invalid credentials");
+                throw new ArgumentException("Invalid credentials", nameof(credentials));
             }
         }
 
