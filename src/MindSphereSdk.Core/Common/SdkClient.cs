@@ -16,15 +16,15 @@ namespace MindSphereSdk.Core.Common
     {
         private readonly MindSphereConnector _mindSphereConnector;
 
-        public SdkClient(ICredentials credentials, HttpClient httpClient)
+        public SdkClient(ICredentials credentials, ClientConfiguration configuration, HttpClient httpClient)
         {
-            _mindSphereConnector = CreateConnector(credentials, httpClient);
+            _mindSphereConnector = CreateConnector(credentials, configuration, httpClient);
         }
 
         /// <summary>
         /// Create specified MindSphere connector based on provided credentials
         /// </summary>
-        private MindSphereConnector CreateConnector(ICredentials credentials, HttpClient httpClient)
+        private MindSphereConnector CreateConnector(ICredentials credentials, ClientConfiguration configuration, HttpClient httpClient)
         {
             if (credentials == null)
             {
@@ -32,7 +32,7 @@ namespace MindSphereSdk.Core.Common
             }
             else if (credentials is AppCredentials castedCredentials)
             {
-                return new AppMindSphereConnector(castedCredentials, httpClient);
+                return new AppMindSphereConnector(castedCredentials, configuration, httpClient);
             }
             //else if (credentials is TenantCredentials)
             //{

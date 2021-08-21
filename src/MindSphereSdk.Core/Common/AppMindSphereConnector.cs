@@ -20,8 +20,8 @@ namespace MindSphereSdk.Core.Common
     {
         private readonly AppCredentials _credentials;
 
-        public AppMindSphereConnector(AppCredentials credentials, HttpClient httpClient)
-            : base(httpClient)
+        public AppMindSphereConnector(AppCredentials credentials, ClientConfiguration configuration, HttpClient httpClient)
+            : base(configuration, httpClient)
         {
             _credentials = credentials;
         }

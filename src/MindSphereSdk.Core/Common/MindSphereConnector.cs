@@ -14,17 +14,15 @@ namespace MindSphereSdk.Core.Common
     /// <summary>
     /// Connector to the MindSphere API
     /// </summary>
-    // TODO: change architecture to be as follow: user creates one creds object, that is passed to each sdkClient, creds object holds one common access token
     public abstract class MindSphereConnector
     {
         protected AccessToken _accessToken;
+        private ClientConfiguration _configuration;
         protected readonly HttpClient _httpClient;
 
-        private readonly string _region = "eu1";
-        private readonly string _domain = "mindsphere.io";
-
-        public MindSphereConnector(HttpClient httpClient)
+        public MindSphereConnector(ClientConfiguration configuration, HttpClient httpClient)
         {
+            _configuration = configuration;
             _httpClient = httpClient ?? throw new ArgumentNullException(nameof(httpClient));
         }
 
@@ -123,7 +121,7 @@ namespace MindSphereSdk.Core.Common
         /// </summary>
         protected Uri GetFullUri(string specUri)
         {
-            string basePart = $"https://gateway.{_region}.{_domain}";
+            string basePart = $"https://gateway.{_configuration.Region}.{_configuration.Domain}";
             return new Uri(basePart + specUri);
         }
     }

@@ -18,9 +18,9 @@ namespace MindSphereSdk.Core.AssetManagement
     {
         private readonly string _baseUri = "/api/assetmanagement/v3";
 
-        public AssetManagementClient(ICredentials credentials, HttpClient httpClient) : base(credentials, httpClient)
+        public AssetManagementClient(ICredentials credentials, ClientConfiguration configuration, HttpClient httpClient) 
+            : base(credentials, configuration, httpClient)
         {
-
         }
 
         #region Asset
