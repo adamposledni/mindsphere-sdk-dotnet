@@ -32,11 +32,13 @@ namespace MindSphereSdk.AspNetCore
         private EventManagementClient _eventManagementClient;
 
         private readonly ICredentials _credentials;
+        private readonly ClientConfiguration _configuration;
 
         public MindSphereSdkService(IHttpClientFactory clientFactory, IOptions<MindSphereSdkServiceOptions> options)
         {
             _httpClient = clientFactory.CreateClient();
             _credentials = options.Value.Credentials;
+            _configuration = options.Value.Configuration;
         }
 
         /// <summary>
@@ -46,7 +48,7 @@ namespace MindSphereSdk.AspNetCore
         {
             if (_assetManagementClient == null)
             {
-                _assetManagementClient = new AssetManagementClient(_credentials, _httpClient);
+                _assetManagementClient = new AssetManagementClient(_credentials, _configuration, _httpClient);
             }
 
             return _assetManagementClient;
@@ -59,7 +61,7 @@ namespace MindSphereSdk.AspNetCore
         {
             if (_iotTimeSeriesClient == null)
             {
-                _iotTimeSeriesClient = new IotTimeSeriesClient(_credentials, _httpClient);
+                _iotTimeSeriesClient = new IotTimeSeriesClient(_credentials, _configuration, _httpClient);
             }
 
             return _iotTimeSeriesClient;
@@ -72,7 +74,7 @@ namespace MindSphereSdk.AspNetCore
         {
             if (_iotTsAggregateClient == null)
             {
-                _iotTsAggregateClient = new IotTsAggregatesClient(_credentials, _httpClient);
+                _iotTsAggregateClient = new IotTsAggregatesClient(_credentials, _configuration, _httpClient);
             }
 
             return _iotTsAggregateClient;
@@ -85,7 +87,7 @@ namespace MindSphereSdk.AspNetCore
         {
             if (_eventManagementClient == null)
             {
-                _eventManagementClient = new EventManagementClient(_credentials, _httpClient);
+                _eventManagementClient = new EventManagementClient(_credentials, _configuration, _httpClient);
             }
 
             return _eventManagementClient;
@@ -116,5 +118,6 @@ namespace MindSphereSdk.AspNetCore
     public class MindSphereSdkServiceOptions
     {   
         public ICredentials Credentials { get; set; }
+        public ClientConfiguration Configuration { get; set; }
     }
 }

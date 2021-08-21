@@ -19,7 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="MindSphereSdk.Core" Version="1.0.0" />
+    <ProjectReference Include="..\MindSphereSdk.Core\MindSphereSdk.Core.csproj" />
   </ItemGroup>
 
 </Project>
