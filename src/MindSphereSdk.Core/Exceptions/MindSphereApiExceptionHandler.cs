@@ -15,7 +15,10 @@ namespace MindSphereSdk.Core.Exceptions
                 int statusCode = (int)response.StatusCode;
                 string message = await response.Content.ReadAsStringAsync();
 
-                throw new MindSphereApiException($"HTTP call to the MindSphere failed with status code: {statusCode} and message: {message}");
+                throw new MindSphereApiException(
+                    statusCode, 
+                    $"HTTP call to the MindSphere failed with status code: {statusCode} and message: {message}"
+                );
             }
         }
     }
