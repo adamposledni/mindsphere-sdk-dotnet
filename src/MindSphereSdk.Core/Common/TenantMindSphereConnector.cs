@@ -14,26 +14,4 @@ using System.Threading.Tasks;
 namespace MindSphereSdk.Core.Common
 {
     // TODO: tenant connector
-
-    ///// <summary>
-    ///// Connector to the MindSphere API using tenant credentials
-    ///// </summary>
-    //public class TenantMindSphereConnector : MindSphereConnector
-    //{
-    //    private TenantCredentials _credentials;
-
-    //    public TenantMindSphereConnector(TenantCredentials credentials, HttpClient httpClient)
-    //        : base(httpClient)
-    //    {
-    //        _credentials = credentials;
-    //    }
-
-    //    /// <summary>
-    //    /// Acquire MindSphere access token with tenant credentials
-    //    /// </summary>
-    //    public override async Task AcquireTokenAsync()
-    //    {
-    //        throw new NotImplementedException();
-    //    }
-    //}
 }

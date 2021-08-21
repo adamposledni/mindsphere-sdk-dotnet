@@ -439,11 +439,6 @@
             Access Token for MindSphere API
             </summary>
         </member>
-        <member name="T:MindSphereSdk.Core.Authentication.TenantCredentials">
-            <summary>
-            AppCredentials for MindSphere API
-            </summary>
-        </member>
         <member name="T:MindSphereSdk.Core.Common.AppCredentials">
             <summary>
             AppCredentials for MindSphere API
@@ -467,6 +462,11 @@
         <member name="M:MindSphereSdk.Core.Common.AppMindSphereConnector.GetBasicAuth">
             <summary>
             Generate BasicAuth string (Basic abc123...)
+            </summary>
+        </member>
+        <member name="T:MindSphereSdk.Core.Common.ClientConfiguration">
+            <summary>
+            MindSphere SDK client configuration
             </summary>
         </member>
         <member name="T:MindSphereSdk.Core.Common.MindSphereResourceWrapper`1">
@@ -509,7 +509,7 @@
             General SDK client
             </summary>
         </member>
-        <member name="M:MindSphereSdk.Core.Common.SdkClient.CreateConnector(MindSphereSdk.Core.Common.ICredentials,System.Net.Http.HttpClient)">
+        <member name="M:MindSphereSdk.Core.Common.SdkClient.CreateConnector(MindSphereSdk.Core.Common.ICredentials,MindSphereSdk.Core.Common.ClientConfiguration,System.Net.Http.HttpClient)">
             <summary>
             Create specified MindSphere connector based on provided credentials
             </summary>
@@ -564,6 +564,21 @@
             Add new part to the URI query sting
             </summary>
         </member>
+        <member name="M:MindSphereSdk.Core.Helpers.QueryStringBuilder.AddQuery(System.String,System.Nullable{System.Int32})">
+            <summary>
+            Add new part to the URI query sting
+            </summary>
+        </member>
+        <member name="M:MindSphereSdk.Core.Helpers.QueryStringBuilder.AddQuery(System.String,System.Nullable{System.DateTime})">
+            <summary>
+            Add new part to the URI query sting
+            </summary>
+        </member>
+        <member name="M:MindSphereSdk.Core.Helpers.QueryStringBuilder.AddQuery(System.String,System.Nullable{System.Boolean})">
+            <summary>
+            Add new part to the URI query sting
+            </summary>
+        </member>
         <member name="M:MindSphereSdk.Core.Helpers.QueryStringBuilder.ToString">
             <summary>
             Build the URI query string
@@ -579,9 +594,6 @@
             <summary>
             Retrieve time series data (generic function)
             </summary>
-            <typeparam name="T"></typeparam>
-            <param name="request"></param>
-            <returns></returns>
         </member>
         <member name="M:MindSphereSdk.Core.IotTimeSeries.IotTimeSeriesClient.GetTimeSeriesAsync(MindSphereSdk.Core.IotTimeSeries.GetTimeSeriesRequest)">
             <summary>
