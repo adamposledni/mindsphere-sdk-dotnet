@@ -23,7 +23,7 @@ namespace MindSphereSdk.Core.Common
         public AppMindSphereConnector(AppCredentials credentials, HttpClient httpClient)
             : base(httpClient)
         {
-            _credentials = credentials ?? throw new ArgumentNullException(nameof(credentials)); ;
+            _credentials = credentials;
         }
 
         /// <summary>
