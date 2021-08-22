@@ -11,9 +11,12 @@ namespace MindSphereSdk.Core.Helpers
     /// <summary>
     /// Data validator
     /// </summary>
-    public class Validator
+    internal class Validator
     {
-        public static void Validate(AppCredentials appCredentials)
+        /// <summary>
+        /// Validate application credentials
+        /// </summary>
+        internal static void Validate(AppCredentials appCredentials)
         {
             var result = new AppCredentialsValidator().Validate(appCredentials);
             if (!result.IsValid)
@@ -22,7 +25,10 @@ namespace MindSphereSdk.Core.Helpers
             }
         }
 
-        public static void Validate(UserCredentials userCredentials)
+        /// <summary>
+        /// Validate user credentials
+        /// </summary>
+        internal static void Validate(UserCredentials userCredentials)
         {
             var result = new UserCredentialsValidator().Validate(userCredentials);
             if (!result.IsValid)
@@ -31,7 +37,10 @@ namespace MindSphereSdk.Core.Helpers
             }
         }
 
-        public static void Validate(ClientConfiguration clientConfiguration)
+        /// <summary>
+        /// Validate client configuration
+        /// </summary>
+        internal static void Validate(ClientConfiguration clientConfiguration)
         {
             var result = new ClientConfigurationValidator().Validate(clientConfiguration);
             if (!result.IsValid)

@@ -5,7 +5,10 @@ using System.Text;
 
 namespace MindSphereSdk.Core.Helpers
 {
-    public static class Helper
+    /// <summary>
+    /// Helper
+    /// </summary>
+    internal static class Helper
     {
         /// <summary>
         /// Generate date time UTC string
@@ -17,7 +20,7 @@ namespace MindSphereSdk.Core.Helpers
         }
     }
 
-    public static class MultipartFormDataContentExtension
+    internal static class MultipartFormDataContentExtension
     {
         /// <summary>
         /// Extension method for MultipartFormDataContent to add only not-null values
@@ -34,7 +37,7 @@ namespace MindSphereSdk.Core.Helpers
     /// <summary>
     /// URI query builder
     /// </summary>
-    public class QueryStringBuilder
+    internal class QueryStringBuilder
     {
         private string _query = "?";
 

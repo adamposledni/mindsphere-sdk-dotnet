@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace MindSphereSdk.Core.Exceptions
 {
-    public class MindSphereApiExceptionHandler
+    internal static class MindSphereApiExceptionHandler
     {
-        public static async Task HandleUnsuccessfulResponseAsync(HttpResponseMessage response)
+        internal static async Task HandleUnsuccessfulResponseAsync(HttpResponseMessage response)
         {
             if (!response.IsSuccessStatusCode)
             {

@@ -17,6 +17,9 @@ namespace MindSphereSdk.Core.Authentication
             Token = token.Replace("Bearer ", "");
         }
 
+        /// <summary>
+        /// Create specified MindSphere connector based on provided credentials
+        /// </summary>
         internal override MindSphereConnector GetConnector(ClientConfiguration configuration, HttpClient httpClient)
         {
             if (_mindSphereConnector == null)

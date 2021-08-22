@@ -13,7 +13,7 @@ namespace MindSphereSdk.Core.AssetManagement
     /// <summary>
     /// Wrapper for asset list
     /// </summary>
-    public class EmbeddedAssetList : IEmbeddedResource
+    internal class EmbeddedAssetList : IEmbeddedResource
     {
         [JsonProperty("assets")]
         public IEnumerable<Asset> Assets { get; set; }
@@ -22,7 +22,7 @@ namespace MindSphereSdk.Core.AssetManagement
     /// <summary>
     /// Wrapper for aspect type list
     /// </summary>
-    public class EmbeddedAspectTypeList : IEmbeddedResource
+    internal class EmbeddedAspectTypeList : IEmbeddedResource
     {
         [JsonProperty("aspectTypes")]
         public IEnumerable<AspectType> AspectTypes { get; set; }
@@ -31,7 +31,7 @@ namespace MindSphereSdk.Core.AssetManagement
     /// <summary>
     /// Wrapper for asset type list
     /// </summary>
-    public class EmbeddedAssetTypeList : IEmbeddedResource
+    internal class EmbeddedAssetTypeList : IEmbeddedResource
     {
         [JsonProperty("assetTypes")]
         public IEnumerable<AssetType> AssetTypes { get; set; }
@@ -40,7 +40,7 @@ namespace MindSphereSdk.Core.AssetManagement
     /// <summary>
     /// Wrapper for variable list
     /// </summary>
-    public class EmbeddedVariableList : IEmbeddedResource
+    internal class EmbeddedVariableList : IEmbeddedResource
     {
         [JsonProperty("variables")]
         public IEnumerable<VariableDetail> Variables { get; set; }
@@ -49,7 +49,7 @@ namespace MindSphereSdk.Core.AssetManagement
     /// <summary>
     /// Wrapper for aspect list
     /// </summary>
-    public class EmbeddedAspectList : IEmbeddedResource
+    internal class EmbeddedAspectList : IEmbeddedResource
     {
         [JsonProperty("aspects")]
         public IEnumerable<AspectFullDetail> Aspects { get; set; }
@@ -58,7 +58,7 @@ namespace MindSphereSdk.Core.AssetManagement
     /// <summary>
     /// Wrapper for file list
     /// </summary>
-    public class EmbeddedFileList : IEmbeddedResource
+    internal class EmbeddedFileList : IEmbeddedResource
     {
         [JsonProperty("files")]
         public IEnumerable<File> Files { get; set; }

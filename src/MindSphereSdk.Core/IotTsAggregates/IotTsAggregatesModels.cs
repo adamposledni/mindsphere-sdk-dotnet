@@ -5,25 +5,12 @@ using System.Text;
 
 namespace MindSphereSdk.Core.IotTsAggregates
 {
-    /// <summary>
-    /// Request for getting aggregate time series
-    /// </summary>
-    public class GetAggregateTimeSeriesRequest
-    {
-        public string AssetId { get; set; }
-        public string AspectName { get; set; }
-        public DateTime? From { get; set; }
-        public DateTime? To { get; set; }
-        public int? IntervalValue { get; set; }
-        public string IntervalUnit { get; set; }
-        public string Select { get; set; }
-        public int? Count { get; set; }
-    }
+    #region AggregateTimeSeries
 
     /// <summary>
     /// Aggregate time series data wrapper
     /// </summary>
-    public class AggregateWrapper<T> where T : AggregateSet
+    internal class AggregateWrapper<T> where T : AggregateSet
     {
         [JsonProperty("aggregates")]
         public IEnumerable<T> Aggregates { get; set; }
@@ -88,4 +75,24 @@ namespace MindSphereSdk.Core.IotTsAggregates
         [JsonProperty("sd")]
         public double Sd { get; set; }
     }
+    #endregion
+
+    #region Request
+
+    /// <summary>
+    /// Request for getting aggregate time series
+    /// </summary>
+    public class GetAggregateTimeSeriesRequest
+    {
+        public string AssetId { get; set; }
+        public string AspectName { get; set; }
+        public DateTime? From { get; set; }
+        public DateTime? To { get; set; }
+        public int? IntervalValue { get; set; }
+        public string IntervalUnit { get; set; }
+        public string Select { get; set; }
+        public int? Count { get; set; }
+    }
+
+    #endregion
 }

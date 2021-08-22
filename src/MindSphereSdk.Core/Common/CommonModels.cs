@@ -9,20 +9,20 @@ namespace MindSphereSdk.Core.Common
     /// Wrapper for MindSphere resource
     /// </summary>
     // TODO: Pagination model
-    public class MindSphereResourceWrapper<T> where T : IEmbeddedResource
+    internal class MindSphereResourceWrapper<T> where T : IEmbeddedResource
     {
         [JsonProperty("_embedded")]
         public T Embedded { get; set; }
     }
 
-    public interface IEmbeddedResource
+    internal interface IEmbeddedResource
     {
     }
 
     /// <summary>
     /// Access Token model
     /// </summary>
-    public class AccessToken
+    internal class AccessToken
     {
         [JsonProperty("access_token")]
         public string Token { get; set; }

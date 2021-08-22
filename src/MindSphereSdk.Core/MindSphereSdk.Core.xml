@@ -449,6 +449,11 @@
             Create specified MindSphere connector based on provided credentials
             </summary>
         </member>
+        <member name="T:MindSphereSdk.Core.Authentication.Credentials">
+            <summary>
+            Base class for MindSphere API credentials
+            </summary>
+        </member>
         <member name="M:MindSphereSdk.Core.Authentication.Credentials.GetConnector(MindSphereSdk.Core.Common.ClientConfiguration,System.Net.Http.HttpClient)">
             <summary>
             Create specified MindSphere connector based on provided credentials
@@ -457,6 +462,11 @@
         <member name="T:MindSphereSdk.Core.Authentication.UserCredentials">
             <summary>
             User credentials for MindSphere API
+            </summary>
+        </member>
+        <member name="M:MindSphereSdk.Core.Authentication.UserCredentials.GetConnector(MindSphereSdk.Core.Common.ClientConfiguration,System.Net.Http.HttpClient)">
+            <summary>
+            Create specified MindSphere connector based on provided credentials
             </summary>
         </member>
         <member name="T:MindSphereSdk.Core.Common.AppMindSphereConnector">
@@ -564,6 +574,11 @@
             Event to add
             </summary>
         </member>
+        <member name="T:MindSphereSdk.Core.Helpers.Helper">
+            <summary>
+            Helper
+            </summary>
+        </member>
         <member name="M:MindSphereSdk.Core.Helpers.Helper.GetDateTimeUtcString(System.DateTime)">
             <summary>
             Generate date time UTC string
@@ -608,6 +623,21 @@
         <member name="T:MindSphereSdk.Core.Helpers.Validator">
             <summary>
             Data validator
+            </summary>
+        </member>
+        <member name="M:MindSphereSdk.Core.Helpers.Validator.Validate(MindSphereSdk.Core.Authentication.AppCredentials)">
+            <summary>
+            Validate application credentials
+            </summary>
+        </member>
+        <member name="M:MindSphereSdk.Core.Helpers.Validator.Validate(MindSphereSdk.Core.Authentication.UserCredentials)">
+            <summary>
+            Validate user credentials
+            </summary>
+        </member>
+        <member name="M:MindSphereSdk.Core.Helpers.Validator.Validate(MindSphereSdk.Core.Common.ClientConfiguration)">
+            <summary>
+            Validate client configuration
             </summary>
         </member>
         <member name="T:MindSphereSdk.Core.IotTimeSeries.IotTimeSeriesClient">

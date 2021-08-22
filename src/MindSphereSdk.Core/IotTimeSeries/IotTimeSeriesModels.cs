@@ -5,6 +5,7 @@ using System.Text;
 
 namespace MindSphereSdk.Core.IotTimeSeries
 {
+    #region TimeSeries
     /// <summary>
     /// Time Series for one asset and one aspect
     /// </summary>
@@ -19,6 +20,7 @@ namespace MindSphereSdk.Core.IotTimeSeries
         [JsonProperty("data")]
         public IEnumerable<object> Data { get; set; }
     }
+    #endregion
 
     #region Request
 

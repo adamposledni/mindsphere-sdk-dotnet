@@ -17,6 +17,8 @@ namespace MindSphereSdk.Core.EventManagement
 
     #endregion
 
+    #region Event
+
     /// <summary>
     /// Event
     /// </summary>
@@ -58,4 +60,6 @@ namespace MindSphereSdk.Core.EventManagement
         [JsonProperty("entityId")]
         public string EntityId { get; set; }
     }
+
+    #endregion
 }

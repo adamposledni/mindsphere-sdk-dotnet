@@ -6,6 +6,9 @@ using System.Text;
 
 namespace MindSphereSdk.Core.Authentication
 {
+    /// <summary>
+    /// Base class for MindSphere API credentials
+    /// </summary>
     public abstract class Credentials
     {
         protected MindSphereConnector _mindSphereConnector;

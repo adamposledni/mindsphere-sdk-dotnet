@@ -73,7 +73,7 @@ namespace MindSphereSdk.Core.Common
         /// <summary>
         /// Renew MindSphere access token
         /// </summary>
-        protected async Task RenewTokenAsync()
+        private async Task RenewTokenAsync()
         {
             // if token exists
             if (_accessToken != null)
@@ -103,7 +103,7 @@ namespace MindSphereSdk.Core.Common
         /// <summary>
         /// Validate MindSphere access token 
         /// </summary>
-        public bool ValidateToken()
+        private bool ValidateToken()
         {
             if (_accessToken == null) return false;
 
