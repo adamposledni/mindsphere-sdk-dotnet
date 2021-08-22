@@ -6,40 +6,69 @@ Open-source .NET SDK for [MindSphere](https://siemens.mindsphere.io/) APIs mainl
 
 *This project was started on my own initiative. I am still a student and I am trying my best to develop useful solution for the absence of .NET SDK. Of course, any help is more than welcome. My goal is to develop SDK similar to [MindSphere SDK for Node.js](https://developer.mindsphere.io/resources/mindsphere-sdk-node/index.html).*
 
+---
+
+- [Installation](#Installation)
+- [Getting started](#Getting-started)
+- [Credentials](#Credentials)
+    - [Application credentials](#Application-credentials)
+    - [User credentials](#User-credentials)
+- [Client configuration](#Client-configuration)
+- [Clients](#Clients)
+    - [Listing assets](#Listing-assets)
+    - [Download file](#Download-file)
+    - [Upload file](#Upload-file)
+    - [Getting time series data](#Getting-time-series-data)
+    - [Putting new time series data](#Putting-new-time-series-data)
+    - [Getting time series aggregates](#Getting-time-series-aggregates)
+
+---
 ## Installation
 
-The SDK is hosted as a package on the [nuget.org](https://www.nuget.org/).
-
-[**Core project**](https://www.nuget.org/packages/MindSphereSdk.Core/)
+The SDK is hosted as a package on the [nuget.org](https://www.nuget.org/packages/MindSphereSdk.Core/). It is possible to use following command.
 
 ```
 dotnet add package MindSphereSdk.Core --version 1.0.1
 ```
 
-[**Extension project**](https://www.nuget.org/packages/MindSphereSdk.AspNetCore/)
+An alternative is to install MindSphereSdk.Core via NuGet Package Manager.
+
+## Getting started
+
+To start using MindSphere APIs via this SDK you need to create new instance of the client class. There are multiple clients available (e.g. *IotTimeSeriesClient*). Each client must be initialized with credentials, configuration and *HttpClient* instance.
+
+```csharp
+// prerequisites
+var credentials = new AppCredentials(
+    "<client-id>",
+    "<client-secret>",
+    "<app-name>",
+    "<app-version>",
+    "<host-tenant>",
+    "<user-tenant>"
+);
+var config = new ClientConfiguration();
+var httpClient = new HttpClient();
+var request = new ListAssetsRequest();
+// initialize client
+var sdkClient = new AssetManagementClient(credentials, config, httpClient);
+// make request
+var assets = await client.ListAssetsAsync(request);
 
 ```
-dotnet add package MindSphereSdk.AspNetCore --version 1.0.0
-```
 
-## Examples
+## Credentials
 
-Provided code examples will guide you through this SDK.
-
-- [Application credentials](#Application-credentials)
-- [Create a client](#Create-a-client)
-- [ServiceCollection usage](#ServiceCollection-usage)
-- [Listing assets](#Listing-assets)
-- [Download file](#Download-file)
-- [Upload file](#Upload-file)
-- [Getting time series data](#Getting-time-series-data)
-- [Putting new time series data](#Putting-new-time-series-data)
-- [Getting time series aggregates](#Getting-time-series-aggregates)
+There are two possible ways how to provide credentials to the SDK client. Application and user credentials.
 
 ### Application credentials
 
+Application credentials are issued in the Developer Cockpit. [Find out more.](https://documentation.mindsphere.io/resources/html/developer-cockpit/en-US/124342231819.html)
+
+*AppCredentials* object can be created using following code.
+
 ```csharp
-AppCredentials credentials = new AppCredentials(
+var credentials = new AppCredentials(
     "<client-id>",
     "<client-secret>",
     "<app-name>",
@@ -52,7 +81,7 @@ AppCredentials credentials = new AppCredentials(
 It is also possible to import application credentials directly from a JSON file.
 
 ```csharp
-AppCredentials appCredentials = AppCredentials.FromJsonFile("<file-path>");
+var credentials = AppCredentials.FromJsonFile("<file-path>");
 ```
 
 The JSON file has to fit to the given structure.
@@ -67,45 +96,49 @@ The JSON file has to fit to the given structure.
     "userTenant": "<user-tenant>"
 }
 ```
+
+### User credentials
+
+*UserCredentials* constructor must be provided with access token, that can be exracted from the request headers. [Find out more.](https://developer.mindsphere.io/concepts/concept-authentication.html#calling-apis-from-backend)
+
+```csharp
+var credentials = new UserCredentials("<access-token>");
+```
  
-### Create a client
+## Client configuration
 
-The client constructor must be provided with **HttpClient**. 
-
-```csharp
-HttpClient httpClient = new HttpClient();
-var client = new AssetManagementClient(appCredentials, httpClient);
-```
-
-❗ When you create multiple MindSphere clients you should reuse your **HttpClient**. [Here are more information regarding this matter.](https://docs.microsoft.com/en-us/dotnet/api/system.net.http.httpclient?view=net-5.0#remarks)
-
-### ServiceCollection usage
-
-*This part is relevant only when using dependecy injection.*
-
-If you have installed ASP.NET Core extension, then you can simply register MindSphere service in the service container. However it is not necessary to use this feature.
-
-❗ This service needs to have **HttpClient** service in the container as well.
+Additional options are passed to SDK client via *ClientConfiguration*.
 
 ```csharp
-// Startup.cs file
-services.AddHttpClient();
-services.AddMindSphereSdkService(options =>
-{
-    options.Credentials = new AppCredentials(...);
-});
+var config = new ClientConfiguration("<region>", "<domain>");
 ```
 
-After that you can use this service in e.g. controller. 
+With parameterless constructor the default values are as follows.
+
+| Property | Value |
+| --- | --- |
+| Region | eu1 |
+| Domain | mindsphere.io |
 
 ```csharp
-private AssetManagementClient _client;
-
-public MainController(IMindSphereSdkService mindSphereSdkService)
-{
-    _client = mindSphereSdkService.GetAssetManagementClient();
-}
+var config = new ClientConfiguration();
 ```
+
+## Clients
+
+Every client constructor must be provided with *HttpClient* instance. 
+
+❗ When you create multiple MindSphere clients you should reuse your *HttpClient*. [Find out more.](https://docs.microsoft.com/en-us/dotnet/api/system.net.http.httpclient?view=net-5.0#remarks)
+
+```csharp
+var httpClient = new HttpClient();
+var credentials = new UserCredentials("<access-token>");
+var config = new ClienConfiguration();
+var client = new AssetManagementClient(credentials, config, httpClient);
+```
+
+<!-- TODO: overview of the clients -->
+<!-- TODO: restructure method docs -->
 
 ### Listing assets
 
@@ -147,7 +180,7 @@ var file = await assetClient.UploadFileAsync(request);
 
 ### Getting time series data
 
-To get time series data it is necessary to have corresponding class prepared. It is possible to use Newtonsoft **JsonProperty** atributes. Or just to name your properties in the corresponding way so they could be deserialized. 
+To get time series data it is necessary to have corresponding class prepared. It is possible to use Newtonsoft *JsonProperty* atributes. Or just to name your properties in the corresponding way so they could be deserialized. 
 
 ```csharp
 public class TimeSeriesData 
@@ -166,7 +199,7 @@ public class TimeSeriesData
 }
 ```
 
-After that you can pass it to generic method **GetTimeSeriesAsync**.
+After that you can pass it to generic method *GetTimeSeriesAsync*.
 
 ```csharp
 var client = new IotTimeSeriesClient(credentials, httpClient);
@@ -185,7 +218,7 @@ var timeSeries = (await client.GetTimeSeriesAsync<TimeSeriesData>(request)).ToLi
 
 To put new time series data into the MindSphere you can use predefined class or anonymous type.
 
-If you use your own class you need to name the properties in the corresponding way or to add Newtonsoft **JsonProperty** atributes. Otherwise the deserialization would fail.
+If you use your own class you need to name the properties in the corresponding way or to add Newtonsoft *JsonProperty* atributes. Otherwise the deserialization would fail.
 
 ```csharp
 var client = new IotTimeSeriesClient(credentials, httpClient);
@@ -218,7 +251,7 @@ await client.PutTimeSeriesAsync(request);
 
 ### Getting time series aggregates
 
-**GetAggregateTimeSeriesAsync** is generic method. It is necessary to set the generic type to a class derived from **AggregateSet**. Specify expected MindSphere variables using properties of type **AggregateVariable** with corresponding names (or **JsonProperty**).
+*GetAggregateTimeSeriesAsync* is generic method. It is necessary to set the generic type to a class derived from *AggregateSet*. Specify expected MindSphere variables using properties of type *AggregateVariable* with corresponding names (or *JsonProperty*).
 
 ```csharp
 public class AggregateTsData : AggregateSet
