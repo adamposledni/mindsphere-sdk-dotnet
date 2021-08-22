@@ -1,5 +1,7 @@
-﻿using MindSphereSdk.Core.Authentication;
+﻿using FluentValidation;
+using MindSphereSdk.Core.Authentication;
 using MindSphereSdk.Core.Exceptions;
+using MindSphereSdk.Core.Helpers;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -16,13 +18,15 @@ namespace MindSphereSdk.Core.Common
     /// </summary>
     public abstract class MindSphereConnector
     {
-        protected AccessToken _accessToken;
+        protected string _accessToken;
         private ClientConfiguration _configuration;
         protected readonly HttpClient _httpClient;
 
         public MindSphereConnector(ClientConfiguration configuration, HttpClient httpClient)
         {
             _configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
+            Validator.Validate(configuration);
+
             _httpClient = httpClient ?? throw new ArgumentNullException(nameof(httpClient));
         }
 
@@ -40,7 +44,7 @@ namespace MindSphereSdk.Core.Common
                 Method = method,
                 RequestUri = GetFullUri(specUri)
             };
-            request.Headers.Add("Authorization", "Bearer " + _accessToken.Token);
+            request.Headers.Add("Authorization", "Bearer " + _accessToken);
 
             // headers from parametr
             if (headers != null)
@@ -71,20 +75,24 @@ namespace MindSphereSdk.Core.Common
         /// </summary>
         protected async Task RenewTokenAsync()
         {
+            // if token exists
             if (_accessToken != null)
             {
-                bool tokenValid = ValidateToken();
-                if (!tokenValid)
+                // if token is invalid
+                if (!ValidateToken())
                 {
+                    // remove token
                     _accessToken = null;
                 }
             }
 
+            // if token does not exist
             if (_accessToken == null)
             {
+                // get new token
                 await AcquireTokenAsync();
-                bool tokenValid = ValidateToken();
-                if (!tokenValid)
+                // if token is invalid
+                if (!ValidateToken())
                 {
                     throw new InvalidOperationException("Error in aquiering new token");
                 }
@@ -101,7 +109,7 @@ namespace MindSphereSdk.Core.Common
 
             double minutesSkew = 5.0;
             var handler = new JwtSecurityTokenHandler();
-            JwtSecurityToken token = handler.ReadJwtToken(_accessToken.Token);
+            JwtSecurityToken token = handler.ReadJwtToken(_accessToken);
 
             string expString = token.Claims.First(claim => claim.Type == "exp").Value;
             DateTime exp = DateTimeOffset.FromUnixTimeSeconds(long.Parse(expString)).LocalDateTime;

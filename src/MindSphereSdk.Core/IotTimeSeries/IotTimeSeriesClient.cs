@@ -1,4 +1,5 @@
-﻿using MindSphereSdk.Core.Common;
+﻿using MindSphereSdk.Core.Authentication;
+using MindSphereSdk.Core.Common;
 using MindSphereSdk.Core.Helpers;
 using Newtonsoft.Json;
 using System;
@@ -17,7 +18,7 @@ namespace MindSphereSdk.Core.IotTimeSeries
     {
         private readonly string _baseUri = "/api/iottimeseries/v3";
 
-        public IotTimeSeriesClient(ICredentials credentials, ClientConfiguration configuration, HttpClient httpClient) 
+        public IotTimeSeriesClient(Credentials credentials, ClientConfiguration configuration, HttpClient httpClient) 
             : base(credentials, configuration, httpClient)
         {
         }

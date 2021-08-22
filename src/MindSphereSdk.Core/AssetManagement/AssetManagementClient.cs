@@ -8,6 +8,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using MindSphereSdk.Core.Helpers;
+using MindSphereSdk.Core.Authentication;
 
 namespace MindSphereSdk.Core.AssetManagement
 {
@@ -18,7 +19,7 @@ namespace MindSphereSdk.Core.AssetManagement
     {
         private readonly string _baseUri = "/api/assetmanagement/v3";
 
-        public AssetManagementClient(ICredentials credentials, ClientConfiguration configuration, HttpClient httpClient) 
+        public AssetManagementClient(Credentials credentials, ClientConfiguration configuration, HttpClient httpClient) 
             : base(credentials, configuration, httpClient)
         {
         }

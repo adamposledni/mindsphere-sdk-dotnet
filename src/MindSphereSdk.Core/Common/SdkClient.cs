@@ -16,36 +16,20 @@ namespace MindSphereSdk.Core.Common
     {
         private readonly MindSphereConnector _mindSphereConnector;
 
-        public SdkClient(ICredentials credentials, ClientConfiguration configuration, HttpClient httpClient)
+        public SdkClient(Credentials credentials, ClientConfiguration configuration, HttpClient httpClient)
         {
-            _mindSphereConnector = CreateConnector(credentials, configuration, httpClient);
-        }
-
-        /// <summary>
-        /// Create specified MindSphere connector based on provided credentials
-        /// </summary>
-        private MindSphereConnector CreateConnector(ICredentials credentials, ClientConfiguration configuration, HttpClient httpClient)
-        {
-            if (credentials == null)
+            if (credentials != null)
+            {
+                _mindSphereConnector = credentials.GetConnector(configuration, httpClient);
+            }
+            else
             {
                 throw new ArgumentNullException(nameof(credentials));
             }
-            else if (credentials is AppCredentials castedCredentials)
-            {
-                return new AppMindSphereConnector(castedCredentials, configuration, httpClient);
-            }
-            //else if (credentials is TenantCredentials)
-            //{
-            //    return new TenantMindSphereConnector((TenantCredentials)credentials, httpClient);
-            //}
-            else
-            {
-                throw new ArgumentException("Invalid credentials", nameof(credentials));
-            }
         }
 
         /// <summary>
-        /// Sending HTTP request to the MindSphere API
+        /// Send HTTP request to the MindSphere API
         /// </summary>
         protected async Task<string> HttpActionAsync(HttpMethod method, string specUri, HttpContent body = null, List<KeyValuePair<string, string>> headers = null)
         {

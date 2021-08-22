@@ -1,5 +1,6 @@
 ﻿using MindSphereSdk.Core.Authentication;
 using MindSphereSdk.Core.Exceptions;
+using MindSphereSdk.Core.Helpers;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -24,6 +25,7 @@ namespace MindSphereSdk.Core.Common
             : base(configuration, httpClient)
         {
             _credentials = credentials;
+            Validator.Validate(_credentials);
         }
 
         /// <summary>
@@ -47,7 +49,7 @@ namespace MindSphereSdk.Core.Common
             await MindSphereApiExceptionHandler.HandleUnsuccessfulResponseAsync(response);
 
             string responseBody = await response.Content.ReadAsStringAsync();
-            _accessToken = JsonConvert.DeserializeObject<AccessToken>(responseBody);
+            _accessToken = JsonConvert.DeserializeObject<AccessToken>(responseBody).Token;
         }
 
         /// <summary>

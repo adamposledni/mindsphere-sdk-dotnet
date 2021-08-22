@@ -31,7 +31,7 @@ namespace MindSphereSdk.AspNetCore
         private IotTsAggregatesClient _iotTsAggregateClient;
         private EventManagementClient _eventManagementClient;
 
-        private readonly ICredentials _credentials;
+        private readonly Credentials _credentials;
         private readonly ClientConfiguration _configuration;
 
         public MindSphereSdkService(IHttpClientFactory clientFactory, IOptions<MindSphereSdkServiceOptions> options)
@@ -117,7 +117,7 @@ namespace MindSphereSdk.AspNetCore
     /// </summary>
     public class MindSphereSdkServiceOptions
     {   
-        public ICredentials Credentials { get; set; }
+        public Credentials Credentials { get; set; }
         public ClientConfiguration Configuration { get; set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿using MindSphereSdk.Core.Common;
+﻿using MindSphereSdk.Core.Authentication;
+using MindSphereSdk.Core.Common;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -15,7 +16,7 @@ namespace MindSphereSdk.Core.EventManagement
     {
         private readonly string _baseUri = "/api/eventmanagement/v3";
 
-        public EventManagementClient(ICredentials credentials, ClientConfiguration configuration, HttpClient httpClient) 
+        public EventManagementClient(Credentials credentials, ClientConfiguration configuration, HttpClient httpClient) 
             : base(credentials, configuration, httpClient)
         {
         }

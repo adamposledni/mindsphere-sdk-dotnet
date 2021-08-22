@@ -434,19 +434,29 @@
             Request for updating file
             </summary>
         </member>
-        <member name="T:MindSphereSdk.Core.Authentication.AccessToken">
+        <member name="T:MindSphereSdk.Core.Authentication.AppCredentials">
             <summary>
-            Access Token for MindSphere API
+            Application credentials for MindSphere API
             </summary>
         </member>
-        <member name="T:MindSphereSdk.Core.Common.AppCredentials">
+        <member name="M:MindSphereSdk.Core.Authentication.AppCredentials.FromJsonFile(System.String)">
             <summary>
-            AppCredentials for MindSphere API
+            Load application credentials from the JSON file
             </summary>
         </member>
-        <member name="M:MindSphereSdk.Core.Common.AppCredentials.FromJsonFile(System.String)">
+        <member name="M:MindSphereSdk.Core.Authentication.AppCredentials.GetConnector(MindSphereSdk.Core.Common.ClientConfiguration,System.Net.Http.HttpClient)">
             <summary>
-            Load AppCredentials from the JSON file
+            Create specified MindSphere connector based on provided credentials
+            </summary>
+        </member>
+        <member name="M:MindSphereSdk.Core.Authentication.Credentials.GetConnector(MindSphereSdk.Core.Common.ClientConfiguration,System.Net.Http.HttpClient)">
+            <summary>
+            Create specified MindSphere connector based on provided credentials
+            </summary>
+        </member>
+        <member name="T:MindSphereSdk.Core.Authentication.UserCredentials">
+            <summary>
+            User credentials for MindSphere API
             </summary>
         </member>
         <member name="T:MindSphereSdk.Core.Common.AppMindSphereConnector">
@@ -472,6 +482,11 @@
         <member name="T:MindSphereSdk.Core.Common.MindSphereResourceWrapper`1">
             <summary>
             Wrapper for MindSphere resource
+            </summary>
+        </member>
+        <member name="T:MindSphereSdk.Core.Common.AccessToken">
+            <summary>
+            Access Token model
             </summary>
         </member>
         <member name="T:MindSphereSdk.Core.Common.MindSphereConnector">
@@ -509,14 +524,19 @@
             General SDK client
             </summary>
         </member>
-        <member name="M:MindSphereSdk.Core.Common.SdkClient.CreateConnector(MindSphereSdk.Core.Common.ICredentials,MindSphereSdk.Core.Common.ClientConfiguration,System.Net.Http.HttpClient)">
-            <summary>
-            Create specified MindSphere connector based on provided credentials
-            </summary>
-        </member>
         <member name="M:MindSphereSdk.Core.Common.SdkClient.HttpActionAsync(System.Net.Http.HttpMethod,System.String,System.Net.Http.HttpContent,System.Collections.Generic.List{System.Collections.Generic.KeyValuePair{System.String,System.String}})">
             <summary>
-            Sending HTTP request to the MindSphere API
+            Send HTTP request to the MindSphere API
+            </summary>
+        </member>
+        <member name="T:MindSphereSdk.Core.Common.UserMindSphereConnector">
+            <summary>
+            Connector to the MindSphere API using user credentials
+            </summary>
+        </member>
+        <member name="M:MindSphereSdk.Core.Common.UserMindSphereConnector.AcquireTokenAsync">
+            <summary>
+            Acquire MindSphere access token (no need - it is handled by MindSphere)
             </summary>
         </member>
         <member name="T:MindSphereSdk.Core.EventManagement.EventManagementClient">
@@ -584,6 +604,11 @@
             Build the URI query string
             </summary>
             <returns></returns>
+        </member>
+        <member name="T:MindSphereSdk.Core.Helpers.Validator">
+            <summary>
+            Data validator
+            </summary>
         </member>
         <member name="T:MindSphereSdk.Core.IotTimeSeries.IotTimeSeriesClient">
             <summary>

@@ -1,4 +1,5 @@
-﻿using MindSphereSdk.Core.Common;
+﻿using MindSphereSdk.Core.Authentication;
+using MindSphereSdk.Core.Common;
 using MindSphereSdk.Core.Helpers;
 using Newtonsoft.Json;
 using System;
@@ -16,7 +17,7 @@ namespace MindSphereSdk.Core.IotTsAggregates
     {
         private readonly string _baseUri = "/api/iottsaggregates/v4";
 
-        public IotTsAggregatesClient(ICredentials credentials, ClientConfiguration configuration, HttpClient httpClient) 
+        public IotTsAggregatesClient(Credentials credentials, ClientConfiguration configuration, HttpClient httpClient) 
            : base(credentials, configuration, httpClient)
         {
         }
