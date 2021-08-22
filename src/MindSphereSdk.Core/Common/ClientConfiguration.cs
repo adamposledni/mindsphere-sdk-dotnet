@@ -12,6 +12,12 @@ namespace MindSphereSdk.Core.Common
     {
         public string Domain { get; set; } = "mindsphere.io";
         public string Region { get; set; } = "eu1";
+        public ClientConfiguration(string domain, string region)
+        {
+            Domain = domain;
+            Region = region;
+        }
+
         public ClientConfiguration()
         {
         }
