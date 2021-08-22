@@ -8,7 +8,7 @@ namespace MindSphereSdk.Core.Common
     /// <summary>
     /// Wrapper for MindSphere resource
     /// </summary>
-    // TODO: Pagination model
+    // TODO: pagination model
     internal class MindSphereResourceWrapper<T> where T : IEmbeddedResource
     {
         [JsonProperty("_embedded")]

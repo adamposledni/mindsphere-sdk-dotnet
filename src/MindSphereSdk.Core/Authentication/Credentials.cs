@@ -9,7 +9,6 @@ namespace MindSphereSdk.Core.Authentication
     /// <summary>
     /// Base class for MindSphere API credentials
     /// </summary>
-    // TODO: update diagram of the architecture
     public abstract class Credentials
     {
         protected MindSphereConnector _mindSphereConnector;
