@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using MindSphereSdk.Core.AssetManagement;
+using MindSphereSdk.Core.Authentication;
 using MindSphereSdk.Core.Common;
 using MindSphereSdk.Core.EventManagement;
 using MindSphereSdk.Core.IotTimeSeries;

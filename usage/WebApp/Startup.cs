@@ -13,6 +13,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using MindSphereSdk.Core.Common;
+using MindSphereSdk.Core.Authentication;
 using MindSphereSdk.AspNetCore;
 
 namespace WebApp
