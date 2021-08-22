@@ -5,7 +5,13 @@ using System.Text;
 
 namespace MindSphereSdk.Core.Authentication
 {
-    public class UserCredentials : ICredentials
+    // TODO: user creds
+    public class UserCredentials
     {
+        public string Token { get; set; }
+        public UserCredentials(string token)
+        {
+            Token = token;
+        }
     }
 }
