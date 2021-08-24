@@ -7,16 +7,10 @@ namespace MindSphereSdk.Core.Common
     /// <summary>
     /// MindSphere SDK client configuration
     /// </summary>
-    // TODO: timeout, proxy
     public class ClientConfiguration
     {
         public string Domain { get; set; } = "mindsphere.io";
         public string Region { get; set; } = "eu1";
-        public ClientConfiguration(string domain, string region)
-        {
-            Domain = domain;
-            Region = region;
-        }
 
         public ClientConfiguration()
         {
