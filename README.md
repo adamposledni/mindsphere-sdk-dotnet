@@ -107,13 +107,7 @@ var credentials = new UserCredentials("<access-token>");
  
 ## Client configuration
 
-Additional options are passed to SDK client via *ClientConfiguration*.
-
-```csharp
-var config = new ClientConfiguration("<region>", "<domain>");
-```
-
-With parameterless constructor the default values are as follows.
+Additional options are passed to SDK client via *ClientConfiguration* that has following default values.
 
 | Property | Value |
 | --- | --- |
