@@ -9,24 +9,12 @@ namespace MindSphereSdk.Core.Authentication
     /// <summary>
     /// User credentials for MindSphere API
     /// </summary>
-    public class UserCredentials : Credentials
+    public class UserCredentials : ICredentials
     {
         public string Token { get; private set; }
         public UserCredentials(string token)
         {
             Token = token.Replace("Bearer ", "");
-        }
-
-        /// <summary>
-        /// Create specified MindSphere connector based on provided credentials
-        /// </summary>
-        internal override MindSphereConnector GetConnector(ClientConfiguration configuration, HttpClient httpClient)
-        {
-            if (_mindSphereConnector == null)
-            {
-                _mindSphereConnector = new UserMindSphereConnector(this, configuration, httpClient);
-            }
-            return _mindSphereConnector;
         }
     }
 }

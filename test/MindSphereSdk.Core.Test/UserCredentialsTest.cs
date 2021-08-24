@@ -16,10 +16,22 @@ namespace MindSphereSdk.Core.Test
             var credentials = new UserCredentials("");
 
             // Act
-            Func<AssetManagementClient> act = () => new AssetManagementClient(credentials, new ClientConfiguration(), new HttpClient());
+            Func<MindSphereApiSdk> act = () => new MindSphereApiSdk(credentials, new ClientConfiguration());
 
             // Assert
             Assert.Throws<ArgumentException>(act);
+        }
+
+        [Fact]
+        public void UseWithValidData()
+        {
+            // Arrange
+            var credentials = new UserCredentials("asd");
+
+            // Act
+            new MindSphereApiSdk(credentials, new ClientConfiguration());
+
+            // Assert
         }
 
         [Fact]
@@ -34,16 +46,6 @@ namespace MindSphereSdk.Core.Test
             Assert.True(credentials.Token == "asd");
         }
 
-        [Fact]
-        public void UseWithValidData()
-        {
-            // Arrange
-            var credentials = new UserCredentials("asd");
 
-            // Act
-            new AssetManagementClient(credentials, new ClientConfiguration(), new HttpClient());
-
-            // Assert
-        }
     }
 }

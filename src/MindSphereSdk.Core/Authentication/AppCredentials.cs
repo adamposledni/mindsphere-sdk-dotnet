@@ -12,7 +12,7 @@ namespace MindSphereSdk.Core.Authentication
     /// <summary>
     /// Application credentials for MindSphere API
     /// </summary>
-    public class AppCredentials : Credentials
+    public class AppCredentials : ICredentials
     {
         [JsonProperty("keyStoreClientId")]
         public string KeyStoreClientId { get; set; }
@@ -57,18 +57,6 @@ namespace MindSphereSdk.Core.Authentication
             string jsonString = File.ReadAllText(path);
             AppCredentials appCredentials = JsonConvert.DeserializeObject<AppCredentials>(jsonString);
             return appCredentials;
-        }
-
-        /// <summary>
-        /// Create specified MindSphere connector based on provided credentials
-        /// </summary>
-        internal override MindSphereConnector GetConnector(ClientConfiguration configuration, HttpClient httpClient)
-        {
-            if (_mindSphereConnector == null)
-            {
-                _mindSphereConnector = new AppMindSphereConnector(this, configuration, httpClient);
-            }
-            return _mindSphereConnector;
         }
     }
 }

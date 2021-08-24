@@ -16,7 +16,7 @@ namespace MindSphereSdk.Core.Common
     /// <summary>
     /// Connector to the MindSphere API
     /// </summary>
-    public abstract class MindSphereConnector
+    internal abstract class MindSphereConnector
     {
         protected string _accessToken;
         private ClientConfiguration _configuration;
@@ -24,10 +24,8 @@ namespace MindSphereSdk.Core.Common
 
         public MindSphereConnector(ClientConfiguration configuration, HttpClient httpClient)
         {
-            _configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
-            Validator.Validate(configuration);
-
-            _httpClient = httpClient ?? throw new ArgumentNullException(nameof(httpClient));
+            _configuration = configuration;
+            _httpClient = httpClient;
         }
 
         /// <summary>

@@ -18,6 +18,8 @@ namespace MindSphereSdk.Core.Helpers
         /// </summary>
         internal static void Validate(AppCredentials appCredentials)
         {
+            if (appCredentials == null) throw new ArgumentNullException();
+
             var result = new AppCredentialsValidator().Validate(appCredentials);
             if (!result.IsValid)
             {
@@ -30,6 +32,8 @@ namespace MindSphereSdk.Core.Helpers
         /// </summary>
         internal static void Validate(UserCredentials userCredentials)
         {
+            if (userCredentials == null) throw new ArgumentNullException();
+
             var result = new UserCredentialsValidator().Validate(userCredentials);
             if (!result.IsValid)
             {
@@ -42,6 +46,8 @@ namespace MindSphereSdk.Core.Helpers
         /// </summary>
         internal static void Validate(ClientConfiguration clientConfiguration)
         {
+            if (clientConfiguration == null) throw new ArgumentNullException();
+
             var result = new ClientConfigurationValidator().Validate(clientConfiguration);
             if (!result.IsValid)
             {

@@ -17,8 +17,8 @@ namespace MindSphereSdk.Core.IotTsAggregates
     {
         private readonly string _baseUri = "/api/iottsaggregates/v4";
 
-        public IotTsAggregatesClient(Credentials credentials, ClientConfiguration configuration, HttpClient httpClient) 
-           : base(credentials, configuration, httpClient)
+        internal IotTsAggregatesClient(MindSphereConnector mindSphereConnector)
+            : base(mindSphereConnector)
         {
         }
 

@@ -16,8 +16,8 @@ namespace MindSphereSdk.Core.EventManagement
     {
         private readonly string _baseUri = "/api/eventmanagement/v3";
 
-        public EventManagementClient(Credentials credentials, ClientConfiguration configuration, HttpClient httpClient) 
-            : base(credentials, configuration, httpClient)
+        internal EventManagementClient(MindSphereConnector mindSphereConnector) 
+            : base(mindSphereConnector)
         {
         }
 

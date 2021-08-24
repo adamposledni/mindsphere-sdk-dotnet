@@ -18,8 +18,8 @@ namespace MindSphereSdk.Core.IotTimeSeries
     {
         private readonly string _baseUri = "/api/iottimeseries/v3";
 
-        public IotTimeSeriesClient(Credentials credentials, ClientConfiguration configuration, HttpClient httpClient) 
-            : base(credentials, configuration, httpClient)
+        internal IotTimeSeriesClient(MindSphereConnector mindSphereConnector)
+            : base(mindSphereConnector)
         {
         }
 

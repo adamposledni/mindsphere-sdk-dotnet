@@ -11,6 +11,7 @@ using System.Net.Http;
 
 namespace MindSphereSdk.AspNetCore
 {
+    // TODO: big todo
     public interface IMindSphereSdkService
     {
         AssetManagementClient GetAssetManagementClient();
@@ -32,7 +33,7 @@ namespace MindSphereSdk.AspNetCore
         private IotTsAggregatesClient _iotTsAggregateClient;
         private EventManagementClient _eventManagementClient;
 
-        private readonly Credentials _credentials;
+        private readonly ICredentials _credentials;
         private readonly ClientConfiguration _configuration;
 
         public MindSphereSdkService(IHttpClientFactory clientFactory, IOptions<MindSphereSdkServiceOptions> options)
@@ -42,57 +43,77 @@ namespace MindSphereSdk.AspNetCore
             _configuration = options.Value.Configuration;
         }
 
-        /// <summary>
-        /// Get Asset Management Client
-        /// </summary>
         public AssetManagementClient GetAssetManagementClient()
         {
-            if (_assetManagementClient == null)
-            {
-                _assetManagementClient = new AssetManagementClient(_credentials, _configuration, _httpClient);
-            }
-
-            return _assetManagementClient;
+            throw new NotImplementedException();
         }
-        
-        /// <summary>
-        /// Get IoT Time Series Client
-        /// </summary>
+
         public IotTimeSeriesClient GetIotTimeSeriesClient()
         {
-            if (_iotTimeSeriesClient == null)
-            {
-                _iotTimeSeriesClient = new IotTimeSeriesClient(_credentials, _configuration, _httpClient);
-            }
-
-            return _iotTimeSeriesClient;
+            throw new NotImplementedException();
         }
 
-        /// <summary>
-        /// Get IoT Time Series Aggregate Client
-        /// </summary>
         public IotTsAggregatesClient GetIotTsAggregateClient()
         {
-            if (_iotTsAggregateClient == null)
-            {
-                _iotTsAggregateClient = new IotTsAggregatesClient(_credentials, _configuration, _httpClient);
-            }
-
-            return _iotTsAggregateClient;
+            throw new NotImplementedException();
         }
 
-        /// <summary>
-        /// Get Event Management Client
-        /// </summary>
         public EventManagementClient GetEventManagementClient()
         {
-            if (_eventManagementClient == null)
-            {
-                _eventManagementClient = new EventManagementClient(_credentials, _configuration, _httpClient);
-            }
-
-            return _eventManagementClient;
+            throw new NotImplementedException();
         }
+
+        ///// <summary>
+        ///// Get Asset Management Client
+        ///// </summary>
+        //public AssetManagementClient GetAssetManagementClient()
+        //{
+        //    if (_assetManagementClient == null)
+        //    {
+        //        _assetManagementClient = new AssetManagementClient(_credentials, _configuration, _httpClient);
+        //    }
+
+        //    return _assetManagementClient;
+        //}
+
+        ///// <summary>
+        ///// Get IoT Time Series Client
+        ///// </summary>
+        //public IotTimeSeriesClient GetIotTimeSeriesClient()
+        //{
+        //    if (_iotTimeSeriesClient == null)
+        //    {
+        //        _iotTimeSeriesClient = new IotTimeSeriesClient(_credentials, _configuration, _httpClient);
+        //    }
+
+        //    return _iotTimeSeriesClient;
+        //}
+
+        ///// <summary>
+        ///// Get IoT Time Series Aggregate Client
+        ///// </summary>
+        //public IotTsAggregatesClient GetIotTsAggregateClient()
+        //{
+        //    if (_iotTsAggregateClient == null)
+        //    {
+        //        _iotTsAggregateClient = new IotTsAggregatesClient(_credentials, _configuration, _httpClient);
+        //    }
+
+        //    return _iotTsAggregateClient;
+        //}
+
+        ///// <summary>
+        ///// Get Event Management Client
+        ///// </summary>
+        //public EventManagementClient GetEventManagementClient()
+        //{
+        //    if (_eventManagementClient == null)
+        //    {
+        //        _eventManagementClient = new EventManagementClient(_credentials, _configuration, _httpClient);
+        //    }
+
+        //    return _eventManagementClient;
+        //}
     }
 
     /// <summary>
@@ -118,7 +139,7 @@ namespace MindSphereSdk.AspNetCore
     /// </summary>
     public class MindSphereSdkServiceOptions
     {   
-        public Credentials Credentials { get; set; }
+        public ICredentials Credentials { get; set; }
         public ClientConfiguration Configuration { get; set; }
     }
 }

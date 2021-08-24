@@ -16,16 +16,9 @@ namespace MindSphereSdk.Core.Common
     {
         private readonly MindSphereConnector _mindSphereConnector;
 
-        public SdkClient(Credentials credentials, ClientConfiguration configuration, HttpClient httpClient)
+        internal SdkClient(MindSphereConnector mindSphereConnector)
         {
-            if (credentials != null)
-            {
-                _mindSphereConnector = credentials.GetConnector(configuration, httpClient);
-            }
-            else
-            {
-                throw new ArgumentNullException(nameof(credentials));
-            }
+            _mindSphereConnector = mindSphereConnector;
         }
 
         /// <summary>

@@ -17,7 +17,7 @@ namespace MindSphereSdk.Core.Common
     /// <summary>
     /// Connector to the MindSphere API using app credentials
     /// </summary>
-    public class AppMindSphereConnector : MindSphereConnector
+    internal class AppMindSphereConnector : MindSphereConnector
     {
         private readonly AppCredentials _credentials;
 
@@ -25,7 +25,6 @@ namespace MindSphereSdk.Core.Common
             : base(configuration, httpClient)
         {
             _credentials = credentials;
-            Validator.Validate(_credentials);
         }
 
         /// <summary>

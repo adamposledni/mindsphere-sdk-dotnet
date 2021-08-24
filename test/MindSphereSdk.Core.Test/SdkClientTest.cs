@@ -22,14 +22,14 @@ namespace MindSphereSdk.Core.Test
                 "tenant",
                 "tenant");
 
-        private readonly string _validAccessToken = "eyJhbGciOiJSUzI1NiIsImprdSI6Imh0dHBzOi8vaWlvdGRnbGkucGlhbS5ldTEubWluZHNwaGVyZS5pby90b2tlbl9rZXlzIiwia2lkIjoia2V5LWlkLTMiLCJ0eXAiOiJKV1QifQ.eyJqdGkiOiIyNDkwMjI5N2NlZWQ0ZjZlODg1MzkzYmY0MjZlNzBiMSIsInN1YiI6Imlpb3RkZ2xpLXRlc3RhcHBsaWNhdGlvbi0xLjAuMDYyIiwic2NvcGUiOlsibWRzcDpjb3JlOkFkbWluM3JkUGFydHlUZWNoVXNlciJdLCJjbGllbnRfaWQiOiJpaW90ZGdsaS10ZXN0YXBwbGljYXRpb24tMS4wLjA2MiIsImNpZCI6Imlpb3RkZ2xpLXRlc3RhcHBsaWNhdGlvbi0xLjAuMDYyIiwiYXpwIjoiaWlvdGRnbGktdGVzdGFwcGxpY2F0aW9uLTEuMC4wNjIiLCJncmFudF90eXBlIjoiY2xpZW50X2NyZWRlbnRpYWxzIiwicmV2X3NpZyI6IjUzODZmNjgiLCJpYXQiOjE2Mjk2MzMxNTMsImV4cCI6MTYyOTYzNDk1MywiaXNzIjoiaHR0cHM6Ly9paW90ZGdsaS5waWFtLmV1MS5taW5kc3BoZXJlLmlvL29hdXRoL3Rva2VuIiwiemlkIjoiaWlvdGRnbGkiLCJhdWQiOlsiaWlvdGRnbGktdGVzdGFwcGxpY2F0aW9uLTEuMC4wNjIiXSwidGVuIjoiaWlvdGRnbGkiLCJzY2hlbWFzIjpbInVybjpzaWVtZW5zOm1pbmRzcGhlcmU6aWFtOnYxIl0sImNhdCI6ImNsaWVudC10b2tlbjp2MSJ9.MnFRAgWwmEEnhe32MErq6x1NdnRQ0dk3TrfwZm_hngPaxcuWm7PfpYNnyKOofIPzBsXBUVoc0gt2YX3EeN2Rwv7ff6OdfMQh5j9zzEFDZCFTEnl0WrOK6WiqfN2L9CmfezSUJFHtYpgwhe1kxOdr6FXsZoDPwNFymji5JIDPa3q1meynyZ1lahc-qIMwfVCIJbpyQPMLuVheLnus7G9-kJ9WqF9T3rVSXZemFmAtY2tKTYwlY0VQn_o4EWq6_wDwck7okcIW4P2djoLKEYSejbYihiybnCC34-M3dFCSOlL-GqX2azQtTuaT3ehwCxV-Tyg0JmIsOV5Y_IruOjogxw";
-        private readonly string _invalidAccessToken = "eyJhbGciOiJSUzI1NiIsImprdSI6Imh0dHByOi8vaWlvdGRnbGkucGlhbS5ldTEubWluZHNwaGVyZS5pby90b2tlbl9rZXlzIiwia2lkIjoia2V5LWlkLTMiLCJ0eXAiOiJKV1QifQ.eyJqdGkiOiIyNDkwMjI5N2NlZWQ0ZjZlODg1MzkzYmY0MjZlNzBiMSIsInN1YiI6Imlpb3RkZ2xpLXRlc3RhcHBsaWNhdGlvbi0xLjAuMDYyIiwic2NvcGUiOlsibWRzcDpjb3JlOkFkbWluM3JkUGFydHlUZWNoVXNlciJdLCJjbGllbnRfaWQiOiJpaW90ZGdsaS10ZXN0YXBwbGljYXRpb24tMS4wLjA2MiIsImNpZCI6Imlpb3RkZ2xpLXRlc3RhcHBsaWNhdGlvbi0xLjAuMDYyIiwiYXpwIjoiaWlvdGRnbGktdGVzdGFwcGxpY2F0aW9uLTEuMC4wNjIiLCJncmFudF90eXBlIjoiY2xpZW50X2NyZWRlbnRpYWxzIiwicmV2X3NpZyI6IjUzODZmNjgiLCJpYXQiOjE2Mjk2MzMxNTMsImV4cCI6MTYyOTYzNDk1MywiaXNzIjoiaHR0cHM6Ly9paW90ZGdsaS5waWFtLmV1MS5taW5kc3BoZXJlLmlvL29hdXRoL3Rva2VuIiwiemlkIjoiaWlvdGRnbGkiLCJhdWQiOlsiaWlvdGRnbGktdGVzdGFwcGxpY2F0aW9uLTEuMC4wNjIiXSwidGVuIjoiaWlvdGRnbGkiLCJzY2hlbWFzIjpbInVybjpzaWVtZW5zOm1pbmRzcGhlcmU6aWFtOnYxIl0sImNhdCI6ImNsaWVudC10b2tlbjp2MSJ9.MnFRAgWwmEEnhe32MErq6x1NdnRQ0dk3TrfwZm_hngPaxcuWm7PfpYNnyKOofIPzBsXBUVoc0gt2YX3EeN2Rwv7ff6OdfMQh5j9zzEFDZCFTEnl0WrOK6WiqfN2L9CmfezSUJFHtYpgwhe1kxOdr6FXsZoDPwNFymji5JIDPa3q1meynyZ1lahc-qIMwfVCIJbpyQPMLuVheLnus7G9-kJ9WqF9T3rVSXZemFmAtY2tKTYwlY0VQn_o4EWq6_wDwck7okcIW4P2djoLKEYSejbYihiybnCC34-M3dFCSOlL-GqX2azQtTuaT3ehwCxV-Tyg0JmIsOV5Y_IruOjogxw";
+        private readonly string _validAccessToken = "eyJhbGciOiJSUzI1NiIsImprdSI6Imh0dHBzOi8vaWlvdGRnbGkucGlhbS5ldTEubWluZHNwaGVyZS5pby90b2tlbl9rZXlzIiwia2lkIjoia2V5LWlkLTMiLCJ0eXAiOiJKV1QifQ.eyJqdGkiOiIyZDEwMWIwZWE5NDY0OGE5OTk2MTczNjdiMzdjYzQwMyIsInN1YiI6Imlpb3RkZ2xpLXRlc3RhcHBsaWNhdGlvbi0xLjAuMDYwIiwic2NvcGUiOlsibWRzcDpjb3JlOkFkbWluM3JkUGFydHlUZWNoVXNlciJdLCJjbGllbnRfaWQiOiJpaW90ZGdsaS10ZXN0YXBwbGljYXRpb24tMS4wLjA2MCIsImNpZCI6Imlpb3RkZ2xpLXRlc3RhcHBsaWNhdGlvbi0xLjAuMDYwIiwiYXpwIjoiaWlvdGRnbGktdGVzdGFwcGxpY2F0aW9uLTEuMC4wNjAiLCJncmFudF90eXBlIjoiY2xpZW50X2NyZWRlbnRpYWxzIiwicmV2X3NpZyI6IjY3MTFhNzBiIiwiaWF0IjoxNjI5ODMyMjE2LCJleHAiOjE2Mjk4MzQwMTYsImlzcyI6Imh0dHBzOi8vaWlvdGRnbGkucGlhbS5ldTEubWluZHNwaGVyZS5pby9vYXV0aC90b2tlbiIsInppZCI6Imlpb3RkZ2xpIiwiYXVkIjpbImlpb3RkZ2xpLXRlc3RhcHBsaWNhdGlvbi0xLjAuMDYwIl0sInRlbiI6Imlpb3RkZ2xpIiwic2NoZW1hcyI6WyJ1cm46c2llbWVuczptaW5kc3BoZXJlOmlhbTp2MSJdLCJjYXQiOiJjbGllbnQtdG9rZW46djEifQ.TnL518EXUKPZrfgvi4EyCibT9yCieRJ7O6VFg7ufiO5kDv-l1bYxbqOefmjrT7Ev96PWdcQHsvv6sCHDwBSDSbob79k36KN0C3Eass3saq1T6FA5nzx8sopwsxtJxMEL1ekuPz9idc_PugmaE1SrL3n_P4UzjxtYYmedWAm7UYYphEFsf9I6NJuz7QB90vDemAWzcpHv4-9kZbCp7EHYBpLRB_vgRutoeQahwrloJF0v2RKp2YcVxun4cQP2rxqbO4mwqzoS7ijlm4Sgt-quvje51--Gum0btm1IowDsr40mBUw6dRj63g4xnd7u5itqW_YwuXvwnDDmwzBBcH_CZQ";
+        private readonly string _invalidAccessToken = "eyJhbGciOiJSUzI1NiIsImprdSI6Imh0dHbzOi8vaWlvdGRnbGkucGlhbS5ldTEubWluZHNwaGVyZS5pby90b2tlbl9rZXlzIiwia2lkIjoia2V5LWlkLTMiLCJ0eXAiOiJKV1QifQ.eyJqdGkiOiIyZDEwMWIwZWE5NDY0OGE5OTk2MTczNjdiMzdjYzQwMyIsInN1YiI6Imlpb3RkZ2xpLXRlc3RhcHBsaWNhdGlvbi0xLjAuMDYwIiwic2NvcGUiOlsibWRzcDpjb3JlOkFkbWluM3JkUGFydHlUZWNoVXNlciJdLCJjbGllbnRfaWQiOiJpaW90ZGdsaS10ZXN0YXBwbGljYXRpb24tMS4wLjA2MCIsImNpZCI6Imlpb3RkZ2xpLXRlc3RhcHBsaWNhdGlvbi0xLjAuMDYwIiwiYXpwIjoiaWlvdGRnbGktdGVzdGFwcGxpY2F0aW9uLTEuMC4wNjAiLCJncmFudF90eXBlIjoiY2xpZW50X2NyZWRlbnRpYWxzIiwicmV2X3NpZyI6IjY3MTFhNzBiIiwiaWF0IjoxNjI5ODMyMjE2LCJleHAiOjE2Mjk4MzQwMTYsImlzcyI6Imh0dHBzOi8vaWlvdGRnbGkucGlhbS5ldTEubWluZHNwaGVyZS5pby9vYXV0aC90b2tlbiIsInppZCI6Imlpb3RkZ2xpIiwiYXVkIjpbImlpb3RkZ2xpLXRlc3RhcHBsaWNhdGlvbi0xLjAuMDYwIl0sInRlbiI6Imlpb3RkZ2xpIiwic2NoZW1hcyI6WyJ1cm46c2llbWVuczptaW5kc3BoZXJlOmlhbTp2MSJdLCJjYXQiOiJjbGllbnQtdG9rZW46djEifQ.TnL518EXUKPZrfgvi4EyCibT9yCieRJ7O6VFg7ufiO5kDv-l1bYxbqOefmjrT7Ev96PWdcQHsvv6sCHDwBSDSbob79k36KN0C3Eass3saq1T6FA5nzx8sopwsxtJxMEL1ekuPz9idc_PugmaE1SrL3n_P4UzjxtYYmedWAm7UYYphEFsf9I6NJuz7QB90vDemAWzcpHv4-9kZbCp7EHYBpLRB_vgRutoeQahwrloJF0v2RKp2YcVxun4cQP2rxqbO4mwqzoS7ijlm4Sgt-quvje51--Gum0btm1IowDsr40mBUw6dRj63g4xnd7u5itqW_YwuXvwnDDmwzBBcH_CZQ";
 
         [Fact]
         public void ConstructWithNullCredentials()
         {
             // Act
-            Func<AssetManagementClient> act = () => new AssetManagementClient(null, new ClientConfiguration(), new HttpClient());
+            Func<MindSphereApiSdk> act = () => new MindSphereApiSdk(null, new ClientConfiguration());
 
             // Assert
             Assert.Throws<ArgumentNullException>(act);
@@ -41,20 +41,7 @@ namespace MindSphereSdk.Core.Test
             // Arrange
 
             // Act
-            Func<AssetManagementClient> act = () => new AssetManagementClient(_invalidAppCreds, null, new HttpClient());
-
-            // Assert
-            Assert.Throws<ArgumentNullException>(act);
-        }
-
-        [Fact]
-        public void ConstructWithNullHttpClient()
-        {
-            // Arrange
-            var config = new ClientConfiguration();
-
-            // Act
-            Func<AssetManagementClient> act = () => new AssetManagementClient(_invalidAppCreds, config, null);
+            Func<MindSphereApiSdk> act = () => new MindSphereApiSdk(_invalidAppCreds, null);
 
             // Assert
             Assert.Throws<ArgumentNullException>(act);
@@ -64,9 +51,10 @@ namespace MindSphereSdk.Core.Test
         public async Task MdspCallWithInvalidAppCreds()
         {
             // Arrange
-            var httpClient = new HttpClient();
             var config = new ClientConfiguration();
-            var client = new AssetManagementClient(_invalidAppCreds, config, httpClient);
+            var sdk = new MindSphereApiSdk(_invalidAppCreds, config);
+            var client = sdk.GetAssetManagementClient();
+
             var request = new ListAssetsRequest();
 
             // Act
@@ -85,10 +73,10 @@ namespace MindSphereSdk.Core.Test
         public async Task MdspCallWithValidAppCreds()
         {
             // Arrange
-            var httpClient = new HttpClient();
             var appCreds = AppCredentials.FromJsonFile("mdspcreds.json");
             var config = new ClientConfiguration();
-            var client = new AssetManagementClient(appCreds, config, httpClient);
+            var sdk = new MindSphereApiSdk(appCreds, config);
+            var client = sdk.GetAssetManagementClient();
             var request = new ListAssetsRequest();
 
             // Act
@@ -102,9 +90,9 @@ namespace MindSphereSdk.Core.Test
         {
             // Arrange
             var userCreds = new UserCredentials(_invalidAccessToken);
-            var httpClient = new HttpClient();
             var config = new ClientConfiguration();
-            var client = new AssetManagementClient(userCreds, config, httpClient);
+            var sdk = new MindSphereApiSdk(userCreds, config);
+            var client = sdk.GetAssetManagementClient();
             var request = new ListAssetsRequest();
 
             // Act
@@ -123,10 +111,10 @@ namespace MindSphereSdk.Core.Test
         public async Task MdspCallWithValidUserCreds()
         {
             // Arrange
-            var httpClient = new HttpClient();
-            var appCreds = new UserCredentials(_validAccessToken);
+            var userCreds = new UserCredentials(_validAccessToken);
             var config = new ClientConfiguration();
-            var client = new AssetManagementClient(appCreds, config, httpClient);
+            var sdk = new MindSphereApiSdk(userCreds, config);
+            var client = sdk.GetAssetManagementClient();
             var request = new ListAssetsRequest();
 
             // Act

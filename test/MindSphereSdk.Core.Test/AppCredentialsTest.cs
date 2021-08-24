@@ -18,7 +18,7 @@ namespace MindSphereSdk.Core.Test
             AppCredentials appCredentials = new AppCredentials("  ", null, "   ", "  ", "  ", "  ");
 
             // Act
-            Func<AssetManagementClient> act = () => new AssetManagementClient(appCredentials, new ClientConfiguration(), new HttpClient());
+            Func<MindSphereApiSdk> act = () => new MindSphereApiSdk(appCredentials, new ClientConfiguration());
 
             // Assert
             Assert.Throws<ArgumentException>(act);
@@ -31,7 +31,7 @@ namespace MindSphereSdk.Core.Test
             AppCredentials appCredentials = new AppCredentials("a", "b", "c", "d", "e", "f");
 
             // Act
-            new AssetManagementClient(appCredentials, new ClientConfiguration(), new HttpClient());
+            new MindSphereApiSdk(appCredentials, new ClientConfiguration());
 
             // Assert
         }

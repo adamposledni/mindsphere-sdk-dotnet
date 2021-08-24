@@ -444,29 +444,14 @@
             Load application credentials from the JSON file
             </summary>
         </member>
-        <member name="M:MindSphereSdk.Core.Authentication.AppCredentials.GetConnector(MindSphereSdk.Core.Common.ClientConfiguration,System.Net.Http.HttpClient)">
+        <member name="T:MindSphereSdk.Core.Authentication.ICredentials">
             <summary>
-            Create specified MindSphere connector based on provided credentials
-            </summary>
-        </member>
-        <member name="T:MindSphereSdk.Core.Authentication.Credentials">
-            <summary>
-            Base class for MindSphere API credentials
-            </summary>
-        </member>
-        <member name="M:MindSphereSdk.Core.Authentication.Credentials.GetConnector(MindSphereSdk.Core.Common.ClientConfiguration,System.Net.Http.HttpClient)">
-            <summary>
-            Create specified MindSphere connector based on provided credentials
+            MindSphere API credentials
             </summary>
         </member>
         <member name="T:MindSphereSdk.Core.Authentication.UserCredentials">
             <summary>
             User credentials for MindSphere API
-            </summary>
-        </member>
-        <member name="M:MindSphereSdk.Core.Authentication.UserCredentials.GetConnector(MindSphereSdk.Core.Common.ClientConfiguration,System.Net.Http.HttpClient)">
-            <summary>
-            Create specified MindSphere connector based on provided credentials
             </summary>
         </member>
         <member name="T:MindSphereSdk.Core.Common.AppMindSphereConnector">
@@ -497,6 +482,26 @@
         <member name="T:MindSphereSdk.Core.Common.AccessToken">
             <summary>
             Access Token model
+            </summary>
+        </member>
+        <member name="M:MindSphereSdk.Core.Common.MdspSdk.GetAssetManagementClient">
+            <summary>
+            Get Asset Management Client
+            </summary>
+        </member>
+        <member name="M:MindSphereSdk.Core.Common.MdspSdk.GetIotTimeSeriesClient">
+            <summary>
+            Get IoT Time Series Client
+            </summary>
+        </member>
+        <member name="M:MindSphereSdk.Core.Common.MdspSdk.GetIotTsAggregateClient">
+            <summary>
+            Get IoT Time Series Aggregate Client
+            </summary>
+        </member>
+        <member name="M:MindSphereSdk.Core.Common.MdspSdk.GetEventManagementClient">
+            <summary>
+            Get Event Management Client
             </summary>
         </member>
         <member name="T:MindSphereSdk.Core.Common.MindSphereConnector">
@@ -710,11 +715,6 @@
             Generate URI for time series aggregation request
             </summary>
         </member>
-        <member name="T:MindSphereSdk.Core.IotTsAggregates.GetAggregateTimeSeriesRequest">
-            <summary>
-            Request for getting aggregate time series
-            </summary>
-        </member>
         <member name="T:MindSphereSdk.Core.IotTsAggregates.AggregateWrapper`1">
             <summary>
             Aggregate time series data wrapper
@@ -728,6 +728,11 @@
         <member name="T:MindSphereSdk.Core.IotTsAggregates.AggregateVariable">
             <summary>
             Aggregate time series variable
+            </summary>
+        </member>
+        <member name="T:MindSphereSdk.Core.IotTsAggregates.GetAggregateTimeSeriesRequest">
+            <summary>
+            Request for getting aggregate time series
             </summary>
         </member>
     </members>
