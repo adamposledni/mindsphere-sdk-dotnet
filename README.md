@@ -14,7 +14,7 @@ Open-source .NET SDK for [MindSphere](https://siemens.mindsphere.io/) APIs mainl
     - [Application credentials](#Application-credentials)
     - [User credentials](#User-credentials)
 - [Client configuration](#Client-configuration)
-- [Clients](#Clients)
+- [Clients/methods](#Clients/methods)
     - [Listing assets](#Listing-assets)
     - [Download file](#Download-file)
     - [Upload file](#Upload-file)
@@ -28,18 +28,18 @@ Open-source .NET SDK for [MindSphere](https://siemens.mindsphere.io/) APIs mainl
 The SDK is hosted as a package on the [nuget.org](https://www.nuget.org/packages/MindSphereSdk.Core/). It is possible to use following command.
 
 ```
-dotnet add package MindSphereSdk.Core --version 1.0.1
+dotnet add package MindSphereSdk.Core --version 1.1
 ```
 
 An alternative is to install MindSphereSdk.Core via NuGet Package Manager.
 
 ## Getting started
 
-To start using MindSphere APIs via this SDK you need to create new instance of the client class. There are multiple clients available (e.g. *IotTimeSeriesClient*). Each client must be initialized with credentials, configuration and *HttpClient* instance.
+To start using MindSphere APIs via this SDK you need to get instance of the client class. There are multiple clients available (e.g. *IotTimeSeriesClient*). Those clients are provided by *MindSphereApiSdk* class. That must be initialized with credentials and configuration.
 
 ```csharp
 // prerequisites
-var credentials = new AppCredentials(
+var creds = new AppCredentials(
     "<client-id>",
     "<client-secret>",
     "<app-name>",
@@ -48,12 +48,12 @@ var credentials = new AppCredentials(
     "<user-tenant>"
 );
 var config = new ClientConfiguration();
-var httpClient = new HttpClient();
-var request = new ListAssetsRequest();
-// initialize client
-var sdkClient = new AssetManagementClient(credentials, config, httpClient);
+var sdk = new MindSphereApiSdk(creds, config);
+// get client
+var assetClient = sdk.GetAssetManagementClient();
 // make request
-var assets = await client.ListAssetsAsync(request);
+var request = new ListAssetsRequest();
+var assets = await assetClient.ListAssetsAsync(request);
 
 ```
 
@@ -99,37 +99,29 @@ The JSON file has to fit to the given structure.
 
 ### User credentials
 
-*UserCredentials* constructor must be provided with access token, that can be exracted from the request headers. [Find out more.](https://developer.mindsphere.io/concepts/concept-authentication.html#calling-apis-from-backend)
+*UserCredentials* constructor must be provided with access token, that can be extracted from the request headers. [Find out more.](https://developer.mindsphere.io/concepts/concept-authentication.html#calling-apis-from-backend)
 
 ```csharp
-var credentials = new UserCredentials("<access-token>");
+var creds = new UserCredentials("<access-token>");
+var sdk = new MindSphereApiSdk(creds, config);
 ```
  
 ## Client configuration
 
 Additional options are passed to SDK client via *ClientConfiguration* that has following default values.
 
-| Property | Value |
+| Property | Default value |
 | --- | --- |
 | Region | eu1 |
 | Domain | mindsphere.io |
+| Timeout | 100s |
+| Proxy | *empty* |
 
 ```csharp
 var config = new ClientConfiguration();
 ```
 
-## Clients
-
-Every client constructor must be provided with *HttpClient* instance. 
-
-❗ When you create multiple MindSphere clients you should reuse your *HttpClient*. [Find out more.](https://docs.microsoft.com/en-us/dotnet/api/system.net.http.httpclient?view=net-5.0#remarks)
-
-```csharp
-var httpClient = new HttpClient();
-var credentials = new UserCredentials("<access-token>");
-var config = new ClienConfiguration();
-var client = new AssetManagementClient(credentials, config, httpClient);
-```
+## Clients/methods
 
 <!-- TODO: overview of the clients -->
 <!-- TODO: restructure method docs -->

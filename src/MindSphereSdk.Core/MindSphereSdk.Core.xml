@@ -474,6 +474,35 @@
             MindSphere SDK client configuration
             </summary>
         </member>
+        <member name="P:MindSphereSdk.Core.Common.ClientConfiguration.Domain">
+            <summary>
+            MindSphere domain
+            </summary>
+            <remarks>
+            Default: mindsphere.io
+            </remarks>
+        </member>
+        <member name="P:MindSphereSdk.Core.Common.ClientConfiguration.Region">
+            <summary>
+            MindSphere region
+            </summary>
+            <remarks>
+            Default: eu1
+            </remarks>
+        </member>
+        <member name="P:MindSphereSdk.Core.Common.ClientConfiguration.Timeout">
+            <summary>
+            Connection timeout
+            </summary>
+            <remarks>
+            Default: 100s
+            </remarks>
+        </member>
+        <member name="P:MindSphereSdk.Core.Common.ClientConfiguration.Proxy">
+            <summary>
+            Proxy address
+            </summary>
+        </member>
         <member name="T:MindSphereSdk.Core.Common.MindSphereResourceWrapper`1">
             <summary>
             Wrapper for MindSphere resource
