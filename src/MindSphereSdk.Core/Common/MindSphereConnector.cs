@@ -22,10 +22,11 @@ namespace MindSphereSdk.Core.Common
         private ClientConfiguration _configuration;
         protected readonly HttpClient _httpClient;
 
-        public MindSphereConnector(ClientConfiguration configuration, HttpClient httpClient)
+        public MindSphereConnector(ClientConfiguration configuration)
         {
             _configuration = configuration;
-            _httpClient = httpClient;
+            _httpClient = new HttpClient();
+            _httpClient.Timeout = TimeSpan.FromMilliseconds(10);
         }
 
         /// <summary>
@@ -97,10 +98,10 @@ namespace MindSphereSdk.Core.Common
             }
         }
 
-        // TODO: implement token validation (https://developer.mindsphere.io/concepts/concept-authentication.html#token-validation)
         /// <summary>
         /// Validate MindSphere access token 
         /// </summary>
+        // TODO: implement token validation (https://developer.mindsphere.io/concepts/concept-authentication.html#token-validation)
         private bool ValidateToken()
         {
             if (_accessToken == null) return false;

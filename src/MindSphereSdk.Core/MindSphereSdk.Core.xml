@@ -484,22 +484,27 @@
             Access Token model
             </summary>
         </member>
-        <member name="M:MindSphereSdk.Core.Common.MdspSdk.GetAssetManagementClient">
+        <member name="T:MindSphereSdk.Core.Common.MindSphereApiSdk">
+            <summary>
+            MindSphere API SDK
+            </summary>
+        </member>
+        <member name="M:MindSphereSdk.Core.Common.MindSphereApiSdk.GetAssetManagementClient">
             <summary>
             Get Asset Management Client
             </summary>
         </member>
-        <member name="M:MindSphereSdk.Core.Common.MdspSdk.GetIotTimeSeriesClient">
+        <member name="M:MindSphereSdk.Core.Common.MindSphereApiSdk.GetIotTimeSeriesClient">
             <summary>
             Get IoT Time Series Client
             </summary>
         </member>
-        <member name="M:MindSphereSdk.Core.Common.MdspSdk.GetIotTsAggregateClient">
+        <member name="M:MindSphereSdk.Core.Common.MindSphereApiSdk.GetIotTsAggregateClient">
             <summary>
             Get IoT Time Series Aggregate Client
             </summary>
         </member>
-        <member name="M:MindSphereSdk.Core.Common.MdspSdk.GetEventManagementClient">
+        <member name="M:MindSphereSdk.Core.Common.MindSphereApiSdk.GetEventManagementClient">
             <summary>
             Get Event Management Client
             </summary>

@@ -15,8 +15,8 @@ namespace MindSphereSdk.Core.Common
     {
         private readonly UserCredentials _credentials;
 
-        public UserMindSphereConnector(UserCredentials credentials, ClientConfiguration configuration, HttpClient httpClient)
-            : base(configuration, httpClient)
+        public UserMindSphereConnector(UserCredentials credentials, ClientConfiguration configuration)
+            : base(configuration)
         {
             _credentials = credentials;
         }

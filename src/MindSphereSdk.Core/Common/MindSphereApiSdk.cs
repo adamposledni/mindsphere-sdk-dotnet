@@ -25,10 +25,9 @@ namespace MindSphereSdk.Core.Common
 
         private readonly MindSphereConnector _connector;
 
-        public MindSphereApiSdk(ICredentials credentials, ClientConfiguration configuration, HttpClient httpClient = null)
+        public MindSphereApiSdk(ICredentials credentials, ClientConfiguration configuration)
         {
             Validator.Validate(configuration);
-            httpClient = httpClient ?? new HttpClient();
 
             if (credentials == null)
             {
@@ -38,13 +37,13 @@ namespace MindSphereSdk.Core.Common
             else if (credentials is AppCredentials appCredentials)
             {
                 Validator.Validate(appCredentials);
-                _connector = new AppMindSphereConnector(appCredentials, configuration, httpClient);
+                _connector = new AppMindSphereConnector(appCredentials, configuration);
             }
             // create user credentials connector
             else if (credentials is UserCredentials userCredentials)
             {
                 Validator.Validate(userCredentials);
-                _connector = new UserMindSphereConnector(userCredentials, configuration, httpClient);
+                _connector = new UserMindSphereConnector(userCredentials, configuration);
             }
             else
             {
