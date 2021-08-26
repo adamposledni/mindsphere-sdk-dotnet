@@ -16,6 +16,7 @@ namespace ConsoleApp
         {
             AppCredentials credentials;
             ClientConfiguration configuration = new ClientConfiguration();
+            configuration.Proxy = "localhost:5555";
             ListAssetsRequest request = new ListAssetsRequest()
             {
                 Size = 200

@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,8 +26,17 @@ namespace MindSphereSdk.Core.Common
         public MindSphereConnector(ClientConfiguration configuration)
         {
             _configuration = configuration;
-            _httpClient = new HttpClient();
-            _httpClient.Timeout = TimeSpan.FromMilliseconds(10);
+
+            var handler = new HttpClientHandler();
+            // proxy setting
+            if (!string.IsNullOrWhiteSpace(_configuration.Proxy))
+            {
+                handler.Proxy = new WebProxy(_configuration.Proxy, false);
+                handler.UseProxy = true;
+            }
+            _httpClient = new HttpClient(handler);
+            // timeout setting
+            _httpClient.Timeout = _configuration.Timeout;
         }
 
         /// <summary>

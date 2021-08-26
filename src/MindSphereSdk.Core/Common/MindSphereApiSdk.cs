@@ -14,8 +14,6 @@ namespace MindSphereSdk.Core.Common
     /// <summary>
     /// MindSphere API SDK
     /// </summary>
-    // TODO: change docs
-    // TODO: arch diagram
     public class MindSphereApiSdk
     {
         private AssetManagementClient _assetManagementClient;
