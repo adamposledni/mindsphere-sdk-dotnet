@@ -34,11 +34,13 @@ namespace MindSphereSdk.Core.Common
             {
                 throw new ArgumentNullException(nameof(credentials));
             }
+            // create application credentials connector
             else if (credentials is AppCredentials appCredentials)
             {
                 Validator.Validate(appCredentials);
                 _connector = new AppMindSphereConnector(appCredentials, configuration, httpClient);
             }
+            // create user credentials connector
             else if (credentials is UserCredentials userCredentials)
             {
                 Validator.Validate(userCredentials);
