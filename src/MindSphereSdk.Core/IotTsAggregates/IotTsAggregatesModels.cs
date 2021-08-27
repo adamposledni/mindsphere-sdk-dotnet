@@ -84,13 +84,44 @@ namespace MindSphereSdk.Core.IotTsAggregates
     /// </summary>
     public class GetAggregateTimeSeriesRequest
     {
+        /// <summary>
+        /// Unique identifier of the asset
+        /// </summary>
         public string AssetId { get; set; }
+
+        /// <summary>
+        /// Name of the aspect
+        /// </summary>
         public string AspectName { get; set; }
+
+        /// <summary>
+        /// Beginning of the time range to read
+        /// </summary>
         public DateTime? From { get; set; }
+
+        /// <summary>
+        /// End of the time range to read
+        /// </summary>
         public DateTime? To { get; set; }
+
+        /// <summary>
+        /// Interval duration for the aggregates in intervalUnits
+        /// </summary>
         public int? IntervalValue { get; set; }
+
+        /// <summary>
+        /// Interval duration unit for the aggregates
+        /// </summary>
         public string IntervalUnit { get; set; }
+
+        /// <summary>
+        /// Variables names to filter out variables
+        /// </summary>
         public string Select { get; set; }
+
+        /// <summary>
+        /// Number of aggregate objects
+        /// </summary>
         public int? Count { get; set; }
     }
 

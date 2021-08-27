@@ -27,20 +27,7 @@ namespace MindSphereSdk.Core.IotTsAggregates
         /// </summary>
         public async Task<IEnumerable<T>> GetAggregateTimeSeriesAsync<T>(GetAggregateTimeSeriesRequest request) where T : AggregateSet
         {
-            string uri = GetUri(request);
-
-            string response = await HttpActionAsync(HttpMethod.Get, uri);
-            var tsAggregateWrapper = JsonConvert.DeserializeObject<AggregateWrapper<T>>(response);
-            var tsAggregate = tsAggregateWrapper.Aggregates;
-            return tsAggregate;
-        }
-
-        /// <summary>
-        /// Generate URI for time series aggregation request
-        /// </summary>
-        private string GetUri(GetAggregateTimeSeriesRequest request)
-        {
-            // prepare query string
+            // prepare URI string
             QueryStringBuilder queryBuilder = new QueryStringBuilder();
             queryBuilder.AddQuery("from", request.From);
             queryBuilder.AddQuery("to", request.To);
@@ -50,9 +37,13 @@ namespace MindSphereSdk.Core.IotTsAggregates
             queryBuilder.AddQuery("intervalValue", request.IntervalValue);
             queryBuilder.AddQuery("intervalUnit", request.IntervalUnit);
             queryBuilder.AddQuery("count", request.Count);
-
             string uri = _baseUri + "/aggregates" + queryBuilder.ToString();
-            return uri;
+
+            // make request
+            string response = await HttpActionAsync(HttpMethod.Get, uri);
+            var tsAggregateWrapper = JsonConvert.DeserializeObject<AggregateWrapper<T>>(response);
+            var tsAggregate = tsAggregateWrapper.Aggregates;
+            return tsAggregate;
         }
     }
 }
