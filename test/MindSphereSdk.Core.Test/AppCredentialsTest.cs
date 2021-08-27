@@ -11,6 +11,9 @@ namespace MindSphereSdk.Core.Test
 {
     public class AppCredentialsTest
     {
+        /// <summary>
+        /// Negative test: AppCredentials values validation
+        /// </summary>
         [Fact]
         public void UseWithInvalidData()
         {
@@ -18,12 +21,15 @@ namespace MindSphereSdk.Core.Test
             AppCredentials appCredentials = new AppCredentials("  ", null, "   ", "  ", "  ", "  ");
 
             // Act
-            Func<MindSphereApiSdk> act = () => new MindSphereApiSdk(appCredentials, new ClientConfiguration());
+            MindSphereApiSdk act() => new MindSphereApiSdk(appCredentials, new ClientConfiguration());
 
             // Assert
             Assert.Throws<ArgumentException>(act);
         }
 
+        /// <summary>
+        /// Positive test: AppCredentials values validation
+        /// </summary>
         [Fact]
         public void UseWithValidData()
         {

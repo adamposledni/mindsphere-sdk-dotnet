@@ -12,7 +12,7 @@ using Xunit;
 
 namespace MindSphereSdk.Core.Test
 {
-    public class SdkClientTest
+    public class SdkTest
     {
         private readonly AppCredentials _invalidAppCreds = new AppCredentials(
                 "tenant-app-1.0.0",
@@ -22,31 +22,40 @@ namespace MindSphereSdk.Core.Test
                 "tenant",
                 "tenant");
 
-        private readonly string _validAccessToken = "eyJhbGciOiJSUzI1NiIsImprdSI6Imh0dHBzOi8vaWlvdGRnbGkucGlhbS5ldTEubWluZHNwaGVyZS5pby90b2tlbl9rZXlzIiwia2lkIjoia2V5LWlkLTMiLCJ0eXAiOiJKV1QifQ.eyJqdGkiOiIyZDEwMWIwZWE5NDY0OGE5OTk2MTczNjdiMzdjYzQwMyIsInN1YiI6Imlpb3RkZ2xpLXRlc3RhcHBsaWNhdGlvbi0xLjAuMDYwIiwic2NvcGUiOlsibWRzcDpjb3JlOkFkbWluM3JkUGFydHlUZWNoVXNlciJdLCJjbGllbnRfaWQiOiJpaW90ZGdsaS10ZXN0YXBwbGljYXRpb24tMS4wLjA2MCIsImNpZCI6Imlpb3RkZ2xpLXRlc3RhcHBsaWNhdGlvbi0xLjAuMDYwIiwiYXpwIjoiaWlvdGRnbGktdGVzdGFwcGxpY2F0aW9uLTEuMC4wNjAiLCJncmFudF90eXBlIjoiY2xpZW50X2NyZWRlbnRpYWxzIiwicmV2X3NpZyI6IjY3MTFhNzBiIiwiaWF0IjoxNjI5ODMyMjE2LCJleHAiOjE2Mjk4MzQwMTYsImlzcyI6Imh0dHBzOi8vaWlvdGRnbGkucGlhbS5ldTEubWluZHNwaGVyZS5pby9vYXV0aC90b2tlbiIsInppZCI6Imlpb3RkZ2xpIiwiYXVkIjpbImlpb3RkZ2xpLXRlc3RhcHBsaWNhdGlvbi0xLjAuMDYwIl0sInRlbiI6Imlpb3RkZ2xpIiwic2NoZW1hcyI6WyJ1cm46c2llbWVuczptaW5kc3BoZXJlOmlhbTp2MSJdLCJjYXQiOiJjbGllbnQtdG9rZW46djEifQ.TnL518EXUKPZrfgvi4EyCibT9yCieRJ7O6VFg7ufiO5kDv-l1bYxbqOefmjrT7Ev96PWdcQHsvv6sCHDwBSDSbob79k36KN0C3Eass3saq1T6FA5nzx8sopwsxtJxMEL1ekuPz9idc_PugmaE1SrL3n_P4UzjxtYYmedWAm7UYYphEFsf9I6NJuz7QB90vDemAWzcpHv4-9kZbCp7EHYBpLRB_vgRutoeQahwrloJF0v2RKp2YcVxun4cQP2rxqbO4mwqzoS7ijlm4Sgt-quvje51--Gum0btm1IowDsr40mBUw6dRj63g4xnd7u5itqW_YwuXvwnDDmwzBBcH_CZQ";
-        private readonly string _invalidAccessToken = "eyJhbGciOiJSUzI1NiIsImprdSI6Imh0dHbzOi8vaWlvdGRnbGkucGlhbS5ldTEubWluZHNwaGVyZS5pby90b2tlbl9rZXlzIiwia2lkIjoia2V5LWlkLTMiLCJ0eXAiOiJKV1QifQ.eyJqdGkiOiIyZDEwMWIwZWE5NDY0OGE5OTk2MTczNjdiMzdjYzQwMyIsInN1YiI6Imlpb3RkZ2xpLXRlc3RhcHBsaWNhdGlvbi0xLjAuMDYwIiwic2NvcGUiOlsibWRzcDpjb3JlOkFkbWluM3JkUGFydHlUZWNoVXNlciJdLCJjbGllbnRfaWQiOiJpaW90ZGdsaS10ZXN0YXBwbGljYXRpb24tMS4wLjA2MCIsImNpZCI6Imlpb3RkZ2xpLXRlc3RhcHBsaWNhdGlvbi0xLjAuMDYwIiwiYXpwIjoiaWlvdGRnbGktdGVzdGFwcGxpY2F0aW9uLTEuMC4wNjAiLCJncmFudF90eXBlIjoiY2xpZW50X2NyZWRlbnRpYWxzIiwicmV2X3NpZyI6IjY3MTFhNzBiIiwiaWF0IjoxNjI5ODMyMjE2LCJleHAiOjE2Mjk4MzQwMTYsImlzcyI6Imh0dHBzOi8vaWlvdGRnbGkucGlhbS5ldTEubWluZHNwaGVyZS5pby9vYXV0aC90b2tlbiIsInppZCI6Imlpb3RkZ2xpIiwiYXVkIjpbImlpb3RkZ2xpLXRlc3RhcHBsaWNhdGlvbi0xLjAuMDYwIl0sInRlbiI6Imlpb3RkZ2xpIiwic2NoZW1hcyI6WyJ1cm46c2llbWVuczptaW5kc3BoZXJlOmlhbTp2MSJdLCJjYXQiOiJjbGllbnQtdG9rZW46djEifQ.TnL518EXUKPZrfgvi4EyCibT9yCieRJ7O6VFg7ufiO5kDv-l1bYxbqOefmjrT7Ev96PWdcQHsvv6sCHDwBSDSbob79k36KN0C3Eass3saq1T6FA5nzx8sopwsxtJxMEL1ekuPz9idc_PugmaE1SrL3n_P4UzjxtYYmedWAm7UYYphEFsf9I6NJuz7QB90vDemAWzcpHv4-9kZbCp7EHYBpLRB_vgRutoeQahwrloJF0v2RKp2YcVxun4cQP2rxqbO4mwqzoS7ijlm4Sgt-quvje51--Gum0btm1IowDsr40mBUw6dRj63g4xnd7u5itqW_YwuXvwnDDmwzBBcH_CZQ";
+        private readonly string _validAccessToken = "";
+        private readonly string _invalidAccessToken = "";
 
+        /// <summary>
+        /// Negative test: SDK constructor - null credentials validation
+        /// </summary>
         [Fact]
         public void ConstructWithNullCredentials()
         {
             // Act
-            Func<MindSphereApiSdk> act = () => new MindSphereApiSdk(null, new ClientConfiguration());
+            static MindSphereApiSdk act() => new MindSphereApiSdk(null, new ClientConfiguration());
 
             // Assert
             Assert.Throws<ArgumentNullException>(act);
         }
 
+        /// <summary>
+        /// Negative test: SDK constructor - null configuration validation
+        /// </summary>
         [Fact]
         public void ConstructWithNullConfiguration()
         {
             // Arrange
 
             // Act
-            Func<MindSphereApiSdk> act = () => new MindSphereApiSdk(_invalidAppCreds, null);
+            MindSphereApiSdk act() => new MindSphereApiSdk(_invalidAppCreds, null);
 
             // Assert
             Assert.Throws<ArgumentNullException>(act);
         }
 
+        /// <summary>
+        /// Negative test: Mdsp API call with invalid AppCredentials
+        /// </summary>
         [Fact]
         public async Task MdspCallWithInvalidAppCreds()
         {
@@ -69,6 +78,9 @@ namespace MindSphereSdk.Core.Test
             }
         }
 
+        /// <summary>
+        /// Positive test: Mdsp API call with valid AppCredentials
+        /// </summary>
         [Fact]
         public async Task MdspCallWithValidAppCreds()
         {
@@ -85,6 +97,9 @@ namespace MindSphereSdk.Core.Test
             // Assert
         }
 
+        /// <summary>
+        /// Negative test: Mdsp API call with invalid UserCredentials
+        /// </summary>
         [Fact]
         public async Task MdspCallWithInvalidUserCreds()
         {
@@ -107,6 +122,9 @@ namespace MindSphereSdk.Core.Test
             }
         }
 
+        /// <summary>
+        /// Positive test: Mdsp API call with valid UserCredentials
+        /// </summary>
         [Fact]
         public async Task MdspCallWithValidUserCreds()
         {
