@@ -24,14 +24,40 @@ namespace MindSphereSdk.Core.IotTimeSeries
         }
 
         /// <summary>
-        /// Retrieve time series data (generic function)
+        /// Create or update time series data for mutiple unique asset-aspect (entity-property set) combinations
+        /// </summary>
+        public async Task PutTimeSeriesMultipleAsync(PutTimeSeriesMultipleRequest request)
+        {
+            // prepare URI string
+            string uri = _baseUri + "/timeseries";
+
+            // prepare HTTP request body
+            StringContent body = new StringContent(JsonConvert.SerializeObject(request), Encoding.UTF8, "application/json");
+
+            // make request
+            await HttpActionAsync(HttpMethod.Put, uri, body);
+        }
+
+        /// <summary>
+        /// Retrieve time series data
         /// </summary>
         public async Task<IEnumerable<T>> GetTimeSeriesAsync<T>(GetTimeSeriesRequest request)
         {
-            string uri = GetUriForGetTimeSeries(request);
+            // prepare URI string
+            QueryStringBuilder queryBuilder = new QueryStringBuilder();
+            queryBuilder.AddQuery("from", request.From);
+            queryBuilder.AddQuery("to", request.To);
+            queryBuilder.AddQuery("limit", request.Limit);
+            queryBuilder.AddQuery("select", request.Select);
+            queryBuilder.AddQuery("sort", request.Sort);
+            queryBuilder.AddQuery("latestValue", request.LatestValue);
+            string pathString = $"/{request.EntityId}/{request.PropertySetName}";
+            string uri = _baseUri + "/timeseries" + pathString + queryBuilder.ToString();
 
+            // make request
             string response = await HttpActionAsync(HttpMethod.Get, uri);
             var timeSeries = JsonConvert.DeserializeObject<IEnumerable<T>>(response);
+
             return timeSeries;
         }
 
@@ -43,23 +69,22 @@ namespace MindSphereSdk.Core.IotTimeSeries
         /// </remarks>
         public async Task<IEnumerable<dynamic>> GetTimeSeriesAsync(GetTimeSeriesRequest request)
         {
-            string uri = GetUriForGetTimeSeries(request);
-
-            string response = await HttpActionAsync(HttpMethod.Get, uri);
-            var timeSeries = JsonConvert.DeserializeObject<IEnumerable<dynamic>>(response);
-            return timeSeries;
+            return await GetTimeSeriesAsync<dynamic>(request);
         }
 
         /// <summary>
         /// Create or update time series data
         /// </summary>
-
+        // TODO: docs example
         public async Task PutTimeSeriesAsync(PutTimeSeriesRequest request)
         {
-            string uri = _baseUri + "/timeseries";
+            // prepare URI string
+            string uri = _baseUri + $"/timeseries/{request.EntityId}/{request.PropertySetName}";
 
-            StringContent body = new StringContent(JsonConvert.SerializeObject(request), Encoding.UTF8, "application/json");
+            // prepare HTTP request body
+            StringContent body = new StringContent(JsonConvert.SerializeObject(request.Data), Encoding.UTF8, "application/json");
 
+            // make request
             await HttpActionAsync(HttpMethod.Put, uri, body);
         }
 
@@ -68,43 +93,15 @@ namespace MindSphereSdk.Core.IotTimeSeries
         /// </summary>
         public async Task DeleteTimeSeriesAsync(DeleteTimeSeriesRequest request)
         {
-            string uri = GetUriForDeleteTimeSeries(request);
+            // prepare URI string
+            QueryStringBuilder queryBuilder = new QueryStringBuilder();
+            queryBuilder.AddQuery("from", request.From);
+            queryBuilder.AddQuery("to", request.To);
+            string pathString = $"/{request.EntityId}/{request.PropertySetName}";
+            string uri = _baseUri + "/timeseries" + pathString + queryBuilder.ToString();
+
+            // make request
             await HttpActionAsync(HttpMethod.Delete, uri);
-        }
-
-        /// <summary>
-        /// Generate specific URI for get request
-        /// </summary>
-        private string GetUriForGetTimeSeries(GetTimeSeriesRequest request)
-        {
-            // prepare query string
-            QueryStringBuilder queryBuilder = new QueryStringBuilder();
-            queryBuilder.AddQuery("from", request.From);
-            queryBuilder.AddQuery("to", request.To);
-            queryBuilder.AddQuery("limit", request.Limit);
-            queryBuilder.AddQuery("select", request.Select);
-            queryBuilder.AddQuery("sort", request.Sort);
-            queryBuilder.AddQuery("latestValue", request.LatestValue);
-
-            string pathString = $"/{request.EntityId}/{request.PropertySetName}";
-            string uri = _baseUri + "/timeseries" + pathString + queryBuilder.ToString();
-            return uri;
-        }
-
-        /// <summary>
-        /// Generate specific URI for delete request
-        /// </summary>
-        private string GetUriForDeleteTimeSeries(DeleteTimeSeriesRequest request)
-        {
-            // prepare query string
-            // prepare query string
-            QueryStringBuilder queryBuilder = new QueryStringBuilder();
-            queryBuilder.AddQuery("from", request.From);
-            queryBuilder.AddQuery("to", request.To);
-
-            string pathString = $"/{request.EntityId}/{request.PropertySetName}";
-            string uri = _baseUri + "/timeseries" + pathString + queryBuilder.ToString();
-            return uri;
         }
     }
 }

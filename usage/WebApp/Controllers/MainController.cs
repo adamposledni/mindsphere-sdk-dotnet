@@ -386,11 +386,11 @@ namespace WebApp.Controllers
                 }
             };
 
-            PutTimeSeriesRequest request = new()
+            PutTimeSeriesMultipleRequest request = new()
             {
                 TimeSeries = timeSeriesObjects
             };
-            await iotClient.PutTimeSeriesAsync(request);
+            await iotClient.PutTimeSeriesMultipleAsync(request);
 
             return StatusCode(201);
         }
