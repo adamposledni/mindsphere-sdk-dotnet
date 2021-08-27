@@ -6,7 +6,10 @@ Open-source .NET SDK for [MindSphere](https://siemens.mindsphere.io/) APIs mainl
 
 *This project was started on my own initiative. I am still a student and I am trying my best to develop useful solution for the absence of .NET SDK. Of course, any help is more than welcome. My goal is to develop SDK similar to [MindSphere SDK for Node.js](https://developer.mindsphere.io/resources/mindsphere-sdk-node/index.html).*
 
-📌 What am I working on?  - [Tasks](https://github.com/hroudaadam/mindsphere-sdk-dotnet/projects/1)
+
+❗ Check out new features and changes in the version v1.1.0 -> [CHANGELOG.md](./CHANGELOG.md)  ❗
+
+
 
 ---
 
@@ -25,7 +28,7 @@ Open-source .NET SDK for [MindSphere](https://siemens.mindsphere.io/) APIs mainl
     - [Put new time series data](#Put-new-time-series-data)
 - [IoT time series aggregates client](#IoT-time-series-aggregates-client)
     - [Get time series aggregates](#Get-time-series-aggregates)
-
+- [Tasks](https://github.com/hroudaadam/mindsphere-sdk-dotnet/projects/1)
 ---
 ## Installation
 
