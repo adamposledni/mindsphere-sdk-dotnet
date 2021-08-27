@@ -12,7 +12,15 @@ namespace MindSphereSdk.Core.EventManagement
     /// </summary>
     public class AddEventRequest
     {
+        /// <summary>
+        /// Event
+        /// </summary>
         public EventAdd Body { get; set; }
+
+        /// <summary>
+        /// Specifies if the operation should take into account shared entities
+        /// </summary>
+        public bool IncludeShared { get; set; }
     }
 
     #endregion
