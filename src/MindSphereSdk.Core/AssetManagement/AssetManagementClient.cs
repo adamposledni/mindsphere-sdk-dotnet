@@ -24,6 +24,116 @@ namespace MindSphereSdk.Core.AssetManagement
         {
         }
 
+        #region Aspect type
+
+        /// <summary>
+        /// List all aspect types
+        /// </summary>
+        public async Task<PaginationModel<AspectType>> ListAspectTypesAsync(ListAspectTypesRequest request)
+        {
+            // prepare query string
+            QueryStringBuilder queryBuilder = new QueryStringBuilder();
+            queryBuilder.AddQuery("page", request.Page);
+            queryBuilder.AddQuery("size", request.Size);
+            queryBuilder.AddQuery("sort", request.Sort);
+            queryBuilder.AddQuery("filter", request.Filter);
+            queryBuilder.AddQuery("includeShared", request.IncludeShared);
+
+            string uri = _baseUri + "/aspecttypes" + queryBuilder.ToString();
+
+            string response = await HttpActionAsync(HttpMethod.Get, uri);
+            var aspectTypeListWrapper = JsonConvert.DeserializeObject<MindSphereResourceWrapper<EmbeddedAspectTypeList>>(response);
+
+            // format output
+            var output = new PaginationModel<AspectType>();
+            output.Data = aspectTypeListWrapper.Embedded.AspectTypes;
+            output.Page = aspectTypeListWrapper.Page;
+
+            return output;
+        }
+
+        /// <summary>
+        /// Read an aspect type 
+        /// </summary>
+        public async Task<AspectType> GetAspectTypeAsync(GetAspectTypeRequest request)
+        {
+            string uri = _baseUri + "/aspecttypes/" + request.Id;
+
+            string response = await HttpActionAsync(HttpMethod.Get, uri);
+            var aspectType = JsonConvert.DeserializeObject<AspectType>(response);
+
+            return aspectType;
+        }
+
+        /// <summary>
+        /// Delete an aspect type 
+        /// </summary>
+        public async Task DeleteAspectTypeAsync(DeleteAspectTypeRequest request)
+        {
+            string uri = _baseUri + "/aspecttypes/" + request.Id;
+
+            // prepare HTTP request headers
+            List<KeyValuePair<string, string>> headers = new List<KeyValuePair<string, string>>
+            {
+                new KeyValuePair<string, string>("If-Match", request.IfMatch)
+            };
+
+            await HttpActionAsync(HttpMethod.Delete, uri, headers: headers);
+        }
+
+        /// <summary>
+        /// Create or update an aspect type
+        /// </summary>
+        public async Task<AspectType> PutAspectTypeAsync(PutAspectTypeRequest request)
+        {
+            string uri = _baseUri + "/aspecttypes/" + request.Id;
+
+            // prepare HTTP request body
+            string jsonString = JsonConvert.SerializeObject(request.Body);
+            StringContent body = new StringContent(jsonString, Encoding.UTF8, "application/json");
+
+            // prepare HTTP request headers
+            List<KeyValuePair<string, string>> headers = new List<KeyValuePair<string, string>>
+            {
+                new KeyValuePair<string, string>("If-None-Match", request.IfNoneMatch),
+                new KeyValuePair<string, string>("If-Match", request.IfMatch)
+            };
+
+            string response = await HttpActionAsync(HttpMethod.Put, uri, body, headers);
+            var aspectType = JsonConvert.DeserializeObject<AspectType>(response);
+
+            return aspectType;
+        }
+
+        /// <summary>
+        /// Patch an aspect type
+        /// </summary>
+        public async Task<AspectType> PatchAspectTypeAsync(PatchAspectTypeRequest request)
+        {
+            string uri = _baseUri + "/aspecttypes/" + request.Id;
+
+            // prepare HTTP request body
+            string jsonString = JsonConvert.SerializeObject(request.Body,
+                new JsonSerializerSettings()
+                {
+                    NullValueHandling = NullValueHandling.Ignore
+                });
+            StringContent body = new StringContent(jsonString, Encoding.UTF8, "application/merge-patch+json");
+
+            // prepare HTTP request headers
+            List<KeyValuePair<string, string>> headers = new List<KeyValuePair<string, string>>
+            {
+                new KeyValuePair<string, string>("If-Match", request.IfMatch)
+            };
+
+            string response = await HttpActionAsync(new HttpMethod("PATCH"), uri, body, headers);
+            var aspectType = JsonConvert.DeserializeObject<AspectType>(response);
+
+            return aspectType;
+        }
+
+        #endregion
+
         #region Asset
 
         /// <summary>
@@ -320,7 +430,7 @@ namespace MindSphereSdk.Core.AssetManagement
 
         #endregion
 
-        #region Files
+        #region File
 
         /// <summary>
         /// Get metadata of uploaded files.
@@ -436,111 +546,6 @@ namespace MindSphereSdk.Core.AssetManagement
             var file = JsonConvert.DeserializeObject<File>(response);
 
             return file;
-        }
-
-        #endregion
-
-        #region Aspect type
-
-        /// <summary>
-        /// List all aspect types
-        /// </summary>
-        public async Task<IEnumerable<AspectType>> ListAspectTypesAsync(ListAspectTypesRequest request)
-        {
-            // prepare query string
-            QueryStringBuilder queryBuilder = new QueryStringBuilder();
-            queryBuilder.AddQuery("size", request.Size);
-            queryBuilder.AddQuery("page", request.Page);
-            queryBuilder.AddQuery("sort", request.Sort);
-            queryBuilder.AddQuery("filter", request.Filter);
-
-            string uri = _baseUri + "/aspecttypes" + queryBuilder.ToString();
-
-            string response = await HttpActionAsync(HttpMethod.Get, uri);
-            var aspectTypeListWrapper = JsonConvert.DeserializeObject<MindSphereResourceWrapper<EmbeddedAspectTypeList>>(response);
-            var aspectTypeList = aspectTypeListWrapper.Embedded.AspectTypes;
-
-            return aspectTypeList;
-        }
-
-        /// <summary>
-        /// Read an aspect type 
-        /// </summary>
-        public async Task<AspectType> GetAspectTypeAsync(GetAspectTypeRequest request)
-        {
-            string uri = _baseUri + "/aspecttypes/" + request.Id;
-
-            string response = await HttpActionAsync(HttpMethod.Get, uri);
-            var aspectType = JsonConvert.DeserializeObject<AspectType>(response);
-
-            return aspectType;
-        }
-
-        /// <summary>
-        /// Delete an aspect type 
-        /// </summary>
-        public async Task DeleteAspectTypeAsync(DeleteAspectTypeRequest request)
-        {
-            string uri = _baseUri + "/aspecttypes/" + request.Id;
-
-            // prepare HTTP request headers
-            List<KeyValuePair<string, string>> headers = new List<KeyValuePair<string, string>>
-            {
-                new KeyValuePair<string, string>("If-Match", request.IfMatch)
-            };
-
-            await HttpActionAsync(HttpMethod.Delete, uri, headers: headers);
-        }
-
-        /// <summary>
-        /// Create or update an aspect type
-        /// </summary>
-        public async Task<AspectType> PutAspectTypeAsync(PutAspectTypeRequest request)
-        {
-            string uri = _baseUri + "/aspecttypes/" + request.Id;
-
-            // prepare HTTP request body
-            string jsonString = JsonConvert.SerializeObject(request.Body);
-            StringContent body = new StringContent(jsonString, Encoding.UTF8, "application/json");
-
-            // prepare HTTP request headers
-            List<KeyValuePair<string, string>> headers = new List<KeyValuePair<string, string>>
-            {
-                new KeyValuePair<string, string>("If-None-Match", request.IfNoneMatch),
-                new KeyValuePair<string, string>("If-Match", request.IfMatch)
-            };
-
-            string response = await HttpActionAsync(HttpMethod.Put, uri, body, headers);
-            var aspectType = JsonConvert.DeserializeObject<AspectType>(response);
-
-            return aspectType;
-        }
-
-        /// <summary>
-        /// Patch an aspect type
-        /// </summary>
-        public async Task<AspectType> PatchAspectTypeAsync(PatchAspectTypeRequest request)
-        {
-            string uri = _baseUri + "/aspecttypes/" + request.Id;
-
-            // prepare HTTP request body
-            string jsonString = JsonConvert.SerializeObject(request.Body,
-                new JsonSerializerSettings()
-                {
-                    NullValueHandling = NullValueHandling.Ignore
-                });
-            StringContent body = new StringContent(jsonString, Encoding.UTF8, "application/merge-patch+json");
-
-            // prepare HTTP request headers
-            List<KeyValuePair<string, string>> headers = new List<KeyValuePair<string, string>>
-            {
-                new KeyValuePair<string, string>("If-Match", request.IfMatch)
-            };
-
-            string response = await HttpActionAsync(new HttpMethod("PATCH"), uri, body, headers);
-            var aspectType = JsonConvert.DeserializeObject<AspectType>(response);
-
-            return aspectType;
         }
 
         #endregion

@@ -42,8 +42,11 @@ namespace MindSphereSdk.Core.Helpers
         private string _query = "?";
 
         /// <summary>
-        /// Add new part to the URI query sting
+        /// Add new part to the URI query string
         /// </summary>
+        /// <remarks>
+        /// Adds value only if not empty
+        /// </remarks>
         public void AddQuery(string name, string value)
         {
             if (!string.IsNullOrEmpty(value))
@@ -53,8 +56,11 @@ namespace MindSphereSdk.Core.Helpers
         }
 
         /// <summary>
-        /// Add new part to the URI query sting
+        /// Add new part to the URI query string
         /// </summary>
+        /// <remarks>
+        /// Adds value only if not empty
+        /// </remarks>
         public void AddQuery(string name, int? value)
         {
             if (value != null)
@@ -64,8 +70,11 @@ namespace MindSphereSdk.Core.Helpers
         }
 
         /// <summary>
-        /// Add new part to the URI query sting
+        /// Add new part to the URI query string
         /// </summary>
+        /// <remarks>
+        /// Adds value only if not empty
+        /// </remarks>
         public void AddQuery(string name, DateTime? value)
         {
             if (value != null)
@@ -75,8 +84,11 @@ namespace MindSphereSdk.Core.Helpers
         }
 
         /// <summary>
-        /// Add new part to the URI query sting
+        /// Add new part to the URI query string
         /// </summary>
+        /// <remarks>
+        /// Adds value only if not empty
+        /// </remarks>
         public void AddQuery(string name, bool? value)
         {
             if (value != null)

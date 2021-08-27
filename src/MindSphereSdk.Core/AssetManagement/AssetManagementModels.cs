@@ -620,13 +620,38 @@ namespace MindSphereSdk.Core.AssetManagement
     /// </summary>
     public class ListAspectTypesRequest
     {
+        /// <summary>
+        /// Specifies the requested page index
+        /// </summary>
         public int? Page { get; set; }
 
+        /// <summary>
+        /// Specifies the number of elements in a page
+        /// </summary>
         public int? Size { get; set; }
 
+        /// <summary>
+        /// Specifies the ordering of returned elements
+        /// </summary>
         public string Sort { get; set; }
 
+        /// <summary>
+        /// Specifies the additional filtering criteria
+        /// </summary>
         public string Filter { get; set; }
+
+        /// <summary>
+        /// ETag hash of previous request to allow caching
+        /// </summary>
+        public string IfNoneMatch { get; set; }
+
+        /// <summary>
+        /// Specifies if the operation should take into account shared entities
+        /// </summary>
+        /// <remarks>
+        /// Default: false
+        /// </remarks>
+        public bool IncludeShared { get; set; } = false;
     }
 
     /// <summary>

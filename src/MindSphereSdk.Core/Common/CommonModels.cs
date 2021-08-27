@@ -5,19 +5,48 @@ using System.Text;
 
 namespace MindSphereSdk.Core.Common
 {
+    internal interface IEmbeddedResource
+    {
+
+    }
+
     /// <summary>
     /// Wrapper for MindSphere resource
     /// </summary>
     // TODO: pagination model
-    internal class MindSphereResourceWrapper<T> where T : IEmbeddedResource
+    internal class MindSphereResourceWrapper<T> where T: IEmbeddedResource
     {
         [JsonProperty("_embedded")]
         public T Embedded { get; set; }
+
+        [JsonProperty("page")]
+        public Page Page { get; set; }
     }
 
-    internal interface IEmbeddedResource
+    // TODO: docs
+    public class PaginationModel<T>
     {
+        public IEnumerable<T> Data { get; set; }
+
+        public Page Page { get; set; }
     }
+
+    // TODO: docs
+    public class Page
+    {
+        [JsonProperty("size")]
+        public int Size { get; set; }
+
+        [JsonProperty("totalElements")]
+        public int TotalElements { get; set; }
+
+        [JsonProperty("totalPages")]
+        public int TotalPages { get; set; }
+
+        [JsonProperty("number")]
+        public int Number { get; set; }
+    }
+
 
     /// <summary>
     /// Access Token model
