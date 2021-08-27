@@ -38,7 +38,9 @@ namespace MindSphereSdk.Core.IotTimeSeries
         /// <summary>
         /// Retrieve time series data
         /// </summary>
-        // TODO: check if obj is not better approach
+        /// <remarks>
+        /// If generic type is not specified the method returns dynamic type
+        /// </remarks>
         public async Task<IEnumerable<dynamic>> GetTimeSeriesAsync(GetTimeSeriesRequest request)
         {
             string uri = GetUriForGetTimeSeries(request);

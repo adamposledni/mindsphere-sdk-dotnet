@@ -1,6 +1,7 @@
 ﻿using MindSphereSdk.Core.AssetManagement;
 using MindSphereSdk.Core.Authentication;
 using MindSphereSdk.Core.Common;
+using MindSphereSdk.Core.IotTimeSeries;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -43,6 +44,5 @@ namespace ConsoleApp
             }
             Console.ReadKey();
         }
-
     }
 }

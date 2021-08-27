@@ -693,6 +693,9 @@
             <summary>
             Retrieve time series data
             </summary>
+            <remarks>
+            If generic type is not specified the method returns dynamic type
+            </remarks>
         </member>
         <member name="M:MindSphereSdk.Core.IotTimeSeries.IotTimeSeriesClient.PutTimeSeriesAsync(MindSphereSdk.Core.IotTimeSeries.PutTimeSeriesRequest)">
             <summary>
