@@ -1,11 +1,5 @@
-﻿using MindSphereSdk.Core.Common;
-using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
+﻿using Newtonsoft.Json;
 using System.IO;
-using System.Net.Http;
-using System.Text;
 
 namespace MindSphereSdk.Core.Authentication
 {
@@ -14,24 +8,45 @@ namespace MindSphereSdk.Core.Authentication
     /// </summary>
     public class AppCredentials : ICredentials
     {
+        /// <summary>
+        /// Client ID
+        /// </summary>
         [JsonProperty("keyStoreClientId")]
         public string KeyStoreClientId { get; set; }
 
+        /// <summary>
+        /// Client secret
+        /// </summary>
         [JsonProperty("keyStoreClientSecret")]
         public string KeyStoreClientSecret { get; set; }
 
+        /// <summary>
+        /// Name of the application
+        /// </summary>
         [JsonProperty("appName")]
         public string AppName { get; set; }
 
+        /// <summary>
+        /// Version of the application
+        /// </summary>
         [JsonProperty("appVersion")]
         public string AppVersion { get; set; }
 
+        /// <summary>
+        /// Host tenant
+        /// </summary>
         [JsonProperty("hostTenant")]
         public string HostTenant { get; set; }
 
+        /// <summary>
+        /// User tenant
+        /// </summary>
         [JsonProperty("userTenant")]
         public string UserTenant { get; set; }
 
+        /// <summary>
+        /// Create a new instance of the AppCredentials
+        /// </summary>
         public AppCredentials(
             string keyStoreClientId, 
             string keyStoreClientSecret, 

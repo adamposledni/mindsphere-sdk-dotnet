@@ -11,54 +11,54 @@ namespace MindSphereSdk.Core.AssetManagement
     #region Embedded
 
     /// <summary>
-    /// Wrapper for asset list
+    /// Embedded asset list
     /// </summary>
-    internal class EmbeddedAssetList : IEmbeddedResource
+    internal class EmbeddedAssetList
     {
         [JsonProperty("assets")]
         public IEnumerable<Asset> Assets { get; set; }
     }
 
     /// <summary>
-    /// Wrapper for aspect type list
+    /// Embedded aspect type list
     /// </summary>
-    internal class EmbeddedAspectTypeList : IEmbeddedResource
+    internal class EmbeddedAspectTypeList
     {
         [JsonProperty("aspectTypes")]
         public IEnumerable<AspectType> AspectTypes { get; set; }
     }
 
     /// <summary>
-    /// Wrapper for asset type list
+    /// Embedded asset type list
     /// </summary>
-    internal class EmbeddedAssetTypeList : IEmbeddedResource
+    internal class EmbeddedAssetTypeList
     {
         [JsonProperty("assetTypes")]
         public IEnumerable<AssetType> AssetTypes { get; set; }
     }
 
     /// <summary>
-    /// Wrapper for variable list
+    /// Embedded variable list
     /// </summary>
-    internal class EmbeddedVariableList : IEmbeddedResource
+    internal class EmbeddedVariableList
     {
         [JsonProperty("variables")]
         public IEnumerable<VariableDetail> Variables { get; set; }
     }
 
     /// <summary>
-    /// Wrapper for aspect list
+    /// Embedded aspect list
     /// </summary>
-    internal class EmbeddedAspectList : IEmbeddedResource
+    internal class EmbeddedAspectList
     {
         [JsonProperty("aspects")]
         public IEnumerable<AspectFullDetail> Aspects { get; set; }
     }
 
     /// <summary>
-    /// Wrapper for file list
+    /// Embedded file list
     /// </summary>
-    internal class EmbeddedFileList : IEmbeddedResource
+    internal class EmbeddedFileList
     {
         [JsonProperty("files")]
         public IEnumerable<File> Files { get; set; }

@@ -38,9 +38,5 @@ namespace MindSphereSdk.Core.Common
         /// Proxy address
         /// </summary>
         public string Proxy { get; set; }
-
-        public ClientConfiguration()
-        {
-        }
     }
 }

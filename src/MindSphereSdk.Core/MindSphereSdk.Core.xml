@@ -9,6 +9,66 @@
             Configuring, reading and managing assets, asset types and aspect types
             </summary>
         </member>
+        <member name="M:MindSphereSdk.Core.AssetManagement.AssetManagementClient.ListAspectTypesAsync(MindSphereSdk.Core.AssetManagement.ListAspectTypesRequest)">
+            <summary>
+            List all aspect types
+            </summary>
+        </member>
+        <member name="M:MindSphereSdk.Core.AssetManagement.AssetManagementClient.PutAspectTypeAsync(MindSphereSdk.Core.AssetManagement.PutAspectTypeRequest)">
+            <summary>
+            Create or update an aspect type
+            </summary>
+        </member>
+        <member name="M:MindSphereSdk.Core.AssetManagement.AssetManagementClient.PatchAspectTypeAsync(MindSphereSdk.Core.AssetManagement.PatchAspectTypeRequest)">
+            <summary>
+            Patch an aspect type
+            </summary>
+        </member>
+        <member name="M:MindSphereSdk.Core.AssetManagement.AssetManagementClient.GetAspectTypeAsync(MindSphereSdk.Core.AssetManagement.GetAspectTypeRequest)">
+            <summary>
+            Read an aspect type 
+            </summary>
+        </member>
+        <member name="M:MindSphereSdk.Core.AssetManagement.AssetManagementClient.DeleteAspectTypeAsync(MindSphereSdk.Core.AssetManagement.DeleteAspectTypeRequest)">
+            <summary>
+            Delete an aspect type 
+            </summary>
+        </member>
+        <member name="M:MindSphereSdk.Core.AssetManagement.AssetManagementClient.ListAssetTypesAsync(MindSphereSdk.Core.AssetManagement.ListAssetTypesRequest)">
+            <summary>
+            List all asset types
+            </summary>
+        </member>
+        <member name="M:MindSphereSdk.Core.AssetManagement.AssetManagementClient.PutAssetTypeAsync(MindSphereSdk.Core.AssetManagement.PutAssetTypeRequest)">
+            <summary>
+            Create or update an asset type
+            </summary>
+        </member>
+        <member name="M:MindSphereSdk.Core.AssetManagement.AssetManagementClient.PatchAssetTypeAsync(MindSphereSdk.Core.AssetManagement.PatchAssetTypeRequest)">
+            <summary>
+            Patch an asset type
+            </summary>
+        </member>
+        <member name="M:MindSphereSdk.Core.AssetManagement.AssetManagementClient.GetAssetTypeAsync(MindSphereSdk.Core.AssetManagement.GetAssetTypeRequest)">
+            <summary>
+            Read an asset type 
+            </summary>
+        </member>
+        <member name="M:MindSphereSdk.Core.AssetManagement.AssetManagementClient.DeleteAssetTypeAsync(MindSphereSdk.Core.AssetManagement.DeleteAssetTypeRequest)">
+            <summary>
+            Delete an asset type 
+            </summary>
+        </member>
+        <member name="M:MindSphereSdk.Core.AssetManagement.AssetManagementClient.AddAssetTypeFileAssignmentAsync(MindSphereSdk.Core.AssetManagement.AddAssetTypeFileAssignmentRequest)">
+            <summary>
+            Save a file assignment to an asset
+            </summary>
+        </member>
+        <member name="M:MindSphereSdk.Core.AssetManagement.AssetManagementClient.DeleteAssetTypeFileAssignmentAsync(MindSphereSdk.Core.AssetManagement.DeleteAssetTypeFileAssignmentRequest)">
+            <summary>
+            Delete a file assignment from an asset type
+            </summary>
+        </member>
         <member name="M:MindSphereSdk.Core.AssetManagement.AssetManagementClient.ListAssetsAsync(MindSphereSdk.Core.AssetManagement.ListAssetsRequest)">
             <summary>
             List all available assets
@@ -24,7 +84,7 @@
             Read a single asset 
             </summary>
         </member>
-        <member name="M:MindSphereSdk.Core.AssetManagement.AssetManagementClient.UpdateAssetAsync(MindSphereSdk.Core.AssetManagement.UpdateAssetRequest)">
+        <member name="M:MindSphereSdk.Core.AssetManagement.AssetManagementClient.PutAssetAsync(MindSphereSdk.Core.AssetManagement.UpdateAssetRequest)">
             <summary>
             Update an asset
             </summary>
@@ -44,11 +104,6 @@
             Move an asset 
             </summary>
         </member>
-        <member name="M:MindSphereSdk.Core.AssetManagement.AssetManagementClient.GetRootAssetAsync">
-            <summary>
-            Read the root asset of the user 
-            </summary>
-        </member>
         <member name="M:MindSphereSdk.Core.AssetManagement.AssetManagementClient.SaveAssetFileAssignmentAsync(MindSphereSdk.Core.AssetManagement.SaveAssetFileAssignmentRequest)">
             <summary>
             Save a file assignment to an asset
@@ -57,6 +112,11 @@
         <member name="M:MindSphereSdk.Core.AssetManagement.AssetManagementClient.DeleteAssetFileAssignmentAsync(MindSphereSdk.Core.AssetManagement.DeleteAssetFileAssignmentRequest)">
             <summary>
             Delete a file assignment from an asset
+            </summary>
+        </member>
+        <member name="M:MindSphereSdk.Core.AssetManagement.AssetManagementClient.GetRootAssetAsync(MindSphereSdk.Core.AssetManagement.GetRootAssetRequest)">
+            <summary>
+            Read the root asset of the user 
             </summary>
         </member>
         <member name="M:MindSphereSdk.Core.AssetManagement.AssetManagementClient.ListAssetVariablesAsync(MindSphereSdk.Core.AssetManagement.ListAssetVariablesRequest)">
@@ -79,14 +139,14 @@
             Delete location assigned to given asset
             </summary>
         </member>
+        <member name="M:MindSphereSdk.Core.AssetManagement.AssetManagementClient.UploadFileAsync(MindSphereSdk.Core.AssetManagement.UploadFileRequest)">
+            <summary>
+            Upload file to be used in Asset Management
+            </summary>
+        </member>
         <member name="M:MindSphereSdk.Core.AssetManagement.AssetManagementClient.ListFilesAsync(MindSphereSdk.Core.AssetManagement.ListFilesRequest)">
             <summary>
             Get metadata of uploaded files.
-            </summary>
-        </member>
-        <member name="M:MindSphereSdk.Core.AssetManagement.AssetManagementClient.GetFileAsync(MindSphereSdk.Core.AssetManagement.GetFileRequest)">
-            <summary>
-            Returns a file's metadata by its id
             </summary>
         </member>
         <member name="M:MindSphereSdk.Core.AssetManagement.AssetManagementClient.DownloadFileAsync(MindSphereSdk.Core.AssetManagement.DownloadFileRequest)">
@@ -94,14 +154,9 @@
             Returns a file by its id
             </summary>
         </member>
-        <member name="M:MindSphereSdk.Core.AssetManagement.AssetManagementClient.DeleteFileAsync(MindSphereSdk.Core.AssetManagement.DeleteFileRequest)">
+        <member name="M:MindSphereSdk.Core.AssetManagement.AssetManagementClient.GetFileAsync(MindSphereSdk.Core.AssetManagement.GetFileRequest)">
             <summary>
-            Delete a file
-            </summary>
-        </member>
-        <member name="M:MindSphereSdk.Core.AssetManagement.AssetManagementClient.UploadFileAsync(MindSphereSdk.Core.AssetManagement.UploadFileRequest)">
-            <summary>
-            Upload file to be used in Asset Management
+            Returns a file's metadata by its id
             </summary>
         </member>
         <member name="M:MindSphereSdk.Core.AssetManagement.AssetManagementClient.UpdateFileAsync(MindSphereSdk.Core.AssetManagement.UpdateFileRequest)">
@@ -109,94 +164,59 @@
             Update a file
             </summary>
         </member>
-        <member name="M:MindSphereSdk.Core.AssetManagement.AssetManagementClient.ListAspectTypesAsync(MindSphereSdk.Core.AssetManagement.ListAspectTypesRequest)">
+        <member name="M:MindSphereSdk.Core.AssetManagement.AssetManagementClient.DeleteFileAsync(MindSphereSdk.Core.AssetManagement.DeleteFileRequest)">
             <summary>
-            List all aspect types
-            </summary>
-        </member>
-        <member name="M:MindSphereSdk.Core.AssetManagement.AssetManagementClient.GetAspectTypeAsync(MindSphereSdk.Core.AssetManagement.GetAspectTypeRequest)">
-            <summary>
-            Read an aspect type 
-            </summary>
-        </member>
-        <member name="M:MindSphereSdk.Core.AssetManagement.AssetManagementClient.DeleteAspectTypeAsync(MindSphereSdk.Core.AssetManagement.DeleteAspectTypeRequest)">
-            <summary>
-            Delete an aspect type 
-            </summary>
-        </member>
-        <member name="M:MindSphereSdk.Core.AssetManagement.AssetManagementClient.PutAspectTypeAsync(MindSphereSdk.Core.AssetManagement.PutAspectTypeRequest)">
-            <summary>
-            Create or update an aspect type
-            </summary>
-        </member>
-        <member name="M:MindSphereSdk.Core.AssetManagement.AssetManagementClient.PatchAspectTypeAsync(MindSphereSdk.Core.AssetManagement.PatchAspectTypeRequest)">
-            <summary>
-            Patch an aspect type
-            </summary>
-        </member>
-        <member name="M:MindSphereSdk.Core.AssetManagement.AssetManagementClient.ListAssetTypesAsync(MindSphereSdk.Core.AssetManagement.ListAssetTypesRequest)">
-            <summary>
-            List all asset types
-            </summary>
-        </member>
-        <member name="M:MindSphereSdk.Core.AssetManagement.AssetManagementClient.GetAssetTypeAsync(MindSphereSdk.Core.AssetManagement.GetAssetTypeRequest)">
-            <summary>
-            Read an asset type 
-            </summary>
-        </member>
-        <member name="M:MindSphereSdk.Core.AssetManagement.AssetManagementClient.PutAssetTypeAsync(MindSphereSdk.Core.AssetManagement.PutAssetTypeRequest)">
-            <summary>
-            Create or update an asset type
-            </summary>
-        </member>
-        <member name="M:MindSphereSdk.Core.AssetManagement.AssetManagementClient.PatchAssetTypeAsync(MindSphereSdk.Core.AssetManagement.PatchAssetTypeRequest)">
-            <summary>
-            Patch an asset type
-            </summary>
-        </member>
-        <member name="M:MindSphereSdk.Core.AssetManagement.AssetManagementClient.DeleteAssetTypeAsync(MindSphereSdk.Core.AssetManagement.DeleteAssetTypeRequest)">
-            <summary>
-            Delete an asset type 
-            </summary>
-        </member>
-        <member name="M:MindSphereSdk.Core.AssetManagement.AssetManagementClient.SaveAssetTypeFileAssignmentAsync(MindSphereSdk.Core.AssetManagement.SaveAssetTypeFileAssignmentRequest)">
-            <summary>
-            Save a file assignment to an asset
-            </summary>
-        </member>
-        <member name="M:MindSphereSdk.Core.AssetManagement.AssetManagementClient.DeleteAssetTypeFileAssignmentAsync(MindSphereSdk.Core.AssetManagement.DeleteAssetTypeFileAssignmentRequest)">
-            <summary>
-            Delete a file assignment from an asset type
+            Delete a file
             </summary>
         </member>
         <member name="T:MindSphereSdk.Core.AssetManagement.EmbeddedAssetList">
             <summary>
-            Wrapper for asset list
+            Embedded asset list
             </summary>
         </member>
         <member name="T:MindSphereSdk.Core.AssetManagement.EmbeddedAspectTypeList">
             <summary>
-            Wrapper for aspect type list
+            Embedded aspect type list
             </summary>
         </member>
         <member name="T:MindSphereSdk.Core.AssetManagement.EmbeddedAssetTypeList">
             <summary>
-            Wrapper for asset type list
+            Embedded asset type list
             </summary>
         </member>
         <member name="T:MindSphereSdk.Core.AssetManagement.EmbeddedVariableList">
             <summary>
-            Wrapper for variable list
+            Embedded variable list
             </summary>
         </member>
         <member name="T:MindSphereSdk.Core.AssetManagement.EmbeddedAspectList">
             <summary>
-            Wrapper for aspect list
+            Embedded aspect list
             </summary>
         </member>
         <member name="T:MindSphereSdk.Core.AssetManagement.EmbeddedFileList">
             <summary>
-            Wrapper for file list
+            Embedded file list
+            </summary>
+        </member>
+        <member name="T:MindSphereSdk.Core.AssetManagement.AspectType">
+            <summary>
+            Aspect type
+            </summary>
+        </member>
+        <member name="T:MindSphereSdk.Core.AssetManagement.AspectTypeUpdate">
+            <summary>
+            Aspect type (create or update)
+            </summary>
+        </member>
+        <member name="T:MindSphereSdk.Core.AssetManagement.AssetType">
+            <summary>
+            Asset type
+            </summary>
+        </member>
+        <member name="T:MindSphereSdk.Core.AssetManagement.AssetTypeUpdate">
+            <summary>
+            Asset type (create or update)
             </summary>
         </member>
         <member name="T:MindSphereSdk.Core.AssetManagement.Asset">
@@ -249,26 +269,6 @@
             File assignment
             </summary>
         </member>
-        <member name="T:MindSphereSdk.Core.AssetManagement.AspectType">
-            <summary>
-            Aspect type
-            </summary>
-        </member>
-        <member name="T:MindSphereSdk.Core.AssetManagement.AspectTypeUpdate">
-            <summary>
-            Aspect type (create or update)
-            </summary>
-        </member>
-        <member name="T:MindSphereSdk.Core.AssetManagement.AssetType">
-            <summary>
-            Asset type
-            </summary>
-        </member>
-        <member name="T:MindSphereSdk.Core.AssetManagement.AssetTypeUpdate">
-            <summary>
-            Asset type (create or update)
-            </summary>
-        </member>
         <member name="T:MindSphereSdk.Core.AssetManagement.VariableDetail">
             <summary>
             Variable for asset/aspect type
@@ -284,59 +284,39 @@
             File metadata
             </summary>
         </member>
-        <member name="T:MindSphereSdk.Core.AssetManagement.ListAssetsRequest">
-            <summary>
-            Request for listing assets
-            </summary>
-        </member>
-        <member name="T:MindSphereSdk.Core.AssetManagement.AddAssetRequest">
-            <summary>
-            Request for adding asset
-            </summary>
-        </member>
-        <member name="T:MindSphereSdk.Core.AssetManagement.GetAssetRequest">
-            <summary>
-            Request for getting asset
-            </summary>
-        </member>
-        <member name="T:MindSphereSdk.Core.AssetManagement.UpdateAssetRequest">
-            <summary>
-            Request for updating asset
-            </summary>
-        </member>
-        <member name="T:MindSphereSdk.Core.AssetManagement.DeleteAssetRequest">
-            <summary>
-            Request for deleting asset
-            </summary>
-        </member>
-        <member name="T:MindSphereSdk.Core.AssetManagement.MoveAssetRequest">
-            <summary>
-            Request for moving asset
-            </summary>
-        </member>
-        <member name="T:MindSphereSdk.Core.AssetManagement.SaveAssetFileAssignmentRequest">
-            <summary>
-            Request for saving asset's file assignment
-            </summary>
-        </member>
-        <member name="T:MindSphereSdk.Core.AssetManagement.DeleteAssetFileAssignmentRequest">
-            <summary>
-            Request for deleting asset's file assignment
-            </summary>
-        </member>
         <member name="T:MindSphereSdk.Core.AssetManagement.ListAspectTypesRequest">
             <summary>
             Request for listing aspect types
             </summary>
         </member>
-        <member name="T:MindSphereSdk.Core.AssetManagement.GetAspectTypeRequest">
+        <member name="P:MindSphereSdk.Core.AssetManagement.ListAspectTypesRequest.Page">
             <summary>
-            Request for getting aspect type
+            Specifies the requested page index
             </summary>
         </member>
-        <member name="T:MindSphereSdk.Core.AssetManagement.DeleteAspectTypeRequest">
+        <member name="P:MindSphereSdk.Core.AssetManagement.ListAspectTypesRequest.Size">
             <summary>
-            Request for deleting aspect type
+            Specifies the number of elements in a page
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.AssetManagement.ListAspectTypesRequest.Sort">
+            <summary>
+            Specifies the ordering of returned elements
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.AssetManagement.ListAspectTypesRequest.Filter">
+            <summary>
+            Specifies the additional filtering criteria
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.AssetManagement.ListAspectTypesRequest.IfNoneMatch">
+            <summary>
+            ETag hash of previous request to allow caching
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.AssetManagement.ListAspectTypesRequest.IncludeShared">
+            <summary>
+            Specifies if the operation should take into account shared aspect types
             </summary>
         </member>
         <member name="T:MindSphereSdk.Core.AssetManagement.PutAspectTypeRequest">
@@ -344,9 +324,97 @@
             Request for putting aspect type
             </summary>
         </member>
+        <member name="P:MindSphereSdk.Core.AssetManagement.PutAspectTypeRequest.IfMatch">
+            <summary>
+            Last known version to facilitate optimistic locking
+            </summary>
+            <remarks>
+            Required for modification
+            </remarks>
+        </member>
+        <member name="P:MindSphereSdk.Core.AssetManagement.PutAspectTypeRequest.IfNoneMatch">
+            <summary>
+            Set ifNoneMatch header to "*" for ensuring create request
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.AssetManagement.PutAspectTypeRequest.Id">
+            <summary>
+            The type’s id is a unique identifier
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.AssetManagement.PutAspectTypeRequest.IncludeShared">
+            <summary>
+            Specifies if the operation should take into account shared aspect types
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.AssetManagement.PutAspectTypeRequest.Body">
+            <summary>
+            Aspect type
+            </summary>
+        </member>
         <member name="T:MindSphereSdk.Core.AssetManagement.PatchAspectTypeRequest">
             <summary>
             Request for patching aspect type
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.AssetManagement.PatchAspectTypeRequest.IfMatch">
+            <summary>
+            Last known version to facilitate optimistic locking
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.AssetManagement.PatchAspectTypeRequest.Id">
+            <summary>
+            The type’s id is a unique identifier
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.AssetManagement.PatchAspectTypeRequest.IncludeShared">
+            <summary>
+            Specifies if the operation should take into account shared aspect types
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.AssetManagement.PatchAspectTypeRequest.Body">
+            <summary>
+            Aspect type
+            </summary>
+        </member>
+        <member name="T:MindSphereSdk.Core.AssetManagement.GetAspectTypeRequest">
+            <summary>
+            Request for getting aspect type
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.AssetManagement.GetAspectTypeRequest.IfNoneMatch">
+            <summary>
+            ETag hash of previous request to allow caching
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.AssetManagement.GetAspectTypeRequest.Id">
+            <summary>
+            The type’s id is a unique identifier
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.AssetManagement.GetAspectTypeRequest.IncludeShared">
+            <summary>
+            Specifies if the operation should take into account shared aspect types
+            </summary>
+        </member>
+        <member name="T:MindSphereSdk.Core.AssetManagement.DeleteAspectTypeRequest">
+            <summary>
+            Request for deleting aspect type
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.AssetManagement.DeleteAspectTypeRequest.IfMatch">
+            <summary>
+            Last known version to facilitate optimistic locking
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.AssetManagement.DeleteAspectTypeRequest.Id">
+            <summary>
+            The type’s id is a unique identifier
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.AssetManagement.DeleteAspectTypeRequest.IncludeShared">
+            <summary>
+            Specifies if the operation should take into account shared aspect types
             </summary>
         </member>
         <member name="T:MindSphereSdk.Core.AssetManagement.ListAssetTypesRequest">
@@ -354,9 +422,39 @@
             Request for listing aspect types
             </summary>
         </member>
-        <member name="T:MindSphereSdk.Core.AssetManagement.GetAssetTypeRequest">
+        <member name="P:MindSphereSdk.Core.AssetManagement.ListAssetTypesRequest.Page">
             <summary>
-            Request for getting asset type
+            Specifies the requested page index
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.AssetManagement.ListAssetTypesRequest.Size">
+            <summary>
+            Specifies the number of elements in a page
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.AssetManagement.ListAssetTypesRequest.Sort">
+            <summary>
+            Specifies the ordering of returned elements
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.AssetManagement.ListAssetTypesRequest.Filter">
+            <summary>
+            Specifies the additional filtering criteria
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.AssetManagement.ListAssetTypesRequest.IfNoneMatch">
+            <summary>
+            ETag hash of previous request to allow caching
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.AssetManagement.ListAssetTypesRequest.Exploded">
+            <summary>
+            Specifies if the asset type should include all of it’s inherited variables and aspects
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.AssetManagement.ListAssetTypesRequest.IncludeShared">
+            <summary>
+            Specifies if the operation should take into account shared aspect types
             </summary>
         </member>
         <member name="T:MindSphereSdk.Core.AssetManagement.PutAssetTypeRequest">
@@ -364,9 +462,92 @@
             Request for putting asset type
             </summary>
         </member>
+        <member name="P:MindSphereSdk.Core.AssetManagement.PutAssetTypeRequest.IfMatch">
+            <summary>
+            Last known version to facilitate optimistic locking
+            </summary>
+            <remarks>
+            Required for modification
+            </remarks>
+        </member>
+        <member name="P:MindSphereSdk.Core.AssetManagement.PutAssetTypeRequest.IfNoneMatch">
+            <summary>
+            Set ifNoneMatch header to "*" for ensuring create request
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.AssetManagement.PutAssetTypeRequest.Id">
+            <summary>
+            The type’s id is a unique identifier
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.AssetManagement.PutAssetTypeRequest.Exploded">
+            <summary>
+            Specifies if the asset type should include all of it’s inherited variables and aspects
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.AssetManagement.PutAssetTypeRequest.IncludeShared">
+            <summary>
+            Specifies if the operation should take into account shared aspect types
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.AssetManagement.PutAssetTypeRequest.Body">
+            <summary>
+            Asset type
+            </summary>
+        </member>
         <member name="T:MindSphereSdk.Core.AssetManagement.PatchAssetTypeRequest">
             <summary>
             Request for patching asset type
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.AssetManagement.PatchAssetTypeRequest.IfMatch">
+            <summary>
+            Last known version to facilitate optimistic locking
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.AssetManagement.PatchAssetTypeRequest.Id">
+            <summary>
+            The type’s id is a unique identifier
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.AssetManagement.PatchAssetTypeRequest.Exploded">
+            <summary>
+            Specifies if the asset type should include all of it’s inherited variables and aspects
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.AssetManagement.PatchAssetTypeRequest.IncludeShared">
+            <summary>
+            Specifies if the operation should take into account shared aspect types
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.AssetManagement.PatchAssetTypeRequest.Body">
+            <summary>
+            Asset type
+            </summary>
+        </member>
+        <member name="T:MindSphereSdk.Core.AssetManagement.GetAssetTypeRequest">
+            <summary>
+            Request for getting asset type
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.AssetManagement.GetAssetTypeRequest.IfNoneMatch">
+            <summary>
+            ETag hash of previous request to allow caching
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.AssetManagement.GetAssetTypeRequest.Id">
+            <summary>
+            The type’s id is a unique identifier
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.AssetManagement.GetAssetTypeRequest.Exploded">
+            <summary>
+            Specifies if the asset type should include all of it’s inherited variables and aspects
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.AssetManagement.GetAssetTypeRequest.IncludeShared">
+            <summary>
+            Specifies if the operation should take into account shared aspect types
             </summary>
         </member>
         <member name="T:MindSphereSdk.Core.AssetManagement.DeleteAssetTypeRequest">
@@ -374,9 +555,49 @@
             Request for deleting asset type
             </summary>
         </member>
-        <member name="T:MindSphereSdk.Core.AssetManagement.SaveAssetTypeFileAssignmentRequest">
+        <member name="P:MindSphereSdk.Core.AssetManagement.DeleteAssetTypeRequest.Id">
+            <summary>
+            The type’s id is a unique identifier
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.AssetManagement.DeleteAssetTypeRequest.IfMatch">
+            <summary>
+            Last known version to facilitate optimistic locking
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.AssetManagement.DeleteAssetTypeRequest.IncludeShared">
+            <summary>
+            Specifies if the operation should take into account shared aspect types
+            </summary>
+        </member>
+        <member name="T:MindSphereSdk.Core.AssetManagement.AddAssetTypeFileAssignmentRequest">
             <summary>
             Request for saving asset type file assignment
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.AssetManagement.AddAssetTypeFileAssignmentRequest.Id">
+            <summary>
+            The type’s id is a unique identifier
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.AssetManagement.AddAssetTypeFileAssignmentRequest.Key">
+            <summary>
+            Keyword for the file to be assigned to an asset or asset type
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.AssetManagement.AddAssetTypeFileAssignmentRequest.IfMatch">
+            <summary>
+            Last known version to facilitate optimistic locking
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.AssetManagement.AddAssetTypeFileAssignmentRequest.IncludeShared">
+            <summary>
+            Specifies if the operation should take into account shared aspect types
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.AssetManagement.AddAssetTypeFileAssignmentRequest.FileId">
+            <summary>
+            File identifier
             </summary>
         </member>
         <member name="T:MindSphereSdk.Core.AssetManagement.DeleteAssetTypeFileAssignmentRequest">
@@ -384,9 +605,274 @@
             Request for deleting asset type file assignment
             </summary>
         </member>
+        <member name="P:MindSphereSdk.Core.AssetManagement.DeleteAssetTypeFileAssignmentRequest.Id">
+            <summary>
+            The type’s id is a unique identifier
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.AssetManagement.DeleteAssetTypeFileAssignmentRequest.Key">
+            <summary>
+            Keyword for the file to be assigned to an asset or asset type
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.AssetManagement.DeleteAssetTypeFileAssignmentRequest.IfMatch">
+            <summary>
+            Last known version to facilitate optimistic locking
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.AssetManagement.DeleteAssetTypeFileAssignmentRequest.IncludeShared">
+            <summary>
+            Specifies if the operation should take into account shared aspect types
+            </summary>
+        </member>
+        <member name="T:MindSphereSdk.Core.AssetManagement.ListAssetsRequest">
+            <summary>
+            Request for listing assets
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.AssetManagement.ListAssetsRequest.Page">
+            <summary>
+            Specifies the requested page index
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.AssetManagement.ListAssetsRequest.Size">
+            <summary>
+            Specifies the number of elements in a page
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.AssetManagement.ListAssetsRequest.Sort">
+            <summary>
+            Specifies the ordering of returned elements
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.AssetManagement.ListAssetsRequest.Filter">
+            <summary>
+            Specifies the additional filtering criteria
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.AssetManagement.ListAssetsRequest.IfNoneMatch">
+            <summary>
+            ETag hash of previous request to allow caching
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.AssetManagement.ListAssetsRequest.IncludeShared">
+            <summary>
+            Specifies if the operation should take into account shared entities
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.AssetManagement.ListAssetsRequest.BasicFieldsOnly">
+            <summary>
+            Specifies if the assets should include all of it’s inherited variables and aspects from assettype and aspecttype
+            </summary>
+        </member>
+        <member name="T:MindSphereSdk.Core.AssetManagement.AddAssetRequest">
+            <summary>
+            Request for adding asset
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.AssetManagement.AddAssetRequest.IncludeShared">
+            <summary>
+            Specifies if the operation should take into account shared entities
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.AssetManagement.AddAssetRequest.Body">
+            <summary>
+            Asset
+            </summary>
+        </member>
+        <member name="T:MindSphereSdk.Core.AssetManagement.GetAssetRequest">
+            <summary>
+            Request for getting asset
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.AssetManagement.GetAssetRequest.Id">
+            <summary>
+            Unique identifier
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.AssetManagement.GetAssetRequest.IfNoneMatch">
+            <summary>
+            ETag hash of previous request to allow caching
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.AssetManagement.GetAssetRequest.IncludeShared">
+            <summary>
+            Specifies if the operation should take into account shared entities
+            </summary>
+        </member>
+        <member name="T:MindSphereSdk.Core.AssetManagement.UpdateAssetRequest">
+            <summary>
+            Request for updating asset
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.AssetManagement.UpdateAssetRequest.IfMatch">
+            <summary>
+            Last known version to facilitate optimistic locking
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.AssetManagement.UpdateAssetRequest.Id">
+            <summary>
+            Unique identifier
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.AssetManagement.UpdateAssetRequest.IncludeShared">
+            <summary>
+            Specifies if the operation should take into account shared entities
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.AssetManagement.UpdateAssetRequest.Body">
+            <summary>
+            Asset
+            </summary>
+        </member>
+        <member name="T:MindSphereSdk.Core.AssetManagement.DeleteAssetRequest">
+            <summary>
+            Request for deleting asset
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.AssetManagement.DeleteAssetRequest.IfMatch">
+            <summary>
+            Last known version to facilitate optimistic locking
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.AssetManagement.DeleteAssetRequest.Id">
+            <summary>
+            Unique identifier
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.AssetManagement.DeleteAssetRequest.IncludeShared">
+            <summary>
+            Specifies if the operation should take into account shared entities
+            </summary>
+        </member>
+        <member name="T:MindSphereSdk.Core.AssetManagement.MoveAssetRequest">
+            <summary>
+            Request for moving asset
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.AssetManagement.MoveAssetRequest.IfMatch">
+            <summary>
+            Last known version to facilitate optimistic locking
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.AssetManagement.MoveAssetRequest.Id">
+            <summary>
+            Unique identifier
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.AssetManagement.MoveAssetRequest.IncludeShared">
+            <summary>
+            Specifies if the operation should take into account shared entities
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.AssetManagement.MoveAssetRequest.NewParentId">
+            <summary>
+            New parent asset identifier
+            </summary>
+        </member>
+        <member name="T:MindSphereSdk.Core.AssetManagement.SaveAssetFileAssignmentRequest">
+            <summary>
+            Request for saving asset's file assignment
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.AssetManagement.SaveAssetFileAssignmentRequest.Id">
+            <summary>
+            Unique identifier
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.AssetManagement.SaveAssetFileAssignmentRequest.Key">
+            <summary>
+            Keyword for the file to be assigned to an asset or asset type
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.AssetManagement.SaveAssetFileAssignmentRequest.IfMatch">
+            <summary>
+            Last known version to facilitate optimistic locking
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.AssetManagement.SaveAssetFileAssignmentRequest.IncludeShared">
+            <summary>
+            Specifies if the operation should take into account shared entities
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.AssetManagement.SaveAssetFileAssignmentRequest.FileId">
+            <summary>
+            File identifier
+            </summary>
+        </member>
+        <member name="T:MindSphereSdk.Core.AssetManagement.DeleteAssetFileAssignmentRequest">
+            <summary>
+            Request for deleting asset's file assignment
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.AssetManagement.DeleteAssetFileAssignmentRequest.Id">
+            <summary>
+            Unique identifier
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.AssetManagement.DeleteAssetFileAssignmentRequest.Key">
+            <summary>
+            Keyword for the file to be assigned to an asset or asset type
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.AssetManagement.DeleteAssetFileAssignmentRequest.IfMatch">
+            <summary>
+            Last known version to facilitate optimistic locking
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.AssetManagement.DeleteAssetFileAssignmentRequest.IncludeShared">
+            <summary>
+            Specifies if the operation should take into account shared entities
+            </summary>
+        </member>
+        <member name="T:MindSphereSdk.Core.AssetManagement.GetRootAssetRequest">
+            <summary>
+            Request for getting root asset
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.AssetManagement.GetRootAssetRequest.IfNoneMatch">
+            <summary>
+            ETag hash of previous request to allow caching
+            </summary>
+        </member>
         <member name="T:MindSphereSdk.Core.AssetManagement.ListAssetVariablesRequest">
             <summary>
             Request for listing all asset's variables
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.AssetManagement.ListAssetVariablesRequest.Id">
+            <summary>
+            Unique identifier
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.AssetManagement.ListAssetVariablesRequest.Page">
+            <summary>
+            Specifies the requested page index
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.AssetManagement.ListAssetVariablesRequest.Size">
+            <summary>
+            Specifies the number of elements in a page
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.AssetManagement.ListAssetVariablesRequest.Sort">
+            <summary>
+            Specifies the ordering of returned elements
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.AssetManagement.ListAssetVariablesRequest.Filter">
+            <summary>
+            Specifies the additional filtering criteria
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.AssetManagement.ListAssetVariablesRequest.IfNoneMatch">
+            <summary>
+            ETag hash of previous request to allow caching
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.AssetManagement.ListAssetVariablesRequest.IncludeShared">
+            <summary>
+            Specifies if the operation should take into account shared entities
             </summary>
         </member>
         <member name="T:MindSphereSdk.Core.AssetManagement.ListAssetAspectsRequest">
@@ -394,9 +880,64 @@
             Request for listing all asset's aspects
             </summary>
         </member>
+        <member name="P:MindSphereSdk.Core.AssetManagement.ListAssetAspectsRequest.Id">
+            <summary>
+            Unique identifier
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.AssetManagement.ListAssetAspectsRequest.Page">
+            <summary>
+            Specifies the requested page index
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.AssetManagement.ListAssetAspectsRequest.Size">
+            <summary>
+            Specifies the number of elements in a page
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.AssetManagement.ListAssetAspectsRequest.Sort">
+            <summary>
+            Specifies the ordering of returned elements
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.AssetManagement.ListAssetAspectsRequest.Filter">
+            <summary>
+            Specifies the additional filtering criteria
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.AssetManagement.ListAssetAspectsRequest.IfNoneMatch">
+            <summary>
+            ETag hash of previous request to allow caching
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.AssetManagement.ListAssetAspectsRequest.IncludeShared">
+            <summary>
+            Specifies if the operation should take into account shared entities
+            </summary>
+        </member>
         <member name="T:MindSphereSdk.Core.AssetManagement.PutAssetLocationRequest">
             <summary>
             Request for putting asset's location
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.AssetManagement.PutAssetLocationRequest.IfMatch">
+            <summary>
+            Last known version to facilitate optimistic locking
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.AssetManagement.PutAssetLocationRequest.Id">
+            <summary>
+            Unique identifier
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.AssetManagement.PutAssetLocationRequest.IncludeShared">
+            <summary>
+            Specifies if the operation should take into account shared entities
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.AssetManagement.PutAssetLocationRequest.Body">
+            <summary>
+            Location
             </summary>
         </member>
         <member name="T:MindSphereSdk.Core.AssetManagement.DeleteAssetLocationRequest">
@@ -404,24 +945,19 @@
             Request for deleting asset's location
             </summary>
         </member>
-        <member name="T:MindSphereSdk.Core.AssetManagement.ListFilesRequest">
+        <member name="P:MindSphereSdk.Core.AssetManagement.DeleteAssetLocationRequest.IfMatch">
             <summary>
-            Request for listing files
+            Last known version to facilitate optimistic locking
             </summary>
         </member>
-        <member name="T:MindSphereSdk.Core.AssetManagement.GetFileRequest">
+        <member name="P:MindSphereSdk.Core.AssetManagement.DeleteAssetLocationRequest.Id">
             <summary>
-            Request for getting file metadata
+            Unique identifier
             </summary>
         </member>
-        <member name="T:MindSphereSdk.Core.AssetManagement.DownloadFileRequest">
+        <member name="P:MindSphereSdk.Core.AssetManagement.DeleteAssetLocationRequest.IncludeShared">
             <summary>
-            Request for downloading file
-            </summary>
-        </member>
-        <member name="T:MindSphereSdk.Core.AssetManagement.DeleteFileRequest">
-            <summary>
-            Request for deleting file
+            Specifies if the operation should take into account shared entities
             </summary>
         </member>
         <member name="T:MindSphereSdk.Core.AssetManagement.UploadFileRequest">
@@ -429,14 +965,169 @@
             Request for uploading file
             </summary>
         </member>
+        <member name="P:MindSphereSdk.Core.AssetManagement.UploadFileRequest.File">
+            <summary>
+            The file to upload
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.AssetManagement.UploadFileRequest.Name">
+            <summary>
+            The name of the file
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.AssetManagement.UploadFileRequest.Scope">
+            <summary>
+            The scope of the file
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.AssetManagement.UploadFileRequest.Description">
+            <summary>
+            The description of the file
+            </summary>
+        </member>
+        <member name="T:MindSphereSdk.Core.AssetManagement.ListFilesRequest">
+            <summary>
+            Request for listing files
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.AssetManagement.ListFilesRequest.Page">
+            <summary>
+            Specifies the requested page index
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.AssetManagement.ListFilesRequest.Size">
+            <summary>
+            Specifies the number of elements in a page
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.AssetManagement.ListFilesRequest.Sort">
+            <summary>
+            Specifies the ordering of returned elements
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.AssetManagement.ListFilesRequest.Filter">
+            <summary>
+            Specifies the additional filtering criteria
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.AssetManagement.ListFilesRequest.IfNoneMatch">
+            <summary>
+            ETag hash of previous request to allow caching
+            </summary>
+        </member>
+        <member name="T:MindSphereSdk.Core.AssetManagement.DownloadFileRequest">
+            <summary>
+            Request for downloading file
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.AssetManagement.DownloadFileRequest.Id">
+            <summary>
+            Unique identifier of the file
+            </summary>
+        </member>
+        <member name="T:MindSphereSdk.Core.AssetManagement.GetFileRequest">
+            <summary>
+            Request for getting file metadata
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.AssetManagement.GetFileRequest.Id">
+            <summary>
+            Unique identifier of the file
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.AssetManagement.GetFileRequest.IfNoneMatch">
+            <summary>
+            ETag hash of previous request to allow caching
+            </summary>
+        </member>
         <member name="T:MindSphereSdk.Core.AssetManagement.UpdateFileRequest">
             <summary>
             Request for updating file
             </summary>
         </member>
+        <member name="P:MindSphereSdk.Core.AssetManagement.UpdateFileRequest.IfMatch">
+            <summary>
+            Last known version to facilitate optimistic locking
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.AssetManagement.UpdateFileRequest.Id">
+            <summary>
+            Unique identifier of the file
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.AssetManagement.UpdateFileRequest.File">
+            <summary>
+            The file to upload
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.AssetManagement.UpdateFileRequest.Name">
+            <summary>
+            The name of the file
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.AssetManagement.UpdateFileRequest.Scope">
+            <summary>
+            The scope of the file
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.AssetManagement.UpdateFileRequest.Description">
+            <summary>
+            The description of the file
+            </summary>
+        </member>
+        <member name="T:MindSphereSdk.Core.AssetManagement.DeleteFileRequest">
+            <summary>
+            Request for deleting file
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.AssetManagement.DeleteFileRequest.IfMatch">
+            <summary>
+            Last known version to facilitate optimistic locking
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.AssetManagement.DeleteFileRequest.Id">
+            <summary>
+            Unique identifier of the file
+            </summary>
+        </member>
         <member name="T:MindSphereSdk.Core.Authentication.AppCredentials">
             <summary>
             Application credentials for MindSphere API
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.Authentication.AppCredentials.KeyStoreClientId">
+            <summary>
+            Client ID
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.Authentication.AppCredentials.KeyStoreClientSecret">
+            <summary>
+            Client secret
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.Authentication.AppCredentials.AppName">
+            <summary>
+            Name of the application
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.Authentication.AppCredentials.AppVersion">
+            <summary>
+            Version of the application
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.Authentication.AppCredentials.HostTenant">
+            <summary>
+            Host tenant
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.Authentication.AppCredentials.UserTenant">
+            <summary>
+            User tenant
+            </summary>
+        </member>
+        <member name="M:MindSphereSdk.Core.Authentication.AppCredentials.#ctor(System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Create a new instance of the AppCredentials
             </summary>
         </member>
         <member name="M:MindSphereSdk.Core.Authentication.AppCredentials.FromJsonFile(System.String)">
@@ -451,12 +1142,27 @@
         </member>
         <member name="T:MindSphereSdk.Core.Authentication.UserCredentials">
             <summary>
-            User credentials for MindSphere API
+            User credentials for the MindSphere API
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.Authentication.UserCredentials.Token">
+            <summary>
+            Access token
+            </summary>
+        </member>
+        <member name="M:MindSphereSdk.Core.Authentication.UserCredentials.#ctor(System.String)">
+            <summary>
+            Create a new instance of UserCredentials
             </summary>
         </member>
         <member name="T:MindSphereSdk.Core.Common.AppMindSphereConnector">
             <summary>
             Connector to the MindSphere API using app credentials
+            </summary>
+        </member>
+        <member name="M:MindSphereSdk.Core.Common.AppMindSphereConnector.#ctor(MindSphereSdk.Core.Authentication.AppCredentials,MindSphereSdk.Core.Common.ClientConfiguration)">
+            <summary>
+            Create a new instance of AppMindSphereConnector
             </summary>
         </member>
         <member name="M:MindSphereSdk.Core.Common.AppMindSphereConnector.AcquireTokenAsync">
@@ -508,6 +1214,46 @@
             Wrapper for MindSphere resource
             </summary>
         </member>
+        <member name="T:MindSphereSdk.Core.Common.ResourceList`1">
+            <summary>
+            MindSphere resource list
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.Common.ResourceList`1.Data">
+            <summary>
+            Embedded data
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.Common.ResourceList`1.Page">
+            <summary>
+            Pagination data
+            </summary>
+        </member>
+        <member name="T:MindSphereSdk.Core.Common.Page">
+            <summary>
+            Pagination data
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.Common.Page.Size">
+            <summary>
+            Number of elements in a page
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.Common.Page.TotalElements">
+            <summary>
+            Total number of elements in all pages
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.Common.Page.TotalPages">
+            <summary>
+            Total number of pages
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.Common.Page.Number">
+            <summary>
+            Current page number
+            </summary>
+        </member>
         <member name="T:MindSphereSdk.Core.Common.AccessToken">
             <summary>
             Access Token model
@@ -516,6 +1262,11 @@
         <member name="T:MindSphereSdk.Core.Common.MindSphereApiSdk">
             <summary>
             MindSphere API SDK
+            </summary>
+        </member>
+        <member name="M:MindSphereSdk.Core.Common.MindSphereApiSdk.#ctor(MindSphereSdk.Core.Authentication.ICredentials,MindSphereSdk.Core.Common.ClientConfiguration)">
+            <summary>
+            Create a new instance of MindSphereApiSdk
             </summary>
         </member>
         <member name="M:MindSphereSdk.Core.Common.MindSphereApiSdk.GetAssetManagementClient">
@@ -583,6 +1334,11 @@
             Connector to the MindSphere API using user credentials
             </summary>
         </member>
+        <member name="M:MindSphereSdk.Core.Common.UserMindSphereConnector.#ctor(MindSphereSdk.Core.Authentication.UserCredentials,MindSphereSdk.Core.Common.ClientConfiguration)">
+            <summary>
+            Create a new instance of UserMindSphereConnector
+            </summary>
+        </member>
         <member name="M:MindSphereSdk.Core.Common.UserMindSphereConnector.AcquireTokenAsync">
             <summary>
             Acquire MindSphere access token (no need - it is handled by MindSphere)
@@ -603,6 +1359,16 @@
             Request for adding event
             </summary>
         </member>
+        <member name="P:MindSphereSdk.Core.EventManagement.AddEventRequest.Body">
+            <summary>
+            Event
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.EventManagement.AddEventRequest.IncludeShared">
+            <summary>
+            Specifies if the operation should take into account shared entities
+            </summary>
+        </member>
         <member name="T:MindSphereSdk.Core.EventManagement.Event">
             <summary>
             Event
@@ -613,17 +1379,47 @@
             Event to add
             </summary>
         </member>
-        <member name="T:MindSphereSdk.Core.Helpers.Helper">
+        <member name="T:MindSphereSdk.Core.Exceptions.MindSphereApiException">
             <summary>
-            Helper
+            MindSphere API exception
             </summary>
         </member>
-        <member name="M:MindSphereSdk.Core.Helpers.Helper.GetDateTimeUtcString(System.DateTime)">
+        <member name="P:MindSphereSdk.Core.Exceptions.MindSphereApiException.StatusCode">
+            <summary>
+            HTTP status code
+            </summary>
+        </member>
+        <member name="M:MindSphereSdk.Core.Exceptions.MindSphereApiException.#ctor(System.Int32,System.String)">
+            <summary>
+            Create a new instance of MindSphereApiException
+            </summary>
+        </member>
+        <member name="T:MindSphereSdk.Core.Exceptions.MindSphereApiExceptionHandler">
+            <summary>
+            MindSphere API exception handler
+            </summary>
+        </member>
+        <member name="M:MindSphereSdk.Core.Exceptions.MindSphereApiExceptionHandler.HandleUnsuccessfulResponseAsync(System.Net.Http.HttpResponseMessage)">
+            <summary>
+            Handle unsuccessful response
+            </summary>
+        </member>
+        <member name="T:MindSphereSdk.Core.Helpers.Helpers">
+            <summary>
+            Helpers
+            </summary>
+        </member>
+        <member name="M:MindSphereSdk.Core.Helpers.Helpers.GetDateTimeUtcString(System.DateTime)">
             <summary>
             Generate date time UTC string
             </summary>
         </member>
-        <member name="M:MindSphereSdk.Core.Helpers.MultipartFormDataContentExtension.AddStringContentIfNotNull(System.Net.Http.MultipartFormDataContent,System.String,System.String)">
+        <member name="T:MindSphereSdk.Core.Helpers.MultipartFormDataContentExtensions">
+            <summary>
+            MultipartFormDataContent extensions
+            </summary>
+        </member>
+        <member name="M:MindSphereSdk.Core.Helpers.MultipartFormDataContentExtensions.AddStringContentIfNotNull(System.Net.Http.MultipartFormDataContent,System.String,System.String)">
             <summary>
             Extension method for MultipartFormDataContent to add only not-null values
             </summary>
@@ -635,23 +1431,35 @@
         </member>
         <member name="M:MindSphereSdk.Core.Helpers.QueryStringBuilder.AddQuery(System.String,System.String)">
             <summary>
-            Add new part to the URI query sting
+            Add a new part to the URI query string
             </summary>
+            <remarks>
+            Only if not empty
+            </remarks>
         </member>
         <member name="M:MindSphereSdk.Core.Helpers.QueryStringBuilder.AddQuery(System.String,System.Nullable{System.Int32})">
             <summary>
-            Add new part to the URI query sting
+            Add a new part to the URI query string
             </summary>
+            <remarks>
+            Only if not empty
+            </remarks>
         </member>
         <member name="M:MindSphereSdk.Core.Helpers.QueryStringBuilder.AddQuery(System.String,System.Nullable{System.DateTime})">
             <summary>
-            Add new part to the URI query sting
+            Add a new part to the URI query string
             </summary>
+            <remarks>
+            Only if not empty
+            </remarks>
         </member>
         <member name="M:MindSphereSdk.Core.Helpers.QueryStringBuilder.AddQuery(System.String,System.Nullable{System.Boolean})">
             <summary>
-            Add new part to the URI query sting
+            Add a new part to the URI query string
             </summary>
+            <remarks>
+            Only if not empty
+            </remarks>
         </member>
         <member name="M:MindSphereSdk.Core.Helpers.QueryStringBuilder.ToString">
             <summary>
@@ -684,9 +1492,14 @@
             Create, read, update, and delete time series data
             </summary>
         </member>
+        <member name="M:MindSphereSdk.Core.IotTimeSeries.IotTimeSeriesClient.PutTimeSeriesMultipleAsync(MindSphereSdk.Core.IotTimeSeries.PutTimeSeriesMultipleRequest)">
+            <summary>
+            Create or update time series data for mutiple unique asset-aspect (entity-property set) combinations
+            </summary>
+        </member>
         <member name="M:MindSphereSdk.Core.IotTimeSeries.IotTimeSeriesClient.GetTimeSeriesAsync``1(MindSphereSdk.Core.IotTimeSeries.GetTimeSeriesRequest)">
             <summary>
-            Retrieve time series data (generic function)
+            Retrieve time series data
             </summary>
         </member>
         <member name="M:MindSphereSdk.Core.IotTimeSeries.IotTimeSeriesClient.GetTimeSeriesAsync(MindSphereSdk.Core.IotTimeSeries.GetTimeSeriesRequest)">
@@ -707,19 +1520,34 @@
             Delete time series data
             </summary>
         </member>
-        <member name="M:MindSphereSdk.Core.IotTimeSeries.IotTimeSeriesClient.GetUriForGetTimeSeries(MindSphereSdk.Core.IotTimeSeries.GetTimeSeriesRequest)">
-            <summary>
-            Generate specific URI for get request
-            </summary>
-        </member>
-        <member name="M:MindSphereSdk.Core.IotTimeSeries.IotTimeSeriesClient.GetUriForDeleteTimeSeries(MindSphereSdk.Core.IotTimeSeries.DeleteTimeSeriesRequest)">
-            <summary>
-            Generate specific URI for delete request
-            </summary>
-        </member>
         <member name="T:MindSphereSdk.Core.IotTimeSeries.TimeSeries">
             <summary>
             Time Series for one asset and one aspect
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.IotTimeSeries.TimeSeries.EntityId">
+            <summary>
+            Unique identifier of the asset
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.IotTimeSeries.TimeSeries.PropertySetName">
+            <summary>
+            Name of the aspect
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.IotTimeSeries.TimeSeries.Data">
+            <summary>
+            Time series data
+            </summary>
+        </member>
+        <member name="T:MindSphereSdk.Core.IotTimeSeries.PutTimeSeriesMultipleRequest">
+            <summary>
+            Request for putting time series
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.IotTimeSeries.PutTimeSeriesMultipleRequest.TimeSeries">
+            <summary>
+            Time series
             </summary>
         </member>
         <member name="T:MindSphereSdk.Core.IotTimeSeries.GetTimeSeriesRequest">
@@ -727,14 +1555,89 @@
             Request for getting time series
             </summary>
         </member>
+        <member name="P:MindSphereSdk.Core.IotTimeSeries.GetTimeSeriesRequest.From">
+            <summary>
+            Beginning of the time range to be retrieved (exclusive)
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.IotTimeSeries.GetTimeSeriesRequest.To">
+            <summary>
+            End of the time range to be retrieved (inclusive)
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.IotTimeSeries.GetTimeSeriesRequest.Limit">
+            <summary>
+            Maximum number of time series data items to be retrieved
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.IotTimeSeries.GetTimeSeriesRequest.Select">
+            <summary>
+            Comma-separated list of properties to be returned
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.IotTimeSeries.GetTimeSeriesRequest.Sort">
+            <summary>
+            Define sorting order of returned data
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.IotTimeSeries.GetTimeSeriesRequest.LatestValue">
+            <summary>
+            If true, only the latest value of each property is returned
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.IotTimeSeries.GetTimeSeriesRequest.EntityId">
+            <summary>
+            Unique identifier of the asset
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.IotTimeSeries.GetTimeSeriesRequest.PropertySetName">
+            <summary>
+            Name of the aspect
+            </summary>
+        </member>
         <member name="T:MindSphereSdk.Core.IotTimeSeries.PutTimeSeriesRequest">
             <summary>
             Request for putting time series
             </summary>
         </member>
+        <member name="P:MindSphereSdk.Core.IotTimeSeries.PutTimeSeriesRequest.EntityId">
+            <summary>
+            Unique identifier of the asset
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.IotTimeSeries.PutTimeSeriesRequest.PropertySetName">
+            <summary>
+            Name of the aspect
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.IotTimeSeries.PutTimeSeriesRequest.Data">
+            <summary>
+            Time series data
+            </summary>
+        </member>
         <member name="T:MindSphereSdk.Core.IotTimeSeries.DeleteTimeSeriesRequest">
             <summary>
             Request for deleting time series
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.IotTimeSeries.DeleteTimeSeriesRequest.From">
+            <summary>
+            Beginning of the time range to be retrieved (exclusive)
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.IotTimeSeries.DeleteTimeSeriesRequest.To">
+            <summary>
+            End of the time range to be retrieved (inclusive)
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.IotTimeSeries.DeleteTimeSeriesRequest.EntityId">
+            <summary>
+            Unique identifier of the asset
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.IotTimeSeries.DeleteTimeSeriesRequest.PropertySetName">
+            <summary>
+            Name of the aspect
             </summary>
         </member>
         <member name="T:MindSphereSdk.Core.IotTsAggregates.IotTsAggregatesClient">
@@ -745,11 +1648,6 @@
         <member name="M:MindSphereSdk.Core.IotTsAggregates.IotTsAggregatesClient.GetAggregateTimeSeriesAsync``1(MindSphereSdk.Core.IotTsAggregates.GetAggregateTimeSeriesRequest)">
             <summary>
             Get aggregated time series data for one aspect of an asset
-            </summary>
-        </member>
-        <member name="M:MindSphereSdk.Core.IotTsAggregates.IotTsAggregatesClient.GetUri(MindSphereSdk.Core.IotTsAggregates.GetAggregateTimeSeriesRequest)">
-            <summary>
-            Generate URI for time series aggregation request
             </summary>
         </member>
         <member name="T:MindSphereSdk.Core.IotTsAggregates.AggregateWrapper`1">
@@ -770,6 +1668,46 @@
         <member name="T:MindSphereSdk.Core.IotTsAggregates.GetAggregateTimeSeriesRequest">
             <summary>
             Request for getting aggregate time series
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.IotTsAggregates.GetAggregateTimeSeriesRequest.AssetId">
+            <summary>
+            Unique identifier of the asset
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.IotTsAggregates.GetAggregateTimeSeriesRequest.AspectName">
+            <summary>
+            Name of the aspect
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.IotTsAggregates.GetAggregateTimeSeriesRequest.From">
+            <summary>
+            Beginning of the time range to read
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.IotTsAggregates.GetAggregateTimeSeriesRequest.To">
+            <summary>
+            End of the time range to read
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.IotTsAggregates.GetAggregateTimeSeriesRequest.IntervalValue">
+            <summary>
+            Interval duration for the aggregates in intervalUnits
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.IotTsAggregates.GetAggregateTimeSeriesRequest.IntervalUnit">
+            <summary>
+            Interval duration unit for the aggregates
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.IotTsAggregates.GetAggregateTimeSeriesRequest.Select">
+            <summary>
+            Variables names to filter out variables
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.IotTsAggregates.GetAggregateTimeSeriesRequest.Count">
+            <summary>
+            Number of aggregate objects
             </summary>
         </member>
     </members>

@@ -51,10 +51,11 @@ namespace MindSphereSdk.Core.AssetManagement
             var aspectTypeListWrapper = JsonConvert.DeserializeObject<MindSphereResourceWrapper<EmbeddedAspectTypeList>>(response);
 
             // format output
-            var output = new ResourceList<AspectType>();
-            output.Data = aspectTypeListWrapper.Embedded.AspectTypes;
-            output.Page = aspectTypeListWrapper.Page;
-
+            var output = new ResourceList<AspectType>
+            {
+                Data = aspectTypeListWrapper.Embedded.AspectTypes,
+                Page = aspectTypeListWrapper.Page
+            };
             return output;
         }
 
@@ -190,10 +191,12 @@ namespace MindSphereSdk.Core.AssetManagement
             string response = await HttpActionAsync(HttpMethod.Get, uri, headers: headers);
             var assetTypeListWrapper = JsonConvert.DeserializeObject<MindSphereResourceWrapper<EmbeddedAssetTypeList>>(response);
 
-            // format outpu
-            var output = new ResourceList<AssetType>();
-            output.Data = assetTypeListWrapper.Embedded.AssetTypes;
-            output.Page = assetTypeListWrapper.Page;
+            // format output
+            var output = new ResourceList<AssetType>
+            {
+                Data = assetTypeListWrapper.Embedded.AssetTypes,
+                Page = assetTypeListWrapper.Page
+            };
             return output;
         }
 
@@ -388,9 +391,11 @@ namespace MindSphereSdk.Core.AssetManagement
             var assetListWrapper = JsonConvert.DeserializeObject<MindSphereResourceWrapper<EmbeddedAssetList>>(response);
 
             // format output
-            var output = new ResourceList<Asset>();
-            output.Data = assetListWrapper.Embedded.Assets;
-            output.Page = assetListWrapper.Page;
+            var output = new ResourceList<Asset>
+            {
+                Data = assetListWrapper.Embedded.Assets,
+                Page = assetListWrapper.Page
+            };
             return output;
         }
 
@@ -431,7 +436,7 @@ namespace MindSphereSdk.Core.AssetManagement
             };
 
             // make request
-            string response = await HttpActionAsync(HttpMethod.Get, uri);
+            string response = await HttpActionAsync(HttpMethod.Get, uri, headers: headers);
             var asset = JsonConvert.DeserializeObject<Asset>(response);
 
             return asset;
@@ -645,9 +650,11 @@ namespace MindSphereSdk.Core.AssetManagement
             var variableListWrapper = JsonConvert.DeserializeObject<MindSphereResourceWrapper<EmbeddedVariableList>>(response);
 
             // format output
-            var output = new ResourceList<VariableDetail>();
-            output.Data = variableListWrapper.Embedded.Variables;
-            output.Page = variableListWrapper.Page;
+            var output = new ResourceList<VariableDetail>
+            {
+                Data = variableListWrapper.Embedded.Variables,
+                Page = variableListWrapper.Page
+            };
             return output;
         }
 
@@ -676,9 +683,11 @@ namespace MindSphereSdk.Core.AssetManagement
             var aspectListWrapper = JsonConvert.DeserializeObject<MindSphereResourceWrapper<EmbeddedAspectList>>(response);
 
             // format output
-            var output = new ResourceList<AspectFullDetail>();
-            output.Data = aspectListWrapper.Embedded.Aspects;
-            output.Page = aspectListWrapper.Page;
+            var output = new ResourceList<AspectFullDetail>
+            {
+                Data = aspectListWrapper.Embedded.Aspects,
+                Page = aspectListWrapper.Page
+            };
             return output;
         }
 

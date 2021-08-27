@@ -22,7 +22,7 @@ namespace MindSphereSdk.Core.Common
     internal abstract class MindSphereConnector
     {
         protected string _accessToken;
-        private ClientConfiguration _configuration;
+        private readonly ClientConfiguration _configuration;
         protected readonly HttpClient _httpClient;
 
         public MindSphereConnector(ClientConfiguration configuration)
@@ -36,9 +36,11 @@ namespace MindSphereSdk.Core.Common
                 handler.Proxy = new WebProxy(_configuration.Proxy, false);
                 handler.UseProxy = true;
             }
-            _httpClient = new HttpClient(handler);
-            // timeout setting
-            _httpClient.Timeout = _configuration.Timeout;
+            _httpClient = new HttpClient(handler)
+            {
+                // timeout setting
+                Timeout = _configuration.Timeout
+            };
         }
 
         /// <summary>
@@ -113,7 +115,6 @@ namespace MindSphereSdk.Core.Common
         /// <summary>
         /// Validate MindSphere access token 
         /// </summary>
-        // TODO: implement token validation (https://developer.mindsphere.io/concepts/concept-authentication.html#token-validation)
         private bool ValidateToken()
         {
             if (_accessToken == null) return false;

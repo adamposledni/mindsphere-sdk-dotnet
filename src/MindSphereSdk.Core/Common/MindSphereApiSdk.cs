@@ -23,6 +23,9 @@ namespace MindSphereSdk.Core.Common
 
         private readonly MindSphereConnector _connector;
 
+        /// <summary>
+        /// Create a new instance of MindSphereApiSdk
+        /// </summary>
         public MindSphereApiSdk(ICredentials credentials, ClientConfiguration configuration)
         {
             Validator.Validate(configuration);
