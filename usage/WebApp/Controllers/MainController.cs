@@ -86,7 +86,7 @@ namespace WebApp.Controllers
                 IfMatch = "2"
             };
 
-            Asset response = await assetClient.UpdateAssetAsync(request);
+            Asset response = await assetClient.PutAssetAsync(request);
             return StatusCode(200, response);
         }
 
@@ -694,7 +694,7 @@ namespace WebApp.Controllers
         public async Task<ActionResult<IEnumerable<AssetType>>> SaveAssetTypeFileAssignment()
         {
             var assetClient = _mindSphereSdkService.GetAssetManagementClient();
-            var request = new SaveAssetTypeFileAssignmentRequest()
+            var request = new AddAssetTypeFileAssignmentRequest()
             {
                 Id = "iiotdgli.My_new_asset_type",
                 Key = "testFile",
@@ -702,7 +702,7 @@ namespace WebApp.Controllers
                 IfMatch = "0"
             };
 
-            AssetType assetType = await assetClient.SaveAssetTypeFileAssignmentAsync(request);
+            AssetType assetType = await assetClient.AddAssetTypeFileAssignmentAsync(request);
             return StatusCode(200, assetType);
         }
 

@@ -29,23 +29,29 @@ namespace MindSphereSdk.Core.AssetManagement
         /// <summary>
         /// List all aspect types
         /// </summary>
-        public async Task<PaginationModel<AspectType>> ListAspectTypesAsync(ListAspectTypesRequest request)
+        public async Task<ResourceList<AspectType>> ListAspectTypesAsync(ListAspectTypesRequest request)
         {
-            // prepare query string
+            // prepare URI string
             QueryStringBuilder queryBuilder = new QueryStringBuilder();
             queryBuilder.AddQuery("page", request.Page);
             queryBuilder.AddQuery("size", request.Size);
             queryBuilder.AddQuery("sort", request.Sort);
             queryBuilder.AddQuery("filter", request.Filter);
             queryBuilder.AddQuery("includeShared", request.IncludeShared);
-
             string uri = _baseUri + "/aspecttypes" + queryBuilder.ToString();
 
-            string response = await HttpActionAsync(HttpMethod.Get, uri);
+            // prepare HTTP request headers
+            List<KeyValuePair<string, string>> headers = new List<KeyValuePair<string, string>>
+            {
+                new KeyValuePair<string, string>("If-None-Match", request.IfNoneMatch)
+            };
+
+            // makte request
+            string response = await HttpActionAsync(HttpMethod.Get, uri, headers: headers);
             var aspectTypeListWrapper = JsonConvert.DeserializeObject<MindSphereResourceWrapper<EmbeddedAspectTypeList>>(response);
 
             // format output
-            var output = new PaginationModel<AspectType>();
+            var output = new ResourceList<AspectType>();
             output.Data = aspectTypeListWrapper.Embedded.AspectTypes;
             output.Page = aspectTypeListWrapper.Page;
 
@@ -53,44 +59,14 @@ namespace MindSphereSdk.Core.AssetManagement
         }
 
         /// <summary>
-        /// Read an aspect type 
-        /// </summary>
-        public async Task<AspectType> GetAspectTypeAsync(GetAspectTypeRequest request)
-        {
-            string uri = _baseUri + "/aspecttypes/" + request.Id;
-
-            string response = await HttpActionAsync(HttpMethod.Get, uri);
-            var aspectType = JsonConvert.DeserializeObject<AspectType>(response);
-
-            return aspectType;
-        }
-
-        /// <summary>
-        /// Delete an aspect type 
-        /// </summary>
-        public async Task DeleteAspectTypeAsync(DeleteAspectTypeRequest request)
-        {
-            string uri = _baseUri + "/aspecttypes/" + request.Id;
-
-            // prepare HTTP request headers
-            List<KeyValuePair<string, string>> headers = new List<KeyValuePair<string, string>>
-            {
-                new KeyValuePair<string, string>("If-Match", request.IfMatch)
-            };
-
-            await HttpActionAsync(HttpMethod.Delete, uri, headers: headers);
-        }
-
-        /// <summary>
         /// Create or update an aspect type
         /// </summary>
         public async Task<AspectType> PutAspectTypeAsync(PutAspectTypeRequest request)
         {
-            string uri = _baseUri + "/aspecttypes/" + request.Id;
-
-            // prepare HTTP request body
-            string jsonString = JsonConvert.SerializeObject(request.Body);
-            StringContent body = new StringContent(jsonString, Encoding.UTF8, "application/json");
+            // prepare URI string
+            QueryStringBuilder queryBuilder = new QueryStringBuilder();
+            queryBuilder.AddQuery("includeShared", request.IncludeShared);
+            string uri = _baseUri + "/aspecttypes/" + request.Id + queryBuilder.ToString();
 
             // prepare HTTP request headers
             List<KeyValuePair<string, string>> headers = new List<KeyValuePair<string, string>>
@@ -99,6 +75,12 @@ namespace MindSphereSdk.Core.AssetManagement
                 new KeyValuePair<string, string>("If-Match", request.IfMatch)
             };
 
+            // prepare HTTP request body
+            string jsonString = JsonConvert.SerializeObject(request.Body);
+            StringContent body = new StringContent(jsonString, Encoding.UTF8, "application/json");
+
+
+            // make request
             string response = await HttpActionAsync(HttpMethod.Put, uri, body, headers);
             var aspectType = JsonConvert.DeserializeObject<AspectType>(response);
 
@@ -110,7 +92,16 @@ namespace MindSphereSdk.Core.AssetManagement
         /// </summary>
         public async Task<AspectType> PatchAspectTypeAsync(PatchAspectTypeRequest request)
         {
-            string uri = _baseUri + "/aspecttypes/" + request.Id;
+            // prepare URI string
+            QueryStringBuilder queryBuilder = new QueryStringBuilder();
+            queryBuilder.AddQuery("includeShared", request.IncludeShared);
+            string uri = _baseUri + "/aspecttypes/" + request.Id + queryBuilder.ToString();
+
+            // prepare HTTP request headers
+            List<KeyValuePair<string, string>> headers = new List<KeyValuePair<string, string>>
+            {
+                new KeyValuePair<string, string>("If-Match", request.IfMatch)
+            };
 
             // prepare HTTP request body
             string jsonString = JsonConvert.SerializeObject(request.Body,
@@ -120,26 +111,64 @@ namespace MindSphereSdk.Core.AssetManagement
                 });
             StringContent body = new StringContent(jsonString, Encoding.UTF8, "application/merge-patch+json");
 
-            // prepare HTTP request headers
-            List<KeyValuePair<string, string>> headers = new List<KeyValuePair<string, string>>
-            {
-                new KeyValuePair<string, string>("If-Match", request.IfMatch)
-            };
-
+            // make request
             string response = await HttpActionAsync(new HttpMethod("PATCH"), uri, body, headers);
             var aspectType = JsonConvert.DeserializeObject<AspectType>(response);
 
             return aspectType;
         }
 
-        #endregion
+        /// <summary>
+        /// Read an aspect type 
+        /// </summary>
+        public async Task<AspectType> GetAspectTypeAsync(GetAspectTypeRequest request)
+        {
+            // prepare URI string
+            QueryStringBuilder queryBuilder = new QueryStringBuilder();
+            queryBuilder.AddQuery("includeShared", request.IncludeShared);
+            string uri = _baseUri + "/aspecttypes/" + request.Id + queryBuilder.ToString();
 
-        #region Asset
+            // prepare HTTP request headers
+            List<KeyValuePair<string, string>> headers = new List<KeyValuePair<string, string>>
+            {
+                new KeyValuePair<string, string>("If-None-Match", request.IfNoneMatch)
+            };
+
+            // make request
+            string response = await HttpActionAsync(HttpMethod.Get, uri, headers: headers);
+            var aspectType = JsonConvert.DeserializeObject<AspectType>(response);
+
+            return aspectType;
+        }
 
         /// <summary>
-        /// List all available assets
+        /// Delete an aspect type 
         /// </summary>
-        public async Task<IEnumerable<Asset>> ListAssetsAsync(ListAssetsRequest request)
+        public async Task DeleteAspectTypeAsync(DeleteAspectTypeRequest request)
+        {
+            // prepare URI string
+            QueryStringBuilder queryBuilder = new QueryStringBuilder();
+            queryBuilder.AddQuery("includeShared", request.IncludeShared);
+            string uri = _baseUri + "/aspecttypes/" + request.Id + queryBuilder.ToString();
+
+            // prepare HTTP request headers
+            List<KeyValuePair<string, string>> headers = new List<KeyValuePair<string, string>>
+            {
+                new KeyValuePair<string, string>("If-Match", request.IfMatch)
+            };
+
+            // make request
+            await HttpActionAsync(HttpMethod.Delete, uri, headers: headers);
+        }
+
+        #endregion
+
+        #region Asset type
+
+        /// <summary>
+        /// List all asset types
+        /// </summary>
+        public async Task<ResourceList<AssetType>> ListAssetTypesAsync(ListAssetTypesRequest request)
         {
             // prepare query string
             QueryStringBuilder queryBuilder = new QueryStringBuilder();
@@ -147,78 +176,76 @@ namespace MindSphereSdk.Core.AssetManagement
             queryBuilder.AddQuery("page", request.Page);
             queryBuilder.AddQuery("sort", request.Sort);
             queryBuilder.AddQuery("filter", request.Filter);
+            queryBuilder.AddQuery("exploded", request.Exploded);
+            queryBuilder.AddQuery("includeShared", request.IncludeShared);
+            string uri = _baseUri + "/assettypes" + queryBuilder.ToString();
 
-            string uri = _baseUri + "/assets" + queryBuilder.ToString();
+            // prepare HTTP request headers
+            List<KeyValuePair<string, string>> headers = new List<KeyValuePair<string, string>>
+            {
+                new KeyValuePair<string, string>("If-None-Match", request.IfNoneMatch)
+            };
 
-            string response = await HttpActionAsync(HttpMethod.Get, uri);
-            var assetListWrapper = JsonConvert.DeserializeObject<MindSphereResourceWrapper<EmbeddedAssetList>>(response);
-            var assetList = assetListWrapper.Embedded.Assets;
+            // make request
+            string response = await HttpActionAsync(HttpMethod.Get, uri, headers: headers);
+            var assetTypeListWrapper = JsonConvert.DeserializeObject<MindSphereResourceWrapper<EmbeddedAssetTypeList>>(response);
 
-            return assetList;
+            // format outpu
+            var output = new ResourceList<AssetType>();
+            output.Data = assetTypeListWrapper.Embedded.AssetTypes;
+            output.Page = assetTypeListWrapper.Page;
+            return output;
         }
 
         /// <summary>
-        /// Create an asset
+        /// Create or update an asset type
         /// </summary>
-        public async Task<Asset> AddAssetAsync(AddAssetRequest request)
+        public async Task<AssetType> PutAssetTypeAsync(PutAssetTypeRequest request)
         {
-            string uri = _baseUri + "/assets";
+            // prepare URI string
+            QueryStringBuilder queryBuilder = new QueryStringBuilder();
+            queryBuilder.AddQuery("exploded", request.Exploded);
+            queryBuilder.AddQuery("includeShared", request.IncludeShared);
+            string uri = _baseUri + "/assettypes/" + request.Id + queryBuilder.ToString();
+
+            // prepare HTTP request headers
+            List<KeyValuePair<string, string>> headers = new List<KeyValuePair<string, string>>
+            {
+                new KeyValuePair<string, string>("If-None-Match", request.IfNoneMatch),
+                new KeyValuePair<string, string>("If-Match", request.IfMatch)
+            };
 
             // prepare HTTP request body
-            StringContent body = new StringContent(JsonConvert.SerializeObject(request.Body), Encoding.UTF8, "application/json");
-
-            string response = await HttpActionAsync(HttpMethod.Post, uri, body);
-            var asset = JsonConvert.DeserializeObject<Asset>(response);
-
-            return asset;
-        }
-
-        /// <summary>
-        /// Read a single asset 
-        /// </summary>
-        public async Task<Asset> GetAssetAsync(GetAssetRequest request)
-        {
-            string uri = _baseUri + "/assets/" + request.Id;
-
-            string response = await HttpActionAsync(HttpMethod.Get, uri);
-            var asset = JsonConvert.DeserializeObject<Asset>(response);
-
-            return asset;
-        }
-
-        /// <summary>
-        /// Update an asset
-        /// </summary>
-        public async Task<Asset> UpdateAssetAsync(UpdateAssetRequest request)
-        {
-            string uri = _baseUri + "/assets/" + request.Id;
-
-            // prepare HTTP request body
-            string jsonString = JsonConvert.SerializeObject(request.Body, 
+            string jsonString = JsonConvert.SerializeObject(request.Body,
                 new JsonSerializerSettings()
                 {
                     NullValueHandling = NullValueHandling.Ignore
                 });
             StringContent body = new StringContent(jsonString, Encoding.UTF8, "application/json");
 
+            // make request
+            string response = await HttpActionAsync(HttpMethod.Put, uri, body, headers);
+            var assetType = JsonConvert.DeserializeObject<AssetType>(response);
+
+            return assetType;
+        }
+
+        /// <summary>
+        /// Patch an asset type
+        /// </summary>
+        public async Task<AssetType> PatchAssetTypeAsync(PatchAssetTypeRequest request)
+        {
+            // prepare URI string
+            QueryStringBuilder queryBuilder = new QueryStringBuilder();
+            queryBuilder.AddQuery("exploded", request.Exploded);
+            queryBuilder.AddQuery("includeShared", request.IncludeShared);
+            string uri = _baseUri + "/assettypes/" + request.Id + queryBuilder.ToString();
+
             // prepare HTTP request headers
             List<KeyValuePair<string, string>> headers = new List<KeyValuePair<string, string>>
             {
                 new KeyValuePair<string, string>("If-Match", request.IfMatch)
             };
-
-            string response = await HttpActionAsync(HttpMethod.Put, uri, body, headers);
-            var asset = JsonConvert.DeserializeObject<Asset>(response);
-            
-            return asset;
-        }
-
-        /// <summary>
-        /// Patch an asset
-        /// </summary>
-        public async Task<Asset> PatchAssetAsync(UpdateAssetRequest request)
-        {
-            string uri = _baseUri + "/assets/" + request.Id;
 
             // prepare HTTP request body
             string jsonString = JsonConvert.SerializeObject(request.Body,
@@ -228,24 +255,46 @@ namespace MindSphereSdk.Core.AssetManagement
                 });
             StringContent body = new StringContent(jsonString, Encoding.UTF8, "application/merge-patch+json");
 
-            // prepare HTTP request headers
-            List<KeyValuePair<string, string>> headers = new List<KeyValuePair<string, string>>
-            {
-                new KeyValuePair<string, string>("If-Match", request.IfMatch)
-            };
-
+            // make request
             string response = await HttpActionAsync(new HttpMethod("PATCH"), uri, body, headers);
-            var asset = JsonConvert.DeserializeObject<Asset>(response);
+            var assetType = JsonConvert.DeserializeObject<AssetType>(response);
 
-            return asset;
+            return assetType;
         }
 
         /// <summary>
-        /// Delete an asset 
+        /// Read an asset type 
         /// </summary>
-        public async Task DeleteAssetAsync(DeleteAssetRequest request)
+        public async Task<AssetType> GetAssetTypeAsync(GetAssetTypeRequest request)
         {
-            string uri = _baseUri + "/assets/" + request.Id;
+            // prepare URI string
+            QueryStringBuilder queryBuilder = new QueryStringBuilder();
+            queryBuilder.AddQuery("exploded", request.Exploded);
+            queryBuilder.AddQuery("includeShared", request.IncludeShared);
+            string uri = _baseUri + "/assettypes/" + request.Id + queryBuilder.ToString();
+
+            // prepare HTTP request headers
+            List<KeyValuePair<string, string>> headers = new List<KeyValuePair<string, string>>
+            {
+                new KeyValuePair<string, string>("If-None-Match", request.IfNoneMatch)
+            };
+
+            // make request
+            string response = await HttpActionAsync(HttpMethod.Get, uri, headers: headers);
+            var assetType = JsonConvert.DeserializeObject<AssetType>(response);
+
+            return assetType;
+        }
+
+        /// <summary>
+        /// Delete an asset type 
+        /// </summary>
+        public async Task DeleteAssetTypeAsync(DeleteAssetTypeRequest request)
+        {
+            // prepare URI string
+            QueryStringBuilder queryBuilder = new QueryStringBuilder();
+            queryBuilder.AddQuery("includeShared", request.IncludeShared);
+            string uri = _baseUri + "/assettypes/" + request.Id + queryBuilder.ToString();
 
             // prepare HTTP request headers
             List<KeyValuePair<string, string>> headers = new List<KeyValuePair<string, string>>
@@ -253,49 +302,19 @@ namespace MindSphereSdk.Core.AssetManagement
                 new KeyValuePair<string, string>("If-Match", request.IfMatch)
             };
 
+            // make request
             await HttpActionAsync(HttpMethod.Delete, uri, headers: headers);
-        }
-
-        /// <summary>
-        /// Move an asset 
-        /// </summary>
-        public async Task<Asset> MoveAssetAsync(MoveAssetRequest request)
-        {
-            string uri = _baseUri + "/assets/" + request.Id + "/move";
-
-            // prepare HTTP request body
-            StringContent body = new StringContent(JsonConvert.SerializeObject(new { newParentId = request.NewParentId }), Encoding.UTF8, "application/json");
-
-            // prepare HTTP request headers
-            List<KeyValuePair<string, string>> headers = new List<KeyValuePair<string, string>>
-            {
-                new KeyValuePair<string, string>("If-Match", request.IfMatch)
-            };
-
-            string response = await HttpActionAsync(HttpMethod.Post, uri, body, headers);
-            var asset = JsonConvert.DeserializeObject<Asset>(response);
-            return asset;
-        }
-
-        /// <summary>
-        /// Read the root asset of the user 
-        /// </summary>
-        public async Task<Asset> GetRootAssetAsync()
-        {
-            string uri = _baseUri + "/assets/root";
-
-            string response = await HttpActionAsync(HttpMethod.Get, uri);
-            var asset = JsonConvert.DeserializeObject<Asset>(response);
-
-            return asset;
         }
 
         /// <summary>
         /// Save a file assignment to an asset
         /// </summary>
-        public async Task<Asset> SaveAssetFileAssignmentAsync(SaveAssetFileAssignmentRequest request)
+        public async Task<AssetType> AddAssetTypeFileAssignmentAsync(AddAssetTypeFileAssignmentRequest request)
         {
-            string uri = _baseUri + "/assets/" + request.Id + "/fileAssignments/" + request.Key;
+            // prepare URI string
+            QueryStringBuilder queryBuilder = new QueryStringBuilder();
+            queryBuilder.AddQuery("includeShared", request.IncludeShared);
+            string uri = _baseUri + "/assettypes/" + request.Id + "/fileAssignments/" + request.Key + queryBuilder.ToString();
 
             // prepare HTTP request headers
             List<KeyValuePair<string, string>> headers = new List<KeyValuePair<string, string>>
@@ -307,6 +326,246 @@ namespace MindSphereSdk.Core.AssetManagement
             object fileIdObject = new { fileId = request.FileId };
             StringContent body = new StringContent(JsonConvert.SerializeObject(fileIdObject), Encoding.UTF8, "application/json");
 
+            // make request
+            string response = await HttpActionAsync(HttpMethod.Put, uri, body, headers);
+            var assetType = JsonConvert.DeserializeObject<AssetType>(response);
+
+            return assetType;
+        }
+
+        /// <summary>
+        /// Delete a file assignment from an asset type
+        /// </summary>
+        public async Task<AssetType> DeleteAssetTypeFileAssignmentAsync(DeleteAssetTypeFileAssignmentRequest request)
+        {
+            // prepare URI string
+            QueryStringBuilder queryBuilder = new QueryStringBuilder();
+            queryBuilder.AddQuery("includeShared", request.IncludeShared);
+            string uri = _baseUri + "/assettypes/" + request.Id + "/fileAssignments/" + request.Key + queryBuilder.ToString();
+
+            // prepare HTTP request headers
+            List<KeyValuePair<string, string>> headers = new List<KeyValuePair<string, string>>
+            {
+                new KeyValuePair<string, string>("If-Match", request.IfMatch)
+            };
+
+            // make request
+            string response = await HttpActionAsync(HttpMethod.Delete, uri, headers: headers);
+            var assetType = JsonConvert.DeserializeObject<AssetType>(response);
+
+            return assetType;
+        }
+
+        // TODO: PATCH /assettypes/id/variables
+
+        #endregion
+
+        #region Asset
+
+        /// <summary>
+        /// List all available assets
+        /// </summary>
+        public async Task<ResourceList<Asset>> ListAssetsAsync(ListAssetsRequest request)
+        {
+            // prepare URI string
+            QueryStringBuilder queryBuilder = new QueryStringBuilder();
+            queryBuilder.AddQuery("size", request.Size);
+            queryBuilder.AddQuery("page", request.Page);
+            queryBuilder.AddQuery("sort", request.Sort);
+            queryBuilder.AddQuery("filter", request.Filter);
+            queryBuilder.AddQuery("includeShared", request.IncludeShared);
+            queryBuilder.AddQuery("basicFieldsOnly", request.BasicFieldsOnly);
+            string uri = _baseUri + "/assets" + queryBuilder.ToString();
+
+            // prepare HTTP request headers
+            List<KeyValuePair<string, string>> headers = new List<KeyValuePair<string, string>>
+            {
+                new KeyValuePair<string, string>("If-None-Match", request.IfNoneMatch)
+            };
+
+            // make request
+            string response = await HttpActionAsync(HttpMethod.Get, uri, headers: headers);
+            var assetListWrapper = JsonConvert.DeserializeObject<MindSphereResourceWrapper<EmbeddedAssetList>>(response);
+
+            // format output
+            var output = new ResourceList<Asset>();
+            output.Data = assetListWrapper.Embedded.Assets;
+            output.Page = assetListWrapper.Page;
+            return output;
+        }
+
+        /// <summary>
+        /// Create an asset
+        /// </summary>
+        public async Task<Asset> AddAssetAsync(AddAssetRequest request)
+        {
+            // prepare URI string
+            QueryStringBuilder queryBuilder = new QueryStringBuilder();
+            queryBuilder.AddQuery("includeShared", request.IncludeShared);
+            string uri = _baseUri + "/assets" + queryBuilder.ToString();
+
+            // prepare HTTP request body
+            StringContent body = new StringContent(JsonConvert.SerializeObject(request.Body), Encoding.UTF8, "application/json");
+
+            // make request
+            string response = await HttpActionAsync(HttpMethod.Post, uri, body);
+            var asset = JsonConvert.DeserializeObject<Asset>(response);
+
+            return asset;
+        }
+
+        /// <summary>
+        /// Read a single asset 
+        /// </summary>
+        public async Task<Asset> GetAssetAsync(GetAssetRequest request)
+        {
+            // prepare URI string
+            QueryStringBuilder queryBuilder = new QueryStringBuilder();
+            queryBuilder.AddQuery("includeShared", request.IncludeShared);
+            string uri = _baseUri + "/assets/" + request.Id + queryBuilder.ToString();
+
+            // prepare HTTP request headers
+            List<KeyValuePair<string, string>> headers = new List<KeyValuePair<string, string>>
+            {
+                new KeyValuePair<string, string>("If-None-Match", request.IfNoneMatch)
+            };
+
+            // make request
+            string response = await HttpActionAsync(HttpMethod.Get, uri);
+            var asset = JsonConvert.DeserializeObject<Asset>(response);
+
+            return asset;
+        }
+
+        /// <summary>
+        /// Update an asset
+        /// </summary>
+        public async Task<Asset> PutAssetAsync(UpdateAssetRequest request)
+        {
+            // prepare URI string
+            QueryStringBuilder queryBuilder = new QueryStringBuilder();
+            queryBuilder.AddQuery("includeShared", request.IncludeShared);
+            string uri = _baseUri + "/assets/" + request.Id + queryBuilder.ToString();
+
+            // prepare HTTP request headers
+            List<KeyValuePair<string, string>> headers = new List<KeyValuePair<string, string>>
+            {
+                new KeyValuePair<string, string>("If-Match", request.IfMatch)
+            };
+
+            // prepare HTTP request body
+            string jsonString = JsonConvert.SerializeObject(request.Body, 
+                new JsonSerializerSettings()
+                {
+                    NullValueHandling = NullValueHandling.Ignore
+                });
+            StringContent body = new StringContent(jsonString, Encoding.UTF8, "application/json");
+
+            // make request
+            string response = await HttpActionAsync(HttpMethod.Put, uri, body, headers);
+            var asset = JsonConvert.DeserializeObject<Asset>(response);
+            
+            return asset;
+        }
+
+        /// <summary>
+        /// Patch an asset
+        /// </summary>
+        public async Task<Asset> PatchAssetAsync(UpdateAssetRequest request)
+        {
+            // prepare URI string
+            QueryStringBuilder queryBuilder = new QueryStringBuilder();
+            queryBuilder.AddQuery("includeShared", request.IncludeShared);
+            string uri = _baseUri + "/assets/" + request.Id + queryBuilder.ToString();
+
+            // prepare HTTP request headers
+            List<KeyValuePair<string, string>> headers = new List<KeyValuePair<string, string>>
+            {
+                new KeyValuePair<string, string>("If-Match", request.IfMatch)
+            };
+
+            // prepare HTTP request body
+            string jsonString = JsonConvert.SerializeObject(request.Body,
+                new JsonSerializerSettings()
+                {
+                    NullValueHandling = NullValueHandling.Ignore
+                });
+            StringContent body = new StringContent(jsonString, Encoding.UTF8, "application/merge-patch+json");
+
+            // make request
+            string response = await HttpActionAsync(new HttpMethod("PATCH"), uri, body, headers);
+            var asset = JsonConvert.DeserializeObject<Asset>(response);
+
+            return asset;
+        }
+
+        /// <summary>
+        /// Delete an asset 
+        /// </summary>
+        public async Task DeleteAssetAsync(DeleteAssetRequest request)
+        {
+            // prepare URI string
+            QueryStringBuilder queryBuilder = new QueryStringBuilder();
+            queryBuilder.AddQuery("includeShared", request.IncludeShared);
+            string uri = _baseUri + "/assets/" + request.Id + queryBuilder.ToString();
+
+            // prepare HTTP request headers
+            List<KeyValuePair<string, string>> headers = new List<KeyValuePair<string, string>>
+            {
+                new KeyValuePair<string, string>("If-Match", request.IfMatch)
+            };
+
+            // make request
+            await HttpActionAsync(HttpMethod.Delete, uri, headers: headers);
+        }
+
+        /// <summary>
+        /// Move an asset 
+        /// </summary>
+        public async Task<Asset> MoveAssetAsync(MoveAssetRequest request)
+        {
+            // prepare URI string
+            QueryStringBuilder queryBuilder = new QueryStringBuilder();
+            queryBuilder.AddQuery("includeShared", request.IncludeShared);
+            string uri = _baseUri + "/assets/" + request.Id + "/move" + queryBuilder.ToString();
+
+            // prepare HTTP request headers
+            List<KeyValuePair<string, string>> headers = new List<KeyValuePair<string, string>>
+            {
+                new KeyValuePair<string, string>("If-Match", request.IfMatch)
+            };
+
+            // prepare HTTP request body
+            StringContent body = new StringContent(JsonConvert.SerializeObject(new { newParentId = request.NewParentId }), Encoding.UTF8, "application/json");
+
+            // make request
+            string response = await HttpActionAsync(HttpMethod.Post, uri, body, headers);
+            var asset = JsonConvert.DeserializeObject<Asset>(response);
+
+            return asset;
+        }
+
+        /// <summary>
+        /// Save a file assignment to an asset
+        /// </summary>
+        public async Task<Asset> SaveAssetFileAssignmentAsync(SaveAssetFileAssignmentRequest request)
+        {
+            // prepare URI string
+            QueryStringBuilder queryBuilder = new QueryStringBuilder();
+            queryBuilder.AddQuery("includeShared", request.IncludeShared);
+            string uri = _baseUri + "/assets/" + request.Id + "/fileAssignments/" + request.Key + queryBuilder.ToString();
+
+            // prepare HTTP request headers
+            List<KeyValuePair<string, string>> headers = new List<KeyValuePair<string, string>>
+            {
+                new KeyValuePair<string, string>("If-Match", request.IfMatch)
+            };
+
+            // prepare HTTP request body
+            object fileIdObject = new { fileId = request.FileId };
+            StringContent body = new StringContent(JsonConvert.SerializeObject(fileIdObject), Encoding.UTF8, "application/json");
+
+            // make request
             string response = await HttpActionAsync(HttpMethod.Put, uri, body, headers);
             var asset = JsonConvert.DeserializeObject<Asset>(response);
 
@@ -318,7 +577,10 @@ namespace MindSphereSdk.Core.AssetManagement
         /// </summary>
         public async Task<Asset> DeleteAssetFileAssignmentAsync(DeleteAssetFileAssignmentRequest request)
         {
-            string uri = _baseUri + "/assets/" + request.Id + "/fileAssignments/" + request.Key;
+            // prepare URI string
+            QueryStringBuilder queryBuilder = new QueryStringBuilder();
+            queryBuilder.AddQuery("includeShared", request.IncludeShared);
+            string uri = _baseUri + "/assets/" + request.Id + "/fileAssignments/" + request.Key + queryBuilder.ToString();
 
             // prepare HTTP request headers
             List<KeyValuePair<string, string>> headers = new List<KeyValuePair<string, string>>
@@ -326,7 +588,29 @@ namespace MindSphereSdk.Core.AssetManagement
                 new KeyValuePair<string, string>("If-Match", request.IfMatch)
             };
 
+            // make request
             string response = await HttpActionAsync(HttpMethod.Delete, uri, headers: headers);
+            var asset = JsonConvert.DeserializeObject<Asset>(response);
+
+            return asset;
+        }
+
+        /// <summary>
+        /// Read the root asset of the user 
+        /// </summary>
+        public async Task<Asset> GetRootAssetAsync(GetRootAssetRequest request)
+        {
+            // prepare URI string
+            string uri = _baseUri + "/assets/root";
+
+            // prepare HTTP request headers
+            List<KeyValuePair<string, string>> headers = new List<KeyValuePair<string, string>>
+            {
+                new KeyValuePair<string, string>("If-None-Match", request.IfNoneMatch)
+            };
+
+            // make request
+            string response = await HttpActionAsync(HttpMethod.Get, uri, headers: headers);
             var asset = JsonConvert.DeserializeObject<Asset>(response);
 
             return asset;
@@ -339,43 +623,63 @@ namespace MindSphereSdk.Core.AssetManagement
         /// <summary>
         /// Get all variables of an asset 
         /// </summary>
-        public async Task<IEnumerable<VariableDetail>> ListAssetVariablesAsync(ListAssetVariablesRequest request)
+        public async Task<ResourceList<VariableDetail>> ListAssetVariablesAsync(ListAssetVariablesRequest request)
         {
-            // prepare query string
+            // prepare URI string
             QueryStringBuilder queryBuilder = new QueryStringBuilder();
             queryBuilder.AddQuery("size", request.Size);
             queryBuilder.AddQuery("page", request.Page);
             queryBuilder.AddQuery("sort", request.Sort);
             queryBuilder.AddQuery("filter", request.Filter);
-
+            queryBuilder.AddQuery("includeShared", request.IncludeShared);
             string uri = _baseUri + "/assets/" + request.Id + "/variables" + queryBuilder.ToString();
 
-            string response = await HttpActionAsync(HttpMethod.Get, uri);
-            var variableListWrapper = JsonConvert.DeserializeObject<MindSphereResourceWrapper<EmbeddedVariableList>>(response);
-            var variableList = variableListWrapper.Embedded.Variables;
+            // prepare HTTP request headers
+            List<KeyValuePair<string, string>> headers = new List<KeyValuePair<string, string>>
+            {
+                new KeyValuePair<string, string>("If-None-Match", request.IfNoneMatch)
+            };
 
-            return variableList;
+            // make request
+            string response = await HttpActionAsync(HttpMethod.Get, uri, headers: headers);
+            var variableListWrapper = JsonConvert.DeserializeObject<MindSphereResourceWrapper<EmbeddedVariableList>>(response);
+
+            // format output
+            var output = new ResourceList<VariableDetail>();
+            output.Data = variableListWrapper.Embedded.Variables;
+            output.Page = variableListWrapper.Page;
+            return output;
         }
 
         /// <summary>
         /// Get all aspects of an asset 
         /// </summary>
-        public async Task<IEnumerable<AspectFullDetail>> ListAssetAspectsAsync(ListAssetAspectsRequest request)
+        public async Task<ResourceList<AspectFullDetail>> ListAssetAspectsAsync(ListAssetAspectsRequest request)
         {
-            // prepare query string
+            // prepare URI string
             QueryStringBuilder queryBuilder = new QueryStringBuilder();
             queryBuilder.AddQuery("size", request.Size);
             queryBuilder.AddQuery("page", request.Page);
             queryBuilder.AddQuery("sort", request.Sort);
             queryBuilder.AddQuery("filter", request.Filter);
-
+            queryBuilder.AddQuery("includeShared", request.IncludeShared);
             string uri = _baseUri + "/assets/" + request.Id + "/aspects" + queryBuilder.ToString();
 
-            string response = await HttpActionAsync(HttpMethod.Get, uri);
-            var aspectListWrapper = JsonConvert.DeserializeObject<MindSphereResourceWrapper<EmbeddedAspectList>>(response);
-            var aspectList = aspectListWrapper.Embedded.Aspects;
+            // prepare HTTP request headers
+            List<KeyValuePair<string, string>> headers = new List<KeyValuePair<string, string>>
+            {
+                new KeyValuePair<string, string>("If-None-Match", request.IfNoneMatch)
+            };
 
-            return aspectList;
+            // make request
+            string response = await HttpActionAsync(HttpMethod.Get, uri, headers: headers);
+            var aspectListWrapper = JsonConvert.DeserializeObject<MindSphereResourceWrapper<EmbeddedAspectList>>(response);
+
+            // format output
+            var output = new ResourceList<AspectFullDetail>();
+            output.Data = aspectListWrapper.Embedded.Aspects;
+            output.Page = aspectListWrapper.Page;
+            return output;
         }
 
         #endregion
@@ -387,7 +691,16 @@ namespace MindSphereSdk.Core.AssetManagement
         /// </summary>
         public async Task<Asset> PutAssetLocationAsync(PutAssetLocationRequest request)
         {
-            string uri = _baseUri + "/assets/" + request.Id + "/location";
+            // prepare URI string
+            QueryStringBuilder queryBuilder = new QueryStringBuilder();
+            queryBuilder.AddQuery("includeShared", request.IncludeShared);
+            string uri = _baseUri + "/assets/" + request.Id + "/location" + queryBuilder.ToString();
+
+            // prepare HTTP request headers
+            List<KeyValuePair<string, string>> headers = new List<KeyValuePair<string, string>>
+            {
+                new KeyValuePair<string, string>("If-Match", request.IfMatch)
+            };
 
             // prepare HTTP request body
             string jsonString = JsonConvert.SerializeObject(request.Body,
@@ -397,12 +710,7 @@ namespace MindSphereSdk.Core.AssetManagement
                 });
             StringContent body = new StringContent(jsonString, Encoding.UTF8, "application/json");
 
-            // prepare HTTP request headers
-            List<KeyValuePair<string, string>> headers = new List<KeyValuePair<string, string>>
-            {
-                new KeyValuePair<string, string>("If-Match", request.IfMatch)
-            };
-
+            // make request
             string response = await HttpActionAsync(HttpMethod.Put, uri, body, headers);
             var asset = JsonConvert.DeserializeObject<Asset>(response);
 
@@ -414,7 +722,10 @@ namespace MindSphereSdk.Core.AssetManagement
         /// </summary>
         public async Task<Asset> DeleteAssetLocationAsync(DeleteAssetLocationRequest request)
         {
-            string uri = _baseUri + "/assets/" + request.Id + "/location";
+            // prepare URI string
+            QueryStringBuilder queryBuilder = new QueryStringBuilder();
+            queryBuilder.AddQuery("includeShared", request.IncludeShared);
+            string uri = _baseUri + "/assets/" + request.Id + "/location" + queryBuilder.ToString();
 
             // prepare HTTP request headers
             List<KeyValuePair<string, string>> headers = new List<KeyValuePair<string, string>>
@@ -422,6 +733,7 @@ namespace MindSphereSdk.Core.AssetManagement
                 new KeyValuePair<string, string>("If-Match", request.IfMatch)
             };
 
+            // make request
             string response = await HttpActionAsync(HttpMethod.Delete, uri, headers: headers);
             var asset = JsonConvert.DeserializeObject<Asset>(response);
 
@@ -433,76 +745,11 @@ namespace MindSphereSdk.Core.AssetManagement
         #region File
 
         /// <summary>
-        /// Get metadata of uploaded files.
-        /// </summary>
-        public async Task<IEnumerable<File>> ListFilesAsync(ListFilesRequest request)
-        {
-            // prepare query string
-            QueryStringBuilder queryBuilder = new QueryStringBuilder();
-            queryBuilder.AddQuery("size", request.Size);
-            queryBuilder.AddQuery("page", request.Page);
-            queryBuilder.AddQuery("sort", request.Sort);
-            queryBuilder.AddQuery("filter", request.Filter);
-
-            string uri = _baseUri + "/files/" + queryBuilder.ToString();
-
-            string response = await HttpActionAsync(HttpMethod.Get, uri);
-            var fileListWrapper = JsonConvert.DeserializeObject<MindSphereResourceWrapper<EmbeddedFileList>>(response);
-
-            if (fileListWrapper.Embedded != null && fileListWrapper.Embedded.Files != null)
-            {
-                return fileListWrapper.Embedded.Files;
-            }
-
-            return new List<File>();
-        }
-
-        /// <summary>
-        /// Returns a file's metadata by its id
-        /// </summary>
-        public async Task<File> GetFileAsync(GetFileRequest request)
-        {
-            string uri = _baseUri + "/files/" + request.Id;
-
-            string response = await HttpActionAsync(HttpMethod.Get, uri);
-            var file = JsonConvert.DeserializeObject<File>(response);
-
-            return file;
-        }
-
-        /// <summary>
-        /// Returns a file by its id
-        /// </summary>
-        public async Task<string> DownloadFileAsync(DownloadFileRequest request)
-        {
-            string uri = _baseUri + "/files/" + request.Id + "/file";
-
-            string response = await HttpActionAsync(HttpMethod.Get, uri);
-
-            return response;
-        }
-
-        /// <summary>
-        /// Delete a file
-        /// </summary>
-        public async Task DeleteFileAsync(DeleteFileRequest request)
-        {
-            string uri = _baseUri + "/files/" + request.Id;
-
-            // prepare HTTP request headers
-            List<KeyValuePair<string, string>> headers = new List<KeyValuePair<string, string>>
-            {
-                new KeyValuePair<string, string>("If-Match", request.IfMatch)
-            };
-
-            await HttpActionAsync(HttpMethod.Delete, uri, headers: headers);
-        }
-
-        /// <summary>
         /// Upload file to be used in Asset Management
         /// </summary>
         public async Task<File> UploadFileAsync(UploadFileRequest request)
         {
+            // prepare URI string
             string uri = _baseUri + "/files/";
 
             // prepare HTTP request body
@@ -514,7 +761,75 @@ namespace MindSphereSdk.Core.AssetManagement
             body.AddStringContentIfNotNull(request.Scope, "scope");
             body.AddStringContentIfNotNull(request.Description, "description");
 
+            // make request
             string response = await HttpActionAsync(HttpMethod.Post, uri, body);
+            var file = JsonConvert.DeserializeObject<File>(response);
+
+            return file;
+        }
+
+        /// <summary>
+        /// Get metadata of uploaded files.
+        /// </summary>
+        public async Task<ResourceList<File>> ListFilesAsync(ListFilesRequest request)
+        {
+            // prepare URI string
+            QueryStringBuilder queryBuilder = new QueryStringBuilder();
+            queryBuilder.AddQuery("size", request.Size);
+            queryBuilder.AddQuery("page", request.Page);
+            queryBuilder.AddQuery("sort", request.Sort);
+            queryBuilder.AddQuery("filter", request.Filter);
+            string uri = _baseUri + "/files/" + queryBuilder.ToString();
+
+            // prepare HTTP request headers
+            List<KeyValuePair<string, string>> headers = new List<KeyValuePair<string, string>>
+            {
+                new KeyValuePair<string, string>("If-None-Match", request.IfNoneMatch)
+            };
+
+            // make request
+            string response = await HttpActionAsync(HttpMethod.Get, uri, headers: headers);
+            var fileListWrapper = JsonConvert.DeserializeObject<MindSphereResourceWrapper<EmbeddedFileList>>(response);
+
+            // format output
+            var output = new ResourceList<File>();
+            if (fileListWrapper.Embedded != null && fileListWrapper.Embedded.Files != null)
+            {
+                output.Data = fileListWrapper.Embedded.Files;
+                output.Page = fileListWrapper.Page;
+            }
+            return output;
+        }
+
+        /// <summary>
+        /// Returns a file by its id
+        /// </summary>
+        public async Task<string> DownloadFileAsync(DownloadFileRequest request)
+        {
+            // prepare URI string
+            string uri = _baseUri + "/files/" + request.Id + "/file";
+
+            // make request
+            string response = await HttpActionAsync(HttpMethod.Get, uri);
+            return response;
+        }
+
+        /// <summary>
+        /// Returns a file's metadata by its id
+        /// </summary>
+        public async Task<File> GetFileAsync(GetFileRequest request)
+        {
+            // prepare URI string
+            string uri = _baseUri + "/files/" + request.Id;
+
+            // prepare HTTP request headers
+            List<KeyValuePair<string, string>> headers = new List<KeyValuePair<string, string>>
+            {
+                new KeyValuePair<string, string>("If-None-Match", request.IfNoneMatch)
+            };
+
+            // make request
+            string response = await HttpActionAsync(HttpMethod.Get, uri, headers: headers);
             var file = JsonConvert.DeserializeObject<File>(response);
 
             return file;
@@ -525,7 +840,14 @@ namespace MindSphereSdk.Core.AssetManagement
         /// </summary>
         public async Task<File> UpdateFileAsync(UpdateFileRequest request)
         {
+            // prepare URI string
             string uri = _baseUri + "/files/" + request.Id;
+
+            // prepare HTTP request headers
+            List<KeyValuePair<string, string>> headers = new List<KeyValuePair<string, string>>
+            {
+                new KeyValuePair<string, string>("If-Match", request.IfMatch)
+            };
 
             // prepare HTTP request body
             MultipartFormDataContent body = new MultipartFormDataContent
@@ -536,98 +858,20 @@ namespace MindSphereSdk.Core.AssetManagement
             body.AddStringContentIfNotNull(request.Scope, "scope");
             body.AddStringContentIfNotNull(request.Description, "description");
 
-            // prepare HTTP request headers
-            List<KeyValuePair<string, string>> headers = new List<KeyValuePair<string, string>>
-            {
-                new KeyValuePair<string, string>("If-Match", request.IfMatch)
-            };
-
+            // make request
             string response = await HttpActionAsync(HttpMethod.Put, uri, body, headers);
             var file = JsonConvert.DeserializeObject<File>(response);
 
             return file;
         }
 
-        #endregion
-
-        #region Asset type
-
         /// <summary>
-        /// List all asset types
+        /// Delete a file
         /// </summary>
-        public async Task<IEnumerable<AssetType>> ListAssetTypesAsync(ListAssetTypesRequest request)
+        public async Task DeleteFileAsync(DeleteFileRequest request)
         {
-            // prepare query string
-            QueryStringBuilder queryBuilder = new QueryStringBuilder();
-            queryBuilder.AddQuery("size", request.Size);
-            queryBuilder.AddQuery("page", request.Page);
-            queryBuilder.AddQuery("sort", request.Sort);
-            queryBuilder.AddQuery("filter", request.Filter);
-
-            string uri = _baseUri + "/assettypes" + queryBuilder.ToString();
-
-            string response = await HttpActionAsync(HttpMethod.Get, uri);
-            var assetTypeListWrapper = JsonConvert.DeserializeObject<MindSphereResourceWrapper<EmbeddedAssetTypeList>>(response);
-            var assetTypeList = assetTypeListWrapper.Embedded.AssetTypes;
-
-            return assetTypeList;
-        }
-
-        /// <summary>
-        /// Read an asset type 
-        /// </summary>
-        public async Task<AssetType> GetAssetTypeAsync(GetAssetTypeRequest request)
-        {
-            string uri = _baseUri + "/assettypes/" + request.Id;
-
-            string response = await HttpActionAsync(HttpMethod.Get, uri);
-            var assetType = JsonConvert.DeserializeObject<AssetType>(response);
-
-            return assetType;
-        }
-
-        /// <summary>
-        /// Create or update an asset type
-        /// </summary>
-        public async Task<AssetType> PutAssetTypeAsync(PutAssetTypeRequest request)
-        {
-            string uri = _baseUri + "/assettypes/" + request.Id;
-
-            // prepare HTTP request body
-            string jsonString = JsonConvert.SerializeObject(request.Body,
-                new JsonSerializerSettings()
-                {
-                    NullValueHandling = NullValueHandling.Ignore
-                });
-            StringContent body = new StringContent(jsonString, Encoding.UTF8, "application/json");
-
-            // prepare HTTP request headers
-            List<KeyValuePair<string, string>> headers = new List<KeyValuePair<string, string>>
-            {
-                new KeyValuePair<string, string>("If-None-Match", request.IfNoneMatch),
-                new KeyValuePair<string, string>("If-Match", request.IfMatch)
-            };
-
-            string response = await HttpActionAsync(HttpMethod.Put, uri, body, headers);
-            var assetType = JsonConvert.DeserializeObject<AssetType>(response);
-
-            return assetType;
-        }
-
-        /// <summary>
-        /// Patch an asset type
-        /// </summary>
-        public async Task<AssetType> PatchAssetTypeAsync(PatchAssetTypeRequest request)
-        {
-            string uri = _baseUri + "/assettypes/" + request.Id;
-
-            // prepare HTTP request body
-            string jsonString = JsonConvert.SerializeObject(request.Body,
-                new JsonSerializerSettings()
-                {
-                    NullValueHandling = NullValueHandling.Ignore
-                });
-            StringContent body = new StringContent(jsonString, Encoding.UTF8, "application/merge-patch+json");
+            // prepare URI string
+            string uri = _baseUri + "/files/" + request.Id;
 
             // prepare HTTP request headers
             List<KeyValuePair<string, string>> headers = new List<KeyValuePair<string, string>>
@@ -635,70 +879,23 @@ namespace MindSphereSdk.Core.AssetManagement
                 new KeyValuePair<string, string>("If-Match", request.IfMatch)
             };
 
-            string response = await HttpActionAsync(new HttpMethod("PATCH"), uri, body, headers);
-            var assetType = JsonConvert.DeserializeObject<AssetType>(response);
-
-            return assetType;
-        }
-
-        /// <summary>
-        /// Delete an asset type 
-        /// </summary>
-        public async Task DeleteAssetTypeAsync(DeleteAssetTypeRequest request)
-        {
-            string uri = _baseUri + "/assettypes/" + request.Id;
-
-            // prepare HTTP request headers
-            List<KeyValuePair<string, string>> headers = new List<KeyValuePair<string, string>>
-            {
-                new KeyValuePair<string, string>("If-Match", request.IfMatch)
-            };
-
+            // make request
             await HttpActionAsync(HttpMethod.Delete, uri, headers: headers);
         }
 
-        /// <summary>
-        /// Save a file assignment to an asset
-        /// </summary>
-        public async Task<AssetType> SaveAssetTypeFileAssignmentAsync(SaveAssetTypeFileAssignmentRequest request)
-        {
-            string uri = _baseUri + "/assettypes/" + request.Id + "/fileAssignments/" + request.Key;
 
-            // prepare HTTP request headers
-            List<KeyValuePair<string, string>> headers = new List<KeyValuePair<string, string>>
-            {
-                new KeyValuePair<string, string>("If-Match", request.IfMatch)
-            };
 
-            // prepare HTTP request body
-            object fileIdObject = new { fileId = request.FileId };
-            StringContent body = new StringContent(JsonConvert.SerializeObject(fileIdObject), Encoding.UTF8, "application/json");
 
-            string response = await HttpActionAsync(HttpMethod.Put, uri, body, headers);
-            var assetType = JsonConvert.DeserializeObject<AssetType>(response);
-
-            return assetType;
-        }
-
-        /// <summary>
-        /// Delete a file assignment from an asset type
-        /// </summary>
-        public async Task<AssetType> DeleteAssetTypeFileAssignmentAsync(DeleteAssetTypeFileAssignmentRequest request)
-        {
-            string uri = _baseUri + "/assettypes/" + request.Id + "/fileAssignments/" + request.Key;
-
-            // prepare HTTP request headers
-            List<KeyValuePair<string, string>> headers = new List<KeyValuePair<string, string>>
-            {
-                new KeyValuePair<string, string>("If-Match", request.IfMatch)
-            };
-
-            string response = await HttpActionAsync(HttpMethod.Delete, uri, headers: headers);
-            var assetType = JsonConvert.DeserializeObject<AssetType>(response);
-
-            return assetType;
-        }
 
         #endregion
+
+        #region Assetmodellock
+
+        // TODO: GET /model/lock
+        // TODO: PUT /model/lock
+
+        #endregion
+
+
     }
 }

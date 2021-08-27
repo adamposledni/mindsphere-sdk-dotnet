@@ -24,9 +24,9 @@ namespace MindSphereSdk.Core.Common
     }
 
     // TODO: docs
-    public class PaginationModel<T>
+    public class ResourceList<T>
     {
-        public IEnumerable<T> Data { get; set; }
+        public IEnumerable<T> Data { get; set; } = new List<T>();
 
         public Page Page { get; set; }
     }
