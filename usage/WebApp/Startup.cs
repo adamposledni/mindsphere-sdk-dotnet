@@ -43,6 +43,12 @@ namespace WebApp
             {
                 options.Credentials = AppCredentials.FromJsonFile(@"mdspcreds.json");
             });
+
+            var sdk = new MindSphereApiSdk(
+                AppCredentials.FromJsonFile("mdspcreds.json"),
+                new ClientConfiguration()
+            );
+            services.AddSingleton<MindSphereApiSdk>(sdk);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

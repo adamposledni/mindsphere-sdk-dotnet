@@ -13,11 +13,13 @@ namespace ConsoleApp
 {
     class Program
     {
-        static async Task Main(string[] args)
+        static async Task Main()
         {
             AppCredentials credentials;
-            ClientConfiguration configuration = new ClientConfiguration();
-            configuration.Proxy = "localhost:5555";
+            ClientConfiguration configuration = new ClientConfiguration
+            {
+                Proxy = "localhost:5555"
+            };
             ListAssetsRequest request = new ListAssetsRequest()
             {
                 Size = 200
@@ -29,7 +31,7 @@ namespace ConsoleApp
                 credentials = AppCredentials.FromJsonFile("mdspcreds.json");
                 var sdk = new MindSphereApiSdk(credentials, configuration);
                 var assetClient = sdk.GetAssetManagementClient();
-                assets = (await assetClient.ListAssetsAsync(request)).ToList();
+                assets = (await assetClient.ListAssetsAsync(request)).Data.ToList();
             }
             catch (Exception ex)
             {
