@@ -5,10 +5,12 @@ using MindSphereSdk.Core.Helpers;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -121,14 +123,17 @@ namespace MindSphereSdk.Core.Common
             JwtSecurityToken token = handler.ReadJwtToken(_accessToken);
 
             string expString = token.Claims.First(claim => claim.Type == "exp").Value;
-            DateTime exp = DateTimeOffset.FromUnixTimeSeconds(long.Parse(expString)).LocalDateTime;
+            DateTime exp = DateTimeOffset.FromUnixTimeSeconds(long.Parse(expString)).UtcDateTime;
             // if exp is in the past (with minutes skew)
-            if (DateTime.Now.AddMinutes(minutesSkew) >= exp) return false;
+            if (DateTime.UtcNow.AddMinutes(minutesSkew) >= exp) return false;
 
             string iatString = token.Claims.First(claim => claim.Type == "iat").Value;
-            DateTime iat = DateTimeOffset.FromUnixTimeSeconds(long.Parse(iatString)).LocalDateTime;
+            DateTime iat = DateTimeOffset.FromUnixTimeSeconds(long.Parse(iatString)).UtcDateTime;
             // if iat is in the future (with minutes skew)
-            if (DateTime.Now.AddMinutes(minutesSkew) <= iat) return false;
+            if (DateTime.UtcNow.AddMinutes(minutesSkew) <= iat) return false;
+
+            // check signiture algo
+            if (token.SignatureAlgorithm != "RS256") return false;
 
             return true;
         }
