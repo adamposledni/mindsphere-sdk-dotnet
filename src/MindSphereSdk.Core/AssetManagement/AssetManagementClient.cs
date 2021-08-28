@@ -892,19 +892,47 @@ namespace MindSphereSdk.Core.AssetManagement
             await HttpActionAsync(HttpMethod.Delete, uri, headers: headers);
         }
 
-
-
-
-
         #endregion
 
         #region Assetmodellock
 
-        // TODO: GET /model/lock
-        // TODO: PUT /model/lock
+        /// <summary>
+        /// Returns lock state of an asset model
+        /// </summary>
+        public async Task<LockStateWithJobs> GetLockStateAsync()
+        {
+            // prepare URI string
+            string uri = _baseUri + "/model/lock";
+
+            // make request
+            string response = await HttpActionAsync(HttpMethod.Get, uri);
+            var lockState = JsonConvert.DeserializeObject<LockStateWithJobs>(response);
+
+            return lockState;
+        }
+
+        /// <summary>
+        /// Enable/disable lock state of an asset model
+        /// </summary>
+        public async Task<LockState> PutLockStateAsync(PutLockStateRequest request)
+        {
+            // prepare URI string
+            QueryStringBuilder queryBuilder = new QueryStringBuilder();
+            queryBuilder.AddQuery("enabled", request.Enabled);
+            string uri = _baseUri + "/model/lock" + queryBuilder.ToString();
+
+            // prepare HTTP request body
+            // endpoint needs content type header
+            StringContent body = new StringContent("", Encoding.UTF8, "application/json");
+
+            // make request
+            string response = await HttpActionAsync(HttpMethod.Put, uri, body);
+            var lockState = JsonConvert.DeserializeObject<LockState>(response);
+
+            return lockState;
+        }
+
 
         #endregion
-
-
     }
 }

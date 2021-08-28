@@ -533,6 +533,31 @@ namespace MindSphereSdk.Core.AssetManagement
 
     #endregion
 
+    #region Asset model lock
+
+    /// <summary>
+    /// Lock state of an asset model
+    /// </summary>
+    public class LockStateWithJobs
+    {
+        [JsonProperty("enabled")]
+        public bool Enabled { get; set; }
+
+        [JsonProperty("jobs")]
+        public IEnumerable<string> Jobs { get; set; }
+    }
+
+    /// <summary>
+    /// Lock state of an asset model
+    /// </summary>
+    public class LockState
+    {
+        [JsonProperty("enabled")]
+        public bool Enabled { get; set; }
+    }
+
+    #endregion
+
     #region Request
 
     /// <summary>
@@ -568,7 +593,7 @@ namespace MindSphereSdk.Core.AssetManagement
         /// <summary>
         /// Specifies if the operation should take into account shared aspect types
         /// </summary>
-        public bool IncludeShared { get; set; }
+        public bool? IncludeShared { get; set; }
     }
 
     /// <summary>
@@ -597,7 +622,7 @@ namespace MindSphereSdk.Core.AssetManagement
         /// <summary>
         /// Specifies if the operation should take into account shared aspect types
         /// </summary>
-        public bool IncludeShared { get; set; }
+        public bool? IncludeShared { get; set; }
 
         /// <summary>
         /// Aspect type
@@ -623,7 +648,7 @@ namespace MindSphereSdk.Core.AssetManagement
         /// <summary>
         /// Specifies if the operation should take into account shared aspect types
         /// </summary>
-        public bool IncludeShared { get; set; }
+        public bool? IncludeShared { get; set; }
 
         /// <summary>
         /// Aspect type
@@ -649,7 +674,7 @@ namespace MindSphereSdk.Core.AssetManagement
         /// <summary>
         /// Specifies if the operation should take into account shared aspect types
         /// </summary>
-        public bool IncludeShared { get; set; }
+        public bool? IncludeShared { get; set; }
     }
 
     /// <summary>
@@ -670,7 +695,7 @@ namespace MindSphereSdk.Core.AssetManagement
         /// <summary>
         /// Specifies if the operation should take into account shared aspect types
         /// </summary>
-        public bool IncludeShared { get; set; }
+        public bool? IncludeShared { get; set; }
     }
 
     
@@ -707,12 +732,12 @@ namespace MindSphereSdk.Core.AssetManagement
         /// <summary>
         /// Specifies if the asset type should include all of it’s inherited variables and aspects
         /// </summary>
-        public bool Exploded { get; set; }
+        public bool? Exploded { get; set; }
 
         /// <summary>
         /// Specifies if the operation should take into account shared aspect types
         /// </summary>
-        public bool IncludeShared { get; set; }
+        public bool? IncludeShared { get; set; }
     }
 
     /// <summary>
@@ -741,12 +766,12 @@ namespace MindSphereSdk.Core.AssetManagement
         /// <summary>
         /// Specifies if the asset type should include all of it’s inherited variables and aspects
         /// </summary>
-        public bool Exploded { get; set; }
+        public bool? Exploded { get; set; }
 
         /// <summary>
         /// Specifies if the operation should take into account shared aspect types
         /// </summary>
-        public bool IncludeShared { get; set; }
+        public bool? IncludeShared { get; set; }
 
         /// <summary>
         /// Asset type
@@ -772,12 +797,12 @@ namespace MindSphereSdk.Core.AssetManagement
         /// <summary>
         /// Specifies if the asset type should include all of it’s inherited variables and aspects
         /// </summary>
-        public bool Exploded { get; set; }
+        public bool? Exploded { get; set; }
 
         /// <summary>
         /// Specifies if the operation should take into account shared aspect types
         /// </summary>
-        public bool IncludeShared { get; set; }
+        public bool? IncludeShared { get; set; }
 
         /// <summary>
         /// Asset type
@@ -803,12 +828,12 @@ namespace MindSphereSdk.Core.AssetManagement
         /// <summary>
         /// Specifies if the asset type should include all of it’s inherited variables and aspects
         /// </summary>
-        public bool Exploded { get; set; }
+        public bool? Exploded { get; set; }
 
         /// <summary>
         /// Specifies if the operation should take into account shared aspect types
         /// </summary>
-        public bool IncludeShared { get; set; }
+        public bool? IncludeShared { get; set; }
     }
 
     /// <summary>
@@ -829,7 +854,7 @@ namespace MindSphereSdk.Core.AssetManagement
         /// <summary>
         /// Specifies if the operation should take into account shared aspect types
         /// </summary>
-        public bool IncludeShared { get; set; }
+        public bool? IncludeShared { get; set; }
     }
 
     /// <summary>
@@ -855,7 +880,7 @@ namespace MindSphereSdk.Core.AssetManagement
         /// <summary>
         /// Specifies if the operation should take into account shared aspect types
         /// </summary>
-        public bool IncludeShared { get; set; }
+        public bool? IncludeShared { get; set; }
 
         /// <summary>
         /// File identifier
@@ -886,7 +911,7 @@ namespace MindSphereSdk.Core.AssetManagement
         /// <summary>
         /// Specifies if the operation should take into account shared aspect types
         /// </summary>
-        public bool IncludeShared { get; set; }
+        public bool? IncludeShared { get; set; }
     }
 
     
@@ -923,12 +948,12 @@ namespace MindSphereSdk.Core.AssetManagement
         /// <summary>
         /// Specifies if the operation should take into account shared entities
         /// </summary>
-        public bool IncludeShared { get; set; }
+        public bool? IncludeShared { get; set; }
 
         /// <summary>
         /// Specifies if the assets should include all of it’s inherited variables and aspects from assettype and aspecttype
         /// </summary>
-        public bool BasicFieldsOnly { get; set; }
+        public bool? BasicFieldsOnly { get; set; }
     }
 
     /// <summary>
@@ -939,7 +964,7 @@ namespace MindSphereSdk.Core.AssetManagement
         /// <summary>
         /// Specifies if the operation should take into account shared entities
         /// </summary>
-        public bool IncludeShared { get; set; }
+        public bool? IncludeShared { get; set; }
         
         /// <summary>
         /// Asset
@@ -965,7 +990,7 @@ namespace MindSphereSdk.Core.AssetManagement
         /// <summary>
         /// Specifies if the operation should take into account shared entities
         /// </summary>
-        public bool IncludeShared { get; set; }
+        public bool? IncludeShared { get; set; }
     }
 
     /// <summary>
@@ -986,7 +1011,7 @@ namespace MindSphereSdk.Core.AssetManagement
         /// <summary>
         /// Specifies if the operation should take into account shared entities
         /// </summary>
-        public bool IncludeShared { get; set; }
+        public bool? IncludeShared { get; set; }
 
         /// <summary>
         /// Asset
@@ -1012,7 +1037,7 @@ namespace MindSphereSdk.Core.AssetManagement
         /// <summary>
         /// Specifies if the operation should take into account shared entities
         /// </summary>
-        public bool IncludeShared { get; set; }
+        public bool? IncludeShared { get; set; }
     }
 
     /// <summary>
@@ -1033,7 +1058,7 @@ namespace MindSphereSdk.Core.AssetManagement
         /// <summary>
         /// Specifies if the operation should take into account shared entities
         /// </summary>
-        public bool IncludeShared { get; set; }
+        public bool? IncludeShared { get; set; }
 
         /// <summary>
         /// New parent asset identifier
@@ -1064,7 +1089,7 @@ namespace MindSphereSdk.Core.AssetManagement
         /// <summary>
         /// Specifies if the operation should take into account shared entities
         /// </summary>
-        public bool IncludeShared { get; set; }
+        public bool? IncludeShared { get; set; }
 
         /// <summary>
         /// File identifier
@@ -1095,7 +1120,7 @@ namespace MindSphereSdk.Core.AssetManagement
         /// <summary>
         /// Specifies if the operation should take into account shared entities
         /// </summary>
-        public bool IncludeShared { get; set; }
+        public bool? IncludeShared { get; set; }
     }
 
     /// <summary>
@@ -1148,7 +1173,7 @@ namespace MindSphereSdk.Core.AssetManagement
         /// <summary>
         /// Specifies if the operation should take into account shared entities
         /// </summary>
-        public bool IncludeShared { get; set; }
+        public bool? IncludeShared { get; set; }
     }
 
     /// <summary>
@@ -1189,7 +1214,7 @@ namespace MindSphereSdk.Core.AssetManagement
         /// <summary>
         /// Specifies if the operation should take into account shared entities
         /// </summary>
-        public bool IncludeShared { get; set; }
+        public bool? IncludeShared { get; set; }
     }
 
 
@@ -1211,7 +1236,7 @@ namespace MindSphereSdk.Core.AssetManagement
         /// <summary>
         /// Specifies if the operation should take into account shared entities
         /// </summary>
-        public bool IncludeShared { get; set; }
+        public bool? IncludeShared { get; set; }
 
         /// <summary>
         /// Location
@@ -1237,7 +1262,7 @@ namespace MindSphereSdk.Core.AssetManagement
         /// <summary>
         /// Specifies if the operation should take into account shared entities
         /// </summary>
-        public bool IncludeShared { get; set; }
+        public bool? IncludeShared { get; set; }
     }
 
 
@@ -1375,30 +1400,18 @@ namespace MindSphereSdk.Core.AssetManagement
         /// Unique identifier of the file
         /// </summary>
         public string Id { get; set; }
-
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    /// <summary>
+    /// Request for putting lock state
+    /// </summary>
+    public class PutLockStateRequest
+    {
+        /// <summary>
+        /// Lock state of an asset model
+        /// </summary>
+        public bool? Enabled { get; set; }
+    }
 
     #endregion
 }

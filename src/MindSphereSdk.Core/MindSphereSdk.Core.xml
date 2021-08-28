@@ -169,6 +169,16 @@
             Delete a file
             </summary>
         </member>
+        <member name="M:MindSphereSdk.Core.AssetManagement.AssetManagementClient.GetLockStateAsync">
+            <summary>
+            Returns lock state of an asset model
+            </summary>
+        </member>
+        <member name="M:MindSphereSdk.Core.AssetManagement.AssetManagementClient.PutLockStateAsync(MindSphereSdk.Core.AssetManagement.PutLockStateRequest)">
+            <summary>
+            Enable/disable lock state of an asset model
+            </summary>
+        </member>
         <member name="T:MindSphereSdk.Core.AssetManagement.EmbeddedAssetList">
             <summary>
             Embedded asset list
@@ -282,6 +292,16 @@
         <member name="T:MindSphereSdk.Core.AssetManagement.File">
             <summary>
             File metadata
+            </summary>
+        </member>
+        <member name="T:MindSphereSdk.Core.AssetManagement.LockStateWithJobs">
+            <summary>
+            Lock state of an asset model
+            </summary>
+        </member>
+        <member name="T:MindSphereSdk.Core.AssetManagement.LockState">
+            <summary>
+            Lock state of an asset model
             </summary>
         </member>
         <member name="T:MindSphereSdk.Core.AssetManagement.ListAspectTypesRequest">
@@ -1088,6 +1108,11 @@
         <member name="P:MindSphereSdk.Core.AssetManagement.DeleteFileRequest.Id">
             <summary>
             Unique identifier of the file
+            </summary>
+        </member>
+        <member name="T:MindSphereSdk.Core.AssetManagement.PutLockStateRequest">
+            <summary>
+            Request for putting lock state
             </summary>
         </member>
         <member name="T:MindSphereSdk.Core.Authentication.AppCredentials">

@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using MindSphereSdk.AspNetCore;
 using MindSphereSdk.Core.AssetManagement;
 using MindSphereSdk.Core.Common;
 using MindSphereSdk.Core.EventManagement;
@@ -747,6 +746,29 @@ namespace WebApp.Controllers
 
             AssetType assetType = await assetClient.DeleteAssetTypeFileAssignmentAsync(request);
             return StatusCode(200, assetType);
+        }
+
+        #endregion
+
+        #region Asset model lock
+
+        [HttpGet("get-lock-state")]
+        public async Task<ActionResult<LockStateWithJobs>> GetModelLock()
+        {
+            var assetClient = _sdk.GetAssetManagementClient();
+            LockStateWithJobs lockState = await assetClient.GetLockStateAsync();
+
+            return StatusCode(200, lockState);
+        }
+
+        [HttpGet("put-lock-state")]
+        public async Task<ActionResult<LockState>> PutModelLock()
+        {
+            var assetClient = _sdk.GetAssetManagementClient();
+            var request = new PutLockStateRequest() { Enabled = false };
+            LockState lockState = await assetClient.PutLockStateAsync(request);
+
+            return StatusCode(200, lockState);
         }
 
         #endregion

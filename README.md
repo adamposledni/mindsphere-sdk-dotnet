@@ -191,8 +191,8 @@ Client for configuring, reading and managing assets, asset types and aspect type
 **Asset model lock**
 | Method | Endpoint    | SDK               |
 |--------|-------------|-------------------|
-| GET    | /model/lock | *not implemented* |
-| PUT    | /model/lock | *not implemented* |
+| GET    | /model/lock | GetLockStateAsync |
+| PUT    | /model/lock | PutLockStateAsync |
 
 ### List assets
 

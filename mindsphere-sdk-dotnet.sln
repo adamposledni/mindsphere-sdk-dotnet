@@ -9,8 +9,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleApp", "usage\Console
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApp", "usage\WebApp\WebApp.csproj", "{FA62F225-863C-4649-9FBC-52AA7094E46A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MindSphereSdk.AspNetCore", "src\MindSphereSdk.AspNetCore\MindSphereSdk.AspNetCore.csproj", "{733E760B-92B0-4FB8-BD10-51E10C25039C}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MindSphereSdk.Core.Test", "test\MindSphereSdk.Core.Test\MindSphereSdk.Core.Test.csproj", "{10861600-4D9B-483A-92DA-E2B62D9CA331}"
 EndProject
 Global
@@ -31,10 +29,6 @@ Global
 		{FA62F225-863C-4649-9FBC-52AA7094E46A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FA62F225-863C-4649-9FBC-52AA7094E46A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FA62F225-863C-4649-9FBC-52AA7094E46A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{733E760B-92B0-4FB8-BD10-51E10C25039C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{733E760B-92B0-4FB8-BD10-51E10C25039C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{733E760B-92B0-4FB8-BD10-51E10C25039C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{733E760B-92B0-4FB8-BD10-51E10C25039C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{10861600-4D9B-483A-92DA-E2B62D9CA331}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{10861600-4D9B-483A-92DA-E2B62D9CA331}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{10861600-4D9B-483A-92DA-E2B62D9CA331}.Release|Any CPU.ActiveCfg = Release|Any CPU

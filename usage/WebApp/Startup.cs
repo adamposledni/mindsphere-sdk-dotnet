@@ -14,7 +14,6 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using MindSphereSdk.Core.Common;
 using MindSphereSdk.Core.Authentication;
-using MindSphereSdk.AspNetCore;
 
 namespace WebApp
 {
@@ -38,11 +37,6 @@ namespace WebApp
             });
 
             services.AddHttpClient();
-
-            services.AddMindSphereSdkService(options =>
-            {
-                options.Credentials = AppCredentials.FromJsonFile(@"mdspcreds.json");
-            });
 
             var sdk = new MindSphereApiSdk(
                 AppCredentials.FromJsonFile("mdspcreds.json"),
