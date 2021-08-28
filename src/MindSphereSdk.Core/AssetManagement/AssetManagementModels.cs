@@ -95,7 +95,7 @@ namespace MindSphereSdk.Core.AssetManagement
         public string TenantId { get; set; }
 
         [JsonProperty("etag")]
-        public long Etag { get; set; }
+        public int Etag { get; set; }
     }
 
     /// <summary>
@@ -150,7 +150,7 @@ namespace MindSphereSdk.Core.AssetManagement
         public string TenantId { get; set; }
 
         [JsonProperty("etag")]
-        public long Etag { get; set; }
+        public int Etag { get; set; }
 
         [JsonProperty("aspects")]
         public List<AspectDetail> Aspects { get; set; }
@@ -241,7 +241,7 @@ namespace MindSphereSdk.Core.AssetManagement
         public string Subtenant { get; set; }
 
         [JsonProperty("t2Tenant")]
-        public string T2tenant { get; set; }
+        public string T2Tenant { get; set; }
 
         [JsonProperty("assetId")]
         public string AssetId { get; set; }
