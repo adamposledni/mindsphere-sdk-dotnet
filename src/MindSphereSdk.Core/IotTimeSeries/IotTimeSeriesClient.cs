@@ -75,7 +75,6 @@ namespace MindSphereSdk.Core.IotTimeSeries
         /// <summary>
         /// Create or update time series data
         /// </summary>
-        // TODO: docs example
         public async Task PutTimeSeriesAsync(PutTimeSeriesRequest request)
         {
             // prepare URI string
