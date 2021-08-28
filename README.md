@@ -34,7 +34,7 @@ Open-source .NET SDK for [MindSphere](https://siemens.mindsphere.io/) APIs.
 The SDK is hosted as a package on the [nuget.org](https://www.nuget.org/packages/MindSphereSdk.Core/). It is possible to use following command.
 
 ```
-dotnet add package MindSphereSdk.Core --version 1.1
+dotnet add package MindSphereSdk.Core --version 1.1.0
 ```
 
 An alternative is to install MindSphereSdk.Core via NuGet Package Manager.
