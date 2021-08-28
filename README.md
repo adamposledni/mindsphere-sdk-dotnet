@@ -1,14 +1,13 @@
 ![MindSphere image](/other/mdsp.png)
 #  MindSphere SDK for .NET
 
-Open-source .NET SDK for [MindSphere](https://siemens.mindsphere.io/) APIs mainly to support backend development in [ASP.NET Core](https://github.com/dotnet/aspnetcore). 
+Open-source .NET SDK for [MindSphere](https://siemens.mindsphere.io/) APIs. 
 
 
 *This project was started on my own initiative. I am still a student and I am trying my best to develop useful solution for the absence of .NET SDK. Of course, any help is more than welcome. My goal is to develop SDK similar to [MindSphere SDK for Node.js](https://developer.mindsphere.io/resources/mindsphere-sdk-node/index.html).*
 
 
 ❗ Check out new features and changes in the version v1.1.0 -> [CHANGELOG.md](./CHANGELOG.md)  ❗
-
 
 
 ---
