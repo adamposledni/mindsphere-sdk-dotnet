@@ -69,6 +69,11 @@
             Delete a file assignment from an asset type
             </summary>
         </member>
+        <member name="M:MindSphereSdk.Core.AssetManagement.AssetManagementClient.PatchAssetTypeVariablesAsync(MindSphereSdk.Core.AssetManagement.PatchAssetTypeVariablesRequest)">
+            <summary>
+            Update variables from an asset type
+            </summary>
+        </member>
         <member name="M:MindSphereSdk.Core.AssetManagement.AssetManagementClient.ListAssetsAsync(MindSphereSdk.Core.AssetManagement.ListAssetsRequest)">
             <summary>
             List all available assets
@@ -645,6 +650,31 @@
             Specifies if the operation should take into account shared aspect types
             </summary>
         </member>
+        <member name="T:MindSphereSdk.Core.AssetManagement.PatchAssetTypeVariablesRequest">
+            <summary>
+            Request for updating asset type variables
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.AssetManagement.PatchAssetTypeVariablesRequest.IfMatch">
+            <summary>
+            Last known version to facilitate optimistic locking
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.AssetManagement.PatchAssetTypeVariablesRequest.Id">
+            <summary>
+            The type’s id is a unique identifier
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.AssetManagement.PatchAssetTypeVariablesRequest.IncludeShared">
+            <summary>
+            Specifies if the operation should take into account shared aspect types
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.AssetManagement.PatchAssetTypeVariablesRequest.Body">
+            <summary>
+            Variables Dictionary, variable Name is the key and value are the parameters to be updated of the variable
+            </summary>
+        </member>
         <member name="T:MindSphereSdk.Core.AssetManagement.ListAssetsRequest">
             <summary>
             Request for listing assets
@@ -1113,6 +1143,11 @@
         <member name="T:MindSphereSdk.Core.AssetManagement.PutLockStateRequest">
             <summary>
             Request for putting lock state
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.AssetManagement.PutLockStateRequest.Enabled">
+            <summary>
+            Lock state of an asset model
             </summary>
         </member>
         <member name="T:MindSphereSdk.Core.Authentication.AppCredentials">
