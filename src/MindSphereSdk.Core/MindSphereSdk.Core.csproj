@@ -15,8 +15,6 @@
     <Copyright>© Adam Hrouda 2021</Copyright>
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
     <Version>1.1.0</Version>
-    <PackageIcon>mdsp.png</PackageIcon>
-    <PackageIconUrl />
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
