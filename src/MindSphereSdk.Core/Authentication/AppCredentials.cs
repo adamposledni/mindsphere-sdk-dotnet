@@ -1,43 +1,58 @@
-﻿using MindSphereSdk.Core.Common;
-using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
+﻿using Newtonsoft.Json;
 using System.IO;
-using System.Net.Http;
-using System.Text;
 
 namespace MindSphereSdk.Core.Authentication
 {
     /// <summary>
     /// Application credentials for MindSphere API
     /// </summary>
-    public class AppCredentials : Credentials
+    public class AppCredentials : ICredentials
     {
+        /// <summary>
+        /// Client ID
+        /// </summary>
         [JsonProperty("keyStoreClientId")]
         public string KeyStoreClientId { get; set; }
 
+        /// <summary>
+        /// Client secret
+        /// </summary>
         [JsonProperty("keyStoreClientSecret")]
         public string KeyStoreClientSecret { get; set; }
 
+        /// <summary>
+        /// Name of the application
+        /// </summary>
         [JsonProperty("appName")]
         public string AppName { get; set; }
 
+        /// <summary>
+        /// Version of the application
+        /// </summary>
         [JsonProperty("appVersion")]
         public string AppVersion { get; set; }
 
+        /// <summary>
+        /// Host tenant
+        /// </summary>
         [JsonProperty("hostTenant")]
         public string HostTenant { get; set; }
 
+        /// <summary>
+        /// User tenant
+        /// </summary>
         [JsonProperty("userTenant")]
         public string UserTenant { get; set; }
 
+        /// <summary>
+        /// Create a new instance of the AppCredentials
+        /// </summary>
         public AppCredentials(
-            string keyStoreClientId, 
-            string keyStoreClientSecret, 
-            string appName, 
-            string appVersion, 
-            string hostTenant, 
+            string keyStoreClientId,
+            string keyStoreClientSecret,
+            string appName,
+            string appVersion,
+            string hostTenant,
             string userTenant
             )
         {
@@ -57,18 +72,6 @@ namespace MindSphereSdk.Core.Authentication
             string jsonString = File.ReadAllText(path);
             AppCredentials appCredentials = JsonConvert.DeserializeObject<AppCredentials>(jsonString);
             return appCredentials;
-        }
-
-        /// <summary>
-        /// Create specified MindSphere connector based on provided credentials
-        /// </summary>
-        internal override MindSphereConnector GetConnector(ClientConfiguration configuration, HttpClient httpClient)
-        {
-            if (_mindSphereConnector == null)
-            {
-                _mindSphereConnector = new AppMindSphereConnector(this, configuration, httpClient);
-            }
-            return _mindSphereConnector;
         }
     }
 }

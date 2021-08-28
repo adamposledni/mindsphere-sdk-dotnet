@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using MindSphereSdk.AspNetCore;
 using MindSphereSdk.Core.AssetManagement;
+using MindSphereSdk.Core.Common;
 using MindSphereSdk.Core.EventManagement;
 using MindSphereSdk.Core.IotTimeSeries;
 using MindSphereSdk.Core.IotTsAggregates;
@@ -20,33 +20,33 @@ namespace WebApp.Controllers
     [Route("api")]
     public class MainController : ControllerBase
     {
-        private readonly IMindSphereSdkService _mindSphereSdkService;
+        private readonly MindSphereApiSdk _sdk;
 
-        public MainController(IMindSphereSdkService mindSphereSdkService)
+        public MainController(MindSphereApiSdk sdk)
         {
-            _mindSphereSdkService = mindSphereSdkService;
+            _sdk = sdk;
         }
 
         #region Asset
 
         [HttpGet("list-assets")]
-        public async Task<ActionResult<IEnumerable<Asset>>> ListAssets()
+        public async Task<ActionResult<ResourceList<Asset>>> ListAssets()
         {
-            var assetClient = _mindSphereSdkService.GetAssetManagementClient();
+            var assetClient = _sdk.GetAssetManagementClient();
             var request = new ListAssetsRequest()
             {
                 Size = 1,
                 Page = 2
             };
-            List<Asset> assets = (await assetClient.ListAssetsAsync(request)).ToList();
+            var res = await assetClient.ListAssetsAsync(request);
 
-            return StatusCode(200, assets);
+            return StatusCode(200, res);
         }
 
         [HttpGet("get-asset")]
-        public async Task<ActionResult<IEnumerable<Asset>>> GetAsset()
+        public async Task<ActionResult<Asset>> GetAsset()
         {
-            var assetClient = _mindSphereSdkService.GetAssetManagementClient();
+            var assetClient = _sdk.GetAssetManagementClient();
             var request = new GetAssetRequest()
             {
                 Id = "73b2a7cdf27241e5b3f29b07266ff602"
@@ -59,7 +59,7 @@ namespace WebApp.Controllers
         [HttpGet("add-asset")]
         public async Task<ActionResult<Asset>> AddAsset()
         {
-            var assetClient = _mindSphereSdkService.GetAssetManagementClient();
+            var assetClient = _sdk.GetAssetManagementClient();
             var request = new AddAssetRequest()
             {
                 Body = new AssetAdd()
@@ -75,7 +75,7 @@ namespace WebApp.Controllers
         [HttpGet("update-asset")]
         public async Task<ActionResult<Asset>> UpdateAsset()
         {
-            var assetClient = _mindSphereSdkService.GetAssetManagementClient();
+            var assetClient = _sdk.GetAssetManagementClient();
             var request = new UpdateAssetRequest()
             {
                 Body = new AssetUpdate()
@@ -86,14 +86,14 @@ namespace WebApp.Controllers
                 IfMatch = "2"
             };
 
-            Asset response = await assetClient.UpdateAssetAsync(request);
+            Asset response = await assetClient.PutAssetAsync(request);
             return StatusCode(200, response);
         }
 
         [HttpGet("patch-asset")]
         public async Task<ActionResult<Asset>> PatchAsset()
         {
-            var assetClient = _mindSphereSdkService.GetAssetManagementClient();
+            var assetClient = _sdk.GetAssetManagementClient();
             var request = new UpdateAssetRequest()
             {
                 Body = new AssetUpdate()
@@ -111,7 +111,7 @@ namespace WebApp.Controllers
         [HttpGet("delete-asset")]
         public async Task<ActionResult> DeleteAsset()
         {
-            var assetClient = _mindSphereSdkService.GetAssetManagementClient();
+            var assetClient = _sdk.GetAssetManagementClient();
             var request = new DeleteAssetRequest()
             {
                 Id = "8e775e74a9fa4b4f8fcf15e808d7fb10",
@@ -125,7 +125,7 @@ namespace WebApp.Controllers
         [HttpGet("move-asset")]
         public async Task<ActionResult<Asset>> MoveAsset()
         {
-            var assetClient = _mindSphereSdkService.GetAssetManagementClient();
+            var assetClient = _sdk.GetAssetManagementClient();
             var request = new MoveAssetRequest()
             {
                 Id = "73b2a7cdf27241e5b3f29b07266ff602",
@@ -140,8 +140,8 @@ namespace WebApp.Controllers
         [HttpGet("get-root-asset")]
         public async Task<ActionResult<IEnumerable<Asset>>> GetRootAsset()
         {
-            var assetClient = _mindSphereSdkService.GetAssetManagementClient();
-            Asset asset = await assetClient.GetRootAssetAsync();
+            var assetClient = _sdk.GetAssetManagementClient();
+            Asset asset = await assetClient.GetRootAssetAsync(new GetRootAssetRequest());
 
             return StatusCode(200, asset);
         }
@@ -149,7 +149,7 @@ namespace WebApp.Controllers
         [HttpGet("save-asset-file-assignment")]
         public async Task<ActionResult<IEnumerable<Asset>>> SaveAssetFileAssignment()
         {
-            var assetClient = _mindSphereSdkService.GetAssetManagementClient();
+            var assetClient = _sdk.GetAssetManagementClient();
             var request = new SaveAssetFileAssignmentRequest()
             {
                 Id = "73b2a7cdf27241e5b3f29b07266ff602",
@@ -165,7 +165,7 @@ namespace WebApp.Controllers
         [HttpGet("delete-asset-file-assignment")]
         public async Task<ActionResult<IEnumerable<Asset>>> DeleteAssetFileAssignment()
         {
-            var assetClient = _mindSphereSdkService.GetAssetManagementClient();
+            var assetClient = _sdk.GetAssetManagementClient();
             var request = new DeleteAssetFileAssignmentRequest()
             {
                 Id = "73b2a7cdf27241e5b3f29b07266ff602",
@@ -184,12 +184,12 @@ namespace WebApp.Controllers
         [HttpGet("list-asset-variables")]
         public async Task<ActionResult<IEnumerable<VariableDetail>>> ListAssetVariables()
         {
-            var assetClient = _mindSphereSdkService.GetAssetManagementClient();
+            var assetClient = _sdk.GetAssetManagementClient();
             var request = new ListAssetVariablesRequest()
             {
                 Id = "8e16eb2d33774c22b94d9fa4792753b9"
             };
-            var variables = (await assetClient.ListAssetVariablesAsync(request)).ToList();
+            var variables = (await assetClient.ListAssetVariablesAsync(request)).Data.ToList();
 
             return StatusCode(200, variables);
         }
@@ -197,12 +197,12 @@ namespace WebApp.Controllers
         [HttpGet("list-asset-apects")]
         public async Task<ActionResult<IEnumerable<AspectFullDetail>>> ListAssetAspects()
         {
-            var assetClient = _mindSphereSdkService.GetAssetManagementClient();
+            var assetClient = _sdk.GetAssetManagementClient();
             var request = new ListAssetAspectsRequest()
             {
                 Id = "8e16eb2d33774c22b94d9fa4792753b9"
             };
-            var aspects = (await assetClient.ListAssetAspectsAsync(request)).ToList();
+            var aspects = (await assetClient.ListAssetAspectsAsync(request)).Data.ToList();
 
             return StatusCode(200, aspects);
         }
@@ -214,7 +214,7 @@ namespace WebApp.Controllers
         [HttpGet("put-asset-location")]
         public async Task<ActionResult<Asset>> PutAssetLocation()
         {
-            var assetClient = _mindSphereSdkService.GetAssetManagementClient();
+            var assetClient = _sdk.GetAssetManagementClient();
             var request = new PutAssetLocationRequest()
             {
                 Body = new Location()
@@ -235,7 +235,7 @@ namespace WebApp.Controllers
         [HttpGet("delete-asset-location")]
         public async Task<ActionResult<Asset>> DeleteAssetLocation()
         {
-            var assetClient = _mindSphereSdkService.GetAssetManagementClient();
+            var assetClient = _sdk.GetAssetManagementClient();
             var request = new DeleteAssetLocationRequest()
             {
                 Id = "8e16eb2d33774c22b94d9fa4792753b9",
@@ -253,12 +253,12 @@ namespace WebApp.Controllers
         [HttpGet("list-files")]
         public async Task<ActionResult<IEnumerable<File>>> ListFiles()
         {
-            var assetClient = _mindSphereSdkService.GetAssetManagementClient();
+            var assetClient = _sdk.GetAssetManagementClient();
             var request = new ListFilesRequest()
             {
                 Size = 100
             };
-            var files = (await assetClient.ListFilesAsync(request)).ToList();
+            var files = (await assetClient.ListFilesAsync(request)).Data.ToList();
 
             return StatusCode(200, files);
         }
@@ -266,7 +266,7 @@ namespace WebApp.Controllers
         [HttpGet("get-file")]
         public async Task<ActionResult<File>> GetFile()
         {
-            var assetClient = _mindSphereSdkService.GetAssetManagementClient();
+            var assetClient = _sdk.GetAssetManagementClient();
             var request = new GetFileRequest()
             {
                 Id = "fe81d2c22a9448eea41d0f460e5a5731"
@@ -279,7 +279,7 @@ namespace WebApp.Controllers
         [HttpGet("download-file")]
         public async Task<ActionResult<string>> DownloadFile()
         {
-            var assetClient = _mindSphereSdkService.GetAssetManagementClient();
+            var assetClient = _sdk.GetAssetManagementClient();
             var request = new DownloadFileRequest()
             {
                 Id = "d50316fdc608471c97cbe9a92a7ac4fc"
@@ -292,7 +292,7 @@ namespace WebApp.Controllers
         [HttpGet("delete-file")]
         public async Task<ActionResult> DeleteFile()
         {
-            var assetClient = _mindSphereSdkService.GetAssetManagementClient();
+            var assetClient = _sdk.GetAssetManagementClient();
             var request = new DeleteFileRequest()
             {
                 Id = "fe81d2c22a9448eea41d0f460e5a5731",
@@ -306,7 +306,7 @@ namespace WebApp.Controllers
         [HttpGet("upload-file")]
         public async Task<ActionResult<File>> UploadFile()
         {
-            var assetClient = _mindSphereSdkService.GetAssetManagementClient();
+            var assetClient = _sdk.GetAssetManagementClient();
             var fs = new FileStream("test.txt", FileMode.Open);
 
             var request = new UploadFileRequest()
@@ -322,7 +322,7 @@ namespace WebApp.Controllers
         [HttpGet("update-file")]
         public async Task<ActionResult<File>> UpdateFile()
         {
-            var assetClient = _mindSphereSdkService.GetAssetManagementClient();
+            var assetClient = _sdk.GetAssetManagementClient();
             var fs = new FileStream("updated-test.txt", FileMode.Open);
 
             var request = new UpdateFileRequest()
@@ -346,7 +346,7 @@ namespace WebApp.Controllers
         [HttpGet("get-timeseries")]
         public async Task<ActionResult<IEnumerable<TestTimeSeriesData>>> GetTimeSeries()
         {
-            var iotClient = _mindSphereSdkService.GetIotTimeSeriesClient();
+            var iotClient = _sdk.GetIotTimeSeriesClient();
             var request = new GetTimeSeriesRequest()
             {
                 EntityId = "ec206f76b04a49a4938c1573b35b6688",
@@ -360,10 +360,10 @@ namespace WebApp.Controllers
             return StatusCode(200, timeSeries);
         }
 
-        [HttpGet("put-timeseries")]
-        public async Task<ActionResult> PutTimeSeries()
+        [HttpGet("put-timeseries-multiple")]
+        public async Task<ActionResult> PutTimeSeriesMultiple()
         {
-            var iotClient = _mindSphereSdkService.GetIotTimeSeriesClient();
+            var iotClient = _sdk.GetIotTimeSeriesClient();
             DateTime nowUtc = DateTime.Now.ToUniversalTime();
 
             List<TestTimeSeriesData> timeSeriesData = new()
@@ -386,9 +386,36 @@ namespace WebApp.Controllers
                 }
             };
 
-            PutTimeSeriesRequest request = new()
+            PutTimeSeriesMultipleRequest request = new()
             {
                 TimeSeries = timeSeriesObjects
+            };
+            await iotClient.PutTimeSeriesMultipleAsync(request);
+
+            return StatusCode(201);
+        }
+
+        [HttpGet("put-timeseries")]
+        public async Task<ActionResult> PutTimeSeries()
+        {
+            var iotClient = _sdk.GetIotTimeSeriesClient();
+            DateTime nowUtc = DateTime.Now.ToUniversalTime();
+
+            List<TestTimeSeriesData> timeSeriesData = new()
+            {
+                new TestTimeSeriesData(nowUtc, 0.5, 0.7, 0.3),
+                new TestTimeSeriesData(nowUtc.AddMinutes(1), 0.8, 1.2, 0.7),
+                new TestTimeSeriesData(nowUtc.AddMinutes(2), 1.6, 0.2, 0.5)
+            };
+            //timeSeriesData.Add(new { _time = DateTime.Now, x = 0.5, y = 0.7, z = 0.3 });
+            //timeSeriesData.Add(new { _time = DateTime.Now.AddMinutes(1), x = 0.8, y = 1.2, z = 0.7 });
+            //timeSeriesData.Add(new { _time = DateTime.Now.AddMinutes(2), x = 1.6, y = 0.2, z = 0.5 });
+
+            PutTimeSeriesRequest request = new()
+            {
+                Data = timeSeriesData,
+                EntityId = "ec206f76b04a49a4938c1573b35b6688",
+                PropertySetName = "acceleration"
             };
             await iotClient.PutTimeSeriesAsync(request);
 
@@ -398,7 +425,7 @@ namespace WebApp.Controllers
         [HttpGet("delete-timeseries")]
         public async Task<ActionResult> DeleteTimeSeries()
         {
-            var iotClient = _mindSphereSdkService.GetIotTimeSeriesClient();
+            var iotClient = _sdk.GetIotTimeSeriesClient();
             var request = new DeleteTimeSeriesRequest()
             {
                 EntityId = "ec206f76b04a49a4938c1573b35b6688",
@@ -418,7 +445,7 @@ namespace WebApp.Controllers
         [HttpGet("get-aggregate-timeseries")]
         public async Task<ActionResult<IEnumerable<TestAggregateTsData>>> GetAggregateTimeSeries()
         {
-            var iotAggregClient = _mindSphereSdkService.GetIotTsAggregateClient();
+            var iotAggregClient = _sdk.GetIotTsAggregateClient();
             var request = new GetAggregateTimeSeriesRequest()
             {
                 AssetId = "ec206f76b04a49a4938c1573b35b6688",
@@ -440,12 +467,12 @@ namespace WebApp.Controllers
         [HttpGet("list-aspect-types")]
         public async Task<ActionResult<IEnumerable<AspectType>>> ListAspectTypes()
         {
-            var assetClient = _mindSphereSdkService.GetAssetManagementClient();
+            var assetClient = _sdk.GetAssetManagementClient();
             var request = new ListAspectTypesRequest()
             {
                 Size = 100
             };
-            List<AspectType> aspectTypes = (await assetClient.ListAspectTypesAsync(request)).ToList();
+            List<AspectType> aspectTypes = (await assetClient.ListAspectTypesAsync(request)).Data.ToList();
 
             return StatusCode(200, aspectTypes);
         }
@@ -453,7 +480,7 @@ namespace WebApp.Controllers
         [HttpGet("get-aspect-types")]
         public async Task<ActionResult<AspectType>> GetAspectType()
         {
-            var assetClient = _mindSphereSdkService.GetAssetManagementClient();
+            var assetClient = _sdk.GetAssetManagementClient();
             var request = new GetAspectTypeRequest()
             {
                 Id = "iiotdgli.acceleration"
@@ -466,7 +493,7 @@ namespace WebApp.Controllers
         [HttpGet("delete-aspect-types")]
         public async Task<ActionResult> DeleteAspectType()
         {
-            var assetClient = _mindSphereSdkService.GetAssetManagementClient();
+            var assetClient = _sdk.GetAssetManagementClient();
             var request = new DeleteAspectTypeRequest()
             {
                 Id = "iiotdgli.My_new_asset",
@@ -480,7 +507,7 @@ namespace WebApp.Controllers
         [HttpGet("add-aspect-types")]
         public async Task<ActionResult<AspectType>> AddAspectType()
         {
-            var assetClient = _mindSphereSdkService.GetAssetManagementClient();
+            var assetClient = _sdk.GetAssetManagementClient();
 
             var newAspectType = new AspectTypeUpdate()
             {
@@ -512,7 +539,7 @@ namespace WebApp.Controllers
         [HttpGet("update-aspect-types")]
         public async Task<ActionResult<AspectType>> UpdateAspectType()
         {
-            var assetClient = _mindSphereSdkService.GetAssetManagementClient();
+            var assetClient = _sdk.GetAssetManagementClient();
 
             var updatedAspectType = new AspectTypeUpdate()
             {
@@ -544,7 +571,7 @@ namespace WebApp.Controllers
         [HttpGet("patch-aspect-types")]
         public async Task<ActionResult<AspectType>> PatchAspectType()
         {
-            var assetClient = _mindSphereSdkService.GetAssetManagementClient();
+            var assetClient = _sdk.GetAssetManagementClient();
 
             var updatedAspectType = new AspectTypeUpdate()
             {
@@ -569,12 +596,12 @@ namespace WebApp.Controllers
         [HttpGet("list-asset-types")]
         public async Task<ActionResult<IEnumerable<AssetType>>> ListAssetTypes()
         {
-            var assetClient = _mindSphereSdkService.GetAssetManagementClient();
+            var assetClient = _sdk.GetAssetManagementClient();
             var request = new ListAssetTypesRequest()
             {
                 Size = 100
             };
-            List<AssetType> aspectTypes = (await assetClient.ListAssetTypesAsync(request)).ToList();
+            List<AssetType> aspectTypes = (await assetClient.ListAssetTypesAsync(request)).Data.ToList();
 
             return StatusCode(200, aspectTypes);
         }
@@ -582,7 +609,7 @@ namespace WebApp.Controllers
         [HttpGet("get-asset-type")]
         public async Task<ActionResult<AssetType>> GetAssetType()
         {
-            var assetClient = _mindSphereSdkService.GetAssetManagementClient();
+            var assetClient = _sdk.GetAssetManagementClient();
             var request = new GetAssetTypeRequest()
             {
                 Id = "core.basicagent"
@@ -595,7 +622,7 @@ namespace WebApp.Controllers
         [HttpGet("add-asset-type")]
         public async Task<ActionResult<AssetType>> AddAssetType()
         {
-            var assetClient = _mindSphereSdkService.GetAssetManagementClient();
+            var assetClient = _sdk.GetAssetManagementClient();
 
             var aspects = new List<AspectPut>
             {
@@ -626,7 +653,7 @@ namespace WebApp.Controllers
         [HttpGet("update-asset-type")]
         public async Task<ActionResult<AssetType>> UpdateAssetType()
         {
-            var assetClient = _mindSphereSdkService.GetAssetManagementClient();
+            var assetClient = _sdk.GetAssetManagementClient();
 
             var aspects = new List<AspectPut>
             {
@@ -657,7 +684,7 @@ namespace WebApp.Controllers
         [HttpGet("patch-asset-type")]
         public async Task<ActionResult<AssetType>> PatchAssetType()
         {
-            var assetClient = _mindSphereSdkService.GetAssetManagementClient();
+            var assetClient = _sdk.GetAssetManagementClient();
 
             var updatedAssetType = new AssetTypeUpdate()
             {
@@ -678,7 +705,7 @@ namespace WebApp.Controllers
         [HttpGet("delete-asset-type")]
         public async Task<ActionResult<AssetType>> DeleteAssetType()
         {
-            var assetClient = _mindSphereSdkService.GetAssetManagementClient();
+            var assetClient = _sdk.GetAssetManagementClient();
 
             var request = new DeleteAssetTypeRequest()
             {
@@ -693,8 +720,8 @@ namespace WebApp.Controllers
         [HttpGet("save-asset-type-file-assignment")]
         public async Task<ActionResult<IEnumerable<AssetType>>> SaveAssetTypeFileAssignment()
         {
-            var assetClient = _mindSphereSdkService.GetAssetManagementClient();
-            var request = new SaveAssetTypeFileAssignmentRequest()
+            var assetClient = _sdk.GetAssetManagementClient();
+            var request = new AddAssetTypeFileAssignmentRequest()
             {
                 Id = "iiotdgli.My_new_asset_type",
                 Key = "testFile",
@@ -702,14 +729,14 @@ namespace WebApp.Controllers
                 IfMatch = "0"
             };
 
-            AssetType assetType = await assetClient.SaveAssetTypeFileAssignmentAsync(request);
+            AssetType assetType = await assetClient.AddAssetTypeFileAssignmentAsync(request);
             return StatusCode(200, assetType);
         }
 
         [HttpGet("delete-asset-type-file-assignment")]
         public async Task<ActionResult<IEnumerable<AssetType>>> DeleteAssetTypeFileAssignment()
         {
-            var assetClient = _mindSphereSdkService.GetAssetManagementClient();
+            var assetClient = _sdk.GetAssetManagementClient();
             var request = new DeleteAssetTypeFileAssignmentRequest()
             {
                 Id = "iiotdgli.My_new_asset_type",
@@ -723,12 +750,35 @@ namespace WebApp.Controllers
 
         #endregion
 
+        #region Asset model lock
+
+        [HttpGet("get-lock-state")]
+        public async Task<ActionResult<LockStateWithJobs>> GetModelLock()
+        {
+            var assetClient = _sdk.GetAssetManagementClient();
+            LockStateWithJobs lockState = await assetClient.GetLockStateAsync();
+
+            return StatusCode(200, lockState);
+        }
+
+        [HttpGet("put-lock-state")]
+        public async Task<ActionResult<LockState>> PutModelLock()
+        {
+            var assetClient = _sdk.GetAssetManagementClient();
+            var request = new PutLockStateRequest() { Enabled = false };
+            LockState lockState = await assetClient.PutLockStateAsync(request);
+
+            return StatusCode(200, lockState);
+        }
+
+        #endregion
+
         #region Event
 
         [HttpGet("add-event")]
         public async Task<ActionResult<Event>> AddEvent()
         {
-            var eventClient = _mindSphereSdkService.GetEventManagementClient();
+            var eventClient = _sdk.GetEventManagementClient();
             var request = new AddEventRequest()
             {
                 Body = new MyEventAdd()

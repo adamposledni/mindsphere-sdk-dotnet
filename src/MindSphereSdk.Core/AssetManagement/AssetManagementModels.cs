@@ -1,67 +1,192 @@
-﻿using MindSphereSdk.Core.Common;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Net.Http;
-using System.Text;
 
 namespace MindSphereSdk.Core.AssetManagement
 {
     #region Embedded
 
     /// <summary>
-    /// Wrapper for asset list
+    /// Embedded asset list
     /// </summary>
-    internal class EmbeddedAssetList : IEmbeddedResource
+    internal class EmbeddedAssetList
     {
         [JsonProperty("assets")]
         public IEnumerable<Asset> Assets { get; set; }
     }
 
     /// <summary>
-    /// Wrapper for aspect type list
+    /// Embedded aspect type list
     /// </summary>
-    internal class EmbeddedAspectTypeList : IEmbeddedResource
+    internal class EmbeddedAspectTypeList
     {
         [JsonProperty("aspectTypes")]
         public IEnumerable<AspectType> AspectTypes { get; set; }
     }
 
     /// <summary>
-    /// Wrapper for asset type list
+    /// Embedded asset type list
     /// </summary>
-    internal class EmbeddedAssetTypeList : IEmbeddedResource
+    internal class EmbeddedAssetTypeList
     {
         [JsonProperty("assetTypes")]
         public IEnumerable<AssetType> AssetTypes { get; set; }
     }
 
     /// <summary>
-    /// Wrapper for variable list
+    /// Embedded variable list
     /// </summary>
-    internal class EmbeddedVariableList : IEmbeddedResource
+    internal class EmbeddedVariableList
     {
         [JsonProperty("variables")]
         public IEnumerable<VariableDetail> Variables { get; set; }
     }
 
     /// <summary>
-    /// Wrapper for aspect list
+    /// Embedded aspect list
     /// </summary>
-    internal class EmbeddedAspectList : IEmbeddedResource
+    internal class EmbeddedAspectList
     {
         [JsonProperty("aspects")]
         public IEnumerable<AspectFullDetail> Aspects { get; set; }
     }
 
     /// <summary>
-    /// Wrapper for file list
+    /// Embedded file list
     /// </summary>
-    internal class EmbeddedFileList : IEmbeddedResource
+    internal class EmbeddedFileList
     {
         [JsonProperty("files")]
         public IEnumerable<File> Files { get; set; }
+    }
+
+    #endregion
+
+    #region Aspect types
+
+    /// <summary>
+    /// Aspect type
+    /// </summary>
+    public class AspectType
+    {
+        [JsonProperty("name")]
+        public string Name { get; set; }
+
+        [JsonProperty("category")]
+        public string Category { get; set; }
+
+        [JsonProperty("scope")]
+        public string Scope { get; set; }
+
+        [JsonProperty("description")]
+        public string Description { get; set; }
+
+        [JsonProperty("variables")]
+        public IEnumerable<VariableDetail> Variables { get; set; }
+
+        [JsonProperty("id")]
+        public string Id { get; set; }
+
+        [JsonProperty("tenantId")]
+        public string TenantId { get; set; }
+
+        [JsonProperty("etag")]
+        public int Etag { get; set; }
+    }
+
+    /// <summary>
+    /// Aspect type (create or update)
+    /// </summary>
+    public class AspectTypeUpdate
+    {
+        [JsonProperty("name")]
+        public string Name { get; set; }
+
+        [JsonProperty("category")]
+        public string Category { get; set; }
+
+        [JsonProperty("scope")]
+        public string Scope { get; set; }
+
+        [JsonProperty("description")]
+        public string Description { get; set; }
+
+        [JsonProperty("variables")]
+        public IEnumerable<VariableDetail> Variables { get; set; }
+    }
+
+    #endregion
+
+    #region Asset types
+
+    /// <summary>
+    /// Asset type
+    /// </summary>
+    public class AssetType
+    {
+        [JsonProperty("name")]
+        public string Name { get; set; }
+
+        [JsonProperty("description")]
+        public string Description { get; set; }
+
+        [JsonProperty("parentTypeId")]
+        public string ParentTypeId { get; set; }
+
+        [JsonProperty("instantiable")]
+        public bool Instantiable { get; set; }
+
+        [JsonProperty("scope")]
+        public string Scope { get; set; }
+
+        [JsonProperty("id")]
+        public string Id { get; set; }
+
+        [JsonProperty("tenantId")]
+        public string TenantId { get; set; }
+
+        [JsonProperty("etag")]
+        public int Etag { get; set; }
+
+        [JsonProperty("aspects")]
+        public List<AspectDetail> Aspects { get; set; }
+
+        [JsonProperty("variables")]
+        public List<VariableDetail> Variables { get; set; }
+
+        [JsonProperty("fileAssignments")]
+        public List<FileAssignment> FileAssignments { get; set; }
+    }
+
+    /// <summary>
+    /// Asset type (create or update)
+    /// </summary>
+    public class AssetTypeUpdate
+    {
+        [JsonProperty("name")]
+        public string Name { get; set; }
+
+        [JsonProperty("description")]
+        public string Description { get; set; }
+
+        [JsonProperty("parentTypeId")]
+        public string ParentTypeId { get; set; }
+
+        [JsonProperty("instantiable")]
+        public bool? Instantiable { get; set; }
+
+        [JsonProperty("scope")]
+        public string Scope { get; set; }
+
+        [JsonProperty("aspects")]
+        public List<AspectPut> Aspects { get; set; }
+
+        [JsonProperty("variables")]
+        public List<VariableDetail> Variables { get; set; }
+
+        [JsonProperty("fileAssignments")]
+        public List<FileAssignment> FileAssignments { get; set; }
     }
 
     #endregion
@@ -102,7 +227,7 @@ namespace MindSphereSdk.Core.AssetManagement
 
         [JsonProperty("timezone")]
         public string Timezone { get; set; }
-        
+
         [JsonProperty("twinType")]
         public string TwinType { get; set; }
 
@@ -113,7 +238,7 @@ namespace MindSphereSdk.Core.AssetManagement
         public string Subtenant { get; set; }
 
         [JsonProperty("t2Tenant")]
-        public string T2tenant { get; set; }
+        public string T2Tenant { get; set; }
 
         [JsonProperty("assetId")]
         public string AssetId { get; set; }
@@ -319,134 +444,6 @@ namespace MindSphereSdk.Core.AssetManagement
 
     #endregion
 
-    #region Aspect types
-
-    /// <summary>
-    /// Aspect type
-    /// </summary>
-    public class AspectType
-    {
-        [JsonProperty("name")]
-        public string Name { get; set; }
-
-        [JsonProperty("category")]
-        public string Category { get; set; }
-
-        [JsonProperty("scope")]
-        public string Scope { get; set; }
-
-        [JsonProperty("description")]
-        public string Description { get; set; }
-
-        [JsonProperty("variables")]
-        public IEnumerable<VariableDetail> Variables { get; set; }
-
-        [JsonProperty("id")]
-        public string Id { get; set; }
-
-        [JsonProperty("tenantId")]
-        public string TenantId { get; set; }
-
-        [JsonProperty("etag")]
-        public long Etag { get; set; }
-    }
-
-    /// <summary>
-    /// Aspect type (create or update)
-    /// </summary>
-    public class AspectTypeUpdate
-    {
-        [JsonProperty("name")]
-        public string Name { get; set; }
-
-        [JsonProperty("category")]
-        public string Category { get; set; }
-
-        [JsonProperty("scope")]
-        public string Scope { get; set; }
-
-        [JsonProperty("description")]
-        public string Description { get; set; }
-
-        [JsonProperty("variables")]
-        public IEnumerable<VariableDetail> Variables { get; set; }
-    }
-
-    #endregion
-
-    #region Asset types
-
-    /// <summary>
-    /// Asset type
-    /// </summary>
-    public class AssetType
-    {
-        [JsonProperty("name")]
-        public string Name { get; set; }
-
-        [JsonProperty("description")]
-        public string Description { get; set; }
-
-        [JsonProperty("parentTypeId")]
-        public string ParentTypeId { get; set; }
-
-        [JsonProperty("instantiable")]
-        public bool Instantiable { get; set; }
-
-        [JsonProperty("scope")]
-        public string Scope { get; set; }
-
-        [JsonProperty("id")]
-        public string Id { get; set; }
-
-        [JsonProperty("tenantId")]
-        public string TenantId { get; set; }
-
-        [JsonProperty("etag")]
-        public long Etag { get; set; }
-
-        [JsonProperty("aspects")]
-        public List<AspectDetail> Aspects { get; set; }
-
-        [JsonProperty("variables")]
-        public List<VariableDetail> Variables { get; set; }
-
-        [JsonProperty("fileAssignments")]
-        public List<FileAssignment> FileAssignments { get; set; }
-    }
-
-    /// <summary>
-    /// Asset type (create or update)
-    /// </summary>
-    public class AssetTypeUpdate
-    {
-        [JsonProperty("name")]
-        public string Name { get; set; }
-
-        [JsonProperty("description")]
-        public string Description { get; set; }
-
-        [JsonProperty("parentTypeId")]
-        public string ParentTypeId { get; set; }
-
-        [JsonProperty("instantiable")]
-        public bool? Instantiable { get; set; }
-
-        [JsonProperty("scope")]
-        public string Scope { get; set; }
-
-        [JsonProperty("aspects")]
-        public List<AspectPut> Aspects { get; set; }
-
-        [JsonProperty("variables")]
-        public List<VariableDetail> Variables { get; set; }
-
-        [JsonProperty("fileAssignments")]
-        public List<FileAssignment> FileAssignments { get; set; }
-    }
-
-    #endregion
-
     #region Variables
 
     /// <summary>
@@ -533,117 +530,67 @@ namespace MindSphereSdk.Core.AssetManagement
 
     #endregion
 
+    #region Asset model lock
+
+    /// <summary>
+    /// Lock state of an asset model
+    /// </summary>
+    public class LockStateWithJobs
+    {
+        [JsonProperty("enabled")]
+        public bool Enabled { get; set; }
+
+        [JsonProperty("jobs")]
+        public IEnumerable<string> Jobs { get; set; }
+    }
+
+    /// <summary>
+    /// Lock state of an asset model
+    /// </summary>
+    public class LockState
+    {
+        [JsonProperty("enabled")]
+        public bool Enabled { get; set; }
+    }
+
+    #endregion
+
     #region Request
-
-    /// <summary>
-    /// Request for listing assets
-    /// </summary>
-    public class ListAssetsRequest
-    {
-        public int? Page { get; set; }
-
-        public int? Size { get; set; }
-
-        public string Sort { get; set; }
-
-        public string Filter { get; set; }
-    }
-
-    /// <summary>
-    /// Request for adding asset
-    /// </summary>
-    public class AddAssetRequest
-    {
-        public AssetAdd Body { get; set; }
-    }
-
-    /// <summary>
-    /// Request for getting asset
-    /// </summary>
-    public class GetAssetRequest
-    {
-        public string Id { get; set; }
-    }
-
-    /// <summary>
-    /// Request for updating asset
-    /// </summary>
-    public class UpdateAssetRequest
-    {
-        public string Id { get; set; }
-        public string IfMatch { get; set; }
-        public AssetUpdate Body { get; set; }
-    }
-
-    /// <summary>
-    /// Request for deleting asset
-    /// </summary>
-    public class DeleteAssetRequest
-    {
-        public string Id { get; set; }
-        public string IfMatch { get; set; }
-    }
-
-    /// <summary>
-    /// Request for moving asset
-    /// </summary>
-    public class MoveAssetRequest
-    {
-        public string Id { get; set; }
-        public string IfMatch { get; set; }
-        public string NewParentId { get; set; }
-    }
-
-    /// <summary>
-    /// Request for saving asset's file assignment
-    /// </summary>
-    public class SaveAssetFileAssignmentRequest
-    {
-        public string Id { get; set; }
-        public string Key { get; set; }
-        public string IfMatch { get; set; }
-        public string FileId { get; set; }
-    }
-
-    /// <summary>
-    /// Request for deleting asset's file assignment
-    /// </summary>
-    public class DeleteAssetFileAssignmentRequest
-    {
-        public string Id { get; set; }
-        public string Key { get; set; }
-        public string IfMatch { get; set; }
-    }
 
     /// <summary>
     /// Request for listing aspect types
     /// </summary>
     public class ListAspectTypesRequest
     {
+        /// <summary>
+        /// Specifies the requested page index
+        /// </summary>
         public int? Page { get; set; }
 
+        /// <summary>
+        /// Specifies the number of elements in a page
+        /// </summary>
         public int? Size { get; set; }
 
+        /// <summary>
+        /// Specifies the ordering of returned elements
+        /// </summary>
         public string Sort { get; set; }
 
+        /// <summary>
+        /// Specifies the additional filtering criteria
+        /// </summary>
         public string Filter { get; set; }
-    }
 
-    /// <summary>
-    /// Request for getting aspect type
-    /// </summary>
-    public class GetAspectTypeRequest
-    {
-        public string Id { get; set; }
-    }
+        /// <summary>
+        /// ETag hash of previous request to allow caching
+        /// </summary>
+        public string IfNoneMatch { get; set; }
 
-    /// <summary>
-    /// Request for deleting aspect type
-    /// </summary>
-    public class DeleteAspectTypeRequest
-    {
-        public string Id { get; set; }
-        public string IfMatch { get; set; }
+        /// <summary>
+        /// Specifies if the operation should take into account shared aspect types
+        /// </summary>
+        public bool? IncludeShared { get; set; }
     }
 
     /// <summary>
@@ -651,9 +598,32 @@ namespace MindSphereSdk.Core.AssetManagement
     /// </summary>
     public class PutAspectTypeRequest
     {
-        public string Id { get; set; }
-        public string IfNoneMatch { get; set; }
+        /// <summary>
+        /// Last known version to facilitate optimistic locking
+        /// </summary>
+        /// <remarks>
+        /// Required for modification
+        /// </remarks>
         public string IfMatch { get; set; }
+
+        /// <summary>
+        /// Set ifNoneMatch header to "*" for ensuring create request
+        /// </summary>
+        public string IfNoneMatch { get; set; }
+
+        /// <summary>
+        /// The type’s id is a unique identifier
+        /// </summary>
+        public string Id { get; set; }
+
+        /// <summary>
+        /// Specifies if the operation should take into account shared aspect types
+        /// </summary>
+        public bool? IncludeShared { get; set; }
+
+        /// <summary>
+        /// Aspect type
+        /// </summary>
         public AspectTypeUpdate Body { get; set; }
     }
 
@@ -662,31 +632,109 @@ namespace MindSphereSdk.Core.AssetManagement
     /// </summary>
     public class PatchAspectTypeRequest
     {
-        public string Id { get; set; }
+        /// <summary>
+        /// Last known version to facilitate optimistic locking
+        /// </summary>
         public string IfMatch { get; set; }
+
+        /// <summary>
+        /// The type’s id is a unique identifier
+        /// </summary>
+        public string Id { get; set; }
+
+        /// <summary>
+        /// Specifies if the operation should take into account shared aspect types
+        /// </summary>
+        public bool? IncludeShared { get; set; }
+
+        /// <summary>
+        /// Aspect type
+        /// </summary>
         public AspectTypeUpdate Body { get; set; }
     }
+
+    /// <summary>
+    /// Request for getting aspect type
+    /// </summary>
+    public class GetAspectTypeRequest
+    {
+        /// <summary>
+        /// ETag hash of previous request to allow caching
+        /// </summary>
+        public string IfNoneMatch { get; set; }
+
+        /// <summary>
+        /// The type’s id is a unique identifier
+        /// </summary>
+        public string Id { get; set; }
+
+        /// <summary>
+        /// Specifies if the operation should take into account shared aspect types
+        /// </summary>
+        public bool? IncludeShared { get; set; }
+    }
+
+    /// <summary>
+    /// Request for deleting aspect type
+    /// </summary>
+    public class DeleteAspectTypeRequest
+    {
+        /// <summary>
+        /// Last known version to facilitate optimistic locking
+        /// </summary>
+        public string IfMatch { get; set; }
+
+        /// <summary>
+        /// The type’s id is a unique identifier
+        /// </summary>
+        public string Id { get; set; }
+
+        /// <summary>
+        /// Specifies if the operation should take into account shared aspect types
+        /// </summary>
+        public bool? IncludeShared { get; set; }
+    }
+
 
     /// <summary>
     /// Request for listing aspect types
     /// </summary>
     public class ListAssetTypesRequest
     {
+        /// <summary>
+        /// Specifies the requested page index
+        /// </summary>
         public int? Page { get; set; }
 
+        /// <summary>
+        /// Specifies the number of elements in a page
+        /// </summary>
         public int? Size { get; set; }
 
+        /// <summary>
+        /// Specifies the ordering of returned elements
+        /// </summary>
         public string Sort { get; set; }
 
+        /// <summary>
+        /// Specifies the additional filtering criteria
+        /// </summary>
         public string Filter { get; set; }
-    }
 
-    /// <summary>
-    /// Request for getting asset type
-    /// </summary>
-    public class GetAssetTypeRequest
-    {
-        public string Id { get; set; }
+        /// <summary>
+        /// ETag hash of previous request to allow caching
+        /// </summary>
+        public string IfNoneMatch { get; set; }
+
+        /// <summary>
+        /// Specifies if the asset type should include all of it’s inherited variables and aspects
+        /// </summary>
+        public bool? Exploded { get; set; }
+
+        /// <summary>
+        /// Specifies if the operation should take into account shared aspect types
+        /// </summary>
+        public bool? IncludeShared { get; set; }
     }
 
     /// <summary>
@@ -694,9 +742,37 @@ namespace MindSphereSdk.Core.AssetManagement
     /// </summary>
     public class PutAssetTypeRequest
     {
-        public string Id { get; set; }
-        public string IfNoneMatch { get; set; }
+        /// <summary>
+        /// Last known version to facilitate optimistic locking
+        /// </summary>
+        /// <remarks>
+        /// Required for modification
+        /// </remarks>
         public string IfMatch { get; set; }
+
+        /// <summary>
+        /// Set ifNoneMatch header to "*" for ensuring create request
+        /// </summary>
+        public string IfNoneMatch { get; set; }
+
+        /// <summary>
+        /// The type’s id is a unique identifier
+        /// </summary>
+        public string Id { get; set; }
+
+        /// <summary>
+        /// Specifies if the asset type should include all of it’s inherited variables and aspects
+        /// </summary>
+        public bool? Exploded { get; set; }
+
+        /// <summary>
+        /// Specifies if the operation should take into account shared aspect types
+        /// </summary>
+        public bool? IncludeShared { get; set; }
+
+        /// <summary>
+        /// Asset type
+        /// </summary>
         public AssetTypeUpdate Body { get; set; }
     }
 
@@ -705,9 +781,56 @@ namespace MindSphereSdk.Core.AssetManagement
     /// </summary>
     public class PatchAssetTypeRequest
     {
-        public string Id { get; set; }
+        /// <summary>
+        /// Last known version to facilitate optimistic locking
+        /// </summary>
         public string IfMatch { get; set; }
+
+        /// <summary>
+        /// The type’s id is a unique identifier
+        /// </summary>
+        public string Id { get; set; }
+
+        /// <summary>
+        /// Specifies if the asset type should include all of it’s inherited variables and aspects
+        /// </summary>
+        public bool? Exploded { get; set; }
+
+        /// <summary>
+        /// Specifies if the operation should take into account shared aspect types
+        /// </summary>
+        public bool? IncludeShared { get; set; }
+
+        /// <summary>
+        /// Asset type
+        /// </summary>
         public AssetTypeUpdate Body { get; set; }
+    }
+
+    /// <summary>
+    /// Request for getting asset type
+    /// </summary>
+    public class GetAssetTypeRequest
+    {
+        /// <summary>
+        /// ETag hash of previous request to allow caching
+        /// </summary>
+        public string IfNoneMatch { get; set; }
+
+        /// <summary>
+        /// The type’s id is a unique identifier
+        /// </summary>
+        public string Id { get; set; }
+
+        /// <summary>
+        /// Specifies if the asset type should include all of it’s inherited variables and aspects
+        /// </summary>
+        public bool? Exploded { get; set; }
+
+        /// <summary>
+        /// Specifies if the operation should take into account shared aspect types
+        /// </summary>
+        public bool? IncludeShared { get; set; }
     }
 
     /// <summary>
@@ -715,18 +838,50 @@ namespace MindSphereSdk.Core.AssetManagement
     /// </summary>
     public class DeleteAssetTypeRequest
     {
+        /// <summary>
+        /// The type’s id is a unique identifier
+        /// </summary>
         public string Id { get; set; }
+
+        /// <summary>
+        /// Last known version to facilitate optimistic locking
+        /// </summary>
         public string IfMatch { get; set; }
+
+        /// <summary>
+        /// Specifies if the operation should take into account shared aspect types
+        /// </summary>
+        public bool? IncludeShared { get; set; }
     }
 
     /// <summary>
     /// Request for saving asset type file assignment
     /// </summary>
-    public class SaveAssetTypeFileAssignmentRequest
+    public class AddAssetTypeFileAssignmentRequest
     {
+        /// <summary>
+        /// The type’s id is a unique identifier
+        /// </summary>
         public string Id { get; set; }
+
+        /// <summary>
+        /// Keyword for the file to be assigned to an asset or asset type
+        /// </summary>
         public string Key { get; set; }
+
+        /// <summary>
+        /// Last known version to facilitate optimistic locking
+        /// </summary>
         public string IfMatch { get; set; }
+
+        /// <summary>
+        /// Specifies if the operation should take into account shared aspect types
+        /// </summary>
+        public bool? IncludeShared { get; set; }
+
+        /// <summary>
+        /// File identifier
+        /// </summary>
         public string FileId { get; set; }
     }
 
@@ -735,21 +890,313 @@ namespace MindSphereSdk.Core.AssetManagement
     /// </summary>
     public class DeleteAssetTypeFileAssignmentRequest
     {
+        /// <summary>
+        /// The type’s id is a unique identifier
+        /// </summary>
         public string Id { get; set; }
+
+        /// <summary>
+        /// Keyword for the file to be assigned to an asset or asset type
+        /// </summary>
         public string Key { get; set; }
+
+        /// <summary>
+        /// Last known version to facilitate optimistic locking
+        /// </summary>
         public string IfMatch { get; set; }
+
+        /// <summary>
+        /// Specifies if the operation should take into account shared aspect types
+        /// </summary>
+        public bool? IncludeShared { get; set; }
     }
+
+    /// <summary>
+    /// Request for updating asset type variables
+    /// </summary>
+    public class PatchAssetTypeVariablesRequest
+    {
+        /// <summary>
+        /// Last known version to facilitate optimistic locking
+        /// </summary>
+        public string IfMatch { get; set; }
+
+        /// <summary>
+        /// The type’s id is a unique identifier
+        /// </summary>
+        public string Id { get; set; }
+
+        /// <summary>
+        /// Specifies if the operation should take into account shared aspect types
+        /// </summary>
+        public bool? IncludeShared { get; set; }
+
+        /// <summary>
+        /// Variables Dictionary, variable Name is the key and value are the parameters to be updated of the variable
+        /// </summary>
+        public object Body { get; set; }
+    }
+
+
+    /// <summary>
+    /// Request for listing assets
+    /// </summary>
+    public class ListAssetsRequest
+    {
+        /// <summary>
+        /// Specifies the requested page index
+        /// </summary>
+        public int? Page { get; set; }
+
+        /// <summary>
+        /// Specifies the number of elements in a page
+        /// </summary>
+        public int? Size { get; set; }
+
+        /// <summary>
+        /// Specifies the ordering of returned elements
+        /// </summary>
+        public string Sort { get; set; }
+
+        /// <summary>
+        /// Specifies the additional filtering criteria
+        /// </summary>
+        public string Filter { get; set; }
+
+        /// <summary>
+        /// ETag hash of previous request to allow caching
+        /// </summary>
+        public string IfNoneMatch { get; set; }
+
+        /// <summary>
+        /// Specifies if the operation should take into account shared entities
+        /// </summary>
+        public bool? IncludeShared { get; set; }
+
+        /// <summary>
+        /// Specifies if the assets should include all of it’s inherited variables and aspects from assettype and aspecttype
+        /// </summary>
+        public bool? BasicFieldsOnly { get; set; }
+    }
+
+    /// <summary>
+    /// Request for adding asset
+    /// </summary>
+    public class AddAssetRequest
+    {
+        /// <summary>
+        /// Specifies if the operation should take into account shared entities
+        /// </summary>
+        public bool? IncludeShared { get; set; }
+
+        /// <summary>
+        /// Asset
+        /// </summary>
+        public AssetAdd Body { get; set; }
+    }
+
+    /// <summary>
+    /// Request for getting asset
+    /// </summary>
+    public class GetAssetRequest
+    {
+        /// <summary>
+        /// Unique identifier
+        /// </summary>
+        public string Id { get; set; }
+
+        /// <summary>
+        /// ETag hash of previous request to allow caching
+        /// </summary>
+        public string IfNoneMatch { get; set; }
+
+        /// <summary>
+        /// Specifies if the operation should take into account shared entities
+        /// </summary>
+        public bool? IncludeShared { get; set; }
+    }
+
+    /// <summary>
+    /// Request for updating asset
+    /// </summary>
+    public class UpdateAssetRequest
+    {
+        /// <summary>
+        /// Last known version to facilitate optimistic locking
+        /// </summary>
+        public string IfMatch { get; set; }
+
+        /// <summary>
+        /// Unique identifier
+        /// </summary>
+        public string Id { get; set; }
+
+        /// <summary>
+        /// Specifies if the operation should take into account shared entities
+        /// </summary>
+        public bool? IncludeShared { get; set; }
+
+        /// <summary>
+        /// Asset
+        /// </summary>
+        public AssetUpdate Body { get; set; }
+    }
+
+    /// <summary>
+    /// Request for deleting asset
+    /// </summary>
+    public class DeleteAssetRequest
+    {
+        /// <summary>
+        /// Last known version to facilitate optimistic locking
+        /// </summary>
+        public string IfMatch { get; set; }
+
+        /// <summary>
+        /// Unique identifier
+        /// </summary>
+        public string Id { get; set; }
+
+        /// <summary>
+        /// Specifies if the operation should take into account shared entities
+        /// </summary>
+        public bool? IncludeShared { get; set; }
+    }
+
+    /// <summary>
+    /// Request for moving asset
+    /// </summary>
+    public class MoveAssetRequest
+    {
+        /// <summary>
+        /// Last known version to facilitate optimistic locking
+        /// </summary>
+        public string IfMatch { get; set; }
+
+        /// <summary>
+        /// Unique identifier
+        /// </summary>
+        public string Id { get; set; }
+
+        /// <summary>
+        /// Specifies if the operation should take into account shared entities
+        /// </summary>
+        public bool? IncludeShared { get; set; }
+
+        /// <summary>
+        /// New parent asset identifier
+        /// </summary>
+        public string NewParentId { get; set; }
+    }
+
+    /// <summary>
+    /// Request for saving asset's file assignment
+    /// </summary>
+    public class SaveAssetFileAssignmentRequest
+    {
+        /// <summary>
+        /// Unique identifier
+        /// </summary>
+        public string Id { get; set; }
+
+        /// <summary>
+        /// Keyword for the file to be assigned to an asset or asset type
+        /// </summary>
+        public string Key { get; set; }
+
+        /// <summary>
+        /// Last known version to facilitate optimistic locking
+        /// </summary>
+        public string IfMatch { get; set; }
+
+        /// <summary>
+        /// Specifies if the operation should take into account shared entities
+        /// </summary>
+        public bool? IncludeShared { get; set; }
+
+        /// <summary>
+        /// File identifier
+        /// </summary>
+        public string FileId { get; set; }
+    }
+
+    /// <summary>
+    /// Request for deleting asset's file assignment
+    /// </summary>
+    public class DeleteAssetFileAssignmentRequest
+    {
+        /// <summary>
+        /// Unique identifier
+        /// </summary>
+        public string Id { get; set; }
+
+        /// <summary>
+        /// Keyword for the file to be assigned to an asset or asset type
+        /// </summary>
+        public string Key { get; set; }
+
+        /// <summary>
+        /// Last known version to facilitate optimistic locking
+        /// </summary>
+        public string IfMatch { get; set; }
+
+        /// <summary>
+        /// Specifies if the operation should take into account shared entities
+        /// </summary>
+        public bool? IncludeShared { get; set; }
+    }
+
+    /// <summary>
+    /// Request for getting root asset
+    /// </summary>
+    public class GetRootAssetRequest
+    {
+        /// <summary>
+        /// ETag hash of previous request to allow caching
+        /// </summary>
+        public string IfNoneMatch { get; set; }
+    }
+
 
     /// <summary>
     /// Request for listing all asset's variables
     /// </summary>
     public class ListAssetVariablesRequest
     {
+        /// <summary>
+        /// Unique identifier
+        /// </summary>
         public string Id { get; set; }
+
+        /// <summary>
+        /// Specifies the requested page index
+        /// </summary>
         public int? Page { get; set; }
+
+        /// <summary>
+        /// Specifies the number of elements in a page
+        /// </summary>
         public int? Size { get; set; }
+
+        /// <summary>
+        /// Specifies the ordering of returned elements
+        /// </summary>
         public string Sort { get; set; }
+
+        /// <summary>
+        /// Specifies the additional filtering criteria
+        /// </summary>
         public string Filter { get; set; }
+
+        /// <summary>
+        /// ETag hash of previous request to allow caching
+        /// </summary>
+        public string IfNoneMatch { get; set; }
+
+        /// <summary>
+        /// Specifies if the operation should take into account shared entities
+        /// </summary>
+        public bool? IncludeShared { get; set; }
     }
 
     /// <summary>
@@ -757,20 +1204,66 @@ namespace MindSphereSdk.Core.AssetManagement
     /// </summary>
     public class ListAssetAspectsRequest
     {
+        /// <summary>
+        /// Unique identifier
+        /// </summary>
         public string Id { get; set; }
+
+        /// <summary>
+        /// Specifies the requested page index
+        /// </summary>
         public int? Page { get; set; }
+
+        /// <summary>
+        /// Specifies the number of elements in a page
+        /// </summary>
         public int? Size { get; set; }
+
+        /// <summary>
+        /// Specifies the ordering of returned elements
+        /// </summary>
         public string Sort { get; set; }
+
+        /// <summary>
+        /// Specifies the additional filtering criteria
+        /// </summary>
         public string Filter { get; set; }
+
+        /// <summary>
+        /// ETag hash of previous request to allow caching
+        /// </summary>
+        public string IfNoneMatch { get; set; }
+
+        /// <summary>
+        /// Specifies if the operation should take into account shared entities
+        /// </summary>
+        public bool? IncludeShared { get; set; }
     }
+
 
     /// <summary>
     /// Request for putting asset's location
     /// </summary>
     public class PutAssetLocationRequest
     {
-        public string Id { get; set; }
+        /// <summary>
+        /// Last known version to facilitate optimistic locking
+        /// </summary>
         public string IfMatch { get; set; }
+
+        /// <summary>
+        /// Unique identifier
+        /// </summary>
+        public string Id { get; set; }
+
+        /// <summary>
+        /// Specifies if the operation should take into account shared entities
+        /// </summary>
+        public bool? IncludeShared { get; set; }
+
+        /// <summary>
+        /// Location
+        /// </summary>
         public Location Body { get; set; }
     }
 
@@ -779,8 +1272,47 @@ namespace MindSphereSdk.Core.AssetManagement
     /// </summary>
     public class DeleteAssetLocationRequest
     {
-        public string Id { get; set; }
+        /// <summary>
+        /// Last known version to facilitate optimistic locking
+        /// </summary>
         public string IfMatch { get; set; }
+
+        /// <summary>
+        /// Unique identifier
+        /// </summary>
+        public string Id { get; set; }
+
+        /// <summary>
+        /// Specifies if the operation should take into account shared entities
+        /// </summary>
+        public bool? IncludeShared { get; set; }
+    }
+
+
+    /// <summary>
+    /// Request for uploading file
+    /// </summary>
+    public class UploadFileRequest
+    {
+        /// <summary>
+        /// The file to upload
+        /// </summary>
+        public FileStream File { get; set; }
+
+        /// <summary>
+        /// The name of the file
+        /// </summary>
+        public string Name { get; set; }
+
+        /// <summary>
+        /// The scope of the file
+        /// </summary>
+        public string Scope { get; set; }
+
+        /// <summary>
+        /// The description of the file
+        /// </summary>
+        public string Description { get; set; }
     }
 
     /// <summary>
@@ -788,18 +1320,30 @@ namespace MindSphereSdk.Core.AssetManagement
     /// </summary>
     public class ListFilesRequest
     {
+        /// <summary>
+        /// Specifies the requested page index
+        /// </summary>
         public int? Page { get; set; }
-        public int? Size { get; set; }
-        public string Sort { get; set; }
-        public string Filter { get; set; }
-    }
 
-    /// <summary>
-    /// Request for getting file metadata
-    /// </summary>
-    public class GetFileRequest
-    {
-        public string Id { get; set; }
+        /// <summary>
+        /// Specifies the number of elements in a page
+        /// </summary>
+        public int? Size { get; set; }
+
+        /// <summary>
+        /// Specifies the ordering of returned elements
+        /// </summary>
+        public string Sort { get; set; }
+
+        /// <summary>
+        /// Specifies the additional filtering criteria
+        /// </summary>
+        public string Filter { get; set; }
+
+        /// <summary>
+        /// ETag hash of previous request to allow caching
+        /// </summary>
+        public string IfNoneMatch { get; set; }
     }
 
     /// <summary>
@@ -807,28 +1351,26 @@ namespace MindSphereSdk.Core.AssetManagement
     /// </summary>
     public class DownloadFileRequest
     {
+        /// <summary>
+        /// Unique identifier of the file
+        /// </summary>
         public string Id { get; set; }
     }
 
     /// <summary>
-    /// Request for deleting file
+    /// Request for getting file metadata
     /// </summary>
-    public class DeleteFileRequest
+    public class GetFileRequest
     {
+        /// <summary>
+        /// Unique identifier of the file
+        /// </summary>
         public string Id { get; set; }
 
-        public string IfMatch { get; set; }
-    }
-
-    /// <summary>
-    /// Request for uploading file
-    /// </summary>
-    public class UploadFileRequest
-    {
-        public FileStream File { get; set; }
-        public string Name { get; set; }
-        public string Scope { get; set; }
-        public string Description { get; set; }
+        /// <summary>
+        /// ETag hash of previous request to allow caching
+        /// </summary>
+        public string IfNoneMatch { get; set; }
     }
 
     /// <summary>
@@ -836,12 +1378,62 @@ namespace MindSphereSdk.Core.AssetManagement
     /// </summary>
     public class UpdateFileRequest
     {
-        public string Id { get; set; }
-        public FileStream File { get; set; }
-        public string Name { get; set; }
-        public string Scope { get; set; }
-        public string Description { get; set; }
+        /// <summary>
+        /// Last known version to facilitate optimistic locking
+        /// </summary>
         public string IfMatch { get; set; }
+
+        /// <summary>
+        /// Unique identifier of the file
+        /// </summary>
+        public string Id { get; set; }
+
+        /// <summary>
+        /// The file to upload
+        /// </summary>
+        public FileStream File { get; set; }
+
+        /// <summary>
+        /// The name of the file
+        /// </summary>
+        public string Name { get; set; }
+
+        /// <summary>
+        /// The scope of the file
+        /// </summary>
+        public string Scope { get; set; }
+
+        /// <summary>
+        /// The description of the file
+        /// </summary>
+        public string Description { get; set; }
+    }
+
+    /// <summary>
+    /// Request for deleting file
+    /// </summary>
+    public class DeleteFileRequest
+    {
+        /// <summary>
+        /// Last known version to facilitate optimistic locking
+        /// </summary>
+        public string IfMatch { get; set; }
+
+        /// <summary>
+        /// Unique identifier of the file
+        /// </summary>
+        public string Id { get; set; }
+    }
+
+    /// <summary>
+    /// Request for putting lock state
+    /// </summary>
+    public class PutLockStateRequest
+    {
+        /// <summary>
+        /// Lock state of an asset model
+        /// </summary>
+        public bool? Enabled { get; set; }
     }
 
     #endregion

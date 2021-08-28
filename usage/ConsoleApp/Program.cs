@@ -1,6 +1,7 @@
 ﻿using MindSphereSdk.Core.AssetManagement;
 using MindSphereSdk.Core.Authentication;
 using MindSphereSdk.Core.Common;
+using MindSphereSdk.Core.IotTimeSeries;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,22 +13,25 @@ namespace ConsoleApp
 {
     class Program
     {
-        static async Task Main(string[] args)
+        static async Task Main()
         {
-            AppCredentials appCredentials;
-            ClientConfiguration configuration = new ClientConfiguration();
-            HttpClient httpClient = new HttpClient();
+            AppCredentials credentials;
+            ClientConfiguration configuration = new ClientConfiguration
+            {
+                Proxy = "localhost:5555"
+            };
             ListAssetsRequest request = new ListAssetsRequest()
             {
                 Size = 200
             };
-            List<Asset> assets;
 
+            List<Asset> assets;
             try
             {
-                appCredentials = AppCredentials.FromJsonFile("mdspcreds.json");
-                var assetClient = new AssetManagementClient(appCredentials, configuration, httpClient);
-                assets = (await assetClient.ListAssetsAsync(request)).ToList();
+                credentials = AppCredentials.FromJsonFile("mdspcreds.json");
+                var sdk = new MindSphereApiSdk(credentials, configuration);
+                var assetClient = sdk.GetAssetManagementClient();
+                assets = (await assetClient.ListAssetsAsync(request)).Data.ToList();
             }
             catch (Exception ex)
             {
@@ -42,6 +46,5 @@ namespace ConsoleApp
             }
             Console.ReadKey();
         }
-
     }
 }

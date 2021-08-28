@@ -1,8 +1,6 @@
-﻿using MindSphereSdk.Core.Authentication;
-using MindSphereSdk.Core.Common;
+﻿using MindSphereSdk.Core.Common;
+using MindSphereSdk.Core.Helpers;
 using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,8 +14,8 @@ namespace MindSphereSdk.Core.EventManagement
     {
         private readonly string _baseUri = "/api/eventmanagement/v3";
 
-        public EventManagementClient(Credentials credentials, ClientConfiguration configuration, HttpClient httpClient) 
-            : base(credentials, configuration, httpClient)
+        internal EventManagementClient(MindSphereConnector mindSphereConnector)
+            : base(mindSphereConnector)
         {
         }
 
@@ -26,7 +24,10 @@ namespace MindSphereSdk.Core.EventManagement
         /// </summary>
         public async Task<T> AddEventAsync<T>(AddEventRequest request) where T : Event
         {
-            string uri = _baseUri + "/events";
+            // prepare URI string
+            QueryStringBuilder queryBuilder = new QueryStringBuilder();
+            queryBuilder.AddQuery("includeShared", request.IncludeShared);
+            string uri = _baseUri + "/events" + queryBuilder.ToString();
 
             // prepare HTTP request body
             string jsonString = JsonConvert.SerializeObject(request.Body,
@@ -36,6 +37,7 @@ namespace MindSphereSdk.Core.EventManagement
                 });
             StringContent body = new StringContent(jsonString, Encoding.UTF8, "application/json");
 
+            // make request
             string response = await HttpActionAsync(HttpMethod.Post, uri, body);
             var eventObj = JsonConvert.DeserializeObject<T>(response);
 

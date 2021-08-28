@@ -1,14 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Net.Http;
-using System.Text;
 
 namespace MindSphereSdk.Core.Helpers
 {
     /// <summary>
-    /// Helper
+    /// Helpers
     /// </summary>
-    internal static class Helper
+    internal static class Helpers
     {
         /// <summary>
         /// Generate date time UTC string
@@ -20,7 +18,10 @@ namespace MindSphereSdk.Core.Helpers
         }
     }
 
-    internal static class MultipartFormDataContentExtension
+    /// <summary>
+    /// MultipartFormDataContent extensions
+    /// </summary>
+    internal static class MultipartFormDataContentExtensions
     {
         /// <summary>
         /// Extension method for MultipartFormDataContent to add only not-null values
@@ -42,8 +43,11 @@ namespace MindSphereSdk.Core.Helpers
         private string _query = "?";
 
         /// <summary>
-        /// Add new part to the URI query sting
+        /// Add a new part to the URI query string
         /// </summary>
+        /// <remarks>
+        /// Only if not empty
+        /// </remarks>
         public void AddQuery(string name, string value)
         {
             if (!string.IsNullOrEmpty(value))
@@ -53,8 +57,11 @@ namespace MindSphereSdk.Core.Helpers
         }
 
         /// <summary>
-        /// Add new part to the URI query sting
+        /// Add a new part to the URI query string
         /// </summary>
+        /// <remarks>
+        /// Only if not empty
+        /// </remarks>
         public void AddQuery(string name, int? value)
         {
             if (value != null)
@@ -64,19 +71,25 @@ namespace MindSphereSdk.Core.Helpers
         }
 
         /// <summary>
-        /// Add new part to the URI query sting
+        /// Add a new part to the URI query string
         /// </summary>
+        /// <remarks>
+        /// Only if not empty
+        /// </remarks>
         public void AddQuery(string name, DateTime? value)
         {
             if (value != null)
             {
-                _query += $"{name}={Helper.GetDateTimeUtcString(value.Value)}&";
+                _query += $"{name}={Helpers.GetDateTimeUtcString(value.Value)}&";
             }
         }
 
         /// <summary>
-        /// Add new part to the URI query sting
+        /// Add a new part to the URI query string
         /// </summary>
+        /// <remarks>
+        /// Only if not empty
+        /// </remarks>
         public void AddQuery(string name, bool? value)
         {
             if (value != null)

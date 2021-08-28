@@ -1,10 +1,5 @@
-﻿using MindSphereSdk.Core.Authentication;
-using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Net;
+﻿using System.Collections.Generic;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace MindSphereSdk.Core.Common
@@ -16,16 +11,9 @@ namespace MindSphereSdk.Core.Common
     {
         private readonly MindSphereConnector _mindSphereConnector;
 
-        public SdkClient(Credentials credentials, ClientConfiguration configuration, HttpClient httpClient)
+        internal SdkClient(MindSphereConnector mindSphereConnector)
         {
-            if (credentials != null)
-            {
-                _mindSphereConnector = credentials.GetConnector(configuration, httpClient);
-            }
-            else
-            {
-                throw new ArgumentNullException(nameof(credentials));
-            }
+            _mindSphereConnector = mindSphereConnector;
         }
 
         /// <summary>

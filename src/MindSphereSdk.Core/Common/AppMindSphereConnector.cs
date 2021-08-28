@@ -1,14 +1,8 @@
 ﻿using MindSphereSdk.Core.Authentication;
 using MindSphereSdk.Core.Exceptions;
-using MindSphereSdk.Core.Helpers;
 using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
 using System.Net.Http;
-using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -17,15 +11,17 @@ namespace MindSphereSdk.Core.Common
     /// <summary>
     /// Connector to the MindSphere API using app credentials
     /// </summary>
-    public class AppMindSphereConnector : MindSphereConnector
+    internal class AppMindSphereConnector : MindSphereConnector
     {
         private readonly AppCredentials _credentials;
 
-        public AppMindSphereConnector(AppCredentials credentials, ClientConfiguration configuration, HttpClient httpClient)
-            : base(configuration, httpClient)
+        /// <summary>
+        /// Create a new instance of AppMindSphereConnector
+        /// </summary>
+        public AppMindSphereConnector(AppCredentials credentials, ClientConfiguration configuration)
+            : base(configuration)
         {
             _credentials = credentials;
-            Validator.Validate(_credentials);
         }
 
         /// <summary>
@@ -44,7 +40,7 @@ namespace MindSphereSdk.Core.Common
             request.Content = new StringContent(JsonConvert.SerializeObject(_credentials), Encoding.UTF8, "application/json");
 
             HttpResponseMessage response = await _httpClient.SendAsync(request);
-            
+
             // handle error response
             await MindSphereApiExceptionHandler.HandleUnsuccessfulResponseAsync(response);
 

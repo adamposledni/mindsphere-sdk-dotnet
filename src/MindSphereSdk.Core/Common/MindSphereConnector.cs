@@ -1,14 +1,10 @@
-﻿using FluentValidation;
-using MindSphereSdk.Core.Authentication;
-using MindSphereSdk.Core.Exceptions;
-using MindSphereSdk.Core.Helpers;
-using Newtonsoft.Json;
+﻿using MindSphereSdk.Core.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace MindSphereSdk.Core.Common
@@ -16,18 +12,28 @@ namespace MindSphereSdk.Core.Common
     /// <summary>
     /// Connector to the MindSphere API
     /// </summary>
-    public abstract class MindSphereConnector
+    internal abstract class MindSphereConnector
     {
         protected string _accessToken;
-        private ClientConfiguration _configuration;
+        private readonly ClientConfiguration _configuration;
         protected readonly HttpClient _httpClient;
 
-        public MindSphereConnector(ClientConfiguration configuration, HttpClient httpClient)
+        public MindSphereConnector(ClientConfiguration configuration)
         {
-            _configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
-            Validator.Validate(configuration);
+            _configuration = configuration;
 
-            _httpClient = httpClient ?? throw new ArgumentNullException(nameof(httpClient));
+            var handler = new HttpClientHandler();
+            // proxy setting
+            if (!string.IsNullOrWhiteSpace(_configuration.Proxy))
+            {
+                handler.Proxy = new WebProxy(_configuration.Proxy, false);
+                handler.UseProxy = true;
+            }
+            _httpClient = new HttpClient(handler)
+            {
+                // timeout setting
+                Timeout = _configuration.Timeout
+            };
         }
 
         /// <summary>
@@ -99,7 +105,6 @@ namespace MindSphereSdk.Core.Common
             }
         }
 
-        // TODO: implement token validation (https://developer.mindsphere.io/concepts/concept-authentication.html#token-validation)
         /// <summary>
         /// Validate MindSphere access token 
         /// </summary>
@@ -112,14 +117,17 @@ namespace MindSphereSdk.Core.Common
             JwtSecurityToken token = handler.ReadJwtToken(_accessToken);
 
             string expString = token.Claims.First(claim => claim.Type == "exp").Value;
-            DateTime exp = DateTimeOffset.FromUnixTimeSeconds(long.Parse(expString)).LocalDateTime;
+            DateTime exp = DateTimeOffset.FromUnixTimeSeconds(long.Parse(expString)).UtcDateTime;
             // if exp is in the past (with minutes skew)
-            if (DateTime.Now.AddMinutes(minutesSkew) >= exp) return false;
+            if (DateTime.UtcNow.AddMinutes(minutesSkew) >= exp) return false;
 
             string iatString = token.Claims.First(claim => claim.Type == "iat").Value;
-            DateTime iat = DateTimeOffset.FromUnixTimeSeconds(long.Parse(iatString)).LocalDateTime;
+            DateTime iat = DateTimeOffset.FromUnixTimeSeconds(long.Parse(iatString)).UtcDateTime;
             // if iat is in the future (with minutes skew)
-            if (DateTime.Now.AddMinutes(minutesSkew) <= iat) return false;
+            if (DateTime.UtcNow.AddMinutes(minutesSkew) <= iat) return false;
+
+            // check signiture algo
+            if (token.SignatureAlgorithm != "RS256") return false;
 
             return true;
         }

@@ -1,9 +1,4 @@
 ﻿using MindSphereSdk.Core.Authentication;
-using MindSphereSdk.Core.Helpers;
-using System;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace MindSphereSdk.Core.Common
@@ -11,15 +6,17 @@ namespace MindSphereSdk.Core.Common
     /// <summary>
     /// Connector to the MindSphere API using user credentials
     /// </summary>
-    public class UserMindSphereConnector : MindSphereConnector
+    internal class UserMindSphereConnector : MindSphereConnector
     {
         private readonly UserCredentials _credentials;
 
-        public UserMindSphereConnector(UserCredentials credentials, ClientConfiguration configuration, HttpClient httpClient)
-            : base(configuration, httpClient)
+        /// <summary>
+        /// Create a new instance of UserMindSphereConnector
+        /// </summary>
+        public UserMindSphereConnector(UserCredentials credentials, ClientConfiguration configuration)
+            : base(configuration)
         {
             _credentials = credentials;
-            Validator.Validate(_credentials);
         }
 
         /// <summary>

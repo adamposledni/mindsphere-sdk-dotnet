@@ -1,32 +1,21 @@
-﻿using MindSphereSdk.Core.Common;
-using System;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Text;
-
-namespace MindSphereSdk.Core.Authentication
+﻿namespace MindSphereSdk.Core.Authentication
 {
     /// <summary>
-    /// User credentials for MindSphere API
+    /// User credentials for the MindSphere API
     /// </summary>
-    public class UserCredentials : Credentials
+    public class UserCredentials : ICredentials
     {
+        /// <summary>
+        /// Access token
+        /// </summary>
         public string Token { get; private set; }
+
+        /// <summary>
+        /// Create a new instance of UserCredentials
+        /// </summary>
         public UserCredentials(string token)
         {
             Token = token.Replace("Bearer ", "");
-        }
-
-        /// <summary>
-        /// Create specified MindSphere connector based on provided credentials
-        /// </summary>
-        internal override MindSphereConnector GetConnector(ClientConfiguration configuration, HttpClient httpClient)
-        {
-            if (_mindSphereConnector == null)
-            {
-                _mindSphereConnector = new UserMindSphereConnector(this, configuration, httpClient);
-            }
-            return _mindSphereConnector;
         }
     }
 }
