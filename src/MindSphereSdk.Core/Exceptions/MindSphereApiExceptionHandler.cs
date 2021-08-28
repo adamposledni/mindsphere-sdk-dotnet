@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Text;
+﻿using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace MindSphereSdk.Core.Exceptions
@@ -22,7 +19,7 @@ namespace MindSphereSdk.Core.Exceptions
                 string message = await response.Content.ReadAsStringAsync();
 
                 throw new MindSphereApiException(
-                    statusCode, 
+                    statusCode,
                     $"HTTP call to the MindSphere failed with status code: {statusCode} and message: {message}"
                 );
             }

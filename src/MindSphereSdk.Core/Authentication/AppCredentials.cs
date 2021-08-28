@@ -48,11 +48,11 @@ namespace MindSphereSdk.Core.Authentication
         /// Create a new instance of the AppCredentials
         /// </summary>
         public AppCredentials(
-            string keyStoreClientId, 
-            string keyStoreClientSecret, 
-            string appName, 
-            string appVersion, 
-            string hostTenant, 
+            string keyStoreClientId,
+            string keyStoreClientSecret,
+            string appName,
+            string appVersion,
+            string hostTenant,
             string userTenant
             )
         {

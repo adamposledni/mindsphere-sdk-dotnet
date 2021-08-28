@@ -1,10 +1,7 @@
-﻿using MindSphereSdk.Core.Authentication;
-using MindSphereSdk.Core.Common;
+﻿using MindSphereSdk.Core.Common;
 using MindSphereSdk.Core.Helpers;
 using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;

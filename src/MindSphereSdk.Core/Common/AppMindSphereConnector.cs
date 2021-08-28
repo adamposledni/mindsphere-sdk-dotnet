@@ -1,14 +1,8 @@
 ﻿using MindSphereSdk.Core.Authentication;
 using MindSphereSdk.Core.Exceptions;
-using MindSphereSdk.Core.Helpers;
 using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
 using System.Net.Http;
-using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -46,7 +40,7 @@ namespace MindSphereSdk.Core.Common
             request.Content = new StringContent(JsonConvert.SerializeObject(_credentials), Encoding.UTF8, "application/json");
 
             HttpResponseMessage response = await _httpClient.SendAsync(request);
-            
+
             // handle error response
             await MindSphereApiExceptionHandler.HandleUnsuccessfulResponseAsync(response);
 

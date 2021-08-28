@@ -1,17 +1,10 @@
-﻿using FluentValidation;
-using MindSphereSdk.Core.Authentication;
-using MindSphereSdk.Core.Exceptions;
-using MindSphereSdk.Core.Helpers;
-using Newtonsoft.Json;
+﻿using MindSphereSdk.Core.Exceptions;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Security.Claims;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace MindSphereSdk.Core.Common

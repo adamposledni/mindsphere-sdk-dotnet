@@ -1,7 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace MindSphereSdk.Core.IotTimeSeries
 {
@@ -129,7 +128,7 @@ namespace MindSphereSdk.Core.IotTimeSeries
         /// End of the time range to be retrieved (inclusive)
         /// </summary>
         public DateTime? To { get; set; }
-       
+
         /// <summary>
         /// Unique identifier of the asset
         /// </summary>

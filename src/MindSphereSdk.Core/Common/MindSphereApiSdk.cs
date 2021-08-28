@@ -5,9 +5,6 @@ using MindSphereSdk.Core.Helpers;
 using MindSphereSdk.Core.IotTimeSeries;
 using MindSphereSdk.Core.IotTsAggregates;
 using System;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Text;
 
 namespace MindSphereSdk.Core.Common
 {
@@ -70,7 +67,7 @@ namespace MindSphereSdk.Core.Common
         public IotTimeSeriesClient GetIotTimeSeriesClient()
         {
             if (_iotTimeSeriesClient == null)
-{
+            {
                 _iotTimeSeriesClient = new IotTimeSeriesClient(_connector);
             }
             return _iotTimeSeriesClient;

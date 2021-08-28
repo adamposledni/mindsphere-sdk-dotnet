@@ -1,10 +1,7 @@
-﻿using MindSphereSdk.Core.Common;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Net.Http;
-using System.Text;
 
 namespace MindSphereSdk.Core.AssetManagement
 {
@@ -230,7 +227,7 @@ namespace MindSphereSdk.Core.AssetManagement
 
         [JsonProperty("timezone")]
         public string Timezone { get; set; }
-        
+
         [JsonProperty("twinType")]
         public string TwinType { get; set; }
 
@@ -698,7 +695,7 @@ namespace MindSphereSdk.Core.AssetManagement
         public bool? IncludeShared { get; set; }
     }
 
-    
+
     /// <summary>
     /// Request for listing aspect types
     /// </summary>
@@ -913,7 +910,7 @@ namespace MindSphereSdk.Core.AssetManagement
         /// </summary>
         public bool? IncludeShared { get; set; }
     }
-    
+
     /// <summary>
     /// Request for updating asset type variables
     /// </summary>
@@ -991,7 +988,7 @@ namespace MindSphereSdk.Core.AssetManagement
         /// Specifies if the operation should take into account shared entities
         /// </summary>
         public bool? IncludeShared { get; set; }
-        
+
         /// <summary>
         /// Asset
         /// </summary>
@@ -1385,7 +1382,7 @@ namespace MindSphereSdk.Core.AssetManagement
         /// Last known version to facilitate optimistic locking
         /// </summary>
         public string IfMatch { get; set; }
-        
+
         /// <summary>
         /// Unique identifier of the file
         /// </summary>

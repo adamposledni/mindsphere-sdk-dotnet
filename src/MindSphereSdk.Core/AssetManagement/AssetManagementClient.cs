@@ -1,14 +1,10 @@
 ﻿using MindSphereSdk.Core.Common;
-using MindSphereSdk.Core.Exceptions;
+using MindSphereSdk.Core.Helpers;
 using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-using MindSphereSdk.Core.Helpers;
-using MindSphereSdk.Core.Authentication;
 
 namespace MindSphereSdk.Core.AssetManagement
 {
@@ -19,7 +15,7 @@ namespace MindSphereSdk.Core.AssetManagement
     {
         private readonly string _baseUri = "/api/assetmanagement/v3";
 
-        internal AssetManagementClient(MindSphereConnector mindSphereConnector) 
+        internal AssetManagementClient(MindSphereConnector mindSphereConnector)
             : base(mindSphereConnector)
         {
         }
@@ -486,7 +482,7 @@ namespace MindSphereSdk.Core.AssetManagement
             };
 
             // prepare HTTP request body
-            string jsonString = JsonConvert.SerializeObject(request.Body, 
+            string jsonString = JsonConvert.SerializeObject(request.Body,
                 new JsonSerializerSettings()
                 {
                     NullValueHandling = NullValueHandling.Ignore
@@ -496,7 +492,7 @@ namespace MindSphereSdk.Core.AssetManagement
             // make request
             string response = await HttpActionAsync(HttpMethod.Put, uri, body, headers);
             var asset = JsonConvert.DeserializeObject<Asset>(response);
-            
+
             return asset;
         }
 
