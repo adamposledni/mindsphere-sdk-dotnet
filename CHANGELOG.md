@@ -1,6 +1,5 @@
 # Changelog
-<!-- TODO: changelog -->
-## v1.1
+## v1.1.0
 - new class architecture - client are initialized by *MindSphereApiSdk* instance
 - no need to provide *HttpClient* instance
 - added *ClientConfiguration* (region, domain, timeout, proxy)
