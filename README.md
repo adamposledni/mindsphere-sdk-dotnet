@@ -27,6 +27,7 @@ Open-source .NET SDK for [MindSphere](https://siemens.mindsphere.io/) APIs.
     - [Put new time series data](#Put-new-time-series-data)
 - [IoT time series aggregates client](#IoT-time-series-aggregates-client)
     - [Get time series aggregates](#Get-time-series-aggregates)
+- [APIs overview](#APIs-overview)
 - [Tasks](https://github.com/hroudaadam/mindsphere-sdk-dotnet/projects/1)
 ---
 ## Installation
@@ -130,69 +131,6 @@ var config = new ClientConfiguration();
 ## Asset management client
 Client for configuring, reading and managing assets, asset types and aspect types.
 
-**Aspect type**
-| Method | Endpoint          | SDK                   |
-|--------|-------------------|-----------------------|
-| GET    | /aspecttypes      | ListAspectTypesAsync  |
-| PUT    | /aspecttypes/{id} | PutAspectTypeAsync    |
-| PATCH  | /aspecttypes/{id} | PatchAspectTypeAsync  |
-| GET    | /aspecttypes/{id} | GetAspectTypeAsync    |
-| DELETE | /aspecttypes/{id} | DeleteAspectTypeAsync |
-
-**Asset type**
-| Method | Endpoint                               | SDK                                |
-|--------|----------------------------------------|------------------------------------|
-| GET    | /assettypes                            | ListAssetTypesAsync                |
-| PUT    | /assettypes/{id}                       | PutAssetTypeAsync                  |
-| PATCH  | /assettypes/{id}                       | PatchAssetTypeAsync                |
-| GET    | /assettypes/{id}                       | GetAssetTypeAsync                  |
-| DELETE | /assettypes/{id}                       | DeleteAssetTypeAsync               |
-| PUT    | /assettypes/{id}/fileAssignments/{key} | AddAssetTypeFileAssignmentAsync    |
-| DELETE | /assettypes/{id}/fileAssignments/{key} | DeleteAssetTypeFileAssignmentAsync |
-| PATCH  | /assettypes/{id}/variables             | *not implemented*                  |
-
-**Asset**
-| Method | Endpoint                           | SDK                            |
-|--------|------------------------------------|--------------------------------|
-| GET    | /assets                            | ListAssetsAsync                |
-| POST   | /assets                            | AddAssetAsync                  |
-| GET    | /assets/{id}                       | GetAssetAsync                  |
-| PUT    | /assets/{id}                       | PutAssetAsync                  |
-| PATCH  | /assets/{id}                       | PatchAssetAsync                |
-| DELETE | /assets/{id}                       | DeleteAssetAsync               |
-| POST   | /assets/{id}/move                  | MoveAssetAsync                 |
-| PUT    | /assets/{id}/fileAssignments/{key} | SaveAssetFileAssignmentAsync   |
-| DELETE | /assets/{id}/fileAssignments/{key} | DeleteAssetFileAssignmentAsync |
-| GET    | /assets/root                       | GetRootAssetAsync              |
-
-**Structure**
-| Method | Endpoint               | SDK                     |
-|--------|------------------------|-------------------------|
-| GET    | /assets/{id}/variables | ListAssetVariablesAsync |
-| GET    | /assets/{id}/aspects   | ListAssetAspectsAsync   |
-
-**Location**
-| Method | Endpoint              | SDK                      |
-|--------|-----------------------|--------------------------|
-| PUT    | /assets/{id}/location | PutAssetLocationAsync    |
-| DELETE | /assets/{id}/location | DeleteAssetLocationAsync |
-
-**File**
-| Method | Endpoint             | SDK               |
-|--------|----------------------|-------------------|
-| POST   | /files               | UploadFileAsync   |
-| GET    | /files               | ListFilesAsync    |
-| GET    | /files/{fileId}/file | DownloadFileAsync |
-| GET    | /files/{fileId}      | GetFileAsync      |
-| PUT    | /files/{fileId}      | UpdateFileAsync   |
-| DELETE | /files/{fileId}      | DeleteFileAsync   |
-
-**Asset model lock**
-| Method | Endpoint    | SDK               |
-|--------|-------------|-------------------|
-| GET    | /model/lock | GetLockStateAsync |
-| PUT    | /model/lock | PutLockStateAsync |
-
 ### List assets
 
 ```csharp
@@ -232,13 +170,6 @@ var file = await assetClient.UploadFileAsync(request);
 
 ## IoT time series client
 Client for creating, reading, updating, and deleting time series data.
-
-| Method | Endpoint                                 | SDK                        |
-|--------|------------------------------------------|----------------------------|
-| PUT    | /timeseries                              | PutTimeSeriesMultipleAsync |
-| GET    | /timeseries/{entityId}/{propertySetName} | GetTimeSeriesAsync         |
-| PUT    | /timeseries/{entityId}/{propertySetName} | PutTimeSeriesAsync         |
-| DELETE | /timeseries/{entityId}/{propertySetName} | DeleteTimeSeriesAsync      |
 
 ### Get time series data
 
@@ -340,10 +271,6 @@ await tsClient.PutTimeSeriesAsync(request);
 ## IoT time series aggregates client
 For querying aggregated time series data.
 
-| Method | Endpoint    | SDK                         |
-|--------|-------------|-----------------------------|
-| GET    | /aggregates | GetAggregateTimeSeriesAsync |
-
 ### Get time series aggregates
 
 *GetAggregateTimeSeriesAsync* is generic method. It is necessary to set the type to a class derived from *AggregateSet* and to define expected MindSphere variables using properties of type *AggregateVariable* with corresponding names (or *JsonProperty*).
@@ -380,5 +307,84 @@ var request = new GetAggregateTimeSeriesRequest()
 var tsAggregate = await iotAggregClient.GetAggregateTimeSeriesAsync<TestAggregateTsData>(request);
 ```
 
-<!-- TODO ## Progress -->
-<!-- clients progress overview -->
+## APIs overview
+
+### Asset management client
+
+**Aspect type**
+| Method | Endpoint          | SDK                   |
+|--------|-------------------|-----------------------|
+| GET    | /aspecttypes      | ListAspectTypesAsync  |
+| PUT    | /aspecttypes/{id} | PutAspectTypeAsync    |
+| PATCH  | /aspecttypes/{id} | PatchAspectTypeAsync  |
+| GET    | /aspecttypes/{id} | GetAspectTypeAsync    |
+| DELETE | /aspecttypes/{id} | DeleteAspectTypeAsync |
+
+**Asset type**
+| Method | Endpoint                               | SDK                                |
+|--------|----------------------------------------|------------------------------------|
+| GET    | /assettypes                            | ListAssetTypesAsync                |
+| PUT    | /assettypes/{id}                       | PutAssetTypeAsync                  |
+| PATCH  | /assettypes/{id}                       | PatchAssetTypeAsync                |
+| GET    | /assettypes/{id}                       | GetAssetTypeAsync                  |
+| DELETE | /assettypes/{id}                       | DeleteAssetTypeAsync               |
+| PUT    | /assettypes/{id}/fileAssignments/{key} | AddAssetTypeFileAssignmentAsync    |
+| DELETE | /assettypes/{id}/fileAssignments/{key} | DeleteAssetTypeFileAssignmentAsync |
+| PATCH  | /assettypes/{id}/variables             | *not implemented*                  |
+
+**Asset**
+| Method | Endpoint                           | SDK                            |
+|--------|------------------------------------|--------------------------------|
+| GET    | /assets                            | ListAssetsAsync                |
+| POST   | /assets                            | AddAssetAsync                  |
+| GET    | /assets/{id}                       | GetAssetAsync                  |
+| PUT    | /assets/{id}                       | PutAssetAsync                  |
+| PATCH  | /assets/{id}                       | PatchAssetAsync                |
+| DELETE | /assets/{id}                       | DeleteAssetAsync               |
+| POST   | /assets/{id}/move                  | MoveAssetAsync                 |
+| PUT    | /assets/{id}/fileAssignments/{key} | SaveAssetFileAssignmentAsync   |
+| DELETE | /assets/{id}/fileAssignments/{key} | DeleteAssetFileAssignmentAsync |
+| GET    | /assets/root                       | GetRootAssetAsync              |
+
+**Structure**
+| Method | Endpoint               | SDK                     |
+|--------|------------------------|-------------------------|
+| GET    | /assets/{id}/variables | ListAssetVariablesAsync |
+| GET    | /assets/{id}/aspects   | ListAssetAspectsAsync   |
+
+**Location**
+| Method | Endpoint              | SDK                      |
+|--------|-----------------------|--------------------------|
+| PUT    | /assets/{id}/location | PutAssetLocationAsync    |
+| DELETE | /assets/{id}/location | DeleteAssetLocationAsync |
+
+**File**
+| Method | Endpoint             | SDK               |
+|--------|----------------------|-------------------|
+| POST   | /files               | UploadFileAsync   |
+| GET    | /files               | ListFilesAsync    |
+| GET    | /files/{fileId}/file | DownloadFileAsync |
+| GET    | /files/{fileId}      | GetFileAsync      |
+| PUT    | /files/{fileId}      | UpdateFileAsync   |
+| DELETE | /files/{fileId}      | DeleteFileAsync   |
+
+**Asset model lock**
+| Method | Endpoint    | SDK               |
+|--------|-------------|-------------------|
+| GET    | /model/lock | GetLockStateAsync |
+| PUT    | /model/lock | PutLockStateAsync |
+
+### IoT time series client
+
+| Method | Endpoint                                 | SDK                        |
+|--------|------------------------------------------|----------------------------|
+| PUT    | /timeseries                              | PutTimeSeriesMultipleAsync |
+| GET    | /timeseries/{entityId}/{propertySetName} | GetTimeSeriesAsync         |
+| PUT    | /timeseries/{entityId}/{propertySetName} | PutTimeSeriesAsync         |
+| DELETE | /timeseries/{entityId}/{propertySetName} | DeleteTimeSeriesAsync      |
+
+### IoT time series aggregates client
+
+| Method | Endpoint    | SDK                         |
+|--------|-------------|-----------------------------|
+| GET    | /aggregates | GetAggregateTimeSeriesAsync |
