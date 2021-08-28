@@ -359,7 +359,34 @@ namespace MindSphereSdk.Core.AssetManagement
             return assetType;
         }
 
-        // TODO: PATCH /assettypes/id/variables
+        // TODO: PATCH /assettypes/id/variables - unable bcs of asset type variable quota
+        /// <summary>
+        /// Update variables from an asset type
+        /// </summary>
+        private async Task PatchAssetTypeVariablesAsync(PatchAssetTypeVariablesRequest request)
+        {
+            // prepare URI string
+            QueryStringBuilder queryBuilder = new QueryStringBuilder();
+            queryBuilder.AddQuery("includeShared", request.IncludeShared);
+            string uri = _baseUri + "/assettypes/" + request.Id + "/variables" + queryBuilder.ToString();
+
+            // prepare HTTP request headers
+            List<KeyValuePair<string, string>> headers = new List<KeyValuePair<string, string>>
+            {
+                new KeyValuePair<string, string>("If-Match", request.IfMatch)
+            };
+
+            // prepare HTTP request body
+            string jsonString = JsonConvert.SerializeObject(request.Body,
+                new JsonSerializerSettings()
+                {
+                    NullValueHandling = NullValueHandling.Ignore
+                });
+            StringContent body = new StringContent(jsonString, Encoding.UTF8, "application/merge-patch+json");
+
+            // make request
+            await HttpActionAsync(new HttpMethod("PATCH"), uri, body, headers);
+        }
 
         #endregion
 

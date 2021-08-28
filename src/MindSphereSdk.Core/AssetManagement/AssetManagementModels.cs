@@ -913,8 +913,34 @@ namespace MindSphereSdk.Core.AssetManagement
         /// </summary>
         public bool? IncludeShared { get; set; }
     }
-
     
+    /// <summary>
+    /// Request for updating asset type variables
+    /// </summary>
+    public class PatchAssetTypeVariablesRequest
+    {
+        /// <summary>
+        /// Last known version to facilitate optimistic locking
+        /// </summary>
+        public string IfMatch { get; set; }
+
+        /// <summary>
+        /// The type’s id is a unique identifier
+        /// </summary>
+        public string Id { get; set; }
+
+        /// <summary>
+        /// Specifies if the operation should take into account shared aspect types
+        /// </summary>
+        public bool? IncludeShared { get; set; }
+
+        /// <summary>
+        /// Variables Dictionary, variable Name is the key and value are the parameters to be updated of the variable
+        /// </summary>
+        public object Body { get; set; }
+    }
+
+
     /// <summary>
     /// Request for listing assets
     /// </summary>
