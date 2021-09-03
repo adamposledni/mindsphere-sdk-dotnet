@@ -12,32 +12,55 @@ namespace MindSphereSdk.Core.Test
     public class AppCredentialsTest
     {
         /// <summary>
-        /// Negative test: AppCredentials values validation
+        /// AppCredentials values validation.
         /// </summary>
         [Fact]
-        public void UseWithInvalidData()
+        public void CreateWithInvalidData()
         {
             // Arrange
-            AppCredentials appCredentials = new AppCredentials("  ", null, "   ", "  ", "  ", "  ");
-
             // Act
-            MindSphereApiSdk act() => new MindSphereApiSdk(appCredentials, new ClientConfiguration());
+            Action act = () => { new AppCredentials("  ", null, "   ", "  ", "  ", "  "); };
 
             // Assert
             Assert.Throws<ArgumentException>(act);
         }
 
         /// <summary>
-        /// Positive test: AppCredentials values validation
+        /// AppCredentials values validation.
         /// </summary>
         [Fact]
-        public void UseWithValidData()
+        public void CreateWithValidData()
+        {
+            // Act
+            // Arrange
+            _ = new AppCredentials("a", "b", "c", "d", "e", "f");
+
+            // Assert
+        }
+
+        /// <summary>
+        /// AppCredentials values validation.
+        /// </summary>
+        [Fact]
+        public void CreateFromFileWithInvalidData()
         {
             // Arrange
-            AppCredentials appCredentials = new AppCredentials("a", "b", "c", "d", "e", "f");
-
             // Act
-            new MindSphereApiSdk(appCredentials, new ClientConfiguration());
+            Action act = () => AppCredentials.FromJsonFile("mdspcreds-data-invalid.json");
+
+            // Assert
+            Assert.Throws<ArgumentException>(act);
+        }
+
+        /// <summary>
+        /// AppCredentials values validation.
+        /// </summary>
+        [Fact]
+        public void CreateFromFileWithValidData()
+        {
+            // Act
+            // Arrange
+            _ = AppCredentials.FromJsonFile("mdspcreds.json");
 
             // Assert
         }

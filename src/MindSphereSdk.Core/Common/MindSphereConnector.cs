@@ -21,7 +21,6 @@ namespace MindSphereSdk.Core.Common
 
         public MindSphereConnector(ClientConfiguration configuration)
         {
-            Validator.Validate(configuration);
             _configuration = configuration;
 
             var handler = new HttpClientHandler();
@@ -34,7 +33,7 @@ namespace MindSphereSdk.Core.Common
             _httpClient = new HttpClient(handler)
             {
                 // timeout setting
-                Timeout = _configuration.Timeout
+                Timeout = TimeSpan.FromMilliseconds(_configuration.Timeout)
             };
         }
 

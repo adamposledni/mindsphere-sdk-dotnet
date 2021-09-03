@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 namespace MindSphereSdk.Core.Common
 {
     /// <summary>
-    /// General SDK client
+    /// General SDK client.
     /// </summary>
     public abstract class SdkClient
     {
@@ -17,7 +17,7 @@ namespace MindSphereSdk.Core.Common
         }
 
         /// <summary>
-        /// Send HTTP request to the MindSphere API
+        /// Send HTTP request to the MindSphere API.
         /// </summary>
         protected async Task<string> HttpActionAsync(HttpMethod method, string specUri, HttpContent body = null, List<KeyValuePair<string, string>> headers = null)
         {

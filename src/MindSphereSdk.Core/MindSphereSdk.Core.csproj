@@ -23,7 +23,7 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>D:\Programování\mindsphere-sdk-dotnet\src\MindSphereSdk.Core\MindSphereSdk.Core.xml</DocumentationFile>
+    <DocumentationFile>D:\Repos\mindsphere-sdk-dotnet\src\MindSphereSdk.Core\MindSphereSdk.Core.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>

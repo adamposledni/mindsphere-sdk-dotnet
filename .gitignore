@@ -1,6 +1,7 @@
 .vs/
 mdspCreds.txt
 mdspcreds.json
+mdspcreds-data-invalid.json
 
 **/bin/
 **/obj/

@@ -18,7 +18,6 @@ namespace MindSphereSdk.Core.Common
         public UserMindSphereConnector(UserCredentials credentials, ClientConfiguration configuration)
             : base(configuration)
         {
-            Validator.Validate(credentials);
             _credentials = credentials;
         }
 
@@ -40,7 +39,6 @@ namespace MindSphereSdk.Core.Common
         {
             if (credentials is UserCredentials userCredentials)
             {
-                Validator.Validate(userCredentials);
                 _credentials = userCredentials;
                 // reset token
                 _accessToken = null;

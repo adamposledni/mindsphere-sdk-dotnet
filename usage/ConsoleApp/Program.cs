@@ -16,10 +16,7 @@ namespace ConsoleApp
         static async Task Main()
         {
             AppCredentials credentials;
-            ClientConfiguration configuration = new ClientConfiguration
-            {
-                Proxy = "localhost:5555"
-            };
+            ClientConfiguration configuration = new ClientConfiguration(proxy: "localhost:5555");
             ListAssetsRequest request = new ListAssetsRequest()
             {
                 Size = 200

@@ -80,6 +80,7 @@ namespace MindSphereSdk.Core.Helpers
         {
             RuleFor(cc => cc.Region).NotEmpty();
             RuleFor(cc => cc.Domain).NotEmpty();
+            RuleFor(cc => cc.Timeout).GreaterThan(0);
         }
     }
 }

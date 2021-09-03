@@ -26,12 +26,11 @@ namespace MindSphereSdk.Core.Common
         /// </summary>
         public MindSphereApiSdk(ICredentials credentials, ClientConfiguration configuration)
         {
-            if (credentials == null)
-            {
-                throw new ArgumentNullException(nameof(credentials));
-            }
+            _ = configuration ?? throw new ArgumentNullException(nameof(configuration));
+            _ = credentials ?? throw new ArgumentNullException(nameof(credentials));
+
             // create application credentials connector
-            else if (credentials is AppCredentials appCredentials)
+            if (credentials is AppCredentials appCredentials)
             {
                 _connector = new AppMindSphereConnector(appCredentials, configuration);
             }
@@ -62,6 +61,7 @@ namespace MindSphereSdk.Core.Common
         /// </remarks>
         public void UpdateCredentials(ICredentials credentials)
         {
+            _ = credentials ?? throw new ArgumentNullException(nameof(credentials));
             _connector.UpdateCredentials(credentials);
         }
 

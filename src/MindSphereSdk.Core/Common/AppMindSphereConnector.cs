@@ -22,7 +22,6 @@ namespace MindSphereSdk.Core.Common
         public AppMindSphereConnector(AppCredentials credentials, ClientConfiguration configuration)
             : base(configuration)
         {
-            Validator.Validate(credentials);
             _credentials = credentials;
         }
 

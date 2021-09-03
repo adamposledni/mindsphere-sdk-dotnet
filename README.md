@@ -113,6 +113,18 @@ var creds = new UserCredentials("<access-token>");
 var sdk = new MindSphereApiSdk(creds, config);
 ```
  
+### Update credentials
+
+To change provided credentials in the runtime use the method *UpdateCredentials*. However it is not possible to change the credential type. New credentials must be the same type as the previous.
+
+```csharp
+var creds = new UserCredentials("<access-token>");
+var sdk = new MindSphereApiSdk(creds, config);
+
+var newCreds = new UserCredentials("<new-access-token>");
+sdk.UpdateCredentials(newCreds);
+```
+
 ## Client configuration
 
 Additional options are passed to SDK client via *ClientConfiguration* that has following default values.
@@ -121,7 +133,7 @@ Additional options are passed to SDK client via *ClientConfiguration* that has f
 | --- | --- |
 | Region | eu1 |
 | Domain | mindsphere.io |
-| Timeout | 100s |
+| Timeout | 100000 ms |
 | Proxy | *empty* |
 
 ```csharp
