@@ -6,12 +6,12 @@ using System;
 namespace MindSphereSdk.Core.Helpers
 {
     /// <summary>
-    /// Data validator
+    /// Data validator.
     /// </summary>
     internal class Validator
     {
         /// <summary>
-        /// Validate application credentials
+        /// Validate application credentials.
         /// </summary>
         internal static void Validate(AppCredentials appCredentials)
         {
@@ -25,7 +25,7 @@ namespace MindSphereSdk.Core.Helpers
         }
 
         /// <summary>
-        /// Validate user credentials
+        /// Validate user credentials.
         /// </summary>
         internal static void Validate(UserCredentials userCredentials)
         {
@@ -39,7 +39,7 @@ namespace MindSphereSdk.Core.Helpers
         }
 
         /// <summary>
-        /// Validate client configuration
+        /// Validate client configuration.
         /// </summary>
         internal static void Validate(ClientConfiguration clientConfiguration)
         {

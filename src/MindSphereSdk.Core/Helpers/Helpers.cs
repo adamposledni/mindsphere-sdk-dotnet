@@ -4,12 +4,12 @@ using System.Net.Http;
 namespace MindSphereSdk.Core.Helpers
 {
     /// <summary>
-    /// Helpers
+    /// Helpers.
     /// </summary>
     internal static class Helpers
     {
         /// <summary>
-        /// Generate date time UTC string
+        /// Generate date time UTC string.
         /// </summary>
         public static string GetDateTimeUtcString(DateTime date)
         {
@@ -19,12 +19,12 @@ namespace MindSphereSdk.Core.Helpers
     }
 
     /// <summary>
-    /// MultipartFormDataContent extensions
+    /// MultipartFormDataContent extensions.
     /// </summary>
     internal static class MultipartFormDataContentExtensions
     {
         /// <summary>
-        /// Extension method for MultipartFormDataContent to add only not-null values
+        /// Extension method for MultipartFormDataContent to add only not-null values.
         /// </summary>
         public static void AddStringContentIfNotNull(this MultipartFormDataContent content, string value, string name)
         {
@@ -36,17 +36,17 @@ namespace MindSphereSdk.Core.Helpers
     }
 
     /// <summary>
-    /// URI query builder
+    /// URI query builder.
     /// </summary>
     internal class QueryStringBuilder
     {
         private string _query = "?";
 
         /// <summary>
-        /// Add a new part to the URI query string
+        /// Add a new part to the URI query string.
         /// </summary>
         /// <remarks>
-        /// Only if not empty
+        /// Only if not empty.
         /// </remarks>
         public void AddQuery(string name, string value)
         {
@@ -57,10 +57,10 @@ namespace MindSphereSdk.Core.Helpers
         }
 
         /// <summary>
-        /// Add a new part to the URI query string
+        /// Add a new part to the URI query string.
         /// </summary>
         /// <remarks>
-        /// Only if not empty
+        /// Only if not empty.
         /// </remarks>
         public void AddQuery(string name, int? value)
         {
@@ -71,10 +71,10 @@ namespace MindSphereSdk.Core.Helpers
         }
 
         /// <summary>
-        /// Add a new part to the URI query string
+        /// Add a new part to the URI query string.
         /// </summary>
         /// <remarks>
-        /// Only if not empty
+        /// Only if not empty.
         /// </remarks>
         public void AddQuery(string name, DateTime? value)
         {
@@ -85,10 +85,10 @@ namespace MindSphereSdk.Core.Helpers
         }
 
         /// <summary>
-        /// Add a new part to the URI query string
+        /// Add a new part to the URI query string.
         /// </summary>
         /// <remarks>
-        /// Only if not empty
+        /// Only if not empty.
         /// </remarks>
         public void AddQuery(string name, bool? value)
         {
@@ -99,9 +99,8 @@ namespace MindSphereSdk.Core.Helpers
         }
 
         /// <summary>
-        /// Build the URI query string
+        /// Build the URI query string.
         /// </summary>
-        /// <returns></returns>
         public override string ToString()
         {
             return _query;
