@@ -1,4 +1,7 @@
 # Changelog
+## v1.1.1
+- added *GetAccessToken* method in the *MindSphereApiSdk* class
+
 ## v1.1.0
 - new class architecture - client are initialized by *MindSphereApiSdk* instance
 - no need to provide *HttpClient* instance
