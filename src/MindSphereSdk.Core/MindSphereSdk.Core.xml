@@ -286,12 +286,17 @@
         </member>
         <member name="T:MindSphereSdk.Core.AssetManagement.VariableDetail">
             <summary>
-            Variable for asset/aspect type
+            Variable for asset/aspect type.
             </summary>
         </member>
         <member name="T:MindSphereSdk.Core.AssetManagement.Variable">
             <summary>
-            Variable
+            Variable.
+            </summary>
+        </member>
+        <member name="T:MindSphereSdk.Core.AssetManagement.VariableUpdate">
+            <summary>
+            Variable - update.
             </summary>
         </member>
         <member name="T:MindSphereSdk.Core.AssetManagement.File">
@@ -652,27 +657,27 @@
         </member>
         <member name="T:MindSphereSdk.Core.AssetManagement.PatchAssetTypeVariablesRequest">
             <summary>
-            Request for updating asset type variables
+            Request for updating asset type variables.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.AssetManagement.PatchAssetTypeVariablesRequest.IfMatch">
             <summary>
-            Last known version to facilitate optimistic locking
+            Last known version to facilitate optimistic locking.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.AssetManagement.PatchAssetTypeVariablesRequest.Id">
             <summary>
-            The type’s id is a unique identifier
+            The type’s id is a unique identifier.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.AssetManagement.PatchAssetTypeVariablesRequest.IncludeShared">
             <summary>
-            Specifies if the operation should take into account shared aspect types
+            Specifies if the operation should take into account shared aspect types.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.AssetManagement.PatchAssetTypeVariablesRequest.Body">
             <summary>
-            Variables Dictionary, variable Name is the key and value are the parameters to be updated of the variable
+            Variables map.
             </summary>
         </member>
         <member name="T:MindSphereSdk.Core.AssetManagement.ListAssetsRequest">
@@ -1152,257 +1157,299 @@
         </member>
         <member name="T:MindSphereSdk.Core.Authentication.AppCredentials">
             <summary>
-            Application credentials for MindSphere API
+            Application credentials for MindSphere API.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.Authentication.AppCredentials.KeyStoreClientId">
             <summary>
-            Client ID
+            Client ID.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.Authentication.AppCredentials.KeyStoreClientSecret">
             <summary>
-            Client secret
+            Client secret.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.Authentication.AppCredentials.AppName">
             <summary>
-            Name of the application
+            Name of the application.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.Authentication.AppCredentials.AppVersion">
             <summary>
-            Version of the application
+            Version of the application.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.Authentication.AppCredentials.HostTenant">
             <summary>
-            Host tenant
+            Host tenant.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.Authentication.AppCredentials.UserTenant">
             <summary>
-            User tenant
+            User tenant.
             </summary>
         </member>
         <member name="M:MindSphereSdk.Core.Authentication.AppCredentials.#ctor(System.String,System.String,System.String,System.String,System.String,System.String)">
             <summary>
-            Create a new instance of the AppCredentials
+            Create a new instance of the AppCredentials.
             </summary>
         </member>
         <member name="M:MindSphereSdk.Core.Authentication.AppCredentials.FromJsonFile(System.String)">
             <summary>
-            Load application credentials from the JSON file
+            Load application credentials from the JSON file.
             </summary>
         </member>
         <member name="T:MindSphereSdk.Core.Authentication.ICredentials">
             <summary>
-            MindSphere API credentials
+            MindSphere API credentials.
             </summary>
         </member>
         <member name="T:MindSphereSdk.Core.Authentication.UserCredentials">
             <summary>
-            User credentials for the MindSphere API
+            User credentials for the MindSphere API.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.Authentication.UserCredentials.Token">
             <summary>
-            Access token
+            Access token.
             </summary>
         </member>
         <member name="M:MindSphereSdk.Core.Authentication.UserCredentials.#ctor(System.String)">
             <summary>
-            Create a new instance of UserCredentials
+            Create a new instance of UserCredentials.
             </summary>
         </member>
         <member name="T:MindSphereSdk.Core.Common.AppMindSphereConnector">
             <summary>
-            Connector to the MindSphere API using app credentials
+            Connector to the MindSphere API using app credentials.
             </summary>
         </member>
         <member name="M:MindSphereSdk.Core.Common.AppMindSphereConnector.#ctor(MindSphereSdk.Core.Authentication.AppCredentials,MindSphereSdk.Core.Common.ClientConfiguration)">
             <summary>
-            Create a new instance of AppMindSphereConnector
+            Create a new instance of AppMindSphereConnector.
             </summary>
         </member>
         <member name="M:MindSphereSdk.Core.Common.AppMindSphereConnector.AcquireTokenAsync">
             <summary>
-            Acquire MindSphere access token with app credentials
+            Acquire MindSphere access token with app credentials.
             </summary>
+        </member>
+        <member name="M:MindSphereSdk.Core.Common.AppMindSphereConnector.UpdateCredentials(MindSphereSdk.Core.Authentication.ICredentials)">
+            <summary>
+            Update the credentials object.
+            </summary>
+            <remarks>
+            It is not possible to change the credential type in the runtime.
+            </remarks>
         </member>
         <member name="M:MindSphereSdk.Core.Common.AppMindSphereConnector.GetBasicAuth">
             <summary>
-            Generate BasicAuth string (Basic abc123...)
+            Generate BasicAuth string (Basic abc123...).
             </summary>
         </member>
         <member name="T:MindSphereSdk.Core.Common.ClientConfiguration">
             <summary>
-            MindSphere SDK client configuration
+            MindSphere SDK client configuration.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.Common.ClientConfiguration.Domain">
             <summary>
-            MindSphere domain
+            MindSphere domain.
             </summary>
             <remarks>
-            Default: mindsphere.io
+            Default: mindsphere.io.
             </remarks>
         </member>
         <member name="P:MindSphereSdk.Core.Common.ClientConfiguration.Region">
             <summary>
-            MindSphere region
+            MindSphere region.
             </summary>
             <remarks>
-            Default: eu1
+            Default: eu1.
             </remarks>
         </member>
         <member name="P:MindSphereSdk.Core.Common.ClientConfiguration.Timeout">
             <summary>
-            Connection timeout
+            Connection timeout in miliseconds.
             </summary>
             <remarks>
-            Default: 100s
+            Default: 100000 ms.
             </remarks>
         </member>
         <member name="P:MindSphereSdk.Core.Common.ClientConfiguration.Proxy">
             <summary>
-            Proxy address
+            Proxy address.
             </summary>
         </member>
         <member name="T:MindSphereSdk.Core.Common.MindSphereResourceWrapper`1">
             <summary>
-            Wrapper for MindSphere resource
+            Wrapper for MindSphere resource.
             </summary>
         </member>
         <member name="T:MindSphereSdk.Core.Common.ResourceList`1">
             <summary>
-            MindSphere resource list
+            MindSphere resource list.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.Common.ResourceList`1.Data">
             <summary>
-            Embedded data
+            Embedded data.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.Common.ResourceList`1.Page">
             <summary>
-            Pagination data
+            Pagination data.
             </summary>
         </member>
         <member name="T:MindSphereSdk.Core.Common.Page">
             <summary>
-            Pagination data
+            Pagination data.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.Common.Page.Size">
             <summary>
-            Number of elements in a page
+            Number of elements in a page.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.Common.Page.TotalElements">
             <summary>
-            Total number of elements in all pages
+            Total number of elements in all pages.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.Common.Page.TotalPages">
             <summary>
-            Total number of pages
+            Total number of pages.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.Common.Page.Number">
             <summary>
-            Current page number
+            Current page number.
             </summary>
         </member>
         <member name="T:MindSphereSdk.Core.Common.AccessToken">
             <summary>
-            Access Token model
+            Access Token model.
             </summary>
         </member>
         <member name="T:MindSphereSdk.Core.Common.MindSphereApiSdk">
             <summary>
-            MindSphere API SDK
+            MindSphere API SDK.
             </summary>
         </member>
         <member name="M:MindSphereSdk.Core.Common.MindSphereApiSdk.#ctor(MindSphereSdk.Core.Authentication.ICredentials,MindSphereSdk.Core.Common.ClientConfiguration)">
             <summary>
-            Create a new instance of MindSphereApiSdk
+            Create a new instance of MindSphereApiSdk.
             </summary>
+        </member>
+        <member name="M:MindSphereSdk.Core.Common.MindSphereApiSdk.GetAccessTokenAsync">
+            <summary>
+            Get MindSphere API access token.
+            </summary>
+        </member>
+        <member name="M:MindSphereSdk.Core.Common.MindSphereApiSdk.UpdateCredentials(MindSphereSdk.Core.Authentication.ICredentials)">
+            <summary>
+            Update the credentials object.
+            </summary>
+            <remarks>
+            It is not possible to change the credential type in the runtime.
+            </remarks>
         </member>
         <member name="M:MindSphereSdk.Core.Common.MindSphereApiSdk.GetAssetManagementClient">
             <summary>
-            Get Asset Management Client
+            Get Asset Management Client.
             </summary>
         </member>
         <member name="M:MindSphereSdk.Core.Common.MindSphereApiSdk.GetIotTimeSeriesClient">
             <summary>
-            Get IoT Time Series Client
+            Get IoT Time Series Client.
             </summary>
         </member>
         <member name="M:MindSphereSdk.Core.Common.MindSphereApiSdk.GetIotTsAggregateClient">
             <summary>
-            Get IoT Time Series Aggregate Client
+            Get IoT Time Series Aggregate Client.
             </summary>
         </member>
         <member name="M:MindSphereSdk.Core.Common.MindSphereApiSdk.GetEventManagementClient">
             <summary>
-            Get Event Management Client
+            Get Event Management Client.
             </summary>
         </member>
         <member name="T:MindSphereSdk.Core.Common.MindSphereConnector">
             <summary>
-            Connector to the MindSphere API
-            </summary>
-        </member>
-        <member name="M:MindSphereSdk.Core.Common.MindSphereConnector.HttpActionAsync(System.Net.Http.HttpMethod,System.String,System.Net.Http.HttpContent,System.Collections.Generic.List{System.Collections.Generic.KeyValuePair{System.String,System.String}})">
-            <summary>
-            Sending HTTP request to the MindSphere API
+            Connector to the MindSphere API.
             </summary>
         </member>
         <member name="M:MindSphereSdk.Core.Common.MindSphereConnector.AcquireTokenAsync">
             <summary>
-            Acquire MindSphere access token
+            Acquire a new MindSphere access token.
+            </summary>
+        </member>
+        <member name="M:MindSphereSdk.Core.Common.MindSphereConnector.UpdateCredentials(MindSphereSdk.Core.Authentication.ICredentials)">
+            <summary>
+            Update the credentials object.
+            </summary>
+            <remarks>
+            It is not possible to change the credential type in the runtime.
+            </remarks>
+        </member>
+        <member name="M:MindSphereSdk.Core.Common.MindSphereConnector.GetAccessTokenAsync">
+            <summary>
+            Get MindSphere API access token.
+            </summary>
+        </member>
+        <member name="M:MindSphereSdk.Core.Common.MindSphereConnector.HttpActionAsync(System.Net.Http.HttpMethod,System.String,System.Net.Http.HttpContent,System.Collections.Generic.List{System.Collections.Generic.KeyValuePair{System.String,System.String}})">
+            <summary>
+            Sending HTTP request to the MindSphere API.
             </summary>
         </member>
         <member name="M:MindSphereSdk.Core.Common.MindSphereConnector.RenewTokenAsync">
             <summary>
-            Renew MindSphere access token
+            Renew MindSphere access token.
             </summary>
         </member>
         <member name="M:MindSphereSdk.Core.Common.MindSphereConnector.ValidateToken">
             <summary>
-            Validate MindSphere access token 
+            Validate MindSphere access token.
             </summary>
         </member>
         <member name="M:MindSphereSdk.Core.Common.MindSphereConnector.GetFullUri(System.String)">
             <summary>
-            Generate full URI
+            Generate full URI.
             </summary>
         </member>
         <member name="T:MindSphereSdk.Core.Common.SdkClient">
             <summary>
-            General SDK client
+            General SDK client.
             </summary>
         </member>
         <member name="M:MindSphereSdk.Core.Common.SdkClient.HttpActionAsync(System.Net.Http.HttpMethod,System.String,System.Net.Http.HttpContent,System.Collections.Generic.List{System.Collections.Generic.KeyValuePair{System.String,System.String}})">
             <summary>
-            Send HTTP request to the MindSphere API
+            Send HTTP request to the MindSphere API.
             </summary>
         </member>
         <member name="T:MindSphereSdk.Core.Common.UserMindSphereConnector">
             <summary>
-            Connector to the MindSphere API using user credentials
+            Connector to the MindSphere API using user credentials.
             </summary>
         </member>
         <member name="M:MindSphereSdk.Core.Common.UserMindSphereConnector.#ctor(MindSphereSdk.Core.Authentication.UserCredentials,MindSphereSdk.Core.Common.ClientConfiguration)">
             <summary>
-            Create a new instance of UserMindSphereConnector
+            Create a new instance of UserMindSphereConnector.
             </summary>
         </member>
         <member name="M:MindSphereSdk.Core.Common.UserMindSphereConnector.AcquireTokenAsync">
             <summary>
-            Acquire MindSphere access token (no need - it is handled by MindSphere)
+            Acquire MindSphere access token (no need - it is handled by MindSphere).
             </summary>
+        </member>
+        <member name="M:MindSphereSdk.Core.Common.UserMindSphereConnector.UpdateCredentials(MindSphereSdk.Core.Authentication.ICredentials)">
+            <summary>
+            Update the credentials object.
+            </summary>
+            <remarks>
+            It is not possible to change the credential type in the runtime.
+            </remarks>
         </member>
         <member name="T:MindSphereSdk.Core.EventManagement.EventManagementClient">
             <summary>
@@ -1441,110 +1488,109 @@
         </member>
         <member name="T:MindSphereSdk.Core.Exceptions.MindSphereApiException">
             <summary>
-            MindSphere API exception
+            MindSphere API exception.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.Exceptions.MindSphereApiException.StatusCode">
             <summary>
-            HTTP status code
+            HTTP status code.
             </summary>
         </member>
         <member name="M:MindSphereSdk.Core.Exceptions.MindSphereApiException.#ctor(System.Int32,System.String)">
             <summary>
-            Create a new instance of MindSphereApiException
+            Create a new instance of MindSphereApiException.
             </summary>
         </member>
         <member name="T:MindSphereSdk.Core.Exceptions.MindSphereApiExceptionHandler">
             <summary>
-            MindSphere API exception handler
+            MindSphere API exception handler.
             </summary>
         </member>
         <member name="M:MindSphereSdk.Core.Exceptions.MindSphereApiExceptionHandler.HandleUnsuccessfulResponseAsync(System.Net.Http.HttpResponseMessage)">
             <summary>
-            Handle unsuccessful response
+            Handle unsuccessful response.
             </summary>
         </member>
         <member name="T:MindSphereSdk.Core.Helpers.Helpers">
             <summary>
-            Helpers
+            Helpers.
             </summary>
         </member>
         <member name="M:MindSphereSdk.Core.Helpers.Helpers.GetDateTimeUtcString(System.DateTime)">
             <summary>
-            Generate date time UTC string
+            Generate date time UTC string.
             </summary>
         </member>
         <member name="T:MindSphereSdk.Core.Helpers.MultipartFormDataContentExtensions">
             <summary>
-            MultipartFormDataContent extensions
+            MultipartFormDataContent extensions.
             </summary>
         </member>
         <member name="M:MindSphereSdk.Core.Helpers.MultipartFormDataContentExtensions.AddStringContentIfNotNull(System.Net.Http.MultipartFormDataContent,System.String,System.String)">
             <summary>
-            Extension method for MultipartFormDataContent to add only not-null values
+            Extension method for MultipartFormDataContent to add only not-null values.
             </summary>
         </member>
         <member name="T:MindSphereSdk.Core.Helpers.QueryStringBuilder">
             <summary>
-            URI query builder
+            URI query builder.
             </summary>
         </member>
         <member name="M:MindSphereSdk.Core.Helpers.QueryStringBuilder.AddQuery(System.String,System.String)">
             <summary>
-            Add a new part to the URI query string
+            Add a new part to the URI query string.
             </summary>
             <remarks>
-            Only if not empty
+            Only if not empty.
             </remarks>
         </member>
         <member name="M:MindSphereSdk.Core.Helpers.QueryStringBuilder.AddQuery(System.String,System.Nullable{System.Int32})">
             <summary>
-            Add a new part to the URI query string
+            Add a new part to the URI query string.
             </summary>
             <remarks>
-            Only if not empty
+            Only if not empty.
             </remarks>
         </member>
         <member name="M:MindSphereSdk.Core.Helpers.QueryStringBuilder.AddQuery(System.String,System.Nullable{System.DateTime})">
             <summary>
-            Add a new part to the URI query string
+            Add a new part to the URI query string.
             </summary>
             <remarks>
-            Only if not empty
+            Only if not empty.
             </remarks>
         </member>
         <member name="M:MindSphereSdk.Core.Helpers.QueryStringBuilder.AddQuery(System.String,System.Nullable{System.Boolean})">
             <summary>
-            Add a new part to the URI query string
+            Add a new part to the URI query string.
             </summary>
             <remarks>
-            Only if not empty
+            Only if not empty.
             </remarks>
         </member>
         <member name="M:MindSphereSdk.Core.Helpers.QueryStringBuilder.ToString">
             <summary>
-            Build the URI query string
+            Build the URI query string.
             </summary>
-            <returns></returns>
         </member>
         <member name="T:MindSphereSdk.Core.Helpers.Validator">
             <summary>
-            Data validator
+            Data validator.
             </summary>
         </member>
         <member name="M:MindSphereSdk.Core.Helpers.Validator.Validate(MindSphereSdk.Core.Authentication.AppCredentials)">
             <summary>
-            Validate application credentials
+            Validate application credentials.
             </summary>
         </member>
         <member name="M:MindSphereSdk.Core.Helpers.Validator.Validate(MindSphereSdk.Core.Authentication.UserCredentials)">
             <summary>
-            Validate user credentials
+            Validate user credentials.
             </summary>
         </member>
         <member name="M:MindSphereSdk.Core.Helpers.Validator.Validate(MindSphereSdk.Core.Common.ClientConfiguration)">
             <summary>
-            Validate client configuration
+            Validate client configuration.
             </summary>
         </member>
         <member name="T:MindSphereSdk.Core.IotTimeSeries.IotTimeSeriesClient">

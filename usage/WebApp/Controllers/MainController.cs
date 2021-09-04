@@ -748,6 +748,34 @@ namespace WebApp.Controllers
             return StatusCode(200, assetType);
         }
 
+        [HttpGet("patch-asset-type-variables")]
+        public async Task<ActionResult> PatchAssetTypeVariables()
+        {
+            var assetClient = _sdk.GetAssetManagementClient();
+
+            var variableMap = new VariableMap()
+            {
+                Var3 = new VariableUpdate()
+                {
+                    Name = "var5"
+                },
+                Var4 = new VariableUpdate()
+                {
+                    Name = "var6"
+                },
+            };
+
+            var request = new PatchAssetTypeVariablesRequest()
+            {
+                Id = "prsdevex.Dotnet_sdk",
+                IfMatch = "1",
+                Body = variableMap
+            };
+            await assetClient.PatchAssetTypeVariablesAsync(request);
+
+            return StatusCode(204);
+        }
+
         #endregion
 
         #region Asset model lock
@@ -829,6 +857,15 @@ namespace WebApp.Controllers
 
         [JsonProperty("z")]
         public AggregateVariable Z { get; set; }
+    }
+
+    public class VariableMap
+    {
+        [JsonProperty("var4")]
+        public VariableUpdate Var3 { get; set; }
+
+        [JsonProperty("var3")]
+        public VariableUpdate Var4 { get; set; }
     }
 
     public class MyEventAdd : EventAdd

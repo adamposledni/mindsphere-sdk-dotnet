@@ -355,11 +355,10 @@ namespace MindSphereSdk.Core.AssetManagement
             return assetType;
         }
 
-        // TODO: PATCH /assettypes/id/variables - unable bcs of asset type variable quota
         /// <summary>
         /// Update variables from an asset type
         /// </summary>
-        private async Task PatchAssetTypeVariablesAsync(PatchAssetTypeVariablesRequest request)
+        public async Task PatchAssetTypeVariablesAsync(PatchAssetTypeVariablesRequest request)
         {
             // prepare URI string
             QueryStringBuilder queryBuilder = new QueryStringBuilder();

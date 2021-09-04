@@ -447,7 +447,7 @@ namespace MindSphereSdk.Core.AssetManagement
     #region Variables
 
     /// <summary>
-    /// Variable for asset/aspect type
+    /// Variable for asset/aspect type.
     /// </summary>
     public class VariableDetail
     {
@@ -474,7 +474,7 @@ namespace MindSphereSdk.Core.AssetManagement
     }
 
     /// <summary>
-    /// Variable
+    /// Variable.
     /// </summary>
     public class Variable
     {
@@ -483,6 +483,24 @@ namespace MindSphereSdk.Core.AssetManagement
 
         [JsonProperty("value")]
         public string ValueString { get; set; }
+    }
+
+    /// <summary>
+    /// Variable - update.
+    /// </summary>
+    public class VariableUpdate
+    {
+        [JsonProperty("name")]
+        public string Name { get; set; }
+
+        [JsonProperty("unit")]
+        public string Unit { get; set; }
+
+        [JsonProperty("length")]
+        public int? Length { get; set; }
+
+        [JsonProperty("defaultValue")]
+        public string DefaultValue { get; set; }
     }
 
     #endregion
@@ -912,27 +930,27 @@ namespace MindSphereSdk.Core.AssetManagement
     }
 
     /// <summary>
-    /// Request for updating asset type variables
+    /// Request for updating asset type variables.
     /// </summary>
     public class PatchAssetTypeVariablesRequest
     {
         /// <summary>
-        /// Last known version to facilitate optimistic locking
+        /// Last known version to facilitate optimistic locking.
         /// </summary>
         public string IfMatch { get; set; }
 
         /// <summary>
-        /// The type’s id is a unique identifier
+        /// The type’s id is a unique identifier.
         /// </summary>
         public string Id { get; set; }
 
         /// <summary>
-        /// Specifies if the operation should take into account shared aspect types
+        /// Specifies if the operation should take into account shared aspect types.
         /// </summary>
         public bool? IncludeShared { get; set; }
 
         /// <summary>
-        /// Variables Dictionary, variable Name is the key and value are the parameters to be updated of the variable
+        /// Variables map.
         /// </summary>
         public object Body { get; set; }
     }
