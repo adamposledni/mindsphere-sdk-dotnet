@@ -26,7 +26,7 @@ namespace MindSphereSdk.Core.EventManagement
     #region Event
 
     /// <summary>
-    /// Event
+    /// Event.
     /// </summary>
     public abstract class Event
     {
@@ -50,7 +50,7 @@ namespace MindSphereSdk.Core.EventManagement
     }
 
     /// <summary>
-    /// Event to add
+    /// Event to add.
     /// </summary>
     public class EventAdd
     {

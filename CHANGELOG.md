@@ -1,9 +1,10 @@
 # Changelog
 ## v1.1.1
 - added *GetAccessToken* method in the *MindSphereApiSdk* class
+- added PATCH /assettypes/{id}/variables 
 
 ## v1.1.0
-- new class architecture - client are initialized by *MindSphereApiSdk* instance
+- new class architecture - clients are initialized by *MindSphereApiSdk* instance
 - no need to provide *HttpClient* instance
 - added *ClientConfiguration* (region, domain, timeout, proxy)
 - added *UserCredentials* as a new credential option

@@ -342,7 +342,7 @@ var tsAggregate = await iotAggregClient.GetAggregateTimeSeriesAsync<TestAggregat
 | DELETE | /assettypes/{id}                       | DeleteAssetTypeAsync               |
 | PUT    | /assettypes/{id}/fileAssignments/{key} | AddAssetTypeFileAssignmentAsync    |
 | DELETE | /assettypes/{id}/fileAssignments/{key} | DeleteAssetTypeFileAssignmentAsync |
-| PATCH  | /assettypes/{id}/variables             | *not implemented*                  |
+| PATCH  | /assettypes/{id}/variables             | PatchAssetTypeVariablesAsync       |
 
 **Asset**
 | Method | Endpoint                           | SDK                            |
