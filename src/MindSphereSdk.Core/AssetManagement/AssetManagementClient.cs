@@ -73,7 +73,7 @@ namespace MindSphereSdk.Core.AssetManagement
             };
 
             // prepare HTTP request body
-            string jsonString = JsonConvert.SerializeObject(request.Body);
+            string jsonString = JsonConvert.SerializeObject(request.AspectType);
             StringContent body = new StringContent(jsonString, Encoding.UTF8, "application/json");
 
 
@@ -101,7 +101,7 @@ namespace MindSphereSdk.Core.AssetManagement
             };
 
             // prepare HTTP request body
-            string jsonString = JsonConvert.SerializeObject(request.Body,
+            string jsonString = JsonConvert.SerializeObject(request.AspectType,
                 new JsonSerializerSettings()
                 {
                     NullValueHandling = NullValueHandling.Ignore
@@ -215,7 +215,7 @@ namespace MindSphereSdk.Core.AssetManagement
             };
 
             // prepare HTTP request body
-            string jsonString = JsonConvert.SerializeObject(request.Body,
+            string jsonString = JsonConvert.SerializeObject(request.AssetType,
                 new JsonSerializerSettings()
                 {
                     NullValueHandling = NullValueHandling.Ignore
@@ -247,7 +247,7 @@ namespace MindSphereSdk.Core.AssetManagement
             };
 
             // prepare HTTP request body
-            string jsonString = JsonConvert.SerializeObject(request.Body,
+            string jsonString = JsonConvert.SerializeObject(request.AssetType,
                 new JsonSerializerSettings()
                 {
                     NullValueHandling = NullValueHandling.Ignore
@@ -372,7 +372,7 @@ namespace MindSphereSdk.Core.AssetManagement
             };
 
             // prepare HTTP request body
-            string jsonString = JsonConvert.SerializeObject(request.Body,
+            string jsonString = JsonConvert.SerializeObject(request.VariableMap,
                 new JsonSerializerSettings()
                 {
                     NullValueHandling = NullValueHandling.Ignore
@@ -432,7 +432,7 @@ namespace MindSphereSdk.Core.AssetManagement
             string uri = _baseUri + "/assets" + queryBuilder.ToString();
 
             // prepare HTTP request body
-            StringContent body = new StringContent(JsonConvert.SerializeObject(request.Body), Encoding.UTF8, "application/json");
+            StringContent body = new StringContent(JsonConvert.SerializeObject(request.Asset), Encoding.UTF8, "application/json");
 
             // make request
             string response = await HttpActionAsync(HttpMethod.Post, uri, body);
@@ -481,7 +481,7 @@ namespace MindSphereSdk.Core.AssetManagement
             };
 
             // prepare HTTP request body
-            string jsonString = JsonConvert.SerializeObject(request.Body,
+            string jsonString = JsonConvert.SerializeObject(request.Asset,
                 new JsonSerializerSettings()
                 {
                     NullValueHandling = NullValueHandling.Ignore
@@ -512,7 +512,7 @@ namespace MindSphereSdk.Core.AssetManagement
             };
 
             // prepare HTTP request body
-            string jsonString = JsonConvert.SerializeObject(request.Body,
+            string jsonString = JsonConvert.SerializeObject(request.Asset,
                 new JsonSerializerSettings()
                 {
                     NullValueHandling = NullValueHandling.Ignore
@@ -734,7 +734,7 @@ namespace MindSphereSdk.Core.AssetManagement
             };
 
             // prepare HTTP request body
-            string jsonString = JsonConvert.SerializeObject(request.Body,
+            string jsonString = JsonConvert.SerializeObject(request.Location,
                 new JsonSerializerSettings()
                 {
                     NullValueHandling = NullValueHandling.Ignore

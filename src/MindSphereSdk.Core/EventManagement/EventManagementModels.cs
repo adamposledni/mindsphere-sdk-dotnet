@@ -8,10 +8,10 @@ namespace MindSphereSdk.Core.EventManagement
     #region Embedded
 
     /// <summary>
-    /// Embedded event list
+    /// Embedded event list.
     /// </summary>
     /// <typeparam name="T">
-    /// Type derived from Event or dynamic
+    /// Type derived from Event or dynamic.
     /// </typeparam>
     internal class EmbeddedEventList<T>
     {
@@ -77,7 +77,7 @@ namespace MindSphereSdk.Core.EventManagement
         /// <summary>
         /// Event.
         /// </summary>
-        public EventAddUpdate Body { get; set; }
+        public EventAddUpdate Event { get; set; }
 
         /// <summary>
         /// Specifies if the operation should take into account shared entities.

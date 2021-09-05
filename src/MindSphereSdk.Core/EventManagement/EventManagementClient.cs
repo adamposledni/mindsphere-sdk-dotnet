@@ -32,7 +32,7 @@ namespace MindSphereSdk.Core.EventManagement
             string uri = _baseUri + "/events" + queryBuilder.ToString();
 
             // prepare HTTP request body
-            string jsonString = JsonConvert.SerializeObject(request.Body,
+            string jsonString = JsonConvert.SerializeObject(request.Event,
                 new JsonSerializerSettings()
                 {
                     NullValueHandling = NullValueHandling.Ignore
