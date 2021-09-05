@@ -186,32 +186,32 @@
         </member>
         <member name="T:MindSphereSdk.Core.AssetManagement.EmbeddedAssetList">
             <summary>
-            Embedded asset list
+            Embedded asset list.
             </summary>
         </member>
         <member name="T:MindSphereSdk.Core.AssetManagement.EmbeddedAspectTypeList">
             <summary>
-            Embedded aspect type list
+            Embedded aspect type list.
             </summary>
         </member>
         <member name="T:MindSphereSdk.Core.AssetManagement.EmbeddedAssetTypeList">
             <summary>
-            Embedded asset type list
+            Embedded asset type list.
             </summary>
         </member>
         <member name="T:MindSphereSdk.Core.AssetManagement.EmbeddedVariableList">
             <summary>
-            Embedded variable list
+            Embedded variable list.
             </summary>
         </member>
         <member name="T:MindSphereSdk.Core.AssetManagement.EmbeddedAspectList">
             <summary>
-            Embedded aspect list
+            Embedded aspect list.
             </summary>
         </member>
         <member name="T:MindSphereSdk.Core.AssetManagement.EmbeddedFileList">
             <summary>
-            Embedded file list
+            Embedded file list.
             </summary>
         </member>
         <member name="T:MindSphereSdk.Core.AssetManagement.AspectType">
@@ -429,22 +429,22 @@
         </member>
         <member name="T:MindSphereSdk.Core.AssetManagement.DeleteAspectTypeRequest">
             <summary>
-            Request for deleting aspect type
+            Request for deleting aspect type.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.AssetManagement.DeleteAspectTypeRequest.IfMatch">
             <summary>
-            Last known version to facilitate optimistic locking
+            Last known version to facilitate optimistic locking.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.AssetManagement.DeleteAspectTypeRequest.Id">
             <summary>
-            The type’s id is a unique identifier
+            The type’s id is a unique identifier.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.AssetManagement.DeleteAspectTypeRequest.IncludeShared">
             <summary>
-            Specifies if the operation should take into account shared aspect types
+            Specifies if the operation should take into account shared aspect types.
             </summary>
         </member>
         <member name="T:MindSphereSdk.Core.AssetManagement.ListAssetTypesRequest">
@@ -1458,32 +1458,155 @@
         </member>
         <member name="M:MindSphereSdk.Core.EventManagement.EventManagementClient.AddEventAsync``1(MindSphereSdk.Core.EventManagement.AddEventRequest)">
             <summary>
-            Create new event
+            Create new event.
+            </summary>
+        </member>
+        <member name="M:MindSphereSdk.Core.EventManagement.EventManagementClient.ListEventsAsync(MindSphereSdk.Core.EventManagement.ListEventsRequest)">
+            <summary>
+            Query events. 
+            </summary>
+        </member>
+        <member name="M:MindSphereSdk.Core.EventManagement.EventManagementClient.ListEventsAsync``1(MindSphereSdk.Core.EventManagement.ListEventsRequest)">
+            <summary>
+            Query events. 
+            </summary>
+        </member>
+        <member name="M:MindSphereSdk.Core.EventManagement.EventManagementClient.ListEventsLogicAsync``1(MindSphereSdk.Core.EventManagement.ListEventsRequest)">
+            <summary>
+            Executive method for querying events.
+            </summary>
+        </member>
+        <member name="M:MindSphereSdk.Core.EventManagement.EventManagementClient.GetEventAsync``1(MindSphereSdk.Core.EventManagement.GetEventRequest)">
+            <summary>
+            Get an event.
+            </summary>
+        </member>
+        <member name="M:MindSphereSdk.Core.EventManagement.EventManagementClient.UpdateEventAsync``1(MindSphereSdk.Core.EventManagement.UpdateEventRequest)">
+            <summary>
+            Update an event.
+            </summary>
+        </member>
+        <member name="T:MindSphereSdk.Core.EventManagement.EmbeddedEventList`1">
+            <summary>
+            Embedded event list
+            </summary>
+            <typeparam name="T">
+            Type derived from Event or dynamic
+            </typeparam>
+        </member>
+        <member name="T:MindSphereSdk.Core.EventManagement.Event">
+            <summary>
+            Event.
+            </summary>
+        </member>
+        <member name="T:MindSphereSdk.Core.EventManagement.EventAddUpdate">
+            <summary>
+            Event to add.
             </summary>
         </member>
         <member name="T:MindSphereSdk.Core.EventManagement.AddEventRequest">
             <summary>
-            Request for adding event
+            Request for adding an event.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.EventManagement.AddEventRequest.Body">
             <summary>
-            Event
+            Event.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.EventManagement.AddEventRequest.IncludeShared">
             <summary>
-            Specifies if the operation should take into account shared entities
+            Specifies if the operation should take into account shared entities.
             </summary>
         </member>
-        <member name="T:MindSphereSdk.Core.EventManagement.Event">
+        <member name="T:MindSphereSdk.Core.EventManagement.ListEventsRequest">
             <summary>
-            Event
+            Request for listing events
             </summary>
         </member>
-        <member name="T:MindSphereSdk.Core.EventManagement.EventAdd">
+        <member name="P:MindSphereSdk.Core.EventManagement.ListEventsRequest.Size">
             <summary>
-            Event to add
+            Specifies the number of elements in a page.
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.EventManagement.ListEventsRequest.Page">
+            <summary>
+            Specifies the requested page index.
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.EventManagement.ListEventsRequest.Filter">
+            <summary>
+            Specifies the additional filtering criteria.
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.EventManagement.ListEventsRequest.Sort">
+            <summary>
+            Specifies the ordering of returned elements.
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.EventManagement.ListEventsRequest.IfNoneMatch">
+            <summary>
+            ETag hash of previous request to allow caching.
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.EventManagement.ListEventsRequest.History">
+            <summary>
+            Optional paramater, if we want to retrieve the history of an event which is based on using the same correlationID, entityID, typeID.
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.EventManagement.ListEventsRequest.IncludeShared">
+            <summary>
+            Specifies if the operation should take into account shared aspect types.
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.EventManagement.ListEventsRequest.EnablePageCache">
+            <summary>
+            To specify if page caching is enabled or not. This property enables faster fetching of events from multiple pages for same filter criteria.
+            </summary>
+        </member>
+        <member name="T:MindSphereSdk.Core.EventManagement.GetEventRequest">
+            <summary>
+            Request for getting an event.
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.EventManagement.GetEventRequest.EventId">
+            <summary>
+            ID of an event.
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.EventManagement.GetEventRequest.IfNoneMatch">
+            <summary>
+            ETag hash of previous request to allow caching.
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.EventManagement.GetEventRequest.IncludeShared">
+            <summary>
+            Specifies if the operation should take into account shared entities.
+            </summary>
+        </member>
+        <member name="T:MindSphereSdk.Core.EventManagement.UpdateEventRequest">
+            <summary>
+            Request for updateing an event.
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.EventManagement.UpdateEventRequest.EventId">
+            <summary>
+            ID of an event.
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.EventManagement.UpdateEventRequest.Event">
+            <summary>
+            Event content to be created or updated.
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.EventManagement.UpdateEventRequest.IfMatch">
+            <summary>
+            Used for optimistic concurrency control.
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.EventManagement.UpdateEventRequest.IncludeShared">
+            <summary>
+            Specifies if the operation should take into account shared entities.
             </summary>
         </member>
         <member name="T:MindSphereSdk.Core.Exceptions.MindSphereApiException">

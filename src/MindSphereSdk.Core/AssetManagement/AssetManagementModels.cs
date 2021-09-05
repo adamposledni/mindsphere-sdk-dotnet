@@ -8,7 +8,7 @@ namespace MindSphereSdk.Core.AssetManagement
     #region Embedded
 
     /// <summary>
-    /// Embedded asset list
+    /// Embedded asset list.
     /// </summary>
     internal class EmbeddedAssetList
     {
@@ -17,7 +17,7 @@ namespace MindSphereSdk.Core.AssetManagement
     }
 
     /// <summary>
-    /// Embedded aspect type list
+    /// Embedded aspect type list.
     /// </summary>
     internal class EmbeddedAspectTypeList
     {
@@ -26,7 +26,7 @@ namespace MindSphereSdk.Core.AssetManagement
     }
 
     /// <summary>
-    /// Embedded asset type list
+    /// Embedded asset type list.
     /// </summary>
     internal class EmbeddedAssetTypeList
     {
@@ -35,7 +35,7 @@ namespace MindSphereSdk.Core.AssetManagement
     }
 
     /// <summary>
-    /// Embedded variable list
+    /// Embedded variable list.
     /// </summary>
     internal class EmbeddedVariableList
     {
@@ -44,7 +44,7 @@ namespace MindSphereSdk.Core.AssetManagement
     }
 
     /// <summary>
-    /// Embedded aspect list
+    /// Embedded aspect list.
     /// </summary>
     internal class EmbeddedAspectList
     {
@@ -53,7 +53,7 @@ namespace MindSphereSdk.Core.AssetManagement
     }
 
     /// <summary>
-    /// Embedded file list
+    /// Embedded file list.
     /// </summary>
     internal class EmbeddedFileList
     {
@@ -693,22 +693,22 @@ namespace MindSphereSdk.Core.AssetManagement
     }
 
     /// <summary>
-    /// Request for deleting aspect type
+    /// Request for deleting aspect type.
     /// </summary>
     public class DeleteAspectTypeRequest
     {
         /// <summary>
-        /// Last known version to facilitate optimistic locking
+        /// Last known version to facilitate optimistic locking.
         /// </summary>
         public string IfMatch { get; set; }
 
         /// <summary>
-        /// The type’s id is a unique identifier
+        /// The type’s id is a unique identifier.
         /// </summary>
         public string Id { get; set; }
 
         /// <summary>
-        /// Specifies if the operation should take into account shared aspect types
+        /// Specifies if the operation should take into account shared aspect types.
         /// </summary>
         public bool? IncludeShared { get; set; }
     }

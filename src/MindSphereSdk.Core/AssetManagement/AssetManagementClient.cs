@@ -872,7 +872,7 @@ namespace MindSphereSdk.Core.AssetManagement
         public async Task<File> UpdateFileAsync(UpdateFileRequest request)
         {
             // prepare URI string
-            string uri = _baseUri + "/files/" + request.Id;
+            string uri = _baseUri + "/events/" + request.Id;
 
             // prepare HTTP request headers
             List<KeyValuePair<string, string>> headers = new List<KeyValuePair<string, string>>

@@ -1,24 +1,22 @@
-﻿using Newtonsoft.Json;
+﻿using MindSphereSdk.Core.AssetManagement;
+using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 
 namespace MindSphereSdk.Core.EventManagement
 {
-    #region Request
+    #region Embedded
 
     /// <summary>
-    /// Request for adding event
+    /// Embedded event list
     /// </summary>
-    public class AddEventRequest
+    /// <typeparam name="T">
+    /// Type derived from Event or dynamic
+    /// </typeparam>
+    internal class EmbeddedEventList<T>
     {
-        /// <summary>
-        /// Event
-        /// </summary>
-        public EventAdd Body { get; set; }
-
-        /// <summary>
-        /// Specifies if the operation should take into account shared entities
-        /// </summary>
-        public bool? IncludeShared { get; set; }
+        [JsonProperty("events")]
+        public IEnumerable<T> Events { get; set; }
     }
 
     #endregion
@@ -28,7 +26,7 @@ namespace MindSphereSdk.Core.EventManagement
     /// <summary>
     /// Event.
     /// </summary>
-    public abstract class Event
+    public class Event
     {
         [JsonProperty("id")]
         public string Id { get; set; }
@@ -52,7 +50,7 @@ namespace MindSphereSdk.Core.EventManagement
     /// <summary>
     /// Event to add.
     /// </summary>
-    public class EventAdd
+    public class EventAddUpdate
     {
         [JsonProperty("typeId")]
         public string TypeId { get; set; }
@@ -65,6 +63,119 @@ namespace MindSphereSdk.Core.EventManagement
 
         [JsonProperty("entityId")]
         public string EntityId { get; set; }
+    }
+
+    #endregion
+
+    #region Request
+
+    /// <summary>
+    /// Request for adding an event.
+    /// </summary>
+    public class AddEventRequest
+    {
+        /// <summary>
+        /// Event.
+        /// </summary>
+        public EventAddUpdate Body { get; set; }
+
+        /// <summary>
+        /// Specifies if the operation should take into account shared entities.
+        /// </summary>
+        public bool? IncludeShared { get; set; }
+    }
+
+    /// <summary>
+    /// Request for listing events
+    /// </summary>
+    public class ListEventsRequest
+    {
+        /// <summary>
+        /// Specifies the number of elements in a page.
+        /// </summary>
+        public int? Size { get; set; }
+
+        /// <summary>
+        /// Specifies the requested page index.
+        /// </summary>
+        public int? Page { get; set; }
+
+        /// <summary>
+        /// Specifies the additional filtering criteria.
+        /// </summary>
+        public string Filter { get; set; }
+
+        /// <summary>
+        /// Specifies the ordering of returned elements.
+        /// </summary>
+        public string Sort { get; set; }
+
+        /// <summary>
+        /// ETag hash of previous request to allow caching.
+        /// </summary>
+        public string IfNoneMatch { get; set; }
+
+        /// <summary>
+        /// Optional paramater, if we want to retrieve the history of an event which is based on using the same correlationID, entityID, typeID.
+        /// </summary>
+        public bool? History { get; set; }
+
+        /// <summary>
+        /// Specifies if the operation should take into account shared aspect types.
+        /// </summary>
+        public bool? IncludeShared { get; set; }
+
+        /// <summary>
+        /// To specify if page caching is enabled or not. This property enables faster fetching of events from multiple pages for same filter criteria.
+        /// </summary>
+        public bool? EnablePageCache { get; set; }
+    }
+
+    /// <summary>
+    /// Request for getting an event.
+    /// </summary>
+    public class GetEventRequest
+    {
+        /// <summary>
+        /// ID of an event.
+        /// </summary>
+        public string EventId { get; set; }
+
+        /// <summary>
+        /// ETag hash of previous request to allow caching.
+        /// </summary>
+        public string IfNoneMatch { get; set; }
+
+        /// <summary>
+        /// Specifies if the operation should take into account shared entities.
+        /// </summary>
+        public bool? IncludeShared { get; set; }
+    }
+
+    /// <summary>
+    /// Request for updateing an event.
+    /// </summary>
+    public class UpdateEventRequest
+    {
+        /// <summary>
+        /// ID of an event.
+        /// </summary>
+        public string EventId { get; set; }
+
+        /// <summary>
+        /// Event content to be created or updated.
+        /// </summary>
+        public EventAddUpdate Event { get; set; }
+
+        /// <summary>
+        /// Used for optimistic concurrency control.
+        /// </summary>
+        public string IfMatch { get; set; }
+
+        /// <summary>
+        /// Specifies if the operation should take into account shared entities.
+        /// </summary>
+        public bool? IncludeShared { get; set; }
     }
 
     #endregion

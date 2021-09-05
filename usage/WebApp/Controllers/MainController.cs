@@ -64,9 +64,9 @@ namespace WebApp.Controllers
             {
                 Body = new AssetAdd()
                 {
-                    Name = "MyNewAsset",
-                    TypeId = "iiotdgli.mobilephone",
-                    ParentId = "ec206f76b04a49a4938c1573b35b6688",
+                    Name = "DotnetSdkAsset",
+                    TypeId = "prsdevex.Dotnet_sdk",
+                    ParentId = "11d4d30f87534500842d132233fffa46",
                 }
             };
             return StatusCode(200, await assetClient.AddAssetAsync(request));
@@ -804,21 +804,58 @@ namespace WebApp.Controllers
         #region Event
 
         [HttpGet("add-event")]
-        public async Task<ActionResult<Event>> AddEvent()
+        public async Task<ActionResult<MyEvent>> AddEvent()
         {
             var eventClient = _sdk.GetEventManagementClient();
             var request = new AddEventRequest()
             {
-                Body = new MyEventAdd()
+                Body = new MyEventAddUpdate()
                 {
-                    EntityId = "ec206f76b04a49a4938c1573b35b6688",
+                    EntityId = "da4aabbd3f2f488da7ef75fa506a8eaa",
                     Timestamp = DateTime.Now.ToUniversalTime(),
                     Description = "Error happened in the test",
                     Severity = 5
-
                 }
             };
             return StatusCode(200, await eventClient.AddEventAsync<MyEvent>(request));
+        }
+
+        [HttpGet("list-events")]
+        public async Task<ActionResult<IEnumerable<MyEvent>>> ListEvents()
+        {
+            var eventClient = _sdk.GetEventManagementClient();
+            var request = new ListEventsRequest();
+            return StatusCode(200, await eventClient.ListEventsAsync(request));
+        }
+
+        [HttpGet("get-event")]
+        public async Task<ActionResult<MyEvent>> GetEvent()
+        {
+            var eventClient = _sdk.GetEventManagementClient();
+            var request = new GetEventRequest()
+            {
+                EventId = "3a799ea2-289d-4421-8120-9ec4ac23cf54"
+            };
+            return StatusCode(200, await eventClient.GetEventAsync<MyEvent>(request));
+        }
+
+        [HttpGet("update-event")]
+        public async Task<ActionResult<MyEvent>> UpdateEvent()
+        {
+            var eventClient = _sdk.GetEventManagementClient();
+            var request = new UpdateEventRequest()
+            {
+                EventId = "3a799ea2-289d-4421-8120-9ec4ac23cf54",
+                IfMatch = "1",
+                Event = new MyEventAddUpdate()
+                {
+                    Severity = 3,
+                    CorrelationId = "61349fc6e3c5d0f8a12069480abd4438",
+                    EntityId = "da4aabbd3f2f488da7ef75fa506a8eaa",
+                    Timestamp = DateTime.Parse("2021-09-05T10:45:25.527299Z").ToUniversalTime()
+                }
+            };
+            return StatusCode(200, await eventClient.UpdateEventAsync<MyEvent>(request));
         }
 
         #endregion
@@ -868,7 +905,7 @@ namespace WebApp.Controllers
         public VariableUpdate Var4 { get; set; }
     }
 
-    public class MyEventAdd : EventAdd
+    public class MyEventAddUpdate : EventAddUpdate
     {
         [JsonProperty("description")]
         public string Description { get; set; }
