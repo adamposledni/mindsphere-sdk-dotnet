@@ -48,8 +48,6 @@ namespace MindSphereSdk.Core.Common
             Region = region;
             Timeout = timeout;
             Proxy = proxy;
-
-            Validator.Validate(this);
         }
     }
 }

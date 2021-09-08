@@ -18,8 +18,10 @@ namespace MindSphereSdk.Core.Test
         public void CreateWithInvalidData()
         {
             // Arrange
+            var config = new ClientConfiguration();
+            var creds = new AppCredentials("  ", null, "   ", "  ", "  ", "  ");
             // Act
-            Action act = () => { new AppCredentials("  ", null, "   ", "  ", "  ", "  "); };
+            Action act = () => { new MindSphereApiSdk(creds, config); };
 
             // Assert
             Assert.Throws<ArgumentException>(act);
@@ -32,36 +34,10 @@ namespace MindSphereSdk.Core.Test
         public void CreateWithValidData()
         {
             // Act
+            var creds = new AppCredentials("a", "b", "c", "d", "e", "f");
+            var config = new ClientConfiguration();
             // Arrange
-            _ = new AppCredentials("a", "b", "c", "d", "e", "f");
-
-            // Assert
-        }
-
-        /// <summary>
-        /// AppCredentials values validation.
-        /// </summary>
-        [Fact]
-        public void CreateFromFileWithInvalidData()
-        {
-            // Arrange
-            // Act
-            Action act = () => AppCredentials.FromJsonFile("mdspcreds-data-invalid.json");
-
-            // Assert
-            Assert.Throws<ArgumentException>(act);
-        }
-
-        /// <summary>
-        /// AppCredentials values validation.
-        /// </summary>
-        [Fact]
-        public void CreateFromFileWithValidData()
-        {
-            // Act
-            // Arrange
-            _ = AppCredentials.FromJsonFile("mdspcreds.json");
-
+            _ = new MindSphereApiSdk(creds, config);
             // Assert
         }
     }

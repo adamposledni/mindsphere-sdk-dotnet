@@ -18,8 +18,10 @@ namespace MindSphereSdk.Core.Test
         public void CreateWithInvalidData()
         {
             // Arrange
+            var creds = new UserCredentials("fake_token");
+            var config = new ClientConfiguration(timeout: 0);
             // Act
-            Action act = () => new ClientConfiguration(timeout: 0);
+            Action act = () => new MindSphereApiSdk(creds, config);
 
             // Assert
             Assert.Throws<ArgumentException>(act);
@@ -31,9 +33,11 @@ namespace MindSphereSdk.Core.Test
         [Fact]
         public void CreateWithValidData()
         {
-            // Act
             // Arrange
-            _ = new ClientConfiguration("hello", "something", 1);
+            var creds = new UserCredentials("fake_token");
+            var config = new ClientConfiguration();
+            // Act
+            _ = new MindSphereApiSdk(creds, config);
 
             // Assert
         }

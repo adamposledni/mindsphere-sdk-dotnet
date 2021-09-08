@@ -1634,6 +1634,21 @@
             Handle unsuccessful response.
             </summary>
         </member>
+        <member name="T:MindSphereSdk.Core.Helpers.Guard">
+            <summary>
+            Data guard.
+            </summary>
+        </member>
+        <member name="M:MindSphereSdk.Core.Helpers.Guard.NotNull(System.Object,System.String)">
+            <summary>
+            Ensure object is not null.
+            </summary>
+        </member>
+        <member name="M:MindSphereSdk.Core.Helpers.Guard.Validate(System.Object,System.String)">
+            <summary>
+            Validate object.
+            </summary>
+        </member>
         <member name="T:MindSphereSdk.Core.Helpers.Helpers">
             <summary>
             Helpers.
@@ -1696,24 +1711,14 @@
             Build the URI query string.
             </summary>
         </member>
-        <member name="T:MindSphereSdk.Core.Helpers.Validator">
+        <member name="T:MindSphereSdk.Core.Helpers.Validators.Validator">
             <summary>
-            Data validator.
+            General validator.
             </summary>
         </member>
-        <member name="M:MindSphereSdk.Core.Helpers.Validator.Validate(MindSphereSdk.Core.Authentication.AppCredentials)">
+        <member name="M:MindSphereSdk.Core.Helpers.Validators.Validator.GetValidationResult(System.Object)">
             <summary>
-            Validate application credentials.
-            </summary>
-        </member>
-        <member name="M:MindSphereSdk.Core.Helpers.Validator.Validate(MindSphereSdk.Core.Authentication.UserCredentials)">
-            <summary>
-            Validate user credentials.
-            </summary>
-        </member>
-        <member name="M:MindSphereSdk.Core.Helpers.Validator.Validate(MindSphereSdk.Core.Common.ClientConfiguration)">
-            <summary>
-            Validate client configuration.
+            Get validation result for the given object.
             </summary>
         </member>
         <member name="T:MindSphereSdk.Core.IotTimeSeries.IotTimeSeriesClient">

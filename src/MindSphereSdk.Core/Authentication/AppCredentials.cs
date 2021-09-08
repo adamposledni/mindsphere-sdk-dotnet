@@ -48,7 +48,6 @@ namespace MindSphereSdk.Core.Authentication
         /// <summary>
         /// Create a new instance of the AppCredentials.
         /// </summary>
-        [JsonConstructor]
         public AppCredentials(
             string keyStoreClientId,
             string keyStoreClientSecret,
@@ -64,8 +63,6 @@ namespace MindSphereSdk.Core.Authentication
             AppVersion = appVersion;
             HostTenant = hostTenant;
             UserTenant = userTenant;
-
-            Validator.Validate(this);
         }
 
         /// <summary>
