@@ -44,7 +44,7 @@ namespace MindSphereSdk.Core.AssetManagement
 
             // makte request
             string response = await HttpActionAsync(HttpMethod.Get, uri, headers: headers);
-            var aspectTypeListWrapper = JsonConvert.DeserializeObject<MindSphereResourceWrapper<EmbeddedAspectTypeList>>(response);
+            var aspectTypeListWrapper = JsonConvert.DeserializeObject<MindSphereApiResource<EmbeddedAspectTypeList>>(response);
 
             // format output
             var output = new ResourceList<AspectType>
@@ -185,7 +185,7 @@ namespace MindSphereSdk.Core.AssetManagement
 
             // make request
             string response = await HttpActionAsync(HttpMethod.Get, uri, headers: headers);
-            var assetTypeListWrapper = JsonConvert.DeserializeObject<MindSphereResourceWrapper<EmbeddedAssetTypeList>>(response);
+            var assetTypeListWrapper = JsonConvert.DeserializeObject<MindSphereApiResource<EmbeddedAssetTypeList>>(response);
 
             // format output
             var output = new ResourceList<AssetType>
@@ -410,7 +410,7 @@ namespace MindSphereSdk.Core.AssetManagement
 
             // make request
             string response = await HttpActionAsync(HttpMethod.Get, uri, headers: headers);
-            var assetListWrapper = JsonConvert.DeserializeObject<MindSphereResourceWrapper<EmbeddedAssetList>>(response);
+            var assetListWrapper = JsonConvert.DeserializeObject<MindSphereApiResource<EmbeddedAssetList>>(response);
 
             // format output
             var output = new ResourceList<Asset>
@@ -669,7 +669,7 @@ namespace MindSphereSdk.Core.AssetManagement
 
             // make request
             string response = await HttpActionAsync(HttpMethod.Get, uri, headers: headers);
-            var variableListWrapper = JsonConvert.DeserializeObject<MindSphereResourceWrapper<EmbeddedVariableList>>(response);
+            var variableListWrapper = JsonConvert.DeserializeObject<MindSphereApiResource<EmbeddedVariableList>>(response);
 
             // format output
             var output = new ResourceList<VariableDetail>
@@ -702,7 +702,7 @@ namespace MindSphereSdk.Core.AssetManagement
 
             // make request
             string response = await HttpActionAsync(HttpMethod.Get, uri, headers: headers);
-            var aspectListWrapper = JsonConvert.DeserializeObject<MindSphereResourceWrapper<EmbeddedAspectList>>(response);
+            var aspectListWrapper = JsonConvert.DeserializeObject<MindSphereApiResource<EmbeddedAspectList>>(response);
 
             // format output
             var output = new ResourceList<AspectFullDetail>
@@ -820,7 +820,7 @@ namespace MindSphereSdk.Core.AssetManagement
 
             // make request
             string response = await HttpActionAsync(HttpMethod.Get, uri, headers: headers);
-            var fileListWrapper = JsonConvert.DeserializeObject<MindSphereResourceWrapper<EmbeddedFileList>>(response);
+            var fileListWrapper = JsonConvert.DeserializeObject<MindSphereApiResource<EmbeddedFileList>>(response);
 
             // format output
             var output = new ResourceList<File>();
