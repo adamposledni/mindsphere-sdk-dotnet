@@ -49,7 +49,7 @@ namespace WebApp.Controllers
             var assetClient = _sdk.GetAssetManagementClient();
             var request = new GetAssetRequest()
             {
-                Id = "73b2a7cdf27241e5b3f29b07266ff602"
+                Id = "da4aabbd3f2f488da7ef75fa506a8eaa"
             };
             Asset asset = await assetClient.GetAssetAsync(request);
 
@@ -80,9 +80,9 @@ namespace WebApp.Controllers
             {
                 Asset = new AssetUpdate()
                 {
-                    Name = "MyUpdatedAsset"
+                    Name = "DotnetSdkAsset"
                 },
-                Id = "8e775e74a9fa4b4f8fcf15e808d7fb10",
+                Id = "da4aabbd3f2f488da7ef75fa506a8eaa",
                 IfMatch = "2"
             };
 
@@ -248,7 +248,7 @@ namespace WebApp.Controllers
 
         #endregion
 
-        #region Files
+        #region File
 
         [HttpGet("list-files")]
         public async Task<ActionResult<IEnumerable<File>>> ListFiles()
@@ -307,14 +307,16 @@ namespace WebApp.Controllers
         public async Task<ActionResult<File>> UploadFile()
         {
             var assetClient = _sdk.GetAssetManagementClient();
-            var fs = new FileStream("test.txt", FileMode.Open);
-
-            var request = new UploadFileRequest()
+            File file;
+            using (var fs = new FileStream("test.txt", FileMode.Open))
             {
-                File = fs,
-                Name = "test.txt"
-            };
-            var file = await assetClient.UploadFileAsync(request);
+                var request = new UploadFileRequest()
+                {
+                    File = fs,
+                    Name = "test.txt"
+                };
+                file = await assetClient.UploadFileAsync(request);
+            }
 
             return StatusCode(200, file);
         }
@@ -376,9 +378,9 @@ namespace WebApp.Controllers
             //timeSeriesData.Add(new { _time = DateTime.Now.AddMinutes(1), x = 0.8, y = 1.2, z = 0.7 });
             //timeSeriesData.Add(new { _time = DateTime.Now.AddMinutes(2), x = 1.6, y = 0.2, z = 0.5 });
 
-            List<TimeSeries> timeSeriesObjects = new()
+            List<TimeSeriesSet> timeSeriesObjects = new()
             {
-                new TimeSeries()
+                new TimeSeriesSet()
                 {
                     EntityId = "ec206f76b04a49a4938c1573b35b6688",
                     PropertySetName = "acceleration",
@@ -812,7 +814,7 @@ namespace WebApp.Controllers
                 Event = new MyEventAddUpdate()
                 {
                     EntityId = "da4aabbd3f2f488da7ef75fa506a8eaa",
-                    Timestamp = DateTime.Now.ToUniversalTime(),
+                    Timestamp = DateTime.Now,
                     Description = "Error happened in the test",
                     Severity = 5
                 }
@@ -825,7 +827,7 @@ namespace WebApp.Controllers
         {
             var eventClient = _sdk.GetEventManagementClient();
             var request = new ListEventsRequest();
-            return StatusCode(200, await eventClient.ListEventsAsync(request));
+            return StatusCode(200, await eventClient.ListEventsAsync<Event>(request));
         }
 
         [HttpGet("get-event")]
@@ -856,6 +858,78 @@ namespace WebApp.Controllers
                 }
             };
             return StatusCode(200, await eventClient.UpdateEventAsync<MyEvent>(request));
+        }
+
+        #endregion
+
+        #region Event type
+
+        [HttpGet("list-event-types")]
+        public async Task<ActionResult<ResourceList<EventType>>> ListEventTypes()
+        {
+            var eventClient = _sdk.GetEventManagementClient();
+            var request = new ListEventTypesRequest();
+            return StatusCode(200, await eventClient.ListEventTypesAsync(request));
+        }
+
+        [HttpGet("add-event-type")]
+        public async Task<ActionResult<EventType>> AddEventType()
+        {
+            var eventClient = _sdk.GetEventManagementClient();
+            var request = new AddEventTypeRequest()
+            {
+                EventType = new EventTypeAdd()
+                {
+                    Name = "DotnetSdkEventType",
+                    Fields = new List<FieldAdd>
+                    {
+                        new FieldAdd { Name = "Foo", Type = "STRING"}
+                    }
+                }
+            };
+            return StatusCode(200, await eventClient.AddEventTypeAsync(request));
+        }
+
+        [HttpGet("get-event-type")]
+        public async Task<ActionResult<EventType>> GetEventType()
+        {
+            var eventClient = _sdk.GetEventManagementClient();
+            var request = new GetEventTypeRequest()
+            {
+                EventTypeId = "43eba523-b5aa-4eea-998b-8bc311caf0d3"
+            };
+            return StatusCode(200, await eventClient.GetEventTypeAsync(request));
+        }
+
+        [HttpGet("update-event-type")]
+        public async Task<ActionResult<EventType>> UpdateEventType()
+        {
+            var eventClient = _sdk.GetEventManagementClient();
+            var request = new UpdateEventTypeRequest()
+            {
+                EventTypeId = "43eba523-b5aa-4eea-998b-8bc311caf0d3",
+                IfMatch = "0",
+                EventTypePatch = new EventTypePatch
+                {
+                    Op = "replace",
+                    Path = "/scope",
+                    Value = "GLOBAL"
+                }
+            };
+            return StatusCode(200, await eventClient.UpdateEventTypeAsync(request));
+        }
+
+        [HttpGet("delete-event-type")]
+        public async Task<ActionResult<EventType>> DeleteEventType()
+        {
+            var eventClient = _sdk.GetEventManagementClient();
+            var request = new DeleteEventTypeRequest()
+            {
+                EventTypeId = "43eba523-b5aa-4eea-998b-8bc311caf0d3",
+                IfMatch = "1"
+            };
+            await eventClient.DeleteEventTypeAsync(request);
+            return StatusCode(204);
         }
 
         #endregion

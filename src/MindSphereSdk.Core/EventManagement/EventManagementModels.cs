@@ -87,13 +87,13 @@ namespace MindSphereSdk.Core.EventManagement
         public string Name { get; set; }
 
         [JsonProperty("filterable")]
-        public bool Filterable { get; set; }
+        public bool? Filterable { get; set; }
 
         [JsonProperty("required")]
-        public bool Required { get; set; }
+        public bool? Required { get; set; }
 
         [JsonProperty("updatable")]
-        public bool Updatable { get; set; }
+        public bool? Updatable { get; set; }
 
         [JsonProperty("type")]
         public string Type { get; set; }
@@ -175,7 +175,7 @@ namespace MindSphereSdk.Core.EventManagement
         public string ParentId { get; set; }
 
         [JsonProperty("ttl")]
-        public int Ttl { get; set; }
+        public int? Ttl { get; set; }
 
         [JsonProperty("scope")]
         public string Scope { get; set; }

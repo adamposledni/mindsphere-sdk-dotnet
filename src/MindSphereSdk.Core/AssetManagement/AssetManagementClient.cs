@@ -101,11 +101,8 @@ namespace MindSphereSdk.Core.AssetManagement
             };
 
             // prepare HTTP request body
-            string jsonString = JsonConvert.SerializeObject(request.AspectType,
-                new JsonSerializerSettings()
-                {
-                    NullValueHandling = NullValueHandling.Ignore
-                });
+            var seriSettings = new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore };
+            string jsonString = JsonConvert.SerializeObject(request.AspectType);
             StringContent body = new StringContent(jsonString, Encoding.UTF8, "application/merge-patch+json");
 
             // make request
@@ -215,11 +212,8 @@ namespace MindSphereSdk.Core.AssetManagement
             };
 
             // prepare HTTP request body
-            string jsonString = JsonConvert.SerializeObject(request.AssetType,
-                new JsonSerializerSettings()
-                {
-                    NullValueHandling = NullValueHandling.Ignore
-                });
+            var seriSettings = new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore };
+            string jsonString = JsonConvert.SerializeObject(request.AssetType, seriSettings);
             StringContent body = new StringContent(jsonString, Encoding.UTF8, "application/json");
 
             // make request
@@ -247,11 +241,8 @@ namespace MindSphereSdk.Core.AssetManagement
             };
 
             // prepare HTTP request body
-            string jsonString = JsonConvert.SerializeObject(request.AssetType,
-                new JsonSerializerSettings()
-                {
-                    NullValueHandling = NullValueHandling.Ignore
-                });
+            var seriSettings = new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore };
+            string jsonString = JsonConvert.SerializeObject(request.AssetType, seriSettings);
             StringContent body = new StringContent(jsonString, Encoding.UTF8, "application/merge-patch+json");
 
             // make request
@@ -372,11 +363,8 @@ namespace MindSphereSdk.Core.AssetManagement
             };
 
             // prepare HTTP request body
-            string jsonString = JsonConvert.SerializeObject(request.VariableMap,
-                new JsonSerializerSettings()
-                {
-                    NullValueHandling = NullValueHandling.Ignore
-                });
+            var seriSettings = new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore };
+            string jsonString = JsonConvert.SerializeObject(request.VariableMap, seriSettings);
             StringContent body = new StringContent(jsonString, Encoding.UTF8, "application/merge-patch+json");
 
             // make request
@@ -481,11 +469,8 @@ namespace MindSphereSdk.Core.AssetManagement
             };
 
             // prepare HTTP request body
-            string jsonString = JsonConvert.SerializeObject(request.Asset,
-                new JsonSerializerSettings()
-                {
-                    NullValueHandling = NullValueHandling.Ignore
-                });
+            var seriSettings = new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore };
+            string jsonString = JsonConvert.SerializeObject(request.Asset, seriSettings);
             StringContent body = new StringContent(jsonString, Encoding.UTF8, "application/json");
 
             // make request
@@ -512,11 +497,8 @@ namespace MindSphereSdk.Core.AssetManagement
             };
 
             // prepare HTTP request body
-            string jsonString = JsonConvert.SerializeObject(request.Asset,
-                new JsonSerializerSettings()
-                {
-                    NullValueHandling = NullValueHandling.Ignore
-                });
+            var seriSettings = new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore };
+            string jsonString = JsonConvert.SerializeObject(request.Asset, seriSettings);
             StringContent body = new StringContent(jsonString, Encoding.UTF8, "application/merge-patch+json");
 
             // make request
@@ -734,11 +716,8 @@ namespace MindSphereSdk.Core.AssetManagement
             };
 
             // prepare HTTP request body
-            string jsonString = JsonConvert.SerializeObject(request.Location,
-                new JsonSerializerSettings()
-                {
-                    NullValueHandling = NullValueHandling.Ignore
-                });
+            var seriSettings = new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore };
+            string jsonString = JsonConvert.SerializeObject(request.Location, seriSettings);
             StringContent body = new StringContent(jsonString, Encoding.UTF8, "application/json");
 
             // make request

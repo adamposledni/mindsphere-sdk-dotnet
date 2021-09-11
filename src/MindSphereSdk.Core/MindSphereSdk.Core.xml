@@ -1282,7 +1282,7 @@
             Proxy address.
             </summary>
         </member>
-        <member name="T:MindSphereSdk.Core.Common.MindSphereResourceWrapper`1">
+        <member name="T:MindSphereSdk.Core.Common.MindSphereApiResource`1">
             <summary>
             Wrapper for MindSphere resource.
             </summary>
@@ -1471,9 +1471,9 @@
             Query events. 
             </summary>
         </member>
-        <member name="M:MindSphereSdk.Core.EventManagement.EventManagementClient.ListEventsLogicAsync``1(MindSphereSdk.Core.EventManagement.ListEventsRequest)">
+        <member name="M:MindSphereSdk.Core.EventManagement.EventManagementClient.InternalListEventsAsync``1(MindSphereSdk.Core.EventManagement.ListEventsRequest)">
             <summary>
-            Executive method for querying events.
+            Internal method for querying events.
             </summary>
         </member>
         <member name="M:MindSphereSdk.Core.EventManagement.EventManagementClient.GetEventAsync``1(MindSphereSdk.Core.EventManagement.GetEventRequest)">
@@ -1486,6 +1486,31 @@
             Update an event.
             </summary>
         </member>
+        <member name="M:MindSphereSdk.Core.EventManagement.EventManagementClient.AddEventTypeAsync(MindSphereSdk.Core.EventManagement.AddEventTypeRequest)">
+            <summary>
+            Create new event type.
+            </summary>
+        </member>
+        <member name="M:MindSphereSdk.Core.EventManagement.EventManagementClient.ListEventTypesAsync(MindSphereSdk.Core.EventManagement.ListEventTypesRequest)">
+            <summary>
+            Query event types.
+            </summary>
+        </member>
+        <member name="M:MindSphereSdk.Core.EventManagement.EventManagementClient.UpdateEventTypeAsync(MindSphereSdk.Core.EventManagement.UpdateEventTypeRequest)">
+            <summary>
+            Update an event type.
+            </summary>
+        </member>
+        <member name="M:MindSphereSdk.Core.EventManagement.EventManagementClient.GetEventTypeAsync(MindSphereSdk.Core.EventManagement.GetEventTypeRequest)">
+            <summary>
+            Get an event type.
+            </summary>
+        </member>
+        <member name="M:MindSphereSdk.Core.EventManagement.EventManagementClient.DeleteEventTypeAsync(MindSphereSdk.Core.EventManagement.DeleteEventTypeRequest)">
+            <summary>
+            Delete an event type.
+            </summary>
+        </member>
         <member name="T:MindSphereSdk.Core.EventManagement.EmbeddedEventList`1">
             <summary>
             Embedded event list.
@@ -1493,6 +1518,11 @@
             <typeparam name="T">
             Type derived from Event or dynamic.
             </typeparam>
+        </member>
+        <member name="T:MindSphereSdk.Core.EventManagement.EmbeddedEventTypeList">
+            <summary>
+            Embedded event type list.
+            </summary>
         </member>
         <member name="T:MindSphereSdk.Core.EventManagement.Event">
             <summary>
@@ -1502,6 +1532,31 @@
         <member name="T:MindSphereSdk.Core.EventManagement.EventAddUpdate">
             <summary>
             Event to add.
+            </summary>
+        </member>
+        <member name="T:MindSphereSdk.Core.EventManagement.Field">
+            <summary>
+            Event type field.
+            </summary>
+        </member>
+        <member name="T:MindSphereSdk.Core.EventManagement.FieldAdd">
+            <summary>
+            Event type field to add.
+            </summary>
+        </member>
+        <member name="T:MindSphereSdk.Core.EventManagement.EventType">
+            <summary>
+            Event type.
+            </summary>
+        </member>
+        <member name="T:MindSphereSdk.Core.EventManagement.EventTypeAdd">
+            <summary>
+            Event type to add.
+            </summary>
+        </member>
+        <member name="T:MindSphereSdk.Core.EventManagement.EventTypePatch">
+            <summary>
+            Event type (patch).
             </summary>
         </member>
         <member name="T:MindSphereSdk.Core.EventManagement.AddEventRequest">
@@ -1521,7 +1576,7 @@
         </member>
         <member name="T:MindSphereSdk.Core.EventManagement.ListEventsRequest">
             <summary>
-            Request for listing events
+            Request for listing events.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.EventManagement.ListEventsRequest.Size">
@@ -1609,6 +1664,121 @@
             Specifies if the operation should take into account shared entities.
             </summary>
         </member>
+        <member name="T:MindSphereSdk.Core.EventManagement.AddEventTypeRequest">
+            <summary>
+            Request for adding an event type.
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.EventManagement.AddEventTypeRequest.EventType">
+            <summary>
+            Event type content to be created.
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.EventManagement.AddEventTypeRequest.IncludeShared">
+            <summary>
+            Specifies if the operation should take into account shared entities.
+            </summary>
+        </member>
+        <member name="T:MindSphereSdk.Core.EventManagement.ListEventTypesRequest">
+            <summary>
+            Request for listing event types.
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.EventManagement.ListEventTypesRequest.Size">
+            <summary>
+            Specifies the number of elements in a page.
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.EventManagement.ListEventTypesRequest.Page">
+            <summary>
+            Specifies the requested page index.
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.EventManagement.ListEventTypesRequest.Filter">
+            <summary>
+            Specifies the additional filtering criteria.
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.EventManagement.ListEventTypesRequest.Sort">
+            <summary>
+            Specifies the ordering of returned elements.
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.EventManagement.ListEventTypesRequest.IfNoneMatch">
+            <summary>
+            ETag hash of previous request to allow caching.
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.EventManagement.ListEventTypesRequest.IncludeShared">
+            <summary>
+            Specifies if the operation should take into account shared aspect types.
+            </summary>
+        </member>
+        <member name="T:MindSphereSdk.Core.EventManagement.UpdateEventTypeRequest">
+            <summary>
+            Request for updating an event type.
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.EventManagement.UpdateEventTypeRequest.EventTypeId">
+            <summary>
+            ID of an event type.
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.EventManagement.UpdateEventTypeRequest.IfMatch">
+            <summary>
+            Used for optimistic concurrency control.
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.EventManagement.UpdateEventTypeRequest.EventTypePatch">
+            <summary>
+            New value for the given attribute or the field, that should be applied, depending on the op value.
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.EventManagement.UpdateEventTypeRequest.IncludeShared">
+            <summary>
+            Specifies if the operation should take into account shared entities.
+            </summary>
+        </member>
+        <member name="T:MindSphereSdk.Core.EventManagement.GetEventTypeRequest">
+            <summary>
+            Request for getting an event type.
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.EventManagement.GetEventTypeRequest.EventTypeId">
+            <summary>
+            ID of an event type.
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.EventManagement.GetEventTypeRequest.IfNoneMatch">
+            <summary>
+            ETag hash of previous request to allow caching.
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.EventManagement.GetEventTypeRequest.IncludeShared">
+            <summary>
+            Specifies if the operation should take into account shared entities.
+            </summary>
+        </member>
+        <member name="T:MindSphereSdk.Core.EventManagement.DeleteEventTypeRequest">
+            <summary>
+            Request for deleting an event type.
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.EventManagement.DeleteEventTypeRequest.EventTypeId">
+            <summary>
+            ID of an event type.
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.EventManagement.DeleteEventTypeRequest.IfMatch">
+            <summary>
+            Used for optimistic concurrency control.
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.EventManagement.DeleteEventTypeRequest.IncludeShared">
+            <summary>
+            Specifies if the operation should take into account shared entities.
+            </summary>
+        </member>
         <member name="T:MindSphereSdk.Core.Exceptions.MindSphereApiException">
             <summary>
             MindSphere API exception.
@@ -1649,12 +1819,12 @@
             Validate object.
             </summary>
         </member>
-        <member name="T:MindSphereSdk.Core.Helpers.Helpers">
+        <member name="T:MindSphereSdk.Core.Helpers.Helper">
             <summary>
-            Helpers.
+            Helper.
             </summary>
         </member>
-        <member name="M:MindSphereSdk.Core.Helpers.Helpers.GetDateTimeUtcString(System.DateTime)">
+        <member name="M:MindSphereSdk.Core.Helpers.Helper.GetDateTimeUtcString(System.DateTime)">
             <summary>
             Generate date time UTC string.
             </summary>
@@ -1723,35 +1893,27 @@
         </member>
         <member name="T:MindSphereSdk.Core.IotTimeSeries.IotTimeSeriesClient">
             <summary>
-            Create, read, update, and delete time series data
+            Create, read, update, and delete time series data.
             </summary>
         </member>
         <member name="M:MindSphereSdk.Core.IotTimeSeries.IotTimeSeriesClient.PutTimeSeriesMultipleAsync(MindSphereSdk.Core.IotTimeSeries.PutTimeSeriesMultipleRequest)">
             <summary>
-            Create or update time series data for mutiple unique asset-aspect (entity-property set) combinations
+            Create or update time series data for mutiple unique asset-aspect (entity-property set) combinations.
             </summary>
         </member>
         <member name="M:MindSphereSdk.Core.IotTimeSeries.IotTimeSeriesClient.GetTimeSeriesAsync``1(MindSphereSdk.Core.IotTimeSeries.GetTimeSeriesRequest)">
             <summary>
-            Retrieve time series data
+            Retrieve time series data.
             </summary>
-        </member>
-        <member name="M:MindSphereSdk.Core.IotTimeSeries.IotTimeSeriesClient.GetTimeSeriesAsync(MindSphereSdk.Core.IotTimeSeries.GetTimeSeriesRequest)">
-            <summary>
-            Retrieve time series data
-            </summary>
-            <remarks>
-            If generic type is not specified the method returns dynamic type
-            </remarks>
         </member>
         <member name="M:MindSphereSdk.Core.IotTimeSeries.IotTimeSeriesClient.PutTimeSeriesAsync(MindSphereSdk.Core.IotTimeSeries.PutTimeSeriesRequest)">
             <summary>
-            Create or update time series data
+            Create or update time series data.
             </summary>
         </member>
         <member name="M:MindSphereSdk.Core.IotTimeSeries.IotTimeSeriesClient.DeleteTimeSeriesAsync(MindSphereSdk.Core.IotTimeSeries.DeleteTimeSeriesRequest)">
             <summary>
-            Delete time series data
+            Delete time series data.
             </summary>
         </member>
         <member name="T:MindSphereSdk.Core.IotTimeSeries.TimeSeries">

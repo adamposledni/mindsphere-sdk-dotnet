@@ -1,5 +1,4 @@
-﻿using MindSphereSdk.Core.AssetManagement;
-using MindSphereSdk.Core.Common;
+﻿using MindSphereSdk.Core.Common;
 using MindSphereSdk.Core.Helpers;
 using Newtonsoft.Json;
 using System.Collections.Generic;
@@ -26,7 +25,7 @@ namespace MindSphereSdk.Core.EventManagement
         /// <summary>
         /// Create new event.
         /// </summary>
-        public async Task<T> AddEventAsync<T>(AddEventRequest request) where T : Event
+        public async Task<T> AddEventAsync<T>(AddEventRequest request) where T : Event, new()
         {
             // prepare URI string
             QueryStringBuilder queryBuilder = new QueryStringBuilder();
@@ -34,11 +33,8 @@ namespace MindSphereSdk.Core.EventManagement
             string uri = _baseUri + "/events" + queryBuilder.ToString();
 
             // prepare HTTP request body
-            string jsonString = JsonConvert.SerializeObject(request.Event,
-                new JsonSerializerSettings()
-                {
-                    NullValueHandling = NullValueHandling.Ignore
-                });
+            var seriSettings = new JsonSerializerSettings() { DateTimeZoneHandling = DateTimeZoneHandling.Utc };
+            string jsonString = JsonConvert.SerializeObject(request.Event, seriSettings);
             StringContent body = new StringContent(jsonString, Encoding.UTF8, "application/json");
 
             // make request
@@ -51,23 +47,7 @@ namespace MindSphereSdk.Core.EventManagement
         /// <summary>
         /// Query events. 
         /// </summary>
-        public async Task<ResourceList<dynamic>> ListEventsAsync(ListEventsRequest request)
-        {
-            return await InternalListEventsAsync<dynamic>(request);
-        }
-
-        /// <summary>
-        /// Query events. 
-        /// </summary>
-        public async Task<ResourceList<T>> ListEventsAsync<T>(ListEventsRequest request) where T : Event
-        {
-            return await InternalListEventsAsync<T>(request);
-        }
-
-        /// <summary>
-        /// Internal method for querying events.
-        /// </summary>
-        private async Task<ResourceList<T>> InternalListEventsAsync<T>(ListEventsRequest request)
+        public async Task<ResourceList<T>> ListEventsAsync<T>(ListEventsRequest request) where T : Event, new()
         {
             // prepare URI string
             QueryStringBuilder queryBuilder = new QueryStringBuilder();
@@ -102,7 +82,7 @@ namespace MindSphereSdk.Core.EventManagement
         /// <summary>
         /// Get an event.
         /// </summary>
-        public async Task<T> GetEventAsync<T>(GetEventRequest request) where T : Event
+        public async Task<T> GetEventAsync<T>(GetEventRequest request) where T : Event, new()
         {
             // prepare URI string
             QueryStringBuilder queryBuilder = new QueryStringBuilder();
@@ -125,7 +105,7 @@ namespace MindSphereSdk.Core.EventManagement
         /// <summary>
         /// Update an event.
         /// </summary>
-        public async Task<T> UpdateEventAsync<T>(UpdateEventRequest request) where T : Event
+        public async Task<T> UpdateEventAsync<T>(UpdateEventRequest request) where T : Event, new()
         {
             // prepare URI string
             QueryStringBuilder queryBuilder = new QueryStringBuilder();
@@ -139,11 +119,8 @@ namespace MindSphereSdk.Core.EventManagement
             };
 
             // prepare HTTP request body
-            string jsonString = JsonConvert.SerializeObject(request.Event,
-                new JsonSerializerSettings()
-                {
-                    NullValueHandling = NullValueHandling.Ignore
-                });
+            var seriSettings = new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore };
+            string jsonString = JsonConvert.SerializeObject(request.Event, seriSettings);
             StringContent body = new StringContent(jsonString, Encoding.UTF8, "application/json");
 
             // make request
@@ -168,11 +145,7 @@ namespace MindSphereSdk.Core.EventManagement
             string uri = _baseUri + "/eventTypes" + queryBuilder.ToString();
 
             // prepare HTTP request body
-            string jsonString = JsonConvert.SerializeObject(request.EventType,
-                new JsonSerializerSettings()
-                {
-                    NullValueHandling = NullValueHandling.Ignore
-                });
+            string jsonString = JsonConvert.SerializeObject(request.EventType);
             StringContent body = new StringContent(jsonString, Encoding.UTF8, "application/json");
 
             // make request
@@ -232,11 +205,9 @@ namespace MindSphereSdk.Core.EventManagement
             };
 
             // prepare HTTP request body
-            string jsonString = JsonConvert.SerializeObject(request.EventTypePatch,
-                new JsonSerializerSettings()
-                {
-                    NullValueHandling = NullValueHandling.Ignore
-                });
+            var seriSettings = new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore };
+            string jsonString = JsonConvert.SerializeObject(request.EventTypePatch, seriSettings);
+
             StringContent body = new StringContent(jsonString, Encoding.UTF8, "application/json");
 
             // make request

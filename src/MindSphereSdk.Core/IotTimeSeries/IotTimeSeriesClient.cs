@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace MindSphereSdk.Core.IotTimeSeries
 {
     /// <summary>
-    /// Create, read, update, and delete time series data
+    /// Create, read, update, and delete time series data.
     /// </summary>
     public class IotTimeSeriesClient : SdkClient
     {
@@ -21,7 +21,7 @@ namespace MindSphereSdk.Core.IotTimeSeries
         }
 
         /// <summary>
-        /// Create or update time series data for mutiple unique asset-aspect (entity-property set) combinations
+        /// Create or update time series data for mutiple unique asset-aspect (entity-property set) combinations.
         /// </summary>
         public async Task PutTimeSeriesMultipleAsync(PutTimeSeriesMultipleRequest request)
         {
@@ -36,9 +36,9 @@ namespace MindSphereSdk.Core.IotTimeSeries
         }
 
         /// <summary>
-        /// Retrieve time series data
+        /// Retrieve time series data.
         /// </summary>
-        public async Task<IEnumerable<T>> GetTimeSeriesAsync<T>(GetTimeSeriesRequest request)
+        public async Task<IEnumerable<T>> GetTimeSeriesAsync<T>(GetTimeSeriesRequest request) where T : new()
         {
             // prepare URI string
             QueryStringBuilder queryBuilder = new QueryStringBuilder();
@@ -59,18 +59,7 @@ namespace MindSphereSdk.Core.IotTimeSeries
         }
 
         /// <summary>
-        /// Retrieve time series data
-        /// </summary>
-        /// <remarks>
-        /// If generic type is not specified the method returns dynamic type
-        /// </remarks>
-        public async Task<IEnumerable<dynamic>> GetTimeSeriesAsync(GetTimeSeriesRequest request)
-        {
-            return await GetTimeSeriesAsync<dynamic>(request);
-        }
-
-        /// <summary>
-        /// Create or update time series data
+        /// Create or update time series data.
         /// </summary>
         public async Task PutTimeSeriesAsync(PutTimeSeriesRequest request)
         {
@@ -85,7 +74,7 @@ namespace MindSphereSdk.Core.IotTimeSeries
         }
 
         /// <summary>
-        /// Delete time series data
+        /// Delete time series data.
         /// </summary>
         public async Task DeleteTimeSeriesAsync(DeleteTimeSeriesRequest request)
         {
