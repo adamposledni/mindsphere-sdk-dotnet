@@ -18,7 +18,6 @@ namespace MindSphereSdk.Core.Authentication
         public UserCredentials(string token)
         {
             Token = token.Replace("Bearer ", "");
-            Validator.Validate(this);
         }
     }
 }

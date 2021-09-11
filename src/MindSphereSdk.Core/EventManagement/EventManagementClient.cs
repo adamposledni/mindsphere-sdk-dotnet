@@ -21,6 +21,8 @@ namespace MindSphereSdk.Core.EventManagement
         {
         }
 
+        #region Events
+
         /// <summary>
         /// Create new event.
         /// </summary>
@@ -32,7 +34,7 @@ namespace MindSphereSdk.Core.EventManagement
             string uri = _baseUri + "/events" + queryBuilder.ToString();
 
             // prepare HTTP request body
-            string jsonString = JsonConvert.SerializeObject(request.Body,
+            string jsonString = JsonConvert.SerializeObject(request.Event,
                 new JsonSerializerSettings()
                 {
                     NullValueHandling = NullValueHandling.Ignore
@@ -51,7 +53,7 @@ namespace MindSphereSdk.Core.EventManagement
         /// </summary>
         public async Task<ResourceList<dynamic>> ListEventsAsync(ListEventsRequest request)
         {
-            return await ListEventsLogicAsync<dynamic>(request);
+            return await InternalListEventsAsync<dynamic>(request);
         }
 
         /// <summary>
@@ -59,14 +61,13 @@ namespace MindSphereSdk.Core.EventManagement
         /// </summary>
         public async Task<ResourceList<T>> ListEventsAsync<T>(ListEventsRequest request) where T : Event
         {
-            return await ListEventsLogicAsync<T>(request);
+            return await InternalListEventsAsync<T>(request);
         }
 
-
         /// <summary>
-        /// Executive method for querying events.
+        /// Internal method for querying events.
         /// </summary>
-        private async Task<ResourceList<T>> ListEventsLogicAsync<T>(ListEventsRequest request)
+        private async Task<ResourceList<T>> InternalListEventsAsync<T>(ListEventsRequest request)
         {
             // prepare URI string
             QueryStringBuilder queryBuilder = new QueryStringBuilder();
@@ -87,7 +88,7 @@ namespace MindSphereSdk.Core.EventManagement
 
             // make request
             string response = await HttpActionAsync(HttpMethod.Get, uri, headers: headers);
-            var eventListWrapper = JsonConvert.DeserializeObject<MindSphereResourceWrapper<EmbeddedEventList<T>>>(response);
+            var eventListWrapper = JsonConvert.DeserializeObject<MindSphereApiResource<EmbeddedEventList<T>>>(response);
 
             // format output
             var output = new ResourceList<T>
@@ -151,5 +152,143 @@ namespace MindSphereSdk.Core.EventManagement
 
             return eventObj;
         }
+
+        #endregion
+
+        #region Event types
+
+        /// <summary>
+        /// Create new event type.
+        /// </summary>
+        public async Task<EventType> AddEventTypeAsync(AddEventTypeRequest request)
+        {
+            // prepare URI string
+            QueryStringBuilder queryBuilder = new QueryStringBuilder();
+            queryBuilder.AddQuery("includeShared", request.IncludeShared);
+            string uri = _baseUri + "/eventTypes" + queryBuilder.ToString();
+
+            // prepare HTTP request body
+            string jsonString = JsonConvert.SerializeObject(request.EventType,
+                new JsonSerializerSettings()
+                {
+                    NullValueHandling = NullValueHandling.Ignore
+                });
+            StringContent body = new StringContent(jsonString, Encoding.UTF8, "application/json");
+
+            // make request
+            string response = await HttpActionAsync(HttpMethod.Post, uri, body);
+            var eventObj = JsonConvert.DeserializeObject<EventType>(response);
+
+            return eventObj;
+        }
+
+        /// <summary>
+        /// Query event types.
+        /// </summary>
+        public async Task<ResourceList<EventType>> ListEventTypesAsync(ListEventTypesRequest request)
+        {
+            // prepare URI string
+            QueryStringBuilder queryBuilder = new QueryStringBuilder();
+            queryBuilder.AddQuery("size", request.Size);
+            queryBuilder.AddQuery("filter", request.Filter);
+            queryBuilder.AddQuery("page", request.Page);
+            queryBuilder.AddQuery("sort", request.Sort);
+            queryBuilder.AddQuery("includeShared", request.IncludeShared);
+            string uri = _baseUri + "/eventTypes" + queryBuilder.ToString();
+
+            // prepare HTTP request headers
+            List<KeyValuePair<string, string>> headers = new List<KeyValuePair<string, string>>
+            {
+                new KeyValuePair<string, string>("If-None-Match", request.IfNoneMatch)
+            };
+
+            // make request
+            string response = await HttpActionAsync(HttpMethod.Get, uri, headers: headers);
+            var eventTypeList = JsonConvert.DeserializeObject<MindSphereApiResource<EmbeddedEventTypeList>>(response);
+
+            // format output
+            var output = new ResourceList<EventType>
+            {
+                Data = eventTypeList.Embedded.EventTypes,
+                Page = eventTypeList.Page
+            };
+            return output;
+        }
+
+        /// <summary>
+        /// Update an event type.
+        /// </summary>
+        public async Task<EventType> UpdateEventTypeAsync(UpdateEventTypeRequest request)
+        {
+            // prepare URI string
+            QueryStringBuilder queryBuilder = new QueryStringBuilder();
+            queryBuilder.AddQuery("includeShared", request.IncludeShared);
+            string uri = _baseUri + "/eventTypes/" + request.EventTypeId + queryBuilder.ToString();
+
+            // prepare HTTP request headers
+            List<KeyValuePair<string, string>> headers = new List<KeyValuePair<string, string>>
+            {
+                new KeyValuePair<string, string>("If-Match", request.IfMatch)
+            };
+
+            // prepare HTTP request body
+            string jsonString = JsonConvert.SerializeObject(request.EventTypePatch,
+                new JsonSerializerSettings()
+                {
+                    NullValueHandling = NullValueHandling.Ignore
+                });
+            StringContent body = new StringContent(jsonString, Encoding.UTF8, "application/json");
+
+            // make request
+            string response = await HttpActionAsync(new HttpMethod("PATCH"), uri, body, headers);
+            var eventType = JsonConvert.DeserializeObject<EventType>(response);
+
+            return eventType;
+        }
+
+        /// <summary>
+        /// Get an event type.
+        /// </summary>
+        public async Task<EventType> GetEventTypeAsync(GetEventTypeRequest request)
+        {
+            // prepare URI string
+            QueryStringBuilder queryBuilder = new QueryStringBuilder();
+            queryBuilder.AddQuery("includeShared", request.IncludeShared);
+            string uri = _baseUri + "/eventTypes/" + request.EventTypeId + queryBuilder.ToString();
+
+            // prepare HTTP request headers
+            List<KeyValuePair<string, string>> headers = new List<KeyValuePair<string, string>>
+            {
+                new KeyValuePair<string, string>("If-None-Match", request.IfNoneMatch)
+            };
+
+            // make request
+            string response = await HttpActionAsync(HttpMethod.Get, uri, headers: headers);
+            var eventObj = JsonConvert.DeserializeObject<EventType>(response);
+
+            return eventObj;
+        }
+
+        /// <summary>
+        /// Delete an event type.
+        /// </summary>
+        public async Task DeleteEventTypeAsync(DeleteEventTypeRequest request)
+        {
+            // prepare URI string
+            QueryStringBuilder queryBuilder = new QueryStringBuilder();
+            queryBuilder.AddQuery("includeShared", request.IncludeShared);
+            string uri = _baseUri + "/eventTypes/" + request.EventTypeId + queryBuilder.ToString();
+
+            // prepare HTTP request headers
+            List<KeyValuePair<string, string>> headers = new List<KeyValuePair<string, string>>
+            {
+                new KeyValuePair<string, string>("If-Match", request.IfMatch)
+            };
+
+            // make request
+            await HttpActionAsync(HttpMethod.Delete, uri, headers: headers);
+        }
+
+        #endregion
     }
 }

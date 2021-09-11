@@ -26,8 +26,8 @@ namespace MindSphereSdk.Core.Common
         /// </summary>
         public MindSphereApiSdk(ICredentials credentials, ClientConfiguration configuration)
         {
-            _ = configuration ?? throw new ArgumentNullException(nameof(configuration));
-            _ = credentials ?? throw new ArgumentNullException(nameof(credentials));
+            Guard.Validate(configuration);
+            Guard.Validate(credentials);
 
             // create application credentials connector
             if (credentials is AppCredentials appCredentials)
@@ -61,7 +61,7 @@ namespace MindSphereSdk.Core.Common
         /// </remarks>
         public void UpdateCredentials(ICredentials credentials)
         {
-            _ = credentials ?? throw new ArgumentNullException(nameof(credentials));
+            Guard.Validate(credentials);
             _connector.UpdateCredentials(credentials);
         }
 

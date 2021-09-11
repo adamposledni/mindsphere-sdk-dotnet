@@ -59,7 +59,6 @@ namespace MindSphereSdk.Core.Common
         {
             if (credentials is AppCredentials appCredentials)
             {
-                Validator.Validate(appCredentials);
                 _credentials = appCredentials;
                 // reset token
                 _accessToken = null;

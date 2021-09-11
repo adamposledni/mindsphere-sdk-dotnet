@@ -216,72 +216,72 @@
         </member>
         <member name="T:MindSphereSdk.Core.AssetManagement.AspectType">
             <summary>
-            Aspect type
+            Aspect type.
             </summary>
         </member>
         <member name="T:MindSphereSdk.Core.AssetManagement.AspectTypeUpdate">
             <summary>
-            Aspect type (create or update)
+            Aspect type (create or update).
             </summary>
         </member>
         <member name="T:MindSphereSdk.Core.AssetManagement.AssetType">
             <summary>
-            Asset type
+            Asset type.
             </summary>
         </member>
         <member name="T:MindSphereSdk.Core.AssetManagement.AssetTypeUpdate">
             <summary>
-            Asset type (create or update)
+            Asset type (create or update).
             </summary>
         </member>
         <member name="T:MindSphereSdk.Core.AssetManagement.Asset">
             <summary>
-            Asset
+            Asset.
             </summary>
         </member>
         <member name="T:MindSphereSdk.Core.AssetManagement.AssetUpdate">
             <summary>
-            Asset to update
+            Asset to update.
             </summary>
         </member>
         <member name="T:MindSphereSdk.Core.AssetManagement.AssetAdd">
             <summary>
-            Asset to add
+            Asset to add.
             </summary>
         </member>
         <member name="T:MindSphereSdk.Core.AssetManagement.AssetMove">
             <summary>
-            Asset to move
+            Asset to move.
             </summary>
         </member>
         <member name="T:MindSphereSdk.Core.AssetManagement.Aspect">
             <summary>
-            Aspect
+            Aspect.
             </summary>
         </member>
         <member name="T:MindSphereSdk.Core.AssetManagement.AspectPut">
             <summary>
-            Aspect for putting
+            Aspect for putting.
             </summary>
         </member>
         <member name="T:MindSphereSdk.Core.AssetManagement.AspectDetail">
             <summary>
-            Aspect detail
+            Aspect detail.
             </summary>
         </member>
         <member name="T:MindSphereSdk.Core.AssetManagement.AspectFullDetail">
             <summary>
-            Aspect full detail
+            Aspect full detail.
             </summary>
         </member>
         <member name="T:MindSphereSdk.Core.AssetManagement.Location">
             <summary>
-            Location
+            Location.
             </summary>
         </member>
         <member name="T:MindSphereSdk.Core.AssetManagement.FileAssignment">
             <summary>
-            File assignment
+            File assignment.
             </summary>
         </member>
         <member name="T:MindSphereSdk.Core.AssetManagement.VariableDetail">
@@ -301,130 +301,130 @@
         </member>
         <member name="T:MindSphereSdk.Core.AssetManagement.File">
             <summary>
-            File metadata
+            File metadata.
             </summary>
         </member>
         <member name="T:MindSphereSdk.Core.AssetManagement.LockStateWithJobs">
             <summary>
-            Lock state of an asset model
+            Lock state of an asset model.
             </summary>
         </member>
         <member name="T:MindSphereSdk.Core.AssetManagement.LockState">
             <summary>
-            Lock state of an asset model
+            Lock state of an asset model.
             </summary>
         </member>
         <member name="T:MindSphereSdk.Core.AssetManagement.ListAspectTypesRequest">
             <summary>
-            Request for listing aspect types
+            Request for listing aspect types.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.AssetManagement.ListAspectTypesRequest.Page">
             <summary>
-            Specifies the requested page index
+            Specifies the requested page index.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.AssetManagement.ListAspectTypesRequest.Size">
             <summary>
-            Specifies the number of elements in a page
+            Specifies the number of elements in a page.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.AssetManagement.ListAspectTypesRequest.Sort">
             <summary>
-            Specifies the ordering of returned elements
+            Specifies the ordering of returned elements.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.AssetManagement.ListAspectTypesRequest.Filter">
             <summary>
-            Specifies the additional filtering criteria
+            Specifies the additional filtering criteria.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.AssetManagement.ListAspectTypesRequest.IfNoneMatch">
             <summary>
-            ETag hash of previous request to allow caching
+            ETag hash of previous request to allow caching.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.AssetManagement.ListAspectTypesRequest.IncludeShared">
             <summary>
-            Specifies if the operation should take into account shared aspect types
+            Specifies if the operation should take into account shared aspect types.
             </summary>
         </member>
         <member name="T:MindSphereSdk.Core.AssetManagement.PutAspectTypeRequest">
             <summary>
-            Request for putting aspect type
+            Request for putting aspect type.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.AssetManagement.PutAspectTypeRequest.IfMatch">
             <summary>
-            Last known version to facilitate optimistic locking
+            Last known version to facilitate optimistic locking.
             </summary>
             <remarks>
-            Required for modification
+            Required for modification.
             </remarks>
         </member>
         <member name="P:MindSphereSdk.Core.AssetManagement.PutAspectTypeRequest.IfNoneMatch">
             <summary>
-            Set ifNoneMatch header to "*" for ensuring create request
+            Set ifNoneMatch header to "*" for ensuring create request.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.AssetManagement.PutAspectTypeRequest.Id">
             <summary>
-            The type’s id is a unique identifier
+            The type’s id is a unique identifier.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.AssetManagement.PutAspectTypeRequest.IncludeShared">
             <summary>
-            Specifies if the operation should take into account shared aspect types
+            Specifies if the operation should take into account shared aspect types.
             </summary>
         </member>
-        <member name="P:MindSphereSdk.Core.AssetManagement.PutAspectTypeRequest.Body">
+        <member name="P:MindSphereSdk.Core.AssetManagement.PutAspectTypeRequest.AspectType">
             <summary>
-            Aspect type
+            Aspect type.
             </summary>
         </member>
         <member name="T:MindSphereSdk.Core.AssetManagement.PatchAspectTypeRequest">
             <summary>
-            Request for patching aspect type
+            Request for patching aspect type.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.AssetManagement.PatchAspectTypeRequest.IfMatch">
             <summary>
-            Last known version to facilitate optimistic locking
+            Last known version to facilitate optimistic locking.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.AssetManagement.PatchAspectTypeRequest.Id">
             <summary>
-            The type’s id is a unique identifier
+            The type’s id is a unique identifier.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.AssetManagement.PatchAspectTypeRequest.IncludeShared">
             <summary>
-            Specifies if the operation should take into account shared aspect types
+            Specifies if the operation should take into account shared aspect types.
             </summary>
         </member>
-        <member name="P:MindSphereSdk.Core.AssetManagement.PatchAspectTypeRequest.Body">
+        <member name="P:MindSphereSdk.Core.AssetManagement.PatchAspectTypeRequest.AspectType">
             <summary>
-            Aspect type
+            Aspect type.
             </summary>
         </member>
         <member name="T:MindSphereSdk.Core.AssetManagement.GetAspectTypeRequest">
             <summary>
-            Request for getting aspect type
+            Request for getting aspect type.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.AssetManagement.GetAspectTypeRequest.IfNoneMatch">
             <summary>
-            ETag hash of previous request to allow caching
+            ETag hash of previous request to allow caching.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.AssetManagement.GetAspectTypeRequest.Id">
             <summary>
-            The type’s id is a unique identifier
+            The type’s id is a unique identifier.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.AssetManagement.GetAspectTypeRequest.IncludeShared">
             <summary>
-            Specifies if the operation should take into account shared aspect types
+            Specifies if the operation should take into account shared aspect types.
             </summary>
         </member>
         <member name="T:MindSphereSdk.Core.AssetManagement.DeleteAspectTypeRequest">
@@ -449,52 +449,52 @@
         </member>
         <member name="T:MindSphereSdk.Core.AssetManagement.ListAssetTypesRequest">
             <summary>
-            Request for listing aspect types
+            Request for listing aspect types.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.AssetManagement.ListAssetTypesRequest.Page">
             <summary>
-            Specifies the requested page index
+            Specifies the requested page index.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.AssetManagement.ListAssetTypesRequest.Size">
             <summary>
-            Specifies the number of elements in a page
+            Specifies the number of elements in a page.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.AssetManagement.ListAssetTypesRequest.Sort">
             <summary>
-            Specifies the ordering of returned elements
+            Specifies the ordering of returned elements.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.AssetManagement.ListAssetTypesRequest.Filter">
             <summary>
-            Specifies the additional filtering criteria
+            Specifies the additional filtering criteria.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.AssetManagement.ListAssetTypesRequest.IfNoneMatch">
             <summary>
-            ETag hash of previous request to allow caching
+            ETag hash of previous request to allow caching.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.AssetManagement.ListAssetTypesRequest.Exploded">
             <summary>
-            Specifies if the asset type should include all of it’s inherited variables and aspects
+            Specifies if the asset type should include all of it’s inherited variables and aspects.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.AssetManagement.ListAssetTypesRequest.IncludeShared">
             <summary>
-            Specifies if the operation should take into account shared aspect types
+            Specifies if the operation should take into account shared aspect types.
             </summary>
         </member>
         <member name="T:MindSphereSdk.Core.AssetManagement.PutAssetTypeRequest">
             <summary>
-            Request for putting asset type
+            Request for putting asset type.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.AssetManagement.PutAssetTypeRequest.IfMatch">
             <summary>
-            Last known version to facilitate optimistic locking
+            Last known version to facilitate optimistic locking.
             </summary>
             <remarks>
             Required for modification
@@ -502,157 +502,157 @@
         </member>
         <member name="P:MindSphereSdk.Core.AssetManagement.PutAssetTypeRequest.IfNoneMatch">
             <summary>
-            Set ifNoneMatch header to "*" for ensuring create request
+            Set ifNoneMatch header to "*" for ensuring create request.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.AssetManagement.PutAssetTypeRequest.Id">
             <summary>
-            The type’s id is a unique identifier
+            The type’s id is a unique identifier.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.AssetManagement.PutAssetTypeRequest.Exploded">
             <summary>
-            Specifies if the asset type should include all of it’s inherited variables and aspects
+            Specifies if the asset type should include all of it’s inherited variables and aspects.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.AssetManagement.PutAssetTypeRequest.IncludeShared">
             <summary>
-            Specifies if the operation should take into account shared aspect types
+            Specifies if the operation should take into account shared aspect types.
             </summary>
         </member>
-        <member name="P:MindSphereSdk.Core.AssetManagement.PutAssetTypeRequest.Body">
+        <member name="P:MindSphereSdk.Core.AssetManagement.PutAssetTypeRequest.AssetType">
             <summary>
-            Asset type
+            Asset type.
             </summary>
         </member>
         <member name="T:MindSphereSdk.Core.AssetManagement.PatchAssetTypeRequest">
             <summary>
-            Request for patching asset type
+            Request for patching asset type.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.AssetManagement.PatchAssetTypeRequest.IfMatch">
             <summary>
-            Last known version to facilitate optimistic locking
+            Last known version to facilitate optimistic locking.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.AssetManagement.PatchAssetTypeRequest.Id">
             <summary>
-            The type’s id is a unique identifier
+            The type’s id is a unique identifier.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.AssetManagement.PatchAssetTypeRequest.Exploded">
             <summary>
-            Specifies if the asset type should include all of it’s inherited variables and aspects
+            Specifies if the asset type should include all of it’s inherited variables and aspects.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.AssetManagement.PatchAssetTypeRequest.IncludeShared">
             <summary>
-            Specifies if the operation should take into account shared aspect types
+            Specifies if the operation should take into account shared aspect types.
             </summary>
         </member>
-        <member name="P:MindSphereSdk.Core.AssetManagement.PatchAssetTypeRequest.Body">
+        <member name="P:MindSphereSdk.Core.AssetManagement.PatchAssetTypeRequest.AssetType">
             <summary>
-            Asset type
+            Asset type.
             </summary>
         </member>
         <member name="T:MindSphereSdk.Core.AssetManagement.GetAssetTypeRequest">
             <summary>
-            Request for getting asset type
+            Request for getting asset type.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.AssetManagement.GetAssetTypeRequest.IfNoneMatch">
             <summary>
-            ETag hash of previous request to allow caching
+            ETag hash of previous request to allow caching.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.AssetManagement.GetAssetTypeRequest.Id">
             <summary>
-            The type’s id is a unique identifier
+            The type’s id is a unique identifier.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.AssetManagement.GetAssetTypeRequest.Exploded">
             <summary>
-            Specifies if the asset type should include all of it’s inherited variables and aspects
+            Specifies if the asset type should include all of it’s inherited variables and aspects.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.AssetManagement.GetAssetTypeRequest.IncludeShared">
             <summary>
-            Specifies if the operation should take into account shared aspect types
+            Specifies if the operation should take into account shared aspect types.
             </summary>
         </member>
         <member name="T:MindSphereSdk.Core.AssetManagement.DeleteAssetTypeRequest">
             <summary>
-            Request for deleting asset type
+            Request for deleting asset type.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.AssetManagement.DeleteAssetTypeRequest.Id">
             <summary>
-            The type’s id is a unique identifier
+            The type’s id is a unique identifier.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.AssetManagement.DeleteAssetTypeRequest.IfMatch">
             <summary>
-            Last known version to facilitate optimistic locking
+            Last known version to facilitate optimistic locking.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.AssetManagement.DeleteAssetTypeRequest.IncludeShared">
             <summary>
-            Specifies if the operation should take into account shared aspect types
+            Specifies if the operation should take into account shared aspect types.
             </summary>
         </member>
         <member name="T:MindSphereSdk.Core.AssetManagement.AddAssetTypeFileAssignmentRequest">
             <summary>
-            Request for saving asset type file assignment
+            Request for saving asset type file assignment.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.AssetManagement.AddAssetTypeFileAssignmentRequest.Id">
             <summary>
-            The type’s id is a unique identifier
+            The type’s id is a unique identifier.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.AssetManagement.AddAssetTypeFileAssignmentRequest.Key">
             <summary>
-            Keyword for the file to be assigned to an asset or asset type
+            Keyword for the file to be assigned to an asset or asset type.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.AssetManagement.AddAssetTypeFileAssignmentRequest.IfMatch">
             <summary>
-            Last known version to facilitate optimistic locking
+            Last known version to facilitate optimistic locking.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.AssetManagement.AddAssetTypeFileAssignmentRequest.IncludeShared">
             <summary>
-            Specifies if the operation should take into account shared aspect types
+            Specifies if the operation should take into account shared aspect types.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.AssetManagement.AddAssetTypeFileAssignmentRequest.FileId">
             <summary>
-            File identifier
+            File identifier.
             </summary>
         </member>
         <member name="T:MindSphereSdk.Core.AssetManagement.DeleteAssetTypeFileAssignmentRequest">
             <summary>
-            Request for deleting asset type file assignment
+            Request for deleting asset type file assignment.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.AssetManagement.DeleteAssetTypeFileAssignmentRequest.Id">
             <summary>
-            The type’s id is a unique identifier
+            The type’s id is a unique identifier.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.AssetManagement.DeleteAssetTypeFileAssignmentRequest.Key">
             <summary>
-            Keyword for the file to be assigned to an asset or asset type
+            Keyword for the file to be assigned to an asset or asset type.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.AssetManagement.DeleteAssetTypeFileAssignmentRequest.IfMatch">
             <summary>
-            Last known version to facilitate optimistic locking
+            Last known version to facilitate optimistic locking.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.AssetManagement.DeleteAssetTypeFileAssignmentRequest.IncludeShared">
             <summary>
-            Specifies if the operation should take into account shared aspect types
+            Specifies if the operation should take into account shared aspect types.
             </summary>
         </member>
         <member name="T:MindSphereSdk.Core.AssetManagement.PatchAssetTypeVariablesRequest">
@@ -675,484 +675,484 @@
             Specifies if the operation should take into account shared aspect types.
             </summary>
         </member>
-        <member name="P:MindSphereSdk.Core.AssetManagement.PatchAssetTypeVariablesRequest.Body">
+        <member name="P:MindSphereSdk.Core.AssetManagement.PatchAssetTypeVariablesRequest.VariableMap">
             <summary>
             Variables map.
             </summary>
         </member>
         <member name="T:MindSphereSdk.Core.AssetManagement.ListAssetsRequest">
             <summary>
-            Request for listing assets
+            Request for listing assets.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.AssetManagement.ListAssetsRequest.Page">
             <summary>
-            Specifies the requested page index
+            Specifies the requested page index.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.AssetManagement.ListAssetsRequest.Size">
             <summary>
-            Specifies the number of elements in a page
+            Specifies the number of elements in a page.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.AssetManagement.ListAssetsRequest.Sort">
             <summary>
-            Specifies the ordering of returned elements
+            Specifies the ordering of returned elements.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.AssetManagement.ListAssetsRequest.Filter">
             <summary>
-            Specifies the additional filtering criteria
+            Specifies the additional filtering criteria.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.AssetManagement.ListAssetsRequest.IfNoneMatch">
             <summary>
-            ETag hash of previous request to allow caching
+            ETag hash of previous request to allow caching.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.AssetManagement.ListAssetsRequest.IncludeShared">
             <summary>
-            Specifies if the operation should take into account shared entities
+            Specifies if the operation should take into account shared entities.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.AssetManagement.ListAssetsRequest.BasicFieldsOnly">
             <summary>
-            Specifies if the assets should include all of it’s inherited variables and aspects from assettype and aspecttype
+            Specifies if the assets should include all of it’s inherited variables and aspects from assettype and aspecttype.
             </summary>
         </member>
         <member name="T:MindSphereSdk.Core.AssetManagement.AddAssetRequest">
             <summary>
-            Request for adding asset
+            Request for adding asset.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.AssetManagement.AddAssetRequest.IncludeShared">
             <summary>
-            Specifies if the operation should take into account shared entities
+            Specifies if the operation should take into account shared entities.
             </summary>
         </member>
-        <member name="P:MindSphereSdk.Core.AssetManagement.AddAssetRequest.Body">
+        <member name="P:MindSphereSdk.Core.AssetManagement.AddAssetRequest.Asset">
             <summary>
-            Asset
+            Asset.
             </summary>
         </member>
         <member name="T:MindSphereSdk.Core.AssetManagement.GetAssetRequest">
             <summary>
-            Request for getting asset
+            Request for getting asset.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.AssetManagement.GetAssetRequest.Id">
             <summary>
-            Unique identifier
+            Unique identifier.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.AssetManagement.GetAssetRequest.IfNoneMatch">
             <summary>
-            ETag hash of previous request to allow caching
+            ETag hash of previous request to allow caching.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.AssetManagement.GetAssetRequest.IncludeShared">
             <summary>
-            Specifies if the operation should take into account shared entities
+            Specifies if the operation should take into account shared entities.
             </summary>
         </member>
         <member name="T:MindSphereSdk.Core.AssetManagement.UpdateAssetRequest">
             <summary>
-            Request for updating asset
+            Request for updating asset.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.AssetManagement.UpdateAssetRequest.IfMatch">
             <summary>
-            Last known version to facilitate optimistic locking
+            Last known version to facilitate optimistic locking.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.AssetManagement.UpdateAssetRequest.Id">
             <summary>
-            Unique identifier
+            Unique identifier.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.AssetManagement.UpdateAssetRequest.IncludeShared">
             <summary>
-            Specifies if the operation should take into account shared entities
+            Specifies if the operation should take into account shared entities.
             </summary>
         </member>
-        <member name="P:MindSphereSdk.Core.AssetManagement.UpdateAssetRequest.Body">
+        <member name="P:MindSphereSdk.Core.AssetManagement.UpdateAssetRequest.Asset">
             <summary>
-            Asset
+            Asset.
             </summary>
         </member>
         <member name="T:MindSphereSdk.Core.AssetManagement.DeleteAssetRequest">
             <summary>
-            Request for deleting asset
+            Request for deleting asset.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.AssetManagement.DeleteAssetRequest.IfMatch">
             <summary>
-            Last known version to facilitate optimistic locking
+            Last known version to facilitate optimistic locking.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.AssetManagement.DeleteAssetRequest.Id">
             <summary>
-            Unique identifier
+            Unique identifier.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.AssetManagement.DeleteAssetRequest.IncludeShared">
             <summary>
-            Specifies if the operation should take into account shared entities
+            Specifies if the operation should take into account shared entities.
             </summary>
         </member>
         <member name="T:MindSphereSdk.Core.AssetManagement.MoveAssetRequest">
             <summary>
-            Request for moving asset
+            Request for moving asset.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.AssetManagement.MoveAssetRequest.IfMatch">
             <summary>
-            Last known version to facilitate optimistic locking
+            Last known version to facilitate optimistic locking.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.AssetManagement.MoveAssetRequest.Id">
             <summary>
-            Unique identifier
+            Unique identifier.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.AssetManagement.MoveAssetRequest.IncludeShared">
             <summary>
-            Specifies if the operation should take into account shared entities
+            Specifies if the operation should take into account shared entities.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.AssetManagement.MoveAssetRequest.NewParentId">
             <summary>
-            New parent asset identifier
+            New parent asset identifier.
             </summary>
         </member>
         <member name="T:MindSphereSdk.Core.AssetManagement.SaveAssetFileAssignmentRequest">
             <summary>
-            Request for saving asset's file assignment
+            Request for saving asset's file assignment.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.AssetManagement.SaveAssetFileAssignmentRequest.Id">
             <summary>
-            Unique identifier
+            Unique identifier.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.AssetManagement.SaveAssetFileAssignmentRequest.Key">
             <summary>
-            Keyword for the file to be assigned to an asset or asset type
+            Keyword for the file to be assigned to an asset or asset type.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.AssetManagement.SaveAssetFileAssignmentRequest.IfMatch">
             <summary>
-            Last known version to facilitate optimistic locking
+            Last known version to facilitate optimistic locking.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.AssetManagement.SaveAssetFileAssignmentRequest.IncludeShared">
             <summary>
-            Specifies if the operation should take into account shared entities
+            Specifies if the operation should take into account shared entities.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.AssetManagement.SaveAssetFileAssignmentRequest.FileId">
             <summary>
-            File identifier
+            File identifier.
             </summary>
         </member>
         <member name="T:MindSphereSdk.Core.AssetManagement.DeleteAssetFileAssignmentRequest">
             <summary>
-            Request for deleting asset's file assignment
+            Request for deleting asset's file assignment.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.AssetManagement.DeleteAssetFileAssignmentRequest.Id">
             <summary>
-            Unique identifier
+            Unique identifier.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.AssetManagement.DeleteAssetFileAssignmentRequest.Key">
             <summary>
-            Keyword for the file to be assigned to an asset or asset type
+            Keyword for the file to be assigned to an asset or asset type.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.AssetManagement.DeleteAssetFileAssignmentRequest.IfMatch">
             <summary>
-            Last known version to facilitate optimistic locking
+            Last known version to facilitate optimistic locking.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.AssetManagement.DeleteAssetFileAssignmentRequest.IncludeShared">
             <summary>
-            Specifies if the operation should take into account shared entities
+            Specifies if the operation should take into account shared entities.
             </summary>
         </member>
         <member name="T:MindSphereSdk.Core.AssetManagement.GetRootAssetRequest">
             <summary>
-            Request for getting root asset
+            Request for getting root asset.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.AssetManagement.GetRootAssetRequest.IfNoneMatch">
             <summary>
-            ETag hash of previous request to allow caching
+            ETag hash of previous request to allow caching.
             </summary>
         </member>
         <member name="T:MindSphereSdk.Core.AssetManagement.ListAssetVariablesRequest">
             <summary>
-            Request for listing all asset's variables
+            Request for listing all asset's variables.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.AssetManagement.ListAssetVariablesRequest.Id">
             <summary>
-            Unique identifier
+            Unique identifier.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.AssetManagement.ListAssetVariablesRequest.Page">
             <summary>
-            Specifies the requested page index
+            Specifies the requested page index.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.AssetManagement.ListAssetVariablesRequest.Size">
             <summary>
-            Specifies the number of elements in a page
+            Specifies the number of elements in a page.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.AssetManagement.ListAssetVariablesRequest.Sort">
             <summary>
-            Specifies the ordering of returned elements
+            Specifies the ordering of returned elements.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.AssetManagement.ListAssetVariablesRequest.Filter">
             <summary>
-            Specifies the additional filtering criteria
+            Specifies the additional filtering criteria.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.AssetManagement.ListAssetVariablesRequest.IfNoneMatch">
             <summary>
-            ETag hash of previous request to allow caching
+            ETag hash of previous request to allow caching.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.AssetManagement.ListAssetVariablesRequest.IncludeShared">
             <summary>
-            Specifies if the operation should take into account shared entities
+            Specifies if the operation should take into account shared entities.
             </summary>
         </member>
         <member name="T:MindSphereSdk.Core.AssetManagement.ListAssetAspectsRequest">
             <summary>
-            Request for listing all asset's aspects
+            Request for listing all asset's aspects.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.AssetManagement.ListAssetAspectsRequest.Id">
             <summary>
-            Unique identifier
+            Unique identifier.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.AssetManagement.ListAssetAspectsRequest.Page">
             <summary>
-            Specifies the requested page index
+            Specifies the requested page index.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.AssetManagement.ListAssetAspectsRequest.Size">
             <summary>
-            Specifies the number of elements in a page
+            Specifies the number of elements in a page.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.AssetManagement.ListAssetAspectsRequest.Sort">
             <summary>
-            Specifies the ordering of returned elements
+            Specifies the ordering of returned elements.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.AssetManagement.ListAssetAspectsRequest.Filter">
             <summary>
-            Specifies the additional filtering criteria
+            Specifies the additional filtering criteria.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.AssetManagement.ListAssetAspectsRequest.IfNoneMatch">
             <summary>
-            ETag hash of previous request to allow caching
+            ETag hash of previous request to allow caching.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.AssetManagement.ListAssetAspectsRequest.IncludeShared">
             <summary>
-            Specifies if the operation should take into account shared entities
+            Specifies if the operation should take into account shared entities.
             </summary>
         </member>
         <member name="T:MindSphereSdk.Core.AssetManagement.PutAssetLocationRequest">
             <summary>
-            Request for putting asset's location
+            Request for putting asset's location.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.AssetManagement.PutAssetLocationRequest.IfMatch">
             <summary>
-            Last known version to facilitate optimistic locking
+            Last known version to facilitate optimistic locking.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.AssetManagement.PutAssetLocationRequest.Id">
             <summary>
-            Unique identifier
+            Unique identifier.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.AssetManagement.PutAssetLocationRequest.IncludeShared">
             <summary>
-            Specifies if the operation should take into account shared entities
+            Specifies if the operation should take into account shared entities.
             </summary>
         </member>
-        <member name="P:MindSphereSdk.Core.AssetManagement.PutAssetLocationRequest.Body">
+        <member name="P:MindSphereSdk.Core.AssetManagement.PutAssetLocationRequest.Location">
             <summary>
-            Location
+            Location.
             </summary>
         </member>
         <member name="T:MindSphereSdk.Core.AssetManagement.DeleteAssetLocationRequest">
             <summary>
-            Request for deleting asset's location
+            Request for deleting asset's location.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.AssetManagement.DeleteAssetLocationRequest.IfMatch">
             <summary>
-            Last known version to facilitate optimistic locking
+            Last known version to facilitate optimistic locking.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.AssetManagement.DeleteAssetLocationRequest.Id">
             <summary>
-            Unique identifier
+            Unique identifier.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.AssetManagement.DeleteAssetLocationRequest.IncludeShared">
             <summary>
-            Specifies if the operation should take into account shared entities
+            Specifies if the operation should take into account shared entities.
             </summary>
         </member>
         <member name="T:MindSphereSdk.Core.AssetManagement.UploadFileRequest">
             <summary>
-            Request for uploading file
+            Request for uploading file.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.AssetManagement.UploadFileRequest.File">
             <summary>
-            The file to upload
+            The file to upload.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.AssetManagement.UploadFileRequest.Name">
             <summary>
-            The name of the file
+            The name of the file.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.AssetManagement.UploadFileRequest.Scope">
             <summary>
-            The scope of the file
+            The scope of the file.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.AssetManagement.UploadFileRequest.Description">
             <summary>
-            The description of the file
+            The description of the file.
             </summary>
         </member>
         <member name="T:MindSphereSdk.Core.AssetManagement.ListFilesRequest">
             <summary>
-            Request for listing files
+            Request for listing files.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.AssetManagement.ListFilesRequest.Page">
             <summary>
-            Specifies the requested page index
+            Specifies the requested page index.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.AssetManagement.ListFilesRequest.Size">
             <summary>
-            Specifies the number of elements in a page
+            Specifies the number of elements in a page.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.AssetManagement.ListFilesRequest.Sort">
             <summary>
-            Specifies the ordering of returned elements
+            Specifies the ordering of returned elements.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.AssetManagement.ListFilesRequest.Filter">
             <summary>
-            Specifies the additional filtering criteria
+            Specifies the additional filtering criteria.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.AssetManagement.ListFilesRequest.IfNoneMatch">
             <summary>
-            ETag hash of previous request to allow caching
+            ETag hash of previous request to allow caching.
             </summary>
         </member>
         <member name="T:MindSphereSdk.Core.AssetManagement.DownloadFileRequest">
             <summary>
-            Request for downloading file
+            Request for downloading file.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.AssetManagement.DownloadFileRequest.Id">
             <summary>
-            Unique identifier of the file
+            Unique identifier of the file.
             </summary>
         </member>
         <member name="T:MindSphereSdk.Core.AssetManagement.GetFileRequest">
             <summary>
-            Request for getting file metadata
+            Request for getting file metadata.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.AssetManagement.GetFileRequest.Id">
             <summary>
-            Unique identifier of the file
+            Unique identifier of the file.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.AssetManagement.GetFileRequest.IfNoneMatch">
             <summary>
-            ETag hash of previous request to allow caching
+            ETag hash of previous request to allow caching.
             </summary>
         </member>
         <member name="T:MindSphereSdk.Core.AssetManagement.UpdateFileRequest">
             <summary>
-            Request for updating file
+            Request for updating file.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.AssetManagement.UpdateFileRequest.IfMatch">
             <summary>
-            Last known version to facilitate optimistic locking
+            Last known version to facilitate optimistic locking.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.AssetManagement.UpdateFileRequest.Id">
             <summary>
-            Unique identifier of the file
+            Unique identifier of the file.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.AssetManagement.UpdateFileRequest.File">
             <summary>
-            The file to upload
+            The file to upload.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.AssetManagement.UpdateFileRequest.Name">
             <summary>
-            The name of the file
+            The name of the file.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.AssetManagement.UpdateFileRequest.Scope">
             <summary>
-            The scope of the file
+            The scope of the file.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.AssetManagement.UpdateFileRequest.Description">
             <summary>
-            The description of the file
+            The description of the file.
             </summary>
         </member>
         <member name="T:MindSphereSdk.Core.AssetManagement.DeleteFileRequest">
             <summary>
-            Request for deleting file
+            Request for deleting file.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.AssetManagement.DeleteFileRequest.IfMatch">
             <summary>
-            Last known version to facilitate optimistic locking
+            Last known version to facilitate optimistic locking.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.AssetManagement.DeleteFileRequest.Id">
             <summary>
-            Unique identifier of the file
+            Unique identifier of the file.
             </summary>
         </member>
         <member name="T:MindSphereSdk.Core.AssetManagement.PutLockStateRequest">
             <summary>
-            Request for putting lock state
+            Request for putting lock state.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.AssetManagement.PutLockStateRequest.Enabled">
             <summary>
-            Lock state of an asset model
+            Lock state of an asset model.
             </summary>
         </member>
         <member name="T:MindSphereSdk.Core.Authentication.AppCredentials">
@@ -1488,10 +1488,10 @@
         </member>
         <member name="T:MindSphereSdk.Core.EventManagement.EmbeddedEventList`1">
             <summary>
-            Embedded event list
+            Embedded event list.
             </summary>
             <typeparam name="T">
-            Type derived from Event or dynamic
+            Type derived from Event or dynamic.
             </typeparam>
         </member>
         <member name="T:MindSphereSdk.Core.EventManagement.Event">
@@ -1509,7 +1509,7 @@
             Request for adding an event.
             </summary>
         </member>
-        <member name="P:MindSphereSdk.Core.EventManagement.AddEventRequest.Body">
+        <member name="P:MindSphereSdk.Core.EventManagement.AddEventRequest.Event">
             <summary>
             Event.
             </summary>
@@ -1634,6 +1634,21 @@
             Handle unsuccessful response.
             </summary>
         </member>
+        <member name="T:MindSphereSdk.Core.Helpers.Guard">
+            <summary>
+            Data guard.
+            </summary>
+        </member>
+        <member name="M:MindSphereSdk.Core.Helpers.Guard.NotNull(System.Object,System.String)">
+            <summary>
+            Ensure object is not null.
+            </summary>
+        </member>
+        <member name="M:MindSphereSdk.Core.Helpers.Guard.Validate(System.Object,System.String)">
+            <summary>
+            Validate object.
+            </summary>
+        </member>
         <member name="T:MindSphereSdk.Core.Helpers.Helpers">
             <summary>
             Helpers.
@@ -1696,24 +1711,14 @@
             Build the URI query string.
             </summary>
         </member>
-        <member name="T:MindSphereSdk.Core.Helpers.Validator">
+        <member name="T:MindSphereSdk.Core.Helpers.Validators.Validator">
             <summary>
-            Data validator.
+            General validator.
             </summary>
         </member>
-        <member name="M:MindSphereSdk.Core.Helpers.Validator.Validate(MindSphereSdk.Core.Authentication.AppCredentials)">
+        <member name="M:MindSphereSdk.Core.Helpers.Validators.Validator.GetValidationResult(System.Object)">
             <summary>
-            Validate application credentials.
-            </summary>
-        </member>
-        <member name="M:MindSphereSdk.Core.Helpers.Validator.Validate(MindSphereSdk.Core.Authentication.UserCredentials)">
-            <summary>
-            Validate user credentials.
-            </summary>
-        </member>
-        <member name="M:MindSphereSdk.Core.Helpers.Validator.Validate(MindSphereSdk.Core.Common.ClientConfiguration)">
-            <summary>
-            Validate client configuration.
+            Get validation result for the given object.
             </summary>
         </member>
         <member name="T:MindSphereSdk.Core.IotTimeSeries.IotTimeSeriesClient">

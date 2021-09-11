@@ -1,40 +1,7 @@
 ﻿using System;
-using System.Net.Http;
 
 namespace MindSphereSdk.Core.Helpers
 {
-    /// <summary>
-    /// Helpers.
-    /// </summary>
-    internal static class Helpers
-    {
-        /// <summary>
-        /// Generate date time UTC string.
-        /// </summary>
-        public static string GetDateTimeUtcString(DateTime date)
-        {
-            string dateString = date.ToUniversalTime().ToString("s") + "Z";
-            return dateString;
-        }
-    }
-
-    /// <summary>
-    /// MultipartFormDataContent extensions.
-    /// </summary>
-    internal static class MultipartFormDataContentExtensions
-    {
-        /// <summary>
-        /// Extension method for MultipartFormDataContent to add only not-null values.
-        /// </summary>
-        public static void AddStringContentIfNotNull(this MultipartFormDataContent content, string value, string name)
-        {
-            if (value != null)
-            {
-                content.Add(new StringContent(value), name);
-            }
-        }
-    }
-
     /// <summary>
     /// URI query builder.
     /// </summary>
@@ -80,7 +47,7 @@ namespace MindSphereSdk.Core.Helpers
         {
             if (value != null)
             {
-                _query += $"{name}={Helpers.GetDateTimeUtcString(value.Value)}&";
+                _query += $"{name}={Helper.GetDateTimeUtcString(value.Value)}&";
             }
         }
 

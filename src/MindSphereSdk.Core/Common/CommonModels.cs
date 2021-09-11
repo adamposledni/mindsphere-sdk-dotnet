@@ -6,7 +6,7 @@ namespace MindSphereSdk.Core.Common
     /// <summary>
     /// Wrapper for MindSphere resource.
     /// </summary>
-    internal class MindSphereResourceWrapper<T>
+    internal class MindSphereApiResource<T>
     {
         [JsonProperty("_embedded")]
         public T Embedded { get; set; }
