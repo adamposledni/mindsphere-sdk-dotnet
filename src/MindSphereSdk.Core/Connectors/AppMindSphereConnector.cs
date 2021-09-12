@@ -1,4 +1,5 @@
 ﻿using MindSphereSdk.Core.Authentication;
+using MindSphereSdk.Core.Common;
 using MindSphereSdk.Core.Exceptions;
 using Newtonsoft.Json;
 using System;
@@ -6,17 +7,17 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MindSphereSdk.Core.Common
+namespace MindSphereSdk.Core.Connectors
 {
     /// <summary>
-    /// Connector to the MindSphere API using app credentials
+    /// Connector to the MindSphere API using app credentials.
     /// </summary>
     internal class AppMindSphereConnector : MindSphereConnector
     {
-        private readonly AppCredentials _credentials;
+        private AppCredentials _credentials;
 
         /// <summary>
-        /// Create a new instance of AppMindSphereConnector
+        /// Create a new instance of AppMindSphereConnector.
         /// </summary>
         public AppMindSphereConnector(AppCredentials credentials, ClientConfiguration configuration)
             : base(configuration)
@@ -25,9 +26,9 @@ namespace MindSphereSdk.Core.Common
         }
 
         /// <summary>
-        /// Acquire MindSphere access token with app credentials
+        /// Acquire MindSphere access token with app credentials.
         /// </summary>
-        protected override async Task AcquireTokenAsync()
+        protected override async Task<string> AcquireTokenAsync()
         {
             // prepare HTTP request
             HttpRequestMessage request = new HttpRequestMessage
@@ -45,11 +46,31 @@ namespace MindSphereSdk.Core.Common
             await MindSphereApiExceptionHandler.HandleUnsuccessfulResponseAsync(response);
 
             string responseBody = await response.Content.ReadAsStringAsync();
-            _accessToken = JsonConvert.DeserializeObject<AccessToken>(responseBody).Token;
+            return JsonConvert.DeserializeObject<AccessToken>(responseBody).Token;
         }
 
         /// <summary>
-        /// Generate BasicAuth string (Basic abc123...)
+        /// Update the credentials object.
+        /// </summary>
+        /// <remarks>
+        /// It is not possible to change the credential type in the runtime.
+        /// </remarks>
+        public override void UpdateCredentials(ICredentials credentials)
+        {
+            if (credentials is AppCredentials appCredentials)
+            {
+                _credentials = appCredentials;
+                // reset token
+                _accessToken = null;
+            }
+            else
+            {
+                throw new ArgumentException("Invalid credential type", nameof(credentials));
+            }
+        }
+
+        /// <summary>
+        /// Generate BasicAuth string (Basic abc123...).
         /// </summary>
         private string GetBasicAuth()
         {

@@ -1,15 +1,17 @@
 ﻿using MindSphereSdk.Core.AssetManagement;
 using MindSphereSdk.Core.Authentication;
+using MindSphereSdk.Core.Connectors;
 using MindSphereSdk.Core.EventManagement;
 using MindSphereSdk.Core.Helpers;
 using MindSphereSdk.Core.IotTimeSeries;
 using MindSphereSdk.Core.IotTsAggregates;
 using System;
+using System.Threading.Tasks;
 
 namespace MindSphereSdk.Core.Common
 {
     /// <summary>
-    /// MindSphere API SDK
+    /// MindSphere API SDK.
     /// </summary>
     public class MindSphereApiSdk
     {
@@ -21,26 +23,21 @@ namespace MindSphereSdk.Core.Common
         private readonly MindSphereConnector _connector;
 
         /// <summary>
-        /// Create a new instance of MindSphereApiSdk
+        /// Create a new instance of MindSphereApiSdk.
         /// </summary>
         public MindSphereApiSdk(ICredentials credentials, ClientConfiguration configuration)
         {
-            Validator.Validate(configuration);
+            Guard.Validate(configuration);
+            Guard.Validate(credentials);
 
-            if (credentials == null)
-            {
-                throw new ArgumentNullException(nameof(credentials));
-            }
             // create application credentials connector
-            else if (credentials is AppCredentials appCredentials)
+            if (credentials is AppCredentials appCredentials)
             {
-                Validator.Validate(appCredentials);
                 _connector = new AppMindSphereConnector(appCredentials, configuration);
             }
             // create user credentials connector
             else if (credentials is UserCredentials userCredentials)
             {
-                Validator.Validate(userCredentials);
                 _connector = new UserMindSphereConnector(userCredentials, configuration);
             }
             else
@@ -50,7 +47,27 @@ namespace MindSphereSdk.Core.Common
         }
 
         /// <summary>
-        /// Get Asset Management Client
+        /// Get MindSphere API access token.
+        /// </summary>
+        public async Task<string> GetAccessTokenAsync()
+        {
+            return await _connector.GetAccessTokenAsync();
+        }
+
+        /// <summary>
+        /// Update the credentials object.
+        /// </summary>
+        /// <remarks>
+        /// It is not possible to change the credential type in the runtime.
+        /// </remarks>
+        public void UpdateCredentials(ICredentials credentials)
+        {
+            Guard.Validate(credentials);
+            _connector.UpdateCredentials(credentials);
+        }
+
+        /// <summary>
+        /// Get Asset Management Client.
         /// </summary>
         public AssetManagementClient GetAssetManagementClient()
         {
@@ -62,7 +79,7 @@ namespace MindSphereSdk.Core.Common
         }
 
         /// <summary>
-        /// Get IoT Time Series Client
+        /// Get IoT Time Series Client.
         /// </summary>
         public IotTimeSeriesClient GetIotTimeSeriesClient()
         {
@@ -74,7 +91,7 @@ namespace MindSphereSdk.Core.Common
         }
 
         /// <summary>
-        /// Get IoT Time Series Aggregate Client
+        /// Get IoT Time Series Aggregate Client.
         /// </summary>
         public IotTsAggregatesClient GetIotTsAggregateClient()
         {
@@ -86,7 +103,7 @@ namespace MindSphereSdk.Core.Common
         }
 
         /// <summary>
-        /// Get Event Management Client
+        /// Get Event Management Client.
         /// </summary>
         public EventManagementClient GetEventManagementClient()
         {

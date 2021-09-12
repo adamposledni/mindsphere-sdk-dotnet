@@ -5,11 +5,16 @@ VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MindSphereSdk.Core", "src\MindSphereSdk.Core\MindSphereSdk.Core.csproj", "{DF8A7240-E13A-4BD2-B5D1-F3AFA157F171}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleApp", "usage\ConsoleApp\ConsoleApp.csproj", "{0BBA396E-0D6A-4868-BA47-CC7542A9BC9D}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApp", "usage\WebApp\WebApp.csproj", "{FA62F225-863C-4649-9FBC-52AA7094E46A}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MindSphereSdk.Core.Test", "test\MindSphereSdk.Core.Test\MindSphereSdk.Core.Test.csproj", "{10861600-4D9B-483A-92DA-E2B62D9CA331}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{26DB2AFF-5483-4A4B-8D65-73FD2429EEE8}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		CHANGELOG.md = CHANGELOG.md
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApp", "usage\WebApp\WebApp.csproj", "{0F8045E0-7F90-4AFE-B11A-56D7C212BD79}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,18 +26,14 @@ Global
 		{DF8A7240-E13A-4BD2-B5D1-F3AFA157F171}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DF8A7240-E13A-4BD2-B5D1-F3AFA157F171}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DF8A7240-E13A-4BD2-B5D1-F3AFA157F171}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0BBA396E-0D6A-4868-BA47-CC7542A9BC9D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0BBA396E-0D6A-4868-BA47-CC7542A9BC9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0BBA396E-0D6A-4868-BA47-CC7542A9BC9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0BBA396E-0D6A-4868-BA47-CC7542A9BC9D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FA62F225-863C-4649-9FBC-52AA7094E46A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FA62F225-863C-4649-9FBC-52AA7094E46A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FA62F225-863C-4649-9FBC-52AA7094E46A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FA62F225-863C-4649-9FBC-52AA7094E46A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{10861600-4D9B-483A-92DA-E2B62D9CA331}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{10861600-4D9B-483A-92DA-E2B62D9CA331}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{10861600-4D9B-483A-92DA-E2B62D9CA331}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{10861600-4D9B-483A-92DA-E2B62D9CA331}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0F8045E0-7F90-4AFE-B11A-56D7C212BD79}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F8045E0-7F90-4AFE-B11A-56D7C212BD79}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F8045E0-7F90-4AFE-B11A-56D7C212BD79}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F8045E0-7F90-4AFE-B11A-56D7C212BD79}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

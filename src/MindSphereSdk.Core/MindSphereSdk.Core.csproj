@@ -1,29 +1,33 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>netstandard2.1</TargetFramework>
     <AssemblyName>MindSphereSdk.Core</AssemblyName>
     <SignAssembly>false</SignAssembly>
     <Description>Open-source .NET SDK for MindSphere APIs mainly to support backend development in ASP.NET Core.</Description>
     <Authors>Adam Hrouda</Authors>
     <Company />
     <Product />
-    <PackageProjectUrl></PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/hroudaadam/mindsphere-sdk-dotnet</PackageProjectUrl>
     <RepositoryUrl>https://github.com/hroudaadam/mindsphere-sdk-dotnet</RepositoryUrl>
     <PackageTags>dotnet, sdk, siemens, mindsphere, mindsphere-api</PackageTags>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Copyright>© Adam Hrouda 2021</Copyright>
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
-    <Version>1.1.0</Version>
+    <Version>1.1.1</Version>
+    <PackageIcon>nuget-icon.png</PackageIcon>
+    <PackageIconUrl />
+    <RepositoryType>git</RepositoryType>
+    <NeutralLanguage>en-US</NeutralLanguage>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile></DocumentationFile>
+    <DocumentationFile>D:\Repos\mindsphere-sdk-dotnet\src\MindSphereSdk.Core\MindSphereSdk.Core.xml</DocumentationFile>
     <WarningLevel>3</WarningLevel>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>D:\Programování\mindsphere-sdk-dotnet\src\MindSphereSdk.Core\MindSphereSdk.Core.xml</DocumentationFile>
+    <DocumentationFile>D:\Repos\mindsphere-sdk-dotnet\src\MindSphereSdk.Core\MindSphereSdk.Core.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
@@ -38,6 +42,10 @@
       <PackagePath></PackagePath>
     </None>
     <None Include="..\..\other\mdsp.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+    <None Include="..\..\other\nuget-icon.png">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>

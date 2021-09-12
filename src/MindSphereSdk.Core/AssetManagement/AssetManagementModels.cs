@@ -8,7 +8,7 @@ namespace MindSphereSdk.Core.AssetManagement
     #region Embedded
 
     /// <summary>
-    /// Embedded asset list
+    /// Embedded asset list.
     /// </summary>
     internal class EmbeddedAssetList
     {
@@ -17,7 +17,7 @@ namespace MindSphereSdk.Core.AssetManagement
     }
 
     /// <summary>
-    /// Embedded aspect type list
+    /// Embedded aspect type list.
     /// </summary>
     internal class EmbeddedAspectTypeList
     {
@@ -26,7 +26,7 @@ namespace MindSphereSdk.Core.AssetManagement
     }
 
     /// <summary>
-    /// Embedded asset type list
+    /// Embedded asset type list.
     /// </summary>
     internal class EmbeddedAssetTypeList
     {
@@ -35,7 +35,7 @@ namespace MindSphereSdk.Core.AssetManagement
     }
 
     /// <summary>
-    /// Embedded variable list
+    /// Embedded variable list.
     /// </summary>
     internal class EmbeddedVariableList
     {
@@ -44,7 +44,7 @@ namespace MindSphereSdk.Core.AssetManagement
     }
 
     /// <summary>
-    /// Embedded aspect list
+    /// Embedded aspect list.
     /// </summary>
     internal class EmbeddedAspectList
     {
@@ -53,7 +53,7 @@ namespace MindSphereSdk.Core.AssetManagement
     }
 
     /// <summary>
-    /// Embedded file list
+    /// Embedded file list.
     /// </summary>
     internal class EmbeddedFileList
     {
@@ -66,7 +66,7 @@ namespace MindSphereSdk.Core.AssetManagement
     #region Aspect types
 
     /// <summary>
-    /// Aspect type
+    /// Aspect type.
     /// </summary>
     public class AspectType
     {
@@ -96,9 +96,9 @@ namespace MindSphereSdk.Core.AssetManagement
     }
 
     /// <summary>
-    /// Aspect type (create or update)
+    /// Aspect type (create or update).
     /// </summary>
-    public class AspectTypeUpdate
+    public class AspectTypeAddUpdate
     {
         [JsonProperty("name")]
         public string Name { get; set; }
@@ -121,7 +121,7 @@ namespace MindSphereSdk.Core.AssetManagement
     #region Asset types
 
     /// <summary>
-    /// Asset type
+    /// Asset type.
     /// </summary>
     public class AssetType
     {
@@ -160,7 +160,7 @@ namespace MindSphereSdk.Core.AssetManagement
     }
 
     /// <summary>
-    /// Asset type (create or update)
+    /// Asset type (create or update).
     /// </summary>
     public class AssetTypeUpdate
     {
@@ -194,7 +194,7 @@ namespace MindSphereSdk.Core.AssetManagement
     #region Asset
 
     /// <summary>
-    /// Asset
+    /// Asset.
     /// </summary>
     public class Asset
     {
@@ -251,7 +251,7 @@ namespace MindSphereSdk.Core.AssetManagement
     }
 
     /// <summary>
-    /// Asset to update
+    /// Asset to update.
     /// </summary>
     public class AssetUpdate
     {
@@ -278,7 +278,7 @@ namespace MindSphereSdk.Core.AssetManagement
     }
 
     /// <summary>
-    /// Asset to add
+    /// Asset to add.
     /// </summary>
     public class AssetAdd
     {
@@ -317,7 +317,7 @@ namespace MindSphereSdk.Core.AssetManagement
     }
 
     /// <summary>
-    /// Asset to move
+    /// Asset to move.
     /// </summary>
     public class AssetMove
     {
@@ -330,7 +330,7 @@ namespace MindSphereSdk.Core.AssetManagement
     #region Aspect
 
     /// <summary>
-    /// Aspect
+    /// Aspect.
     /// </summary>
     public class Aspect
     {
@@ -342,7 +342,7 @@ namespace MindSphereSdk.Core.AssetManagement
     }
 
     /// <summary>
-    /// Aspect for putting
+    /// Aspect for putting.
     /// </summary>
     public class AspectPut
     {
@@ -354,7 +354,7 @@ namespace MindSphereSdk.Core.AssetManagement
     }
 
     /// <summary>
-    /// Aspect detail
+    /// Aspect detail.
     /// </summary>
     public class AspectDetail
     {
@@ -369,7 +369,7 @@ namespace MindSphereSdk.Core.AssetManagement
     }
 
     /// <summary>
-    /// Aspect full detail
+    /// Aspect full detail.
     /// </summary>
     public class AspectFullDetail
     {
@@ -400,7 +400,7 @@ namespace MindSphereSdk.Core.AssetManagement
     #region Location
 
     /// <summary>
-    /// Location
+    /// Location.
     /// </summary>
     public class Location
     {
@@ -431,7 +431,7 @@ namespace MindSphereSdk.Core.AssetManagement
     #region File assignment
 
     /// <summary>
-    /// File assignment
+    /// File assignment.
     /// </summary>
     public class FileAssignment
     {
@@ -447,7 +447,7 @@ namespace MindSphereSdk.Core.AssetManagement
     #region Variables
 
     /// <summary>
-    /// Variable for asset/aspect type
+    /// Variable for asset/aspect type.
     /// </summary>
     public class VariableDetail
     {
@@ -474,7 +474,7 @@ namespace MindSphereSdk.Core.AssetManagement
     }
 
     /// <summary>
-    /// Variable
+    /// Variable.
     /// </summary>
     public class Variable
     {
@@ -485,12 +485,30 @@ namespace MindSphereSdk.Core.AssetManagement
         public string ValueString { get; set; }
     }
 
+    /// <summary>
+    /// Variable - update.
+    /// </summary>
+    public class VariableUpdate
+    {
+        [JsonProperty("name")]
+        public string Name { get; set; }
+
+        [JsonProperty("unit")]
+        public string Unit { get; set; }
+
+        [JsonProperty("length")]
+        public int? Length { get; set; }
+
+        [JsonProperty("defaultValue")]
+        public string DefaultValue { get; set; }
+    }
+
     #endregion
 
     #region Files
 
     /// <summary>
-    /// File metadata
+    /// File metadata.
     /// </summary>
     public class File
     {
@@ -533,7 +551,7 @@ namespace MindSphereSdk.Core.AssetManagement
     #region Asset model lock
 
     /// <summary>
-    /// Lock state of an asset model
+    /// Lock state of an asset model.
     /// </summary>
     public class LockStateWithJobs
     {
@@ -545,7 +563,7 @@ namespace MindSphereSdk.Core.AssetManagement
     }
 
     /// <summary>
-    /// Lock state of an asset model
+    /// Lock state of an asset model.
     /// </summary>
     public class LockState
     {
@@ -558,192 +576,192 @@ namespace MindSphereSdk.Core.AssetManagement
     #region Request
 
     /// <summary>
-    /// Request for listing aspect types
+    /// Request for listing aspect types.
     /// </summary>
     public class ListAspectTypesRequest
     {
         /// <summary>
-        /// Specifies the requested page index
+        /// Specifies the requested page index.
         /// </summary>
         public int? Page { get; set; }
 
         /// <summary>
-        /// Specifies the number of elements in a page
+        /// Specifies the number of elements in a page.
         /// </summary>
         public int? Size { get; set; }
 
         /// <summary>
-        /// Specifies the ordering of returned elements
+        /// Specifies the ordering of returned elements.
         /// </summary>
         public string Sort { get; set; }
 
         /// <summary>
-        /// Specifies the additional filtering criteria
+        /// Specifies the additional filtering criteria.
         /// </summary>
         public string Filter { get; set; }
 
         /// <summary>
-        /// ETag hash of previous request to allow caching
+        /// ETag hash of previous request to allow caching.
         /// </summary>
         public string IfNoneMatch { get; set; }
 
         /// <summary>
-        /// Specifies if the operation should take into account shared aspect types
+        /// Specifies if the operation should take into account shared aspect types.
         /// </summary>
         public bool? IncludeShared { get; set; }
     }
 
     /// <summary>
-    /// Request for putting aspect type
+    /// Request for putting aspect type.
     /// </summary>
     public class PutAspectTypeRequest
     {
         /// <summary>
-        /// Last known version to facilitate optimistic locking
+        /// Last known version to facilitate optimistic locking.
         /// </summary>
         /// <remarks>
-        /// Required for modification
+        /// Required for modification.
         /// </remarks>
         public string IfMatch { get; set; }
 
         /// <summary>
-        /// Set ifNoneMatch header to "*" for ensuring create request
+        /// Set ifNoneMatch header to "*" for ensuring create request.
         /// </summary>
         public string IfNoneMatch { get; set; }
 
         /// <summary>
-        /// The type’s id is a unique identifier
+        /// The type’s id is a unique identifier.
         /// </summary>
         public string Id { get; set; }
 
         /// <summary>
-        /// Specifies if the operation should take into account shared aspect types
+        /// Specifies if the operation should take into account shared aspect types.
         /// </summary>
         public bool? IncludeShared { get; set; }
 
         /// <summary>
-        /// Aspect type
+        /// Aspect type.
         /// </summary>
-        public AspectTypeUpdate Body { get; set; }
+        public AspectTypeAddUpdate AspectType { get; set; }
     }
 
     /// <summary>
-    /// Request for patching aspect type
+    /// Request for patching aspect type.
     /// </summary>
     public class PatchAspectTypeRequest
     {
         /// <summary>
-        /// Last known version to facilitate optimistic locking
+        /// Last known version to facilitate optimistic locking.
         /// </summary>
         public string IfMatch { get; set; }
 
         /// <summary>
-        /// The type’s id is a unique identifier
+        /// The type’s id is a unique identifier.
         /// </summary>
         public string Id { get; set; }
 
         /// <summary>
-        /// Specifies if the operation should take into account shared aspect types
+        /// Specifies if the operation should take into account shared aspect types.
         /// </summary>
         public bool? IncludeShared { get; set; }
 
         /// <summary>
-        /// Aspect type
+        /// Aspect type.
         /// </summary>
-        public AspectTypeUpdate Body { get; set; }
+        public AspectTypeAddUpdate AspectType { get; set; }
     }
 
     /// <summary>
-    /// Request for getting aspect type
+    /// Request for getting aspect type.
     /// </summary>
     public class GetAspectTypeRequest
     {
         /// <summary>
-        /// ETag hash of previous request to allow caching
+        /// ETag hash of previous request to allow caching.
         /// </summary>
         public string IfNoneMatch { get; set; }
 
         /// <summary>
-        /// The type’s id is a unique identifier
+        /// The type’s id is a unique identifier.
         /// </summary>
         public string Id { get; set; }
 
         /// <summary>
-        /// Specifies if the operation should take into account shared aspect types
+        /// Specifies if the operation should take into account shared aspect types.
         /// </summary>
         public bool? IncludeShared { get; set; }
     }
 
     /// <summary>
-    /// Request for deleting aspect type
+    /// Request for deleting aspect type.
     /// </summary>
     public class DeleteAspectTypeRequest
     {
         /// <summary>
-        /// Last known version to facilitate optimistic locking
+        /// Last known version to facilitate optimistic locking.
         /// </summary>
         public string IfMatch { get; set; }
 
         /// <summary>
-        /// The type’s id is a unique identifier
+        /// The type’s id is a unique identifier.
         /// </summary>
         public string Id { get; set; }
 
         /// <summary>
-        /// Specifies if the operation should take into account shared aspect types
+        /// Specifies if the operation should take into account shared aspect types.
         /// </summary>
         public bool? IncludeShared { get; set; }
     }
 
 
     /// <summary>
-    /// Request for listing aspect types
+    /// Request for listing aspect types.
     /// </summary>
     public class ListAssetTypesRequest
     {
         /// <summary>
-        /// Specifies the requested page index
+        /// Specifies the requested page index.
         /// </summary>
         public int? Page { get; set; }
 
         /// <summary>
-        /// Specifies the number of elements in a page
+        /// Specifies the number of elements in a page.
         /// </summary>
         public int? Size { get; set; }
 
         /// <summary>
-        /// Specifies the ordering of returned elements
+        /// Specifies the ordering of returned elements.
         /// </summary>
         public string Sort { get; set; }
 
         /// <summary>
-        /// Specifies the additional filtering criteria
+        /// Specifies the additional filtering criteria.
         /// </summary>
         public string Filter { get; set; }
 
         /// <summary>
-        /// ETag hash of previous request to allow caching
+        /// ETag hash of previous request to allow caching.
         /// </summary>
         public string IfNoneMatch { get; set; }
 
         /// <summary>
-        /// Specifies if the asset type should include all of it’s inherited variables and aspects
+        /// Specifies if the asset type should include all of it’s inherited variables and aspects.
         /// </summary>
         public bool? Exploded { get; set; }
 
         /// <summary>
-        /// Specifies if the operation should take into account shared aspect types
+        /// Specifies if the operation should take into account shared aspect types.
         /// </summary>
         public bool? IncludeShared { get; set; }
     }
 
     /// <summary>
-    /// Request for putting asset type
+    /// Request for putting asset type.
     /// </summary>
     public class PutAssetTypeRequest
     {
         /// <summary>
-        /// Last known version to facilitate optimistic locking
+        /// Last known version to facilitate optimistic locking.
         /// </summary>
         /// <remarks>
         /// Required for modification
@@ -751,687 +769,687 @@ namespace MindSphereSdk.Core.AssetManagement
         public string IfMatch { get; set; }
 
         /// <summary>
-        /// Set ifNoneMatch header to "*" for ensuring create request
+        /// Set ifNoneMatch header to "*" for ensuring create request.
         /// </summary>
         public string IfNoneMatch { get; set; }
 
         /// <summary>
-        /// The type’s id is a unique identifier
+        /// The type’s id is a unique identifier.
         /// </summary>
         public string Id { get; set; }
 
         /// <summary>
-        /// Specifies if the asset type should include all of it’s inherited variables and aspects
+        /// Specifies if the asset type should include all of it’s inherited variables and aspects.
         /// </summary>
         public bool? Exploded { get; set; }
 
         /// <summary>
-        /// Specifies if the operation should take into account shared aspect types
+        /// Specifies if the operation should take into account shared aspect types.
         /// </summary>
         public bool? IncludeShared { get; set; }
 
         /// <summary>
-        /// Asset type
+        /// Asset type.
         /// </summary>
-        public AssetTypeUpdate Body { get; set; }
+        public AssetTypeUpdate AssetType { get; set; }
     }
 
     /// <summary>
-    /// Request for patching asset type
+    /// Request for patching asset type.
     /// </summary>
     public class PatchAssetTypeRequest
     {
         /// <summary>
-        /// Last known version to facilitate optimistic locking
+        /// Last known version to facilitate optimistic locking.
         /// </summary>
         public string IfMatch { get; set; }
 
         /// <summary>
-        /// The type’s id is a unique identifier
+        /// The type’s id is a unique identifier.
         /// </summary>
         public string Id { get; set; }
 
         /// <summary>
-        /// Specifies if the asset type should include all of it’s inherited variables and aspects
+        /// Specifies if the asset type should include all of it’s inherited variables and aspects.
         /// </summary>
         public bool? Exploded { get; set; }
 
         /// <summary>
-        /// Specifies if the operation should take into account shared aspect types
+        /// Specifies if the operation should take into account shared aspect types.
         /// </summary>
         public bool? IncludeShared { get; set; }
 
         /// <summary>
-        /// Asset type
+        /// Asset type.
         /// </summary>
-        public AssetTypeUpdate Body { get; set; }
+        public AssetTypeUpdate AssetType { get; set; }
     }
 
     /// <summary>
-    /// Request for getting asset type
+    /// Request for getting asset type.
     /// </summary>
     public class GetAssetTypeRequest
     {
         /// <summary>
-        /// ETag hash of previous request to allow caching
+        /// ETag hash of previous request to allow caching.
         /// </summary>
         public string IfNoneMatch { get; set; }
 
         /// <summary>
-        /// The type’s id is a unique identifier
+        /// The type’s id is a unique identifier.
         /// </summary>
         public string Id { get; set; }
 
         /// <summary>
-        /// Specifies if the asset type should include all of it’s inherited variables and aspects
+        /// Specifies if the asset type should include all of it’s inherited variables and aspects.
         /// </summary>
         public bool? Exploded { get; set; }
 
         /// <summary>
-        /// Specifies if the operation should take into account shared aspect types
+        /// Specifies if the operation should take into account shared aspect types.
         /// </summary>
         public bool? IncludeShared { get; set; }
     }
 
     /// <summary>
-    /// Request for deleting asset type
+    /// Request for deleting asset type.
     /// </summary>
     public class DeleteAssetTypeRequest
     {
         /// <summary>
-        /// The type’s id is a unique identifier
+        /// The type’s id is a unique identifier.
         /// </summary>
         public string Id { get; set; }
 
         /// <summary>
-        /// Last known version to facilitate optimistic locking
+        /// Last known version to facilitate optimistic locking.
         /// </summary>
         public string IfMatch { get; set; }
 
         /// <summary>
-        /// Specifies if the operation should take into account shared aspect types
+        /// Specifies if the operation should take into account shared aspect types.
         /// </summary>
         public bool? IncludeShared { get; set; }
     }
 
     /// <summary>
-    /// Request for saving asset type file assignment
+    /// Request for saving asset type file assignment.
     /// </summary>
     public class AddAssetTypeFileAssignmentRequest
     {
         /// <summary>
-        /// The type’s id is a unique identifier
+        /// The type’s id is a unique identifier.
         /// </summary>
         public string Id { get; set; }
 
         /// <summary>
-        /// Keyword for the file to be assigned to an asset or asset type
+        /// Keyword for the file to be assigned to an asset or asset type.
         /// </summary>
         public string Key { get; set; }
 
         /// <summary>
-        /// Last known version to facilitate optimistic locking
+        /// Last known version to facilitate optimistic locking.
         /// </summary>
         public string IfMatch { get; set; }
 
         /// <summary>
-        /// Specifies if the operation should take into account shared aspect types
+        /// Specifies if the operation should take into account shared aspect types.
         /// </summary>
         public bool? IncludeShared { get; set; }
 
         /// <summary>
-        /// File identifier
+        /// File identifier.
         /// </summary>
         public string FileId { get; set; }
     }
 
     /// <summary>
-    /// Request for deleting asset type file assignment
+    /// Request for deleting asset type file assignment.
     /// </summary>
     public class DeleteAssetTypeFileAssignmentRequest
     {
         /// <summary>
-        /// The type’s id is a unique identifier
+        /// The type’s id is a unique identifier.
         /// </summary>
         public string Id { get; set; }
 
         /// <summary>
-        /// Keyword for the file to be assigned to an asset or asset type
+        /// Keyword for the file to be assigned to an asset or asset type.
         /// </summary>
         public string Key { get; set; }
 
         /// <summary>
-        /// Last known version to facilitate optimistic locking
+        /// Last known version to facilitate optimistic locking.
         /// </summary>
         public string IfMatch { get; set; }
 
         /// <summary>
-        /// Specifies if the operation should take into account shared aspect types
+        /// Specifies if the operation should take into account shared aspect types.
         /// </summary>
         public bool? IncludeShared { get; set; }
     }
 
     /// <summary>
-    /// Request for updating asset type variables
+    /// Request for updating asset type variables.
     /// </summary>
     public class PatchAssetTypeVariablesRequest
     {
         /// <summary>
-        /// Last known version to facilitate optimistic locking
+        /// Last known version to facilitate optimistic locking.
         /// </summary>
         public string IfMatch { get; set; }
 
         /// <summary>
-        /// The type’s id is a unique identifier
+        /// The type’s id is a unique identifier.
         /// </summary>
         public string Id { get; set; }
 
         /// <summary>
-        /// Specifies if the operation should take into account shared aspect types
+        /// Specifies if the operation should take into account shared aspect types.
         /// </summary>
         public bool? IncludeShared { get; set; }
 
         /// <summary>
-        /// Variables Dictionary, variable Name is the key and value are the parameters to be updated of the variable
+        /// Variables map.
         /// </summary>
-        public object Body { get; set; }
+        public object VariableMap { get; set; }
     }
 
 
     /// <summary>
-    /// Request for listing assets
+    /// Request for listing assets.
     /// </summary>
     public class ListAssetsRequest
     {
         /// <summary>
-        /// Specifies the requested page index
+        /// Specifies the requested page index.
         /// </summary>
         public int? Page { get; set; }
 
         /// <summary>
-        /// Specifies the number of elements in a page
+        /// Specifies the number of elements in a page.
         /// </summary>
         public int? Size { get; set; }
 
         /// <summary>
-        /// Specifies the ordering of returned elements
+        /// Specifies the ordering of returned elements.
         /// </summary>
         public string Sort { get; set; }
 
         /// <summary>
-        /// Specifies the additional filtering criteria
+        /// Specifies the additional filtering criteria.
         /// </summary>
         public string Filter { get; set; }
 
         /// <summary>
-        /// ETag hash of previous request to allow caching
+        /// ETag hash of previous request to allow caching.
         /// </summary>
         public string IfNoneMatch { get; set; }
 
         /// <summary>
-        /// Specifies if the operation should take into account shared entities
+        /// Specifies if the operation should take into account shared entities.
         /// </summary>
         public bool? IncludeShared { get; set; }
 
         /// <summary>
-        /// Specifies if the assets should include all of it’s inherited variables and aspects from assettype and aspecttype
+        /// Specifies if the assets should include all of it’s inherited variables and aspects from assettype and aspecttype.
         /// </summary>
         public bool? BasicFieldsOnly { get; set; }
     }
 
     /// <summary>
-    /// Request for adding asset
+    /// Request for adding asset.
     /// </summary>
     public class AddAssetRequest
     {
         /// <summary>
-        /// Specifies if the operation should take into account shared entities
+        /// Specifies if the operation should take into account shared entities.
         /// </summary>
         public bool? IncludeShared { get; set; }
 
         /// <summary>
-        /// Asset
+        /// Asset.
         /// </summary>
-        public AssetAdd Body { get; set; }
+        public AssetAdd Asset { get; set; }
     }
 
     /// <summary>
-    /// Request for getting asset
+    /// Request for getting asset.
     /// </summary>
     public class GetAssetRequest
     {
         /// <summary>
-        /// Unique identifier
+        /// Unique identifier.
         /// </summary>
         public string Id { get; set; }
 
         /// <summary>
-        /// ETag hash of previous request to allow caching
+        /// ETag hash of previous request to allow caching.
         /// </summary>
         public string IfNoneMatch { get; set; }
 
         /// <summary>
-        /// Specifies if the operation should take into account shared entities
+        /// Specifies if the operation should take into account shared entities.
         /// </summary>
         public bool? IncludeShared { get; set; }
     }
 
     /// <summary>
-    /// Request for updating asset
+    /// Request for updating asset.
     /// </summary>
     public class UpdateAssetRequest
     {
         /// <summary>
-        /// Last known version to facilitate optimistic locking
+        /// Last known version to facilitate optimistic locking.
         /// </summary>
         public string IfMatch { get; set; }
 
         /// <summary>
-        /// Unique identifier
+        /// Unique identifier.
         /// </summary>
         public string Id { get; set; }
 
         /// <summary>
-        /// Specifies if the operation should take into account shared entities
+        /// Specifies if the operation should take into account shared entities.
         /// </summary>
         public bool? IncludeShared { get; set; }
 
         /// <summary>
-        /// Asset
+        /// Asset.
         /// </summary>
-        public AssetUpdate Body { get; set; }
+        public AssetUpdate Asset { get; set; }
     }
 
     /// <summary>
-    /// Request for deleting asset
+    /// Request for deleting asset.
     /// </summary>
     public class DeleteAssetRequest
     {
         /// <summary>
-        /// Last known version to facilitate optimistic locking
+        /// Last known version to facilitate optimistic locking.
         /// </summary>
         public string IfMatch { get; set; }
 
         /// <summary>
-        /// Unique identifier
+        /// Unique identifier.
         /// </summary>
         public string Id { get; set; }
 
         /// <summary>
-        /// Specifies if the operation should take into account shared entities
+        /// Specifies if the operation should take into account shared entities.
         /// </summary>
         public bool? IncludeShared { get; set; }
     }
 
     /// <summary>
-    /// Request for moving asset
+    /// Request for moving asset.
     /// </summary>
     public class MoveAssetRequest
     {
         /// <summary>
-        /// Last known version to facilitate optimistic locking
+        /// Last known version to facilitate optimistic locking.
         /// </summary>
         public string IfMatch { get; set; }
 
         /// <summary>
-        /// Unique identifier
+        /// Unique identifier.
         /// </summary>
         public string Id { get; set; }
 
         /// <summary>
-        /// Specifies if the operation should take into account shared entities
+        /// Specifies if the operation should take into account shared entities.
         /// </summary>
         public bool? IncludeShared { get; set; }
 
         /// <summary>
-        /// New parent asset identifier
+        /// New parent asset identifier.
         /// </summary>
         public string NewParentId { get; set; }
     }
 
     /// <summary>
-    /// Request for saving asset's file assignment
+    /// Request for saving asset's file assignment.
     /// </summary>
     public class SaveAssetFileAssignmentRequest
     {
         /// <summary>
-        /// Unique identifier
+        /// Unique identifier.
         /// </summary>
         public string Id { get; set; }
 
         /// <summary>
-        /// Keyword for the file to be assigned to an asset or asset type
+        /// Keyword for the file to be assigned to an asset or asset type.
         /// </summary>
         public string Key { get; set; }
 
         /// <summary>
-        /// Last known version to facilitate optimistic locking
+        /// Last known version to facilitate optimistic locking.
         /// </summary>
         public string IfMatch { get; set; }
 
         /// <summary>
-        /// Specifies if the operation should take into account shared entities
+        /// Specifies if the operation should take into account shared entities.
         /// </summary>
         public bool? IncludeShared { get; set; }
 
         /// <summary>
-        /// File identifier
+        /// File identifier.
         /// </summary>
         public string FileId { get; set; }
     }
 
     /// <summary>
-    /// Request for deleting asset's file assignment
+    /// Request for deleting asset's file assignment.
     /// </summary>
     public class DeleteAssetFileAssignmentRequest
     {
         /// <summary>
-        /// Unique identifier
+        /// Unique identifier.
         /// </summary>
         public string Id { get; set; }
 
         /// <summary>
-        /// Keyword for the file to be assigned to an asset or asset type
+        /// Keyword for the file to be assigned to an asset or asset type.
         /// </summary>
         public string Key { get; set; }
 
         /// <summary>
-        /// Last known version to facilitate optimistic locking
+        /// Last known version to facilitate optimistic locking.
         /// </summary>
         public string IfMatch { get; set; }
 
         /// <summary>
-        /// Specifies if the operation should take into account shared entities
+        /// Specifies if the operation should take into account shared entities.
         /// </summary>
         public bool? IncludeShared { get; set; }
     }
 
     /// <summary>
-    /// Request for getting root asset
+    /// Request for getting root asset.
     /// </summary>
     public class GetRootAssetRequest
     {
         /// <summary>
-        /// ETag hash of previous request to allow caching
+        /// ETag hash of previous request to allow caching.
         /// </summary>
         public string IfNoneMatch { get; set; }
     }
 
 
     /// <summary>
-    /// Request for listing all asset's variables
+    /// Request for listing all asset's variables.
     /// </summary>
     public class ListAssetVariablesRequest
     {
         /// <summary>
-        /// Unique identifier
+        /// Unique identifier.
         /// </summary>
         public string Id { get; set; }
 
         /// <summary>
-        /// Specifies the requested page index
+        /// Specifies the requested page index.
         /// </summary>
         public int? Page { get; set; }
 
         /// <summary>
-        /// Specifies the number of elements in a page
+        /// Specifies the number of elements in a page.
         /// </summary>
         public int? Size { get; set; }
 
         /// <summary>
-        /// Specifies the ordering of returned elements
+        /// Specifies the ordering of returned elements.
         /// </summary>
         public string Sort { get; set; }
 
         /// <summary>
-        /// Specifies the additional filtering criteria
+        /// Specifies the additional filtering criteria.
         /// </summary>
         public string Filter { get; set; }
 
         /// <summary>
-        /// ETag hash of previous request to allow caching
+        /// ETag hash of previous request to allow caching.
         /// </summary>
         public string IfNoneMatch { get; set; }
 
         /// <summary>
-        /// Specifies if the operation should take into account shared entities
+        /// Specifies if the operation should take into account shared entities.
         /// </summary>
         public bool? IncludeShared { get; set; }
     }
 
     /// <summary>
-    /// Request for listing all asset's aspects
+    /// Request for listing all asset's aspects.
     /// </summary>
     public class ListAssetAspectsRequest
     {
         /// <summary>
-        /// Unique identifier
+        /// Unique identifier.
         /// </summary>
         public string Id { get; set; }
 
         /// <summary>
-        /// Specifies the requested page index
+        /// Specifies the requested page index.
         /// </summary>
         public int? Page { get; set; }
 
         /// <summary>
-        /// Specifies the number of elements in a page
+        /// Specifies the number of elements in a page.
         /// </summary>
         public int? Size { get; set; }
 
         /// <summary>
-        /// Specifies the ordering of returned elements
+        /// Specifies the ordering of returned elements.
         /// </summary>
         public string Sort { get; set; }
 
         /// <summary>
-        /// Specifies the additional filtering criteria
+        /// Specifies the additional filtering criteria.
         /// </summary>
         public string Filter { get; set; }
 
         /// <summary>
-        /// ETag hash of previous request to allow caching
+        /// ETag hash of previous request to allow caching.
         /// </summary>
         public string IfNoneMatch { get; set; }
 
         /// <summary>
-        /// Specifies if the operation should take into account shared entities
+        /// Specifies if the operation should take into account shared entities.
         /// </summary>
         public bool? IncludeShared { get; set; }
     }
 
 
     /// <summary>
-    /// Request for putting asset's location
+    /// Request for putting asset's location.
     /// </summary>
     public class PutAssetLocationRequest
     {
         /// <summary>
-        /// Last known version to facilitate optimistic locking
+        /// Last known version to facilitate optimistic locking.
         /// </summary>
         public string IfMatch { get; set; }
 
         /// <summary>
-        /// Unique identifier
+        /// Unique identifier.
         /// </summary>
         public string Id { get; set; }
 
         /// <summary>
-        /// Specifies if the operation should take into account shared entities
+        /// Specifies if the operation should take into account shared entities.
         /// </summary>
         public bool? IncludeShared { get; set; }
 
         /// <summary>
-        /// Location
+        /// Location.
         /// </summary>
-        public Location Body { get; set; }
+        public Location Location { get; set; }
     }
 
     /// <summary>
-    /// Request for deleting asset's location
+    /// Request for deleting asset's location.
     /// </summary>
     public class DeleteAssetLocationRequest
     {
         /// <summary>
-        /// Last known version to facilitate optimistic locking
+        /// Last known version to facilitate optimistic locking.
         /// </summary>
         public string IfMatch { get; set; }
 
         /// <summary>
-        /// Unique identifier
+        /// Unique identifier.
         /// </summary>
         public string Id { get; set; }
 
         /// <summary>
-        /// Specifies if the operation should take into account shared entities
+        /// Specifies if the operation should take into account shared entities.
         /// </summary>
         public bool? IncludeShared { get; set; }
     }
 
 
     /// <summary>
-    /// Request for uploading file
+    /// Request for uploading file.
     /// </summary>
     public class UploadFileRequest
     {
         /// <summary>
-        /// The file to upload
+        /// The file to upload.
         /// </summary>
         public FileStream File { get; set; }
 
         /// <summary>
-        /// The name of the file
+        /// The name of the file.
         /// </summary>
         public string Name { get; set; }
 
         /// <summary>
-        /// The scope of the file
+        /// The scope of the file.
         /// </summary>
         public string Scope { get; set; }
 
         /// <summary>
-        /// The description of the file
+        /// The description of the file.
         /// </summary>
         public string Description { get; set; }
     }
 
     /// <summary>
-    /// Request for listing files
+    /// Request for listing files.
     /// </summary>
     public class ListFilesRequest
     {
         /// <summary>
-        /// Specifies the requested page index
+        /// Specifies the requested page index.
         /// </summary>
         public int? Page { get; set; }
 
         /// <summary>
-        /// Specifies the number of elements in a page
+        /// Specifies the number of elements in a page.
         /// </summary>
         public int? Size { get; set; }
 
         /// <summary>
-        /// Specifies the ordering of returned elements
+        /// Specifies the ordering of returned elements.
         /// </summary>
         public string Sort { get; set; }
 
         /// <summary>
-        /// Specifies the additional filtering criteria
+        /// Specifies the additional filtering criteria.
         /// </summary>
         public string Filter { get; set; }
 
         /// <summary>
-        /// ETag hash of previous request to allow caching
+        /// ETag hash of previous request to allow caching.
         /// </summary>
         public string IfNoneMatch { get; set; }
     }
 
     /// <summary>
-    /// Request for downloading file
+    /// Request for downloading file.
     /// </summary>
     public class DownloadFileRequest
     {
         /// <summary>
-        /// Unique identifier of the file
+        /// Unique identifier of the file.
         /// </summary>
         public string Id { get; set; }
     }
 
     /// <summary>
-    /// Request for getting file metadata
+    /// Request for getting file metadata.
     /// </summary>
     public class GetFileRequest
     {
         /// <summary>
-        /// Unique identifier of the file
+        /// Unique identifier of the file.
         /// </summary>
         public string Id { get; set; }
 
         /// <summary>
-        /// ETag hash of previous request to allow caching
+        /// ETag hash of previous request to allow caching.
         /// </summary>
         public string IfNoneMatch { get; set; }
     }
 
     /// <summary>
-    /// Request for updating file
+    /// Request for updating file.
     /// </summary>
     public class UpdateFileRequest
     {
         /// <summary>
-        /// Last known version to facilitate optimistic locking
+        /// Last known version to facilitate optimistic locking.
         /// </summary>
         public string IfMatch { get; set; }
 
         /// <summary>
-        /// Unique identifier of the file
+        /// Unique identifier of the file.
         /// </summary>
         public string Id { get; set; }
 
         /// <summary>
-        /// The file to upload
+        /// The file to upload.
         /// </summary>
         public FileStream File { get; set; }
 
         /// <summary>
-        /// The name of the file
+        /// The name of the file.
         /// </summary>
         public string Name { get; set; }
 
         /// <summary>
-        /// The scope of the file
+        /// The scope of the file.
         /// </summary>
         public string Scope { get; set; }
 
         /// <summary>
-        /// The description of the file
+        /// The description of the file.
         /// </summary>
         public string Description { get; set; }
     }
 
     /// <summary>
-    /// Request for deleting file
+    /// Request for deleting file.
     /// </summary>
     public class DeleteFileRequest
     {
         /// <summary>
-        /// Last known version to facilitate optimistic locking
+        /// Last known version to facilitate optimistic locking.
         /// </summary>
         public string IfMatch { get; set; }
 
         /// <summary>
-        /// Unique identifier of the file
+        /// Unique identifier of the file.
         /// </summary>
         public string Id { get; set; }
     }
 
     /// <summary>
-    /// Request for putting lock state
+    /// Request for putting lock state.
     /// </summary>
     public class PutLockStateRequest
     {
         /// <summary>
-        /// Lock state of an asset model
+        /// Lock state of an asset model.
         /// </summary>
         public bool? Enabled { get; set; }
     }

@@ -1,6 +1,7 @@
 .vs/
 mdspCreds.txt
 mdspcreds.json
+mdspcreds-data-invalid.json
 
 **/bin/
 **/obj/
@@ -9,3 +10,5 @@ mdspcreds.json
 
 usage/WebApp/test.txt
 usage/WebApp/updated-test.txt
+
+test/WebApp

@@ -4,48 +4,48 @@ using System.IO;
 namespace MindSphereSdk.Core.Authentication
 {
     /// <summary>
-    /// Application credentials for MindSphere API
+    /// Application credentials for MindSphere API.
     /// </summary>
     public class AppCredentials : ICredentials
     {
         /// <summary>
-        /// Client ID
+        /// Client ID.
         /// </summary>
         [JsonProperty("keyStoreClientId")]
-        public string KeyStoreClientId { get; set; }
+        public string KeyStoreClientId { get; private set; }
 
         /// <summary>
-        /// Client secret
+        /// Client secret.
         /// </summary>
         [JsonProperty("keyStoreClientSecret")]
-        public string KeyStoreClientSecret { get; set; }
+        public string KeyStoreClientSecret { get; private set; }
 
         /// <summary>
-        /// Name of the application
+        /// Name of the application.
         /// </summary>
         [JsonProperty("appName")]
-        public string AppName { get; set; }
+        public string AppName { get; private set; }
 
         /// <summary>
-        /// Version of the application
+        /// Version of the application.
         /// </summary>
         [JsonProperty("appVersion")]
-        public string AppVersion { get; set; }
+        public string AppVersion { get; private set; }
 
         /// <summary>
-        /// Host tenant
+        /// Host tenant.
         /// </summary>
         [JsonProperty("hostTenant")]
-        public string HostTenant { get; set; }
+        public string HostTenant { get; private set; }
 
         /// <summary>
-        /// User tenant
+        /// User tenant.
         /// </summary>
         [JsonProperty("userTenant")]
-        public string UserTenant { get; set; }
+        public string UserTenant { get; private set; }
 
         /// <summary>
-        /// Create a new instance of the AppCredentials
+        /// Create a new instance of the AppCredentials.
         /// </summary>
         public AppCredentials(
             string keyStoreClientId,
@@ -65,7 +65,7 @@ namespace MindSphereSdk.Core.Authentication
         }
 
         /// <summary>
-        /// Load application credentials from the JSON file
+        /// Load application credentials from the JSON file.
         /// </summary>
         public static AppCredentials FromJsonFile(string path)
         {

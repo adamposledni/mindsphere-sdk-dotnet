@@ -1,6 +1,7 @@
 ﻿using MindSphereSdk.Core.Common;
+using MindSphereSdk.Core.Connectors;
 using MindSphereSdk.Core.Helpers;
-using Newtonsoft.Json;
+using MindSphereSdk.Core.Serialization;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 namespace MindSphereSdk.Core.IotTimeSeries
 {
     /// <summary>
-    /// Create, read, update, and delete time series data
+    /// Create, read, update, and delete time series data.
     /// </summary>
     public class IotTimeSeriesClient : SdkClient
     {
@@ -21,7 +22,7 @@ namespace MindSphereSdk.Core.IotTimeSeries
         }
 
         /// <summary>
-        /// Create or update time series data for mutiple unique asset-aspect (entity-property set) combinations
+        /// Create or update time series data for mutiple unique asset-aspect (entity-property set) combinations.
         /// </summary>
         public async Task PutTimeSeriesMultipleAsync(PutTimeSeriesMultipleRequest request)
         {
@@ -29,14 +30,15 @@ namespace MindSphereSdk.Core.IotTimeSeries
             string uri = _baseUri + "/timeseries";
 
             // prepare HTTP request body
-            StringContent body = new StringContent(JsonConvert.SerializeObject(request), Encoding.UTF8, "application/json");
+            string json = JsonConverter.Serialize(request, utc: true);
+            StringContent body = new StringContent(json, Encoding.UTF8, "application/json");
 
             // make request
             await HttpActionAsync(HttpMethod.Put, uri, body);
         }
 
         /// <summary>
-        /// Retrieve time series data
+        /// Retrieve time series data.
         /// </summary>
         public async Task<IEnumerable<T>> GetTimeSeriesAsync<T>(GetTimeSeriesRequest request)
         {
@@ -53,24 +55,13 @@ namespace MindSphereSdk.Core.IotTimeSeries
 
             // make request
             string response = await HttpActionAsync(HttpMethod.Get, uri);
-            var timeSeries = JsonConvert.DeserializeObject<IEnumerable<T>>(response);
+            var timeSeries = JsonConverter.Deserialize<IEnumerable<T>>(response);
 
             return timeSeries;
         }
 
         /// <summary>
-        /// Retrieve time series data
-        /// </summary>
-        /// <remarks>
-        /// If generic type is not specified the method returns dynamic type
-        /// </remarks>
-        public async Task<IEnumerable<dynamic>> GetTimeSeriesAsync(GetTimeSeriesRequest request)
-        {
-            return await GetTimeSeriesAsync<dynamic>(request);
-        }
-
-        /// <summary>
-        /// Create or update time series data
+        /// Create or update time series data.
         /// </summary>
         public async Task PutTimeSeriesAsync(PutTimeSeriesRequest request)
         {
@@ -78,14 +69,16 @@ namespace MindSphereSdk.Core.IotTimeSeries
             string uri = _baseUri + $"/timeseries/{request.EntityId}/{request.PropertySetName}";
 
             // prepare HTTP request body
-            StringContent body = new StringContent(JsonConvert.SerializeObject(request.Data), Encoding.UTF8, "application/json");
+            string json = JsonConverter.Serialize(request.Data, utc: true);
+
+            StringContent body = new StringContent(json, Encoding.UTF8, "application/json");
 
             // make request
             await HttpActionAsync(HttpMethod.Put, uri, body);
         }
 
         /// <summary>
-        /// Delete time series data
+        /// Delete time series data.
         /// </summary>
         public async Task DeleteTimeSeriesAsync(DeleteTimeSeriesRequest request)
         {

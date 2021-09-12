@@ -4,9 +4,9 @@ using System.Collections.Generic;
 namespace MindSphereSdk.Core.Common
 {
     /// <summary>
-    /// Wrapper for MindSphere resource
+    /// Wrapper for MindSphere resource.
     /// </summary>
-    internal class MindSphereResourceWrapper<T>
+    internal class MindSphereApiResource<T>
     {
         [JsonProperty("_embedded")]
         public T Embedded { get; set; }
@@ -16,46 +16,46 @@ namespace MindSphereSdk.Core.Common
     }
 
     /// <summary>
-    /// MindSphere resource list
+    /// MindSphere resource list.
     /// </summary>
     public class ResourceList<T>
     {
         /// <summary>
-        /// Embedded data
+        /// Embedded data.
         /// </summary>
         public IEnumerable<T> Data { get; set; } = new List<T>();
 
         /// <summary>
-        /// Pagination data
+        /// Pagination data.
         /// </summary>
         public Page Page { get; set; }
     }
 
     /// <summary>
-    /// Pagination data
+    /// Pagination data.
     /// </summary>
     public class Page
     {
         /// <summary>
-        /// Number of elements in a page
+        /// Number of elements in a page.
         /// </summary>
         [JsonProperty("size")]
         public int Size { get; set; }
 
         /// <summary>
-        /// Total number of elements in all pages
+        /// Total number of elements in all pages.
         /// </summary>
         [JsonProperty("totalElements")]
         public int TotalElements { get; set; }
 
         /// <summary>
-        /// Total number of pages
+        /// Total number of pages.
         /// </summary>
         [JsonProperty("totalPages")]
         public int TotalPages { get; set; }
 
         /// <summary>
-        /// Current page number
+        /// Current page number.
         /// </summary>
         [JsonProperty("number")]
         public int Number { get; set; }
@@ -63,7 +63,7 @@ namespace MindSphereSdk.Core.Common
 
 
     /// <summary>
-    /// Access Token model
+    /// Access Token model.
     /// </summary>
     internal class AccessToken
     {

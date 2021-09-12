@@ -10,38 +10,36 @@ namespace MindSphereSdk.Core.Test
     public class UserCredentialsTest
     {
         /// <summary>
-        /// Negative test: UserCredentials values validation
+        /// UserCredentials values validation.
         /// </summary>
         [Fact]
         public void UseWithInvalidData()
         {
             // Arrange
-            var credentials = new UserCredentials("");
-
+            var creds = new UserCredentials("");
+            var config = new ClientConfiguration();
             // Act
-            MindSphereApiSdk act() => new MindSphereApiSdk(credentials, new ClientConfiguration());
-
             // Assert
-            Assert.Throws<ArgumentException>(act);
+            Assert.Throws<ArgumentException>(() => new MindSphereApiSdk(creds, config));
         }
 
         /// <summary>
-        /// Positive test: UserCredentials values validation
+        /// UserCredentials values validation.
         /// </summary>
         [Fact]
         public void UseWithValidData()
         {
             // Arrange
-            var credentials = new UserCredentials("asd");
-
+            var creds = new UserCredentials("fake_token");
+            var config = new ClientConfiguration();
             // Act
-            new MindSphereApiSdk(credentials, new ClientConfiguration());
+            _ = new MindSphereApiSdk(creds, config);
 
             // Assert
         }
 
         /// <summary>
-        /// Positive test: Bearer prefix removal
+        /// Bearer prefix removal.
         /// </summary>
         [Fact]
         public void RemoveBearerPrefix()
@@ -50,7 +48,6 @@ namespace MindSphereSdk.Core.Test
             var credentials = new UserCredentials("Bearer asd");
 
             // Act
-
             // Assert
             Assert.True(credentials.Token == "asd");
         }

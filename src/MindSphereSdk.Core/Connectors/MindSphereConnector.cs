@@ -1,4 +1,5 @@
-﻿using MindSphereSdk.Core.Exceptions;
+﻿using MindSphereSdk.Core.Common;
+using MindSphereSdk.Core.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
@@ -7,10 +8,10 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace MindSphereSdk.Core.Common
+namespace MindSphereSdk.Core.Connectors
 {
     /// <summary>
-    /// Connector to the MindSphere API
+    /// Connector to the MindSphere API.
     /// </summary>
     internal abstract class MindSphereConnector
     {
@@ -32,12 +33,34 @@ namespace MindSphereSdk.Core.Common
             _httpClient = new HttpClient(handler)
             {
                 // timeout setting
-                Timeout = _configuration.Timeout
+                Timeout = TimeSpan.FromMilliseconds(_configuration.Timeout)
             };
         }
 
         /// <summary>
-        /// Sending HTTP request to the MindSphere API
+        /// Acquire a new MindSphere access token.
+        /// </summary>
+        protected abstract Task<string> AcquireTokenAsync();
+
+        /// <summary>
+        /// Update the credentials object.
+        /// </summary>
+        /// <remarks>
+        /// It is not possible to change the credential type in the runtime.
+        /// </remarks>
+        public abstract void UpdateCredentials(Authentication.ICredentials credentials);
+
+        /// <summary>
+        /// Get MindSphere API access token.
+        /// </summary>
+        public async Task<string> GetAccessTokenAsync()
+        {
+            await RenewTokenAsync();
+            return _accessToken;
+        }
+
+        /// <summary>
+        /// Sending HTTP request to the MindSphere API.
         /// </summary>
         public async Task<string> HttpActionAsync(HttpMethod method, string specUri, HttpContent body = null, List<KeyValuePair<string, string>> headers = null)
         {
@@ -72,32 +95,16 @@ namespace MindSphereSdk.Core.Common
         }
 
         /// <summary>
-        /// Acquire MindSphere access token
-        /// </summary>
-        protected abstract Task AcquireTokenAsync();
-
-        /// <summary>
-        /// Renew MindSphere access token
+        /// Renew MindSphere access token.
         /// </summary>
         private async Task RenewTokenAsync()
         {
-            // if token exists
-            if (_accessToken != null)
+            // if token is invalid
+            if (!ValidateToken())
             {
-                // if token is invalid
-                if (!ValidateToken())
-                {
-                    // remove token
-                    _accessToken = null;
-                }
-            }
-
-            // if token does not exist
-            if (_accessToken == null)
-            {
-                // get new token
-                await AcquireTokenAsync();
-                // if token is invalid
+                // acquire new token
+                _accessToken = await AcquireTokenAsync();
+                // if new token is still invald
                 if (!ValidateToken())
                 {
                     throw new InvalidOperationException("Error in aquiering new token");
@@ -106,7 +113,7 @@ namespace MindSphereSdk.Core.Common
         }
 
         /// <summary>
-        /// Validate MindSphere access token 
+        /// Validate MindSphere access token.
         /// </summary>
         private bool ValidateToken()
         {
@@ -133,7 +140,7 @@ namespace MindSphereSdk.Core.Common
         }
 
         /// <summary>
-        /// Generate full URI
+        /// Generate full URI.
         /// </summary>
         protected Uri GetFullUri(string specUri)
         {

@@ -9,35 +9,36 @@ using Xunit;
 
 namespace MindSphereSdk.Core.Test
 {
-    public class AppCredentialsTest
+    public class ClientConfigurationTest
     {
         /// <summary>
-        /// AppCredentials values validation.
+        /// ClientConfiguration values validation.
         /// </summary>
         [Fact]
         public void CreateWithInvalidData()
         {
             // Arrange
-            var config = new ClientConfiguration();
-            var creds = new AppCredentials("  ", null, "   ", "  ", "  ", "  ");
+            var creds = new UserCredentials("fake_token");
+            var config = new ClientConfiguration(timeout: 0);
             // Act
-            Action act = () => { new MindSphereApiSdk(creds, config); };
+            Action act = () => new MindSphereApiSdk(creds, config);
 
             // Assert
             Assert.Throws<ArgumentException>(act);
         }
 
         /// <summary>
-        /// AppCredentials values validation.
+        /// ClientConfiguration values validation.
         /// </summary>
         [Fact]
         public void CreateWithValidData()
         {
-            // Act
-            var creds = new AppCredentials("a", "b", "c", "d", "e", "f");
-            var config = new ClientConfiguration();
             // Arrange
+            var creds = new UserCredentials("fake_token");
+            var config = new ClientConfiguration();
+            // Act
             _ = new MindSphereApiSdk(creds, config);
+
             // Assert
         }
     }
