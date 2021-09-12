@@ -1,6 +1,6 @@
 ﻿using MindSphereSdk.Core.Common;
 using MindSphereSdk.Core.Helpers;
-using Newtonsoft.Json;
+using MindSphereSdk.Core.Serialization;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
@@ -44,7 +44,7 @@ namespace MindSphereSdk.Core.AssetManagement
 
             // makte request
             string response = await HttpActionAsync(HttpMethod.Get, uri, headers: headers);
-            var aspectTypeListWrapper = JsonConvert.DeserializeObject<MindSphereApiResource<EmbeddedAspectTypeList>>(response);
+            var aspectTypeListWrapper = JsonConverter.Deserialize<MindSphereApiResource<EmbeddedAspectTypeList>>(response);
 
             // format output
             var output = new ResourceList<AspectType>
@@ -73,13 +73,13 @@ namespace MindSphereSdk.Core.AssetManagement
             };
 
             // prepare HTTP request body
-            string jsonString = JsonConvert.SerializeObject(request.AspectType);
+            string jsonString = JsonConverter.Serialize(request.AspectType);
             StringContent body = new StringContent(jsonString, Encoding.UTF8, "application/json");
 
 
             // make request
             string response = await HttpActionAsync(HttpMethod.Put, uri, body, headers);
-            var aspectType = JsonConvert.DeserializeObject<AspectType>(response);
+            var aspectType = JsonConverter.Deserialize<AspectType>(response);
 
             return aspectType;
         }
@@ -101,13 +101,12 @@ namespace MindSphereSdk.Core.AssetManagement
             };
 
             // prepare HTTP request body
-            var seriSettings = new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore };
-            string jsonString = JsonConvert.SerializeObject(request.AspectType);
+            string jsonString = JsonConverter.Serialize(request.AspectType, ignoreNull: true);
             StringContent body = new StringContent(jsonString, Encoding.UTF8, "application/merge-patch+json");
 
             // make request
             string response = await HttpActionAsync(new HttpMethod("PATCH"), uri, body, headers);
-            var aspectType = JsonConvert.DeserializeObject<AspectType>(response);
+            var aspectType = JsonConverter.Deserialize<AspectType>(response);
 
             return aspectType;
         }
@@ -130,7 +129,7 @@ namespace MindSphereSdk.Core.AssetManagement
 
             // make request
             string response = await HttpActionAsync(HttpMethod.Get, uri, headers: headers);
-            var aspectType = JsonConvert.DeserializeObject<AspectType>(response);
+            var aspectType = JsonConverter.Deserialize<AspectType>(response);
 
             return aspectType;
         }
@@ -182,7 +181,7 @@ namespace MindSphereSdk.Core.AssetManagement
 
             // make request
             string response = await HttpActionAsync(HttpMethod.Get, uri, headers: headers);
-            var assetTypeListWrapper = JsonConvert.DeserializeObject<MindSphereApiResource<EmbeddedAssetTypeList>>(response);
+            var assetTypeListWrapper = JsonConverter.Deserialize<MindSphereApiResource<EmbeddedAssetTypeList>>(response);
 
             // format output
             var output = new ResourceList<AssetType>
@@ -212,13 +211,12 @@ namespace MindSphereSdk.Core.AssetManagement
             };
 
             // prepare HTTP request body
-            var seriSettings = new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore };
-            string jsonString = JsonConvert.SerializeObject(request.AssetType, seriSettings);
+            string jsonString = JsonConverter.Serialize(request.AssetType, ignoreNull: true);
             StringContent body = new StringContent(jsonString, Encoding.UTF8, "application/json");
 
             // make request
             string response = await HttpActionAsync(HttpMethod.Put, uri, body, headers);
-            var assetType = JsonConvert.DeserializeObject<AssetType>(response);
+            var assetType = JsonConverter.Deserialize<AssetType>(response);
 
             return assetType;
         }
@@ -241,13 +239,12 @@ namespace MindSphereSdk.Core.AssetManagement
             };
 
             // prepare HTTP request body
-            var seriSettings = new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore };
-            string jsonString = JsonConvert.SerializeObject(request.AssetType, seriSettings);
+            string jsonString = JsonConverter.Serialize(request.AssetType, ignoreNull: true);
             StringContent body = new StringContent(jsonString, Encoding.UTF8, "application/merge-patch+json");
 
             // make request
             string response = await HttpActionAsync(new HttpMethod("PATCH"), uri, body, headers);
-            var assetType = JsonConvert.DeserializeObject<AssetType>(response);
+            var assetType = JsonConverter.Deserialize<AssetType>(response);
 
             return assetType;
         }
@@ -271,7 +268,7 @@ namespace MindSphereSdk.Core.AssetManagement
 
             // make request
             string response = await HttpActionAsync(HttpMethod.Get, uri, headers: headers);
-            var assetType = JsonConvert.DeserializeObject<AssetType>(response);
+            var assetType = JsonConverter.Deserialize<AssetType>(response);
 
             return assetType;
         }
@@ -314,11 +311,12 @@ namespace MindSphereSdk.Core.AssetManagement
 
             // prepare HTTP request body
             object fileIdObject = new { fileId = request.FileId };
-            StringContent body = new StringContent(JsonConvert.SerializeObject(fileIdObject), Encoding.UTF8, "application/json");
+            string json = JsonConverter.Serialize(fileIdObject);
+            StringContent body = new StringContent(json, Encoding.UTF8, "application/json");
 
             // make request
             string response = await HttpActionAsync(HttpMethod.Put, uri, body, headers);
-            var assetType = JsonConvert.DeserializeObject<AssetType>(response);
+            var assetType = JsonConverter.Deserialize<AssetType>(response);
 
             return assetType;
         }
@@ -341,7 +339,7 @@ namespace MindSphereSdk.Core.AssetManagement
 
             // make request
             string response = await HttpActionAsync(HttpMethod.Delete, uri, headers: headers);
-            var assetType = JsonConvert.DeserializeObject<AssetType>(response);
+            var assetType = JsonConverter.Deserialize<AssetType>(response);
 
             return assetType;
         }
@@ -363,9 +361,8 @@ namespace MindSphereSdk.Core.AssetManagement
             };
 
             // prepare HTTP request body
-            var seriSettings = new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore };
-            string jsonString = JsonConvert.SerializeObject(request.VariableMap, seriSettings);
-            StringContent body = new StringContent(jsonString, Encoding.UTF8, "application/merge-patch+json");
+            string json = JsonConverter.Serialize(request.VariableMap, ignoreNull: true);
+            StringContent body = new StringContent(json, Encoding.UTF8, "application/merge-patch+json");
 
             // make request
             await HttpActionAsync(new HttpMethod("PATCH"), uri, body, headers);
@@ -398,13 +395,13 @@ namespace MindSphereSdk.Core.AssetManagement
 
             // make request
             string response = await HttpActionAsync(HttpMethod.Get, uri, headers: headers);
-            var assetListWrapper = JsonConvert.DeserializeObject<MindSphereApiResource<EmbeddedAssetList>>(response);
+            var assetList = JsonConverter.Deserialize<MindSphereApiResource<EmbeddedAssetList>>(response);
 
             // format output
             var output = new ResourceList<Asset>
             {
-                Data = assetListWrapper.Embedded.Assets,
-                Page = assetListWrapper.Page
+                Data = assetList.Embedded.Assets,
+                Page = assetList.Page
             };
             return output;
         }
@@ -420,11 +417,12 @@ namespace MindSphereSdk.Core.AssetManagement
             string uri = _baseUri + "/assets" + queryBuilder.ToString();
 
             // prepare HTTP request body
-            StringContent body = new StringContent(JsonConvert.SerializeObject(request.Asset), Encoding.UTF8, "application/json");
+            string json = JsonConverter.Serialize(request.Asset);
+            StringContent body = new StringContent(json, Encoding.UTF8, "application/json");
 
             // make request
             string response = await HttpActionAsync(HttpMethod.Post, uri, body);
-            var asset = JsonConvert.DeserializeObject<Asset>(response);
+            var asset = JsonConverter.Deserialize<Asset>(response);
 
             return asset;
         }
@@ -447,7 +445,7 @@ namespace MindSphereSdk.Core.AssetManagement
 
             // make request
             string response = await HttpActionAsync(HttpMethod.Get, uri, headers: headers);
-            var asset = JsonConvert.DeserializeObject<Asset>(response);
+            var asset = JsonConverter.Deserialize<Asset>(response);
 
             return asset;
         }
@@ -469,13 +467,12 @@ namespace MindSphereSdk.Core.AssetManagement
             };
 
             // prepare HTTP request body
-            var seriSettings = new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore };
-            string jsonString = JsonConvert.SerializeObject(request.Asset, seriSettings);
+            string jsonString = JsonConverter.Serialize(request.Asset, ignoreNull: true);
             StringContent body = new StringContent(jsonString, Encoding.UTF8, "application/json");
 
             // make request
             string response = await HttpActionAsync(HttpMethod.Put, uri, body, headers);
-            var asset = JsonConvert.DeserializeObject<Asset>(response);
+            var asset = JsonConverter.Deserialize<Asset>(response);
 
             return asset;
         }
@@ -497,13 +494,12 @@ namespace MindSphereSdk.Core.AssetManagement
             };
 
             // prepare HTTP request body
-            var seriSettings = new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore };
-            string jsonString = JsonConvert.SerializeObject(request.Asset, seriSettings);
+            string jsonString = JsonConverter.Serialize(request.Asset, ignoreNull: true);
             StringContent body = new StringContent(jsonString, Encoding.UTF8, "application/merge-patch+json");
 
             // make request
             string response = await HttpActionAsync(new HttpMethod("PATCH"), uri, body, headers);
-            var asset = JsonConvert.DeserializeObject<Asset>(response);
+            var asset = JsonConverter.Deserialize<Asset>(response);
 
             return asset;
         }
@@ -545,11 +541,12 @@ namespace MindSphereSdk.Core.AssetManagement
             };
 
             // prepare HTTP request body
-            StringContent body = new StringContent(JsonConvert.SerializeObject(new { newParentId = request.NewParentId }), Encoding.UTF8, "application/json");
+            string json = JsonConverter.Serialize(new { newParentId = request.NewParentId });
+            StringContent body = new StringContent(json, Encoding.UTF8, "application/json");
 
             // make request
             string response = await HttpActionAsync(HttpMethod.Post, uri, body, headers);
-            var asset = JsonConvert.DeserializeObject<Asset>(response);
+            var asset = JsonConverter.Deserialize<Asset>(response);
 
             return asset;
         }
@@ -572,11 +569,12 @@ namespace MindSphereSdk.Core.AssetManagement
 
             // prepare HTTP request body
             object fileIdObject = new { fileId = request.FileId };
-            StringContent body = new StringContent(JsonConvert.SerializeObject(fileIdObject), Encoding.UTF8, "application/json");
+            string json = JsonConverter.Serialize(fileIdObject);
+            StringContent body = new StringContent(json, Encoding.UTF8, "application/json");
 
             // make request
             string response = await HttpActionAsync(HttpMethod.Put, uri, body, headers);
-            var asset = JsonConvert.DeserializeObject<Asset>(response);
+            var asset = JsonConverter.Deserialize<Asset>(response);
 
             return asset;
         }
@@ -599,7 +597,7 @@ namespace MindSphereSdk.Core.AssetManagement
 
             // make request
             string response = await HttpActionAsync(HttpMethod.Delete, uri, headers: headers);
-            var asset = JsonConvert.DeserializeObject<Asset>(response);
+            var asset = JsonConverter.Deserialize<Asset>(response);
 
             return asset;
         }
@@ -620,7 +618,7 @@ namespace MindSphereSdk.Core.AssetManagement
 
             // make request
             string response = await HttpActionAsync(HttpMethod.Get, uri, headers: headers);
-            var asset = JsonConvert.DeserializeObject<Asset>(response);
+            var asset = JsonConverter.Deserialize<Asset>(response);
 
             return asset;
         }
@@ -651,7 +649,7 @@ namespace MindSphereSdk.Core.AssetManagement
 
             // make request
             string response = await HttpActionAsync(HttpMethod.Get, uri, headers: headers);
-            var variableListWrapper = JsonConvert.DeserializeObject<MindSphereApiResource<EmbeddedVariableList>>(response);
+            var variableListWrapper = JsonConverter.Deserialize<MindSphereApiResource<EmbeddedVariableList>>(response);
 
             // format output
             var output = new ResourceList<VariableDetail>
@@ -684,7 +682,7 @@ namespace MindSphereSdk.Core.AssetManagement
 
             // make request
             string response = await HttpActionAsync(HttpMethod.Get, uri, headers: headers);
-            var aspectListWrapper = JsonConvert.DeserializeObject<MindSphereApiResource<EmbeddedAspectList>>(response);
+            var aspectListWrapper = JsonConverter.Deserialize<MindSphereApiResource<EmbeddedAspectList>>(response);
 
             // format output
             var output = new ResourceList<AspectFullDetail>
@@ -716,13 +714,12 @@ namespace MindSphereSdk.Core.AssetManagement
             };
 
             // prepare HTTP request body
-            var seriSettings = new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore };
-            string jsonString = JsonConvert.SerializeObject(request.Location, seriSettings);
-            StringContent body = new StringContent(jsonString, Encoding.UTF8, "application/json");
+            string json = JsonConverter.Serialize(request.Location, ignoreNull: true);
+            StringContent body = new StringContent(json, Encoding.UTF8, "application/json");
 
             // make request
             string response = await HttpActionAsync(HttpMethod.Put, uri, body, headers);
-            var asset = JsonConvert.DeserializeObject<Asset>(response);
+            var asset = JsonConverter.Deserialize<Asset>(response);
 
             return asset;
         }
@@ -745,7 +742,7 @@ namespace MindSphereSdk.Core.AssetManagement
 
             // make request
             string response = await HttpActionAsync(HttpMethod.Delete, uri, headers: headers);
-            var asset = JsonConvert.DeserializeObject<Asset>(response);
+            var asset = JsonConverter.Deserialize<Asset>(response);
 
             return asset;
         }
@@ -773,7 +770,7 @@ namespace MindSphereSdk.Core.AssetManagement
 
             // make request
             string response = await HttpActionAsync(HttpMethod.Post, uri, body);
-            var file = JsonConvert.DeserializeObject<File>(response);
+            var file = JsonConverter.Deserialize<File>(response);
 
             return file;
         }
@@ -799,14 +796,14 @@ namespace MindSphereSdk.Core.AssetManagement
 
             // make request
             string response = await HttpActionAsync(HttpMethod.Get, uri, headers: headers);
-            var fileListWrapper = JsonConvert.DeserializeObject<MindSphereApiResource<EmbeddedFileList>>(response);
+            var fileList = JsonConverter.Deserialize<MindSphereApiResource<EmbeddedFileList>>(response);
 
             // format output
             var output = new ResourceList<File>();
-            if (fileListWrapper.Embedded != null && fileListWrapper.Embedded.Files != null)
+            if (fileList.Embedded != null && fileList.Embedded.Files != null)
             {
-                output.Data = fileListWrapper.Embedded.Files;
-                output.Page = fileListWrapper.Page;
+                output.Data = fileList.Embedded.Files;
+                output.Page = fileList.Page;
             }
             return output;
         }
@@ -840,7 +837,7 @@ namespace MindSphereSdk.Core.AssetManagement
 
             // make request
             string response = await HttpActionAsync(HttpMethod.Get, uri, headers: headers);
-            var file = JsonConvert.DeserializeObject<File>(response);
+            var file = JsonConverter.Deserialize<File>(response);
 
             return file;
         }
@@ -870,7 +867,7 @@ namespace MindSphereSdk.Core.AssetManagement
 
             // make request
             string response = await HttpActionAsync(HttpMethod.Put, uri, body, headers);
-            var file = JsonConvert.DeserializeObject<File>(response);
+            var file = JsonConverter.Deserialize<File>(response);
 
             return file;
         }
@@ -907,7 +904,7 @@ namespace MindSphereSdk.Core.AssetManagement
 
             // make request
             string response = await HttpActionAsync(HttpMethod.Get, uri);
-            var lockState = JsonConvert.DeserializeObject<LockStateWithJobs>(response);
+            var lockState = JsonConverter.Deserialize<LockStateWithJobs>(response);
 
             return lockState;
         }
@@ -928,11 +925,10 @@ namespace MindSphereSdk.Core.AssetManagement
 
             // make request
             string response = await HttpActionAsync(HttpMethod.Put, uri, body);
-            var lockState = JsonConvert.DeserializeObject<LockState>(response);
+            var lockState = JsonConverter.Deserialize<LockState>(response);
 
             return lockState;
         }
-
 
         #endregion
     }

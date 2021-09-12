@@ -1,6 +1,6 @@
 ﻿using MindSphereSdk.Core.Common;
 using MindSphereSdk.Core.Helpers;
-using Newtonsoft.Json;
+using MindSphereSdk.Core.Serialization;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
@@ -29,7 +29,8 @@ namespace MindSphereSdk.Core.IotTimeSeries
             string uri = _baseUri + "/timeseries";
 
             // prepare HTTP request body
-            StringContent body = new StringContent(JsonConvert.SerializeObject(request), Encoding.UTF8, "application/json");
+            string json = JsonConverter.Serialize(request, utc: true);
+            StringContent body = new StringContent(json, Encoding.UTF8, "application/json");
 
             // make request
             await HttpActionAsync(HttpMethod.Put, uri, body);
@@ -38,7 +39,7 @@ namespace MindSphereSdk.Core.IotTimeSeries
         /// <summary>
         /// Retrieve time series data.
         /// </summary>
-        public async Task<IEnumerable<T>> GetTimeSeriesAsync<T>(GetTimeSeriesRequest request) where T : new()
+        public async Task<IEnumerable<T>> GetTimeSeriesAsync<T>(GetTimeSeriesRequest request)
         {
             // prepare URI string
             QueryStringBuilder queryBuilder = new QueryStringBuilder();
@@ -53,7 +54,7 @@ namespace MindSphereSdk.Core.IotTimeSeries
 
             // make request
             string response = await HttpActionAsync(HttpMethod.Get, uri);
-            var timeSeries = JsonConvert.DeserializeObject<IEnumerable<T>>(response);
+            var timeSeries = JsonConverter.Deserialize<IEnumerable<T>>(response);
 
             return timeSeries;
         }
@@ -67,7 +68,9 @@ namespace MindSphereSdk.Core.IotTimeSeries
             string uri = _baseUri + $"/timeseries/{request.EntityId}/{request.PropertySetName}";
 
             // prepare HTTP request body
-            StringContent body = new StringContent(JsonConvert.SerializeObject(request.Data), Encoding.UTF8, "application/json");
+            string json = JsonConverter.Serialize(request.Data, utc: true);
+
+            StringContent body = new StringContent(json, Encoding.UTF8, "application/json");
 
             // make request
             await HttpActionAsync(HttpMethod.Put, uri, body);

@@ -16,7 +16,7 @@ Open-source .NET SDK for [MindSphere](https://siemens.mindsphere.io/) APIs.
     - [User credentials](#User-credentials)
     - [Update credentials](#Update-credentials)
 - [Client configuration](#Client-configuration)
-- [Examples](#Examples)
+- [Examples](#Examples) 
     - [List assets](#List-assets)
     - [Add asset](#Add-asset)
     - [Download file](#Download-file)
@@ -208,7 +208,7 @@ using (var fs = new FileStream("test.txt", FileMode.Open))
 
 ### Get time series data
 
-To get time series data it is necessary to have corresponding class prepared. It is possible to use Newtonsoft *JsonProperty* atributes. Or just to name the properties in the corresponding way so they could be deserialized. 
+To get time series data it is necessary to have corresponding class prepared. It is possible to use *MindSphereName* atribute or just to name the properties in the corresponding way so they could be deserialized. 
 
 ```csharp
 var tsClient = sdk.GetIotTimeSeriesClient();
@@ -229,19 +229,19 @@ var timeSeries = await tsClient.GetTimeSeriesAsync<TimeSeriesData>(request);
 public class TimeSeriesData 
 {
     // for timestamp
-    [JsonProperty("_time")]
+    [MindSphereName("_time")]
     public DateTime Time { get; set; }
 
     // for aspect variable named "x"
-    [JsonProperty("x")]
+    [MindSphereName("x")]
     public double X { get; set; }
 
     // for aspect variable named "y"
-    [JsonProperty("y")]
+    [MindSphereName("y")]
     public double Y { get; set; }
 
     // for aspect variable named "z"
-    [JsonProperty("z")]
+    [MindSphereName("z")]
     public double Z { get; set; }
 }
 ```
@@ -250,7 +250,7 @@ public class TimeSeriesData
 
 To put new time series data into the MindSphere either predefined class or anonymous type can be used.
 
-Name the properties same as the variables in the MindSphere or add Newtonsoft *JsonProperty* atributes. Otherwise the deserialization would fail.
+Name the properties same as the variables in the MindSphere or add *MindSphereName* atribute. Otherwise the deserialization would fail.
 
 
 ```csharp
@@ -286,26 +286,26 @@ await tsClient.PutTimeSeriesAsync(request);
 public class TimeSeriesData 
 {
     // for timestamp
-    [JsonProperty("_time")]
+    [MindSphereName("_time")]
     public DateTime Time { get; set; }
 
     // for aspect variable named "x"
-    [JsonProperty("x")]
+    [MindSphereName("x")]
     public double X { get; set; }
 
     // for aspect variable named "y"
-    [JsonProperty("y")]
+    [MindSphereName("y")]
     public double Y { get; set; }
 
     // for aspect variable named "z"
-    [JsonProperty("z")]
+    [MindSphereName("z")]
     public double Z { get; set; }
 }
 ```
 
 ### Get time series aggregates
 
-*GetAggregateTimeSeriesAsync* is generic method. It is necessary to set the type to a class derived from *AggregateSet* and to define expected MindSphere variables using properties of type *AggregateVariable* with corresponding names (or Newtonsoft *JsonProperty*).
+*GetAggregateTimeSeriesAsync* is generic method. It is necessary to set the type to a class derived from *AggregateSet* and to define expected MindSphere variables using properties of type *AggregateVariable* with corresponding names (or use *MindSphereName* attribute).
 
 ```csharp
 var iotAggregClient = sdk.GetIotTsAggregateClient();
@@ -328,15 +328,15 @@ var tsAggregate = await iotAggregClient.GetAggregateTimeSeriesAsync<AggregateTsD
 public class AggregateTsData : AggregateSet
 {
     // for aspect variable named "x"
-    [JsonProperty("x")]
+    [MindSphereName("x")]
     public AggregateVariable X { get; set; }
 
     // for aspect variable named "y"
-    [JsonProperty("y")]
+    [MindSphereName("y")]
     public AggregateVariable Y { get; set; }
 
     // for aspect variable named "z"
-    [JsonProperty("z")]
+    [MindSphereName("z")]
     public AggregateVariable Z { get; set; }
 }
 ```
@@ -347,7 +347,7 @@ Since the event can have different properties based on their event type it is ne
 
 In the code below the *MyEventAdd* class is custom class derived from the SDK's *EventAddUpdate* class that provides basic properties such as *EntityId*.
 
-❗ Make sure that the custom property name matches with the name in the MindSphere or use Newtonsoft *JsonProperty* attribute. ❗
+❗ Make sure that the custom property name matches with the name in the MindSphere or use *MindSphereName* attribute. ❗
 
 ```csharp
 var eventClient = sdk.GetEventManagementClient();
@@ -369,10 +369,10 @@ var response = await eventClient.AddEventAsync<Event>(request);
 ```csharp
 public class MyEventAddUpdate : EventAddUpdate
 {
-    [JsonProperty("description")]
+    [MindSphereName("description")]
     public string Description { get; set; }
 
-    [JsonProperty("severity")]
+    [MindSphereName("severity")]
     public int Severity { get; set; }   
 }
 ```
@@ -381,7 +381,7 @@ public class MyEventAddUpdate : EventAddUpdate
 
 *ListEventsAsync* is also generic method that takes in a type derived from the *Event* class. This provides an option to fetch informations about events with custom properties.
 
-❗ Make sure that the custom property name matches with the name in the MindSphere or use Newtonsoft *JsonProperty* attribute. ❗
+❗ Make sure that the custom property name matches with the name in the MindSphere or use *MindSphereName* attribute. ❗
 
 ```csharp
 var eventClient = sdk.GetEventManagementClient();
@@ -392,10 +392,10 @@ var events = await eventClient.ListEventsAsync<MyEvent>(request);
 ```csharp
 public class MyEvent : Event
 {
-    [JsonProperty("description")]
+    [MindSphereName("description")]
     public string Description { get; set; }
 
-    [JsonProperty("severity")]
+    [MindSphereName("severity")]
     public int Severity { get; set; }
 }
 ```

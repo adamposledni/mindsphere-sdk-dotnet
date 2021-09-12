@@ -5,6 +5,7 @@
 - added *UpdateCredentials* method in the *MindSphereApiSdk* class
 - added PATCH /assettypes/{id}/variables 
 - added EventManagement (without jobs)
+- added *MindSphereName* attribute to bind C# objects to the objects in the MindSphere
 
 ## v1.1.0
 - new class architecture - clients are initialized by *MindSphereApiSdk* instance

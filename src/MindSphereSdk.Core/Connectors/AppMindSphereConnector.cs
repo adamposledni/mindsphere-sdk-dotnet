@@ -1,4 +1,5 @@
 ﻿using MindSphereSdk.Core.Authentication;
+using MindSphereSdk.Core.Common;
 using MindSphereSdk.Core.Exceptions;
 using MindSphereSdk.Core.Helpers;
 using Newtonsoft.Json;
@@ -7,7 +8,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MindSphereSdk.Core.Common
+namespace MindSphereSdk.Core.Connectors
 {
     /// <summary>
     /// Connector to the MindSphere API using app credentials.

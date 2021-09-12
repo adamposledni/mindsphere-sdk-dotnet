@@ -1,6 +1,6 @@
 ﻿using MindSphereSdk.Core.Common;
 using MindSphereSdk.Core.Helpers;
-using Newtonsoft.Json;
+using MindSphereSdk.Core.Serialization;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -38,7 +38,7 @@ namespace MindSphereSdk.Core.IotTsAggregates
 
             // make request
             string response = await HttpActionAsync(HttpMethod.Get, uri);
-            var tsAggregateWrapper = JsonConvert.DeserializeObject<AggregateWrapper<T>>(response);
+            var tsAggregateWrapper = JsonConverter.Deserialize<AggregateWrapper<T>>(response);
             var tsAggregate = tsAggregateWrapper.Aggregates;
             return tsAggregate;
         }

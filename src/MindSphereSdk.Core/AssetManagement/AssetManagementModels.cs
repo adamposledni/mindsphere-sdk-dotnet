@@ -98,7 +98,7 @@ namespace MindSphereSdk.Core.AssetManagement
     /// <summary>
     /// Aspect type (create or update).
     /// </summary>
-    public class AspectTypeUpdate
+    public class AspectTypeAddUpdate
     {
         [JsonProperty("name")]
         public string Name { get; set; }
@@ -642,7 +642,7 @@ namespace MindSphereSdk.Core.AssetManagement
         /// <summary>
         /// Aspect type.
         /// </summary>
-        public AspectTypeUpdate AspectType { get; set; }
+        public AspectTypeAddUpdate AspectType { get; set; }
     }
 
     /// <summary>
@@ -668,7 +668,7 @@ namespace MindSphereSdk.Core.AssetManagement
         /// <summary>
         /// Aspect type.
         /// </summary>
-        public AspectTypeUpdate AspectType { get; set; }
+        public AspectTypeAddUpdate AspectType { get; set; }
     }
 
     /// <summary>

@@ -1,9 +1,10 @@
 ﻿using MindSphereSdk.Core.Authentication;
+using MindSphereSdk.Core.Common;
 using MindSphereSdk.Core.Helpers;
 using System;
 using System.Threading.Tasks;
 
-namespace MindSphereSdk.Core.Common
+namespace MindSphereSdk.Core.Connectors
 {
     /// <summary>
     /// Connector to the MindSphere API using user credentials.

@@ -219,7 +219,7 @@
             Aspect type.
             </summary>
         </member>
-        <member name="T:MindSphereSdk.Core.AssetManagement.AspectTypeUpdate">
+        <member name="T:MindSphereSdk.Core.AssetManagement.AspectTypeAddUpdate">
             <summary>
             Aspect type (create or update).
             </summary>
@@ -1461,19 +1461,9 @@
             Create new event.
             </summary>
         </member>
-        <member name="M:MindSphereSdk.Core.EventManagement.EventManagementClient.ListEventsAsync(MindSphereSdk.Core.EventManagement.ListEventsRequest)">
-            <summary>
-            Query events. 
-            </summary>
-        </member>
         <member name="M:MindSphereSdk.Core.EventManagement.EventManagementClient.ListEventsAsync``1(MindSphereSdk.Core.EventManagement.ListEventsRequest)">
             <summary>
             Query events. 
-            </summary>
-        </member>
-        <member name="M:MindSphereSdk.Core.EventManagement.EventManagementClient.InternalListEventsAsync``1(MindSphereSdk.Core.EventManagement.ListEventsRequest)">
-            <summary>
-            Internal method for querying events.
             </summary>
         </member>
         <member name="M:MindSphereSdk.Core.EventManagement.EventManagementClient.GetEventAsync``1(MindSphereSdk.Core.EventManagement.GetEventRequest)">
@@ -1916,124 +1906,124 @@
             Delete time series data.
             </summary>
         </member>
-        <member name="T:MindSphereSdk.Core.IotTimeSeries.TimeSeries">
+        <member name="T:MindSphereSdk.Core.IotTimeSeries.TimeSeriesSet">
             <summary>
-            Time Series for one asset and one aspect
+            Time Series for one asset and one aspect.
             </summary>
         </member>
-        <member name="P:MindSphereSdk.Core.IotTimeSeries.TimeSeries.EntityId">
+        <member name="P:MindSphereSdk.Core.IotTimeSeries.TimeSeriesSet.EntityId">
             <summary>
-            Unique identifier of the asset
+            Unique identifier of the asset.
             </summary>
         </member>
-        <member name="P:MindSphereSdk.Core.IotTimeSeries.TimeSeries.PropertySetName">
+        <member name="P:MindSphereSdk.Core.IotTimeSeries.TimeSeriesSet.PropertySetName">
             <summary>
-            Name of the aspect
+            Name of the aspect.
             </summary>
         </member>
-        <member name="P:MindSphereSdk.Core.IotTimeSeries.TimeSeries.Data">
+        <member name="P:MindSphereSdk.Core.IotTimeSeries.TimeSeriesSet.Data">
             <summary>
-            Time series data
+            Time series data.
             </summary>
         </member>
         <member name="T:MindSphereSdk.Core.IotTimeSeries.PutTimeSeriesMultipleRequest">
             <summary>
-            Request for putting time series
+            Request for putting time series.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.IotTimeSeries.PutTimeSeriesMultipleRequest.TimeSeries">
             <summary>
-            Time series
+            Time series.
             </summary>
         </member>
         <member name="T:MindSphereSdk.Core.IotTimeSeries.GetTimeSeriesRequest">
             <summary>
-            Request for getting time series
+            Request for getting time series.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.IotTimeSeries.GetTimeSeriesRequest.From">
             <summary>
-            Beginning of the time range to be retrieved (exclusive)
+            Beginning of the time range to be retrieved (exclusive).
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.IotTimeSeries.GetTimeSeriesRequest.To">
             <summary>
-            End of the time range to be retrieved (inclusive)
+            End of the time range to be retrieved (inclusive).
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.IotTimeSeries.GetTimeSeriesRequest.Limit">
             <summary>
-            Maximum number of time series data items to be retrieved
+            Maximum number of time series data items to be retrieved.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.IotTimeSeries.GetTimeSeriesRequest.Select">
             <summary>
-            Comma-separated list of properties to be returned
+            Comma-separated list of properties to be returned.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.IotTimeSeries.GetTimeSeriesRequest.Sort">
             <summary>
-            Define sorting order of returned data
+            Define sorting order of returned data.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.IotTimeSeries.GetTimeSeriesRequest.LatestValue">
             <summary>
-            If true, only the latest value of each property is returned
+            If true, only the latest value of each property is returned.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.IotTimeSeries.GetTimeSeriesRequest.EntityId">
             <summary>
-            Unique identifier of the asset
+            Unique identifier of the asset.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.IotTimeSeries.GetTimeSeriesRequest.PropertySetName">
             <summary>
-            Name of the aspect
+            Name of the aspect.
             </summary>
         </member>
         <member name="T:MindSphereSdk.Core.IotTimeSeries.PutTimeSeriesRequest">
             <summary>
-            Request for putting time series
+            Request for putting time series.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.IotTimeSeries.PutTimeSeriesRequest.EntityId">
             <summary>
-            Unique identifier of the asset
+            Unique identifier of the asset.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.IotTimeSeries.PutTimeSeriesRequest.PropertySetName">
             <summary>
-            Name of the aspect
+            Name of the aspect.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.IotTimeSeries.PutTimeSeriesRequest.Data">
             <summary>
-            Time series data
+            Time series data.
             </summary>
         </member>
         <member name="T:MindSphereSdk.Core.IotTimeSeries.DeleteTimeSeriesRequest">
             <summary>
-            Request for deleting time series
+            Request for deleting time series.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.IotTimeSeries.DeleteTimeSeriesRequest.From">
             <summary>
-            Beginning of the time range to be retrieved (exclusive)
+            Beginning of the time range to be retrieved (exclusive).
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.IotTimeSeries.DeleteTimeSeriesRequest.To">
             <summary>
-            End of the time range to be retrieved (inclusive)
+            End of the time range to be retrieved (inclusive).
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.IotTimeSeries.DeleteTimeSeriesRequest.EntityId">
             <summary>
-            Unique identifier of the asset
+            Unique identifier of the asset.
             </summary>
         </member>
         <member name="P:MindSphereSdk.Core.IotTimeSeries.DeleteTimeSeriesRequest.PropertySetName">
             <summary>
-            Name of the aspect
+            Name of the aspect.
             </summary>
         </member>
         <member name="T:MindSphereSdk.Core.IotTsAggregates.IotTsAggregatesClient">
@@ -2104,6 +2094,36 @@
         <member name="P:MindSphereSdk.Core.IotTsAggregates.GetAggregateTimeSeriesRequest.Count">
             <summary>
             Number of aggregate objects
+            </summary>
+        </member>
+        <member name="T:MindSphereSdk.Core.Serialization.CustomContractResolver">
+            <summary>
+            Custom JSON serialization contract resolver.
+            </summary>
+        </member>
+        <member name="T:MindSphereSdk.Core.Serialization.JsonConverter">
+            <summary>
+            JSON converter.
+            </summary>
+        </member>
+        <member name="M:MindSphereSdk.Core.Serialization.JsonConverter.Serialize(System.Object,System.Boolean,System.Boolean)">
+            <summary>
+            Serialize object.
+            </summary>
+        </member>
+        <member name="M:MindSphereSdk.Core.Serialization.JsonConverter.Deserialize``1(System.String)">
+            <summary>
+            Deserialize object.
+            </summary>
+        </member>
+        <member name="T:MindSphereSdk.Core.Serialization.MindSphereName">
+            <summary>
+            Attribute to specify the corresponding object name in the MindSphere.
+            </summary>
+        </member>
+        <member name="P:MindSphereSdk.Core.Serialization.MindSphereName.Name">
+            <summary>
+            MindSphere name of the object.
             </summary>
         </member>
     </members>

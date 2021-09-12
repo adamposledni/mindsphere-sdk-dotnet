@@ -1,4 +1,5 @@
-﻿using MindSphereSdk.Core.Exceptions;
+﻿using MindSphereSdk.Core.Common;
+using MindSphereSdk.Core.Exceptions;
 using MindSphereSdk.Core.Helpers;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace MindSphereSdk.Core.Common
+namespace MindSphereSdk.Core.Connectors
 {
     /// <summary>
     /// Connector to the MindSphere API.
