@@ -14,7 +14,7 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Copyright>© Adam Hrouda 2021</Copyright>
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
-    <Version>1.1.0</Version>
+    <Version>1.1.1</Version>
     <PackageIcon>nuget-icon.png</PackageIcon>
     <PackageIconUrl />
     <RepositoryType>git</RepositoryType>

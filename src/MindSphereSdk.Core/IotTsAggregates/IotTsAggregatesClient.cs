@@ -1,4 +1,5 @@
 ﻿using MindSphereSdk.Core.Common;
+using MindSphereSdk.Core.Connectors;
 using MindSphereSdk.Core.Helpers;
 using MindSphereSdk.Core.Serialization;
 using System.Collections.Generic;

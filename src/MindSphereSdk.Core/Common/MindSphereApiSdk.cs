@@ -1,5 +1,6 @@
 ﻿using MindSphereSdk.Core.AssetManagement;
 using MindSphereSdk.Core.Authentication;
+using MindSphereSdk.Core.Connectors;
 using MindSphereSdk.Core.EventManagement;
 using MindSphereSdk.Core.Helpers;
 using MindSphereSdk.Core.IotTimeSeries;

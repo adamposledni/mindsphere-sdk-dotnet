@@ -1220,34 +1220,6 @@
             Create a new instance of UserCredentials.
             </summary>
         </member>
-        <member name="T:MindSphereSdk.Core.Common.AppMindSphereConnector">
-            <summary>
-            Connector to the MindSphere API using app credentials.
-            </summary>
-        </member>
-        <member name="M:MindSphereSdk.Core.Common.AppMindSphereConnector.#ctor(MindSphereSdk.Core.Authentication.AppCredentials,MindSphereSdk.Core.Common.ClientConfiguration)">
-            <summary>
-            Create a new instance of AppMindSphereConnector.
-            </summary>
-        </member>
-        <member name="M:MindSphereSdk.Core.Common.AppMindSphereConnector.AcquireTokenAsync">
-            <summary>
-            Acquire MindSphere access token with app credentials.
-            </summary>
-        </member>
-        <member name="M:MindSphereSdk.Core.Common.AppMindSphereConnector.UpdateCredentials(MindSphereSdk.Core.Authentication.ICredentials)">
-            <summary>
-            Update the credentials object.
-            </summary>
-            <remarks>
-            It is not possible to change the credential type in the runtime.
-            </remarks>
-        </member>
-        <member name="M:MindSphereSdk.Core.Common.AppMindSphereConnector.GetBasicAuth">
-            <summary>
-            Generate BasicAuth string (Basic abc123...).
-            </summary>
-        </member>
         <member name="T:MindSphereSdk.Core.Common.ClientConfiguration">
             <summary>
             MindSphere SDK client configuration.
@@ -1375,49 +1347,6 @@
             Get Event Management Client.
             </summary>
         </member>
-        <member name="T:MindSphereSdk.Core.Common.MindSphereConnector">
-            <summary>
-            Connector to the MindSphere API.
-            </summary>
-        </member>
-        <member name="M:MindSphereSdk.Core.Common.MindSphereConnector.AcquireTokenAsync">
-            <summary>
-            Acquire a new MindSphere access token.
-            </summary>
-        </member>
-        <member name="M:MindSphereSdk.Core.Common.MindSphereConnector.UpdateCredentials(MindSphereSdk.Core.Authentication.ICredentials)">
-            <summary>
-            Update the credentials object.
-            </summary>
-            <remarks>
-            It is not possible to change the credential type in the runtime.
-            </remarks>
-        </member>
-        <member name="M:MindSphereSdk.Core.Common.MindSphereConnector.GetAccessTokenAsync">
-            <summary>
-            Get MindSphere API access token.
-            </summary>
-        </member>
-        <member name="M:MindSphereSdk.Core.Common.MindSphereConnector.HttpActionAsync(System.Net.Http.HttpMethod,System.String,System.Net.Http.HttpContent,System.Collections.Generic.List{System.Collections.Generic.KeyValuePair{System.String,System.String}})">
-            <summary>
-            Sending HTTP request to the MindSphere API.
-            </summary>
-        </member>
-        <member name="M:MindSphereSdk.Core.Common.MindSphereConnector.RenewTokenAsync">
-            <summary>
-            Renew MindSphere access token.
-            </summary>
-        </member>
-        <member name="M:MindSphereSdk.Core.Common.MindSphereConnector.ValidateToken">
-            <summary>
-            Validate MindSphere access token.
-            </summary>
-        </member>
-        <member name="M:MindSphereSdk.Core.Common.MindSphereConnector.GetFullUri(System.String)">
-            <summary>
-            Generate full URI.
-            </summary>
-        </member>
         <member name="T:MindSphereSdk.Core.Common.SdkClient">
             <summary>
             General SDK client.
@@ -1428,22 +1357,93 @@
             Send HTTP request to the MindSphere API.
             </summary>
         </member>
-        <member name="T:MindSphereSdk.Core.Common.UserMindSphereConnector">
+        <member name="T:MindSphereSdk.Core.Connectors.AppMindSphereConnector">
+            <summary>
+            Connector to the MindSphere API using app credentials.
+            </summary>
+        </member>
+        <member name="M:MindSphereSdk.Core.Connectors.AppMindSphereConnector.#ctor(MindSphereSdk.Core.Authentication.AppCredentials,MindSphereSdk.Core.Common.ClientConfiguration)">
+            <summary>
+            Create a new instance of AppMindSphereConnector.
+            </summary>
+        </member>
+        <member name="M:MindSphereSdk.Core.Connectors.AppMindSphereConnector.AcquireTokenAsync">
+            <summary>
+            Acquire MindSphere access token with app credentials.
+            </summary>
+        </member>
+        <member name="M:MindSphereSdk.Core.Connectors.AppMindSphereConnector.UpdateCredentials(MindSphereSdk.Core.Authentication.ICredentials)">
+            <summary>
+            Update the credentials object.
+            </summary>
+            <remarks>
+            It is not possible to change the credential type in the runtime.
+            </remarks>
+        </member>
+        <member name="M:MindSphereSdk.Core.Connectors.AppMindSphereConnector.GetBasicAuth">
+            <summary>
+            Generate BasicAuth string (Basic abc123...).
+            </summary>
+        </member>
+        <member name="T:MindSphereSdk.Core.Connectors.MindSphereConnector">
+            <summary>
+            Connector to the MindSphere API.
+            </summary>
+        </member>
+        <member name="M:MindSphereSdk.Core.Connectors.MindSphereConnector.AcquireTokenAsync">
+            <summary>
+            Acquire a new MindSphere access token.
+            </summary>
+        </member>
+        <member name="M:MindSphereSdk.Core.Connectors.MindSphereConnector.UpdateCredentials(MindSphereSdk.Core.Authentication.ICredentials)">
+            <summary>
+            Update the credentials object.
+            </summary>
+            <remarks>
+            It is not possible to change the credential type in the runtime.
+            </remarks>
+        </member>
+        <member name="M:MindSphereSdk.Core.Connectors.MindSphereConnector.GetAccessTokenAsync">
+            <summary>
+            Get MindSphere API access token.
+            </summary>
+        </member>
+        <member name="M:MindSphereSdk.Core.Connectors.MindSphereConnector.HttpActionAsync(System.Net.Http.HttpMethod,System.String,System.Net.Http.HttpContent,System.Collections.Generic.List{System.Collections.Generic.KeyValuePair{System.String,System.String}})">
+            <summary>
+            Sending HTTP request to the MindSphere API.
+            </summary>
+        </member>
+        <member name="M:MindSphereSdk.Core.Connectors.MindSphereConnector.RenewTokenAsync">
+            <summary>
+            Renew MindSphere access token.
+            </summary>
+        </member>
+        <member name="M:MindSphereSdk.Core.Connectors.MindSphereConnector.ValidateToken">
+            <summary>
+            Validate MindSphere access token.
+            </summary>
+        </member>
+        <member name="M:MindSphereSdk.Core.Connectors.MindSphereConnector.GetFullUri(System.String)">
+            <summary>
+            Generate full URI.
+            </summary>
+        </member>
+        <member name="T:MindSphereSdk.Core.Connectors.UserMindSphereConnector">
             <summary>
             Connector to the MindSphere API using user credentials.
             </summary>
         </member>
-        <member name="M:MindSphereSdk.Core.Common.UserMindSphereConnector.#ctor(MindSphereSdk.Core.Authentication.UserCredentials,MindSphereSdk.Core.Common.ClientConfiguration)">
+        <member name="M:MindSphereSdk.Core.Connectors.UserMindSphereConnector.#ctor(MindSphereSdk.Core.Authentication.UserCredentials,MindSphereSdk.Core.Common.ClientConfiguration)">
             <summary>
             Create a new instance of UserMindSphereConnector.
             </summary>
         </member>
-        <member name="M:MindSphereSdk.Core.Common.UserMindSphereConnector.AcquireTokenAsync">
+        <member name="M:MindSphereSdk.Core.Connectors.UserMindSphereConnector.AcquireTokenAsync">
             <summary>
             Acquire MindSphere access token (no need - it is handled by MindSphere).
             </summary>
         </member>
-        <member name="M:MindSphereSdk.Core.Common.UserMindSphereConnector.UpdateCredentials(MindSphereSdk.Core.Authentication.ICredentials)">
+        <member name="M:MindSphereSdk.Core.Connectors.UserMindSphereConnector.UpdateCredentials(MindSphereSdk.Core.Authentication.ICredentials)">
             <summary>
             Update the credentials object.
             </summary>
