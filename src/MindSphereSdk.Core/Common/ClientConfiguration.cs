@@ -1,7 +1,4 @@
-﻿using MindSphereSdk.Core.Helpers;
-using System;
-
-namespace MindSphereSdk.Core.Common
+﻿namespace MindSphereSdk.Core.Common
 {
     /// <summary>
     /// MindSphere SDK client configuration.

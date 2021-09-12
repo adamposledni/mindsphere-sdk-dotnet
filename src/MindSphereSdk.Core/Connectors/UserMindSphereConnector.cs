@@ -1,6 +1,5 @@
 ﻿using MindSphereSdk.Core.Authentication;
 using MindSphereSdk.Core.Common;
-using MindSphereSdk.Core.Helpers;
 using System;
 using System.Threading.Tasks;
 

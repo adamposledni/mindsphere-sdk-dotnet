@@ -1,11 +1,5 @@
-﻿using FluentValidation;
-using FluentValidation.Results;
-using MindSphereSdk.Core.Authentication;
-using MindSphereSdk.Core.Common;
-using MindSphereSdk.Core.Helpers.Validators;
+﻿using MindSphereSdk.Core.Helpers.Validators;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace MindSphereSdk.Core.Helpers
 {

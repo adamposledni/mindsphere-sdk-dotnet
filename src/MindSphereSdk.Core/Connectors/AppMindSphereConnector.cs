@@ -1,7 +1,6 @@
 ﻿using MindSphereSdk.Core.Authentication;
 using MindSphereSdk.Core.Common;
 using MindSphereSdk.Core.Exceptions;
-using MindSphereSdk.Core.Helpers;
 using Newtonsoft.Json;
 using System;
 using System.Net.Http;

@@ -1,5 +1,4 @@
-﻿using MindSphereSdk.Core.Helpers;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using System.IO;
 
 namespace MindSphereSdk.Core.Authentication

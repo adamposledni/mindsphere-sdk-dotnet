@@ -1,6 +1,4 @@
-﻿using MindSphereSdk.Core.Helpers;
-
-namespace MindSphereSdk.Core.Authentication
+﻿namespace MindSphereSdk.Core.Authentication
 {
     /// <summary>
     /// User credentials for the MindSphere API.
