@@ -1,0 +1,8 @@
+{
+    "keyStoreClientId": "",
+    "keyStoreClientSecret": "IO4ASihSkvfbBgx6WpE32PagI1HVMH23JNXo50RBsJX",
+    "appName": "dotnetsdk",
+    "appVersion": "v1.0.0",
+    "hostTenant": "prsdevex",
+    "userTenant": "prsdevex"
+}
