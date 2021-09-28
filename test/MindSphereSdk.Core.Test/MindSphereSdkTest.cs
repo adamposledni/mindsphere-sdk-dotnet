@@ -12,7 +12,10 @@ using Xunit;
 
 namespace MindSphereSdk.Core.Test
 {
-    public class SdkTest
+    /// <summary>
+    /// MindSphere SDK tests.
+    /// </summary>
+    public class MindSphereSdkTest
     {
         private readonly AppCredentials _invalidAppCreds = new AppCredentials(
                 "tenant-app-1.0.0",
@@ -22,11 +25,8 @@ namespace MindSphereSdk.Core.Test
                 "tenant",
                 "tenant");
 
-        private readonly string _validAccessToken = "";
-        private readonly string _invalidAccessToken = "";
-
         /// <summary>
-        /// Negative test: SDK constructor - null credentials validation
+        /// SDK constructor - null credentials validation.
         /// </summary>
         [Fact]
         public void ConstructWithNullCredentials()
@@ -39,7 +39,7 @@ namespace MindSphereSdk.Core.Test
         }
 
         /// <summary>
-        /// Negative test: SDK constructor - null configuration validation
+        /// SDK constructor - null configuration validation.
         /// </summary>
         [Fact]
         public void ConstructWithNullConfiguration()
@@ -54,7 +54,7 @@ namespace MindSphereSdk.Core.Test
         }
 
         /// <summary>
-        /// Negative test: Mdsp API call with invalid AppCredentials
+        /// Mdsp API call with invalid AppCredentials.
         /// </summary>
         [Fact]
         public async Task MdspCallWithInvalidAppCreds()
@@ -79,7 +79,7 @@ namespace MindSphereSdk.Core.Test
         }
 
         /// <summary>
-        /// Positive test: Mdsp API call with valid AppCredentials
+        /// Mdsp API call with valid AppCredentials.
         /// </summary>
         [Fact]
         public async Task MdspCallWithValidAppCreds()
@@ -98,13 +98,13 @@ namespace MindSphereSdk.Core.Test
         }
 
         /// <summary>
-        /// Negative test: Mdsp API call with invalid UserCredentials
+        /// Mdsp API call with invalid UserCredentials.
         /// </summary>
         [Fact]
         public async Task MdspCallWithInvalidUserCreds()
         {
             // Arrange
-            var userCreds = new UserCredentials(_invalidAccessToken);
+            var userCreds = new UserCredentials(await GetInvalidTokenAsync());
             var config = new ClientConfiguration();
             var sdk = new MindSphereApiSdk(userCreds, config);
             var client = sdk.GetAssetManagementClient();
@@ -123,13 +123,13 @@ namespace MindSphereSdk.Core.Test
         }
 
         /// <summary>
-        /// Positive test: Mdsp API call with valid UserCredentials
+        /// Mdsp API call with valid UserCredentials.
         /// </summary>
         [Fact]
         public async Task MdspCallWithValidUserCreds()
         {
             // Arrange
-            var userCreds = new UserCredentials(_validAccessToken);
+            var userCreds = new UserCredentials(await GetValidTokenAsync());
             var config = new ClientConfiguration();
             var sdk = new MindSphereApiSdk(userCreds, config);
             var client = sdk.GetAssetManagementClient();
@@ -139,6 +139,83 @@ namespace MindSphereSdk.Core.Test
             await client.ListAssetsAsync(request);
 
             // Assert
+        }
+
+        /// <summary>
+        /// Update credentials object - first call with valid token then with invalid.
+        /// </summary>
+        [Fact]
+        public async Task UpdateCredentials()
+        {
+            // Arrange
+            var creds = new UserCredentials(await GetValidTokenAsync());
+            var newCreds = new UserCredentials(await GetInvalidTokenAsync());
+            var config = new ClientConfiguration();
+            var sdk = new MindSphereApiSdk(creds, config);
+            var client = sdk.GetAssetManagementClient();
+            var request = new ListAssetsRequest();
+
+            // Act
+            // make sure 1st call is ok
+            await client.ListAssetsAsync(request);
+            sdk.UpdateCredentials(newCreds);
+
+            try
+            {
+                await client.ListAssetsAsync(request);
+            }
+            // Assert
+            catch (MindSphereApiException ex)
+            {
+                Assert.True(ex.StatusCode == 401);
+            }
+        }
+
+        /// <summary>
+        /// Update credentials with invalid type.
+        /// </summary>
+        [Fact]
+        public async Task UpdateCredentialsWithInvalidType()
+        {
+            // Arrange
+            var creds = new UserCredentials(await GetValidTokenAsync());
+            var newCreds = AppCredentials.FromJsonFile("mdspcreds.json");
+            var config = new ClientConfiguration();
+            var sdk = new MindSphereApiSdk(creds, config);
+            var client = sdk.GetAssetManagementClient();
+
+            // Act
+            Action act = () => sdk.UpdateCredentials(newCreds);
+
+            // Assert
+            Assert.Throws<ArgumentException>(act);
+        }
+
+        /// <summary>
+        /// Get valid access token.
+        /// </summary>
+        private async Task<string> GetValidTokenAsync()
+        {
+            var creds = AppCredentials.FromJsonFile("mdspcreds.json");
+            var config = new ClientConfiguration();
+            var sdk = new MindSphereApiSdk(creds, config);
+
+            return await sdk.GetAccessTokenAsync();
+        }
+
+        /// <summary>
+        /// Get invalid access token.
+        /// </summary>
+        private async Task<string> GetInvalidTokenAsync()
+        {
+            string validToken = await GetValidTokenAsync();
+
+            StringBuilder stringBuilder = new StringBuilder(validToken);
+            stringBuilder[155] = (char)((int)stringBuilder[155] - 1);
+
+            string invalidToken = stringBuilder.ToString();
+
+            return invalidToken;
         }
     }
 }

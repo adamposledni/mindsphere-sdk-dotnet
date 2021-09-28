@@ -5,7 +5,7 @@ using MindSphereSdk.Core.Common;
 using MindSphereSdk.Core.EventManagement;
 using MindSphereSdk.Core.IotTimeSeries;
 using MindSphereSdk.Core.IotTsAggregates;
-using Newtonsoft.Json;
+using MindSphereSdk.Core.Serialization;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -49,7 +49,7 @@ namespace WebApp.Controllers
             var assetClient = _sdk.GetAssetManagementClient();
             var request = new GetAssetRequest()
             {
-                Id = "73b2a7cdf27241e5b3f29b07266ff602"
+                Id = "da4aabbd3f2f488da7ef75fa506a8eaa"
             };
             Asset asset = await assetClient.GetAssetAsync(request);
 
@@ -62,11 +62,11 @@ namespace WebApp.Controllers
             var assetClient = _sdk.GetAssetManagementClient();
             var request = new AddAssetRequest()
             {
-                Body = new AssetAdd()
+                Asset = new AssetAdd()
                 {
-                    Name = "MyNewAsset",
-                    TypeId = "iiotdgli.mobilephone",
-                    ParentId = "ec206f76b04a49a4938c1573b35b6688",
+                    Name = "DotnetSdkAsset",
+                    TypeId = "prsdevex.Dotnet_sdk",
+                    ParentId = "11d4d30f87534500842d132233fffa46",
                 }
             };
             return StatusCode(200, await assetClient.AddAssetAsync(request));
@@ -78,11 +78,11 @@ namespace WebApp.Controllers
             var assetClient = _sdk.GetAssetManagementClient();
             var request = new UpdateAssetRequest()
             {
-                Body = new AssetUpdate()
+                Asset = new AssetUpdate()
                 {
-                    Name = "MyUpdatedAsset"
+                    Name = "DotnetSdkAsset"
                 },
-                Id = "8e775e74a9fa4b4f8fcf15e808d7fb10",
+                Id = "da4aabbd3f2f488da7ef75fa506a8eaa",
                 IfMatch = "2"
             };
 
@@ -96,7 +96,7 @@ namespace WebApp.Controllers
             var assetClient = _sdk.GetAssetManagementClient();
             var request = new UpdateAssetRequest()
             {
-                Body = new AssetUpdate()
+                Asset = new AssetUpdate()
                 {
                     Name = "MyUpdatedAsset"
                 },
@@ -217,7 +217,7 @@ namespace WebApp.Controllers
             var assetClient = _sdk.GetAssetManagementClient();
             var request = new PutAssetLocationRequest()
             {
-                Body = new Location()
+                Location = new Location()
                 {
                     Country = "Czech Republic",
                     StreetAddress = "Makova",
@@ -248,7 +248,7 @@ namespace WebApp.Controllers
 
         #endregion
 
-        #region Files
+        #region File
 
         [HttpGet("list-files")]
         public async Task<ActionResult<IEnumerable<File>>> ListFiles()
@@ -307,14 +307,16 @@ namespace WebApp.Controllers
         public async Task<ActionResult<File>> UploadFile()
         {
             var assetClient = _sdk.GetAssetManagementClient();
-            var fs = new FileStream("test.txt", FileMode.Open);
-
-            var request = new UploadFileRequest()
+            File file;
+            using (var fs = new FileStream("test.txt", FileMode.Open))
             {
-                File = fs,
-                Name = "test.txt"
-            };
-            var file = await assetClient.UploadFileAsync(request);
+                var request = new UploadFileRequest()
+                {
+                    File = fs,
+                    Name = "test.txt"
+                };
+                file = await assetClient.UploadFileAsync(request);
+            }
 
             return StatusCode(200, file);
         }
@@ -349,11 +351,11 @@ namespace WebApp.Controllers
             var iotClient = _sdk.GetIotTimeSeriesClient();
             var request = new GetTimeSeriesRequest()
             {
-                EntityId = "ec206f76b04a49a4938c1573b35b6688",
-                PropertySetName = "acceleration",
+                EntityId = "da4aabbd3f2f488da7ef75fa506a8eaa",
+                PropertySetName = "aspect1",
                 From = DateTime.Now.AddDays(-1),
                 To = DateTime.Now,
-                Limit = 10
+                Limit = 100
             };
             List<TestTimeSeriesData> timeSeries = (await iotClient.GetTimeSeriesAsync<TestTimeSeriesData>(request)).ToList();
             
@@ -368,20 +370,24 @@ namespace WebApp.Controllers
 
             List<TestTimeSeriesData> timeSeriesData = new()
             {
-                new TestTimeSeriesData(nowUtc, 0.5, 0.7, 0.3),
-                new TestTimeSeriesData(nowUtc.AddMinutes(1), 0.8, 1.2, 0.7),
-                new TestTimeSeriesData(nowUtc.AddMinutes(2), 1.6, 0.2, 0.5)
+                //new TestTimeSeriesData(nowUtc, 0.5, 0.7, 0.3),
+                //new TestTimeSeriesData(nowUtc.AddMinutes(1), 0.8, 1.2, 0.7),
+                //new TestTimeSeriesData(nowUtc.AddMinutes(2), 1.6, 0.3, 0.5),
+                //new TestTimeSeriesData(nowUtc.AddMinutes(3), 0.1, 1.5, 2.1),
+                //new TestTimeSeriesData(nowUtc.AddMinutes(4), 1.4, 0.2, 1.4),
+                //new TestTimeSeriesData(nowUtc.AddMinutes(5), 1.3, 0.4, 0.9),
+                //new TestTimeSeriesData(nowUtc.AddMinutes(6), 0.9, 0.8, 1.8),
             };
             //timeSeriesData.Add(new { _time = DateTime.Now, x = 0.5, y = 0.7, z = 0.3 });
             //timeSeriesData.Add(new { _time = DateTime.Now.AddMinutes(1), x = 0.8, y = 1.2, z = 0.7 });
             //timeSeriesData.Add(new { _time = DateTime.Now.AddMinutes(2), x = 1.6, y = 0.2, z = 0.5 });
 
-            List<TimeSeries> timeSeriesObjects = new()
+            List<TimeSeriesSet> timeSeriesObjects = new()
             {
-                new TimeSeries()
+                new TimeSeriesSet()
                 {
-                    EntityId = "ec206f76b04a49a4938c1573b35b6688",
-                    PropertySetName = "acceleration",
+                    EntityId = "da4aabbd3f2f488da7ef75fa506a8eaa",
+                    PropertySetName = "aspect1",
                     Data = timeSeriesData
                 }
             };
@@ -399,13 +405,17 @@ namespace WebApp.Controllers
         public async Task<ActionResult> PutTimeSeries()
         {
             var iotClient = _sdk.GetIotTimeSeriesClient();
-            DateTime nowUtc = DateTime.Now.ToUniversalTime();
+            DateTime now = DateTime.Now;
 
             List<TestTimeSeriesData> timeSeriesData = new()
             {
-                new TestTimeSeriesData(nowUtc, 0.5, 0.7, 0.3),
-                new TestTimeSeriesData(nowUtc.AddMinutes(1), 0.8, 1.2, 0.7),
-                new TestTimeSeriesData(nowUtc.AddMinutes(2), 1.6, 0.2, 0.5)
+                new TestTimeSeriesData(now, 0.5),
+                new TestTimeSeriesData(now.AddMinutes(1), 0.8),
+                //new TestTimeSeriesData(now.AddMinutes(2), 1.6, 0.3, 0.5),
+                //new TestTimeSeriesData(now.AddMinutes(3), 0.1, 1.5, 2.1),
+                //new TestTimeSeriesData(now.AddMinutes(4), 1.4, 0.2, 1.4),
+                //new TestTimeSeriesData(now.AddMinutes(5), 1.3, 0.4, 0.9),
+                //new TestTimeSeriesData(now.AddMinutes(6), 0.9, 0.8, 1.8),
             };
             //timeSeriesData.Add(new { _time = DateTime.Now, x = 0.5, y = 0.7, z = 0.3 });
             //timeSeriesData.Add(new { _time = DateTime.Now.AddMinutes(1), x = 0.8, y = 1.2, z = 0.7 });
@@ -414,8 +424,8 @@ namespace WebApp.Controllers
             PutTimeSeriesRequest request = new()
             {
                 Data = timeSeriesData,
-                EntityId = "ec206f76b04a49a4938c1573b35b6688",
-                PropertySetName = "acceleration"
+                EntityId = "da4aabbd3f2f488da7ef75fa506a8eaa",
+                PropertySetName = "aspect1"
             };
             await iotClient.PutTimeSeriesAsync(request);
 
@@ -509,10 +519,10 @@ namespace WebApp.Controllers
         {
             var assetClient = _sdk.GetAssetManagementClient();
 
-            var newAspectType = new AspectTypeUpdate()
+            var newAspectType = new AspectTypeAddUpdate()
             {
-                Name = "My_new_asset",
-                Category = "static",
+                Name = "Dotnet_sdk",
+                Category = "dynamic",
                 Description = "Test",
                 Scope = "private",
                 Variables = new VariableDetail[] {
@@ -527,9 +537,9 @@ namespace WebApp.Controllers
 
             var request = new PutAspectTypeRequest()
             {
-                Id = "iiotdgli.My_new_asset",
+                Id = "prsdevex.Dotnet_sdk",
                 IfNoneMatch = "*",
-                Body = newAspectType
+                AspectType = newAspectType
             };
             var aspectType = await assetClient.PutAspectTypeAsync(request);
 
@@ -541,7 +551,7 @@ namespace WebApp.Controllers
         {
             var assetClient = _sdk.GetAssetManagementClient();
 
-            var updatedAspectType = new AspectTypeUpdate()
+            var updatedAspectType = new AspectTypeAddUpdate()
             {
                 Name = "My_new_aspect_type",
                 Category = "static",
@@ -561,7 +571,7 @@ namespace WebApp.Controllers
             {
                 Id = "iiotdgli.My_new_aspect_type",
                 IfMatch = "0",
-                Body = updatedAspectType
+                AspectType = updatedAspectType
             };
             var aspectType = await assetClient.PutAspectTypeAsync(request);
 
@@ -573,7 +583,7 @@ namespace WebApp.Controllers
         {
             var assetClient = _sdk.GetAssetManagementClient();
 
-            var updatedAspectType = new AspectTypeUpdate()
+            var updatedAspectType = new AspectTypeAddUpdate()
             {
                 Description = "Patched test"
             };
@@ -582,7 +592,7 @@ namespace WebApp.Controllers
             {
                 Id = "iiotdgli.My_new_aspect_type",
                 IfMatch = "1",
-                Body = updatedAspectType
+                AspectType = updatedAspectType
             };
             var aspectType = await assetClient.PatchAspectTypeAsync(request);
 
@@ -612,7 +622,7 @@ namespace WebApp.Controllers
             var assetClient = _sdk.GetAssetManagementClient();
             var request = new GetAssetTypeRequest()
             {
-                Id = "core.basicagent"
+                Id = "prsdevex.Dotnet_sdk"
             };
             AssetType assetType = await assetClient.GetAssetTypeAsync(request);
 
@@ -643,7 +653,7 @@ namespace WebApp.Controllers
             {
                 Id = "iiotdgli.My_new_asset_type",
                 IfNoneMatch = "*",
-                Body = newAssetType
+                AssetType = newAssetType
             };
             var assetType = await assetClient.PutAssetTypeAsync(request);
 
@@ -657,7 +667,7 @@ namespace WebApp.Controllers
 
             var aspects = new List<AspectPut>
             {
-                new AspectPut() { Name = "acceleration", AspectTypeId = "iiotdgli.acceleration" }
+                new AspectPut() { Name = "aspect1", AspectTypeId = "prsdevex.Dotnet_sdk" }
             };
 
             var newAssetType = new AssetTypeUpdate()
@@ -672,9 +682,9 @@ namespace WebApp.Controllers
 
             var request = new PutAssetTypeRequest()
             {
-                Id = "iiotdgli.My_new_asset_type",
+                Id = "prsdevex.Dotnet_sdk",
                 IfMatch = "0",
-                Body = newAssetType
+                AssetType = newAssetType
             };
             var assetType = await assetClient.PutAssetTypeAsync(request);
 
@@ -688,14 +698,17 @@ namespace WebApp.Controllers
 
             var updatedAssetType = new AssetTypeUpdate()
             {
-                Description = "Patched asset type"
-            };
+                Aspects = new List<AspectPut>
+                {
+                    new AspectPut() { Name = "aspect1", AspectTypeId = "prsdevex.Dotnet_sdk" }
+                }
+         };
 
             var request = new PatchAssetTypeRequest()
             {
-                Id = "iiotdgli.My_new_asset_type",
-                IfMatch = "1",
-                Body = updatedAssetType
+                Id = "prsdevex.Dotnet_sdk",
+                IfMatch = "2",
+                AssetType = updatedAssetType
             };
             var assetType = await assetClient.PatchAssetTypeAsync(request);
 
@@ -748,6 +761,34 @@ namespace WebApp.Controllers
             return StatusCode(200, assetType);
         }
 
+        [HttpGet("patch-asset-type-variables")]
+        public async Task<ActionResult> PatchAssetTypeVariables()
+        {
+            var assetClient = _sdk.GetAssetManagementClient();
+
+            var variableMap = new VariableMap()
+            {
+                Var3 = new VariableUpdate()
+                {
+                    Name = "var5"
+                },
+                Var4 = new VariableUpdate()
+                {
+                    Name = "var6"
+                },
+            };
+
+            var request = new PatchAssetTypeVariablesRequest()
+            {
+                Id = "prsdevex.Dotnet_sdk",
+                IfMatch = "1",
+                VariableMap = variableMap
+            };
+            await assetClient.PatchAssetTypeVariablesAsync(request);
+
+            return StatusCode(204);
+        }
+
         #endregion
 
         #region Asset model lock
@@ -776,21 +817,130 @@ namespace WebApp.Controllers
         #region Event
 
         [HttpGet("add-event")]
-        public async Task<ActionResult<Event>> AddEvent()
+        public async Task<ActionResult<MyEvent>> AddEvent()
         {
             var eventClient = _sdk.GetEventManagementClient();
             var request = new AddEventRequest()
             {
-                Body = new MyEventAdd()
+                Event = new MyEventAddUpdate()
                 {
-                    EntityId = "ec206f76b04a49a4938c1573b35b6688",
-                    Timestamp = DateTime.Now.ToUniversalTime(),
+                    EntityId = "da4aabbd3f2f488da7ef75fa506a8eaa",
+                    Timestamp = DateTime.Now,
                     Description = "Error happened in the test",
                     Severity = 5
-
                 }
             };
             return StatusCode(200, await eventClient.AddEventAsync<MyEvent>(request));
+        }
+
+        [HttpGet("list-events")]
+        public async Task<ActionResult<IEnumerable<MyEvent>>> ListEvents()
+        {
+            var eventClient = _sdk.GetEventManagementClient();
+            var request = new ListEventsRequest();
+            return StatusCode(200, await eventClient.ListEventsAsync<Event>(request));
+        }
+
+        [HttpGet("get-event")]
+        public async Task<ActionResult<MyEvent>> GetEvent()
+        {
+            var eventClient = _sdk.GetEventManagementClient();
+            var request = new GetEventRequest()
+            {
+                EventId = "3a799ea2-289d-4421-8120-9ec4ac23cf54"
+            };
+            return StatusCode(200, await eventClient.GetEventAsync<MyEvent>(request));
+        }
+
+        [HttpGet("update-event")]
+        public async Task<ActionResult<MyEvent>> UpdateEvent()
+        {
+            var eventClient = _sdk.GetEventManagementClient();
+            var request = new UpdateEventRequest()
+            {
+                EventId = "3a799ea2-289d-4421-8120-9ec4ac23cf54",
+                IfMatch = "1",
+                Event = new MyEventAddUpdate()
+                {
+                    Severity = 3,
+                    CorrelationId = "61349fc6e3c5d0f8a12069480abd4438",
+                    EntityId = "da4aabbd3f2f488da7ef75fa506a8eaa",
+                    Timestamp = DateTime.Parse("2021-09-05T10:45:25.527299Z").ToUniversalTime()
+                }
+            };
+            return StatusCode(200, await eventClient.UpdateEventAsync<MyEvent>(request));
+        }
+
+        #endregion
+
+        #region Event type
+
+        [HttpGet("list-event-types")]
+        public async Task<ActionResult<ResourceList<EventType>>> ListEventTypes()
+        {
+            var eventClient = _sdk.GetEventManagementClient();
+            var request = new ListEventTypesRequest();
+            return StatusCode(200, await eventClient.ListEventTypesAsync(request));
+        }
+
+        [HttpGet("add-event-type")]
+        public async Task<ActionResult<EventType>> AddEventType()
+        {
+            var eventClient = _sdk.GetEventManagementClient();
+            var request = new AddEventTypeRequest()
+            {
+                EventType = new EventTypeAdd()
+                {
+                    Name = "DotnetSdkEventType",
+                    Fields = new List<FieldAdd>
+                    {
+                        new FieldAdd { Name = "Foo", Type = "STRING"}
+                    }
+                }
+            };
+            return StatusCode(200, await eventClient.AddEventTypeAsync(request));
+        }
+
+        [HttpGet("get-event-type")]
+        public async Task<ActionResult<EventType>> GetEventType()
+        {
+            var eventClient = _sdk.GetEventManagementClient();
+            var request = new GetEventTypeRequest()
+            {
+                EventTypeId = "43eba523-b5aa-4eea-998b-8bc311caf0d3"
+            };
+            return StatusCode(200, await eventClient.GetEventTypeAsync(request));
+        }
+
+        [HttpGet("update-event-type")]
+        public async Task<ActionResult<EventType>> UpdateEventType()
+        {
+            var eventClient = _sdk.GetEventManagementClient();
+            var request = new UpdateEventTypeRequest()
+            {
+                EventTypeId = "43eba523-b5aa-4eea-998b-8bc311caf0d3",
+                IfMatch = "0",
+                EventTypePatch = new EventTypePatch
+                {
+                    Op = "replace",
+                    Path = "/scope",
+                    Value = "GLOBAL"
+                }
+            };
+            return StatusCode(200, await eventClient.UpdateEventTypeAsync(request));
+        }
+
+        [HttpGet("delete-event-type")]
+        public async Task<ActionResult<EventType>> DeleteEventType()
+        {
+            var eventClient = _sdk.GetEventManagementClient();
+            var request = new DeleteEventTypeRequest()
+            {
+                EventTypeId = "43eba523-b5aa-4eea-998b-8bc311caf0d3",
+                IfMatch = "1"
+            };
+            await eventClient.DeleteEventTypeAsync(request);
+            return StatusCode(204);
         }
 
         #endregion
@@ -798,54 +948,55 @@ namespace WebApp.Controllers
 
     public class TestTimeSeriesData
     {
-        [JsonProperty("_time")]
+        [MindSphereName("_time")]
         public DateTime Time { get; set; }
 
-        [JsonProperty("x")]
+        [MindSphereName("velocity")]
         public double X { get; set; }
 
-        [JsonProperty("y")]
-        public double Y { get; set; }
-
-        [JsonProperty("z")]
-        public double Z { get; set; }
-
-        public TestTimeSeriesData(DateTime time, double x, double y, double z)
+        public TestTimeSeriesData(DateTime time, double v)
         {
             Time = time;
-            X = x;
-            Y = y;
-            Z = z;
+            X = v;
         }
     }
 
     public class TestAggregateTsData : AggregateSet
     {
-        [JsonProperty("x")]
+        [MindSphereName("x")]
         public AggregateVariable X { get; set; }
 
-        [JsonProperty("y")]
+        [MindSphereName("y")]
         public AggregateVariable Y { get; set; }
 
-        [JsonProperty("z")]
+        [MindSphereName("z")]
         public AggregateVariable Z { get; set; }
     }
 
-    public class MyEventAdd : EventAdd
+    public class VariableMap
     {
-        [JsonProperty("description")]
+        [MindSphereName("var4")]
+        public VariableUpdate Var3 { get; set; }
+
+        [MindSphereName("var3")]
+        public VariableUpdate Var4 { get; set; }
+    }
+
+    public class MyEventAddUpdate : EventAddUpdate
+    {
+        [MindSphereName("description")]
         public string Description { get; set; }
 
-        [JsonProperty("severity")]
+        [MindSphereName("severity")]
         public int Severity { get; set; }   
     }
 
     public class MyEvent : Event
     {
-        [JsonProperty("description")]
+        [MindSphereName("description")]
         public string Description { get; set; }
 
-        [JsonProperty("severity")]
+        [MindSphereName("severity")]
         public int Severity { get; set; }
     }
 }
